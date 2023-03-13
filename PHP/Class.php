@@ -2,13 +2,13 @@
 
 class Pessoa{
 
-    $nome;
-    $email;
-    $senha;
-    $RG;
-    $CPF;
-    $sexo;
-    $data_nasc
+    var $nome;
+    var $email;
+    var $senha;
+    var $RG;
+    var $CPF;
+    var $sexo;
+    var $data_nasc;
 
 }
 
