@@ -3,5 +3,3 @@ Arquivo para anotar algumas observações, portanto os demais usuário, por favo
 Relatório das atividades realizadas no dia 12 de março de 2023, as atividades iniciaram-se, com o foco de refartáramos os códigos de back-end, já criados porém tivemos alguns empecilhos no banco de dados, portando voltamos a nossa atenção para, tal durante o dia e a cabos por adicionar uma tabela “tipo de usuário”, por tanto facilitamos futuros filtros em nosso banco de dados, esta tabela sede sua chave primaria para as tabelas “secretario, paciente, psicólogo e responsável” permitindo uma facilitação no comando “inner join”, com a finalidade uma junção de dados mas pratica, além da criação desta tabela e algumas alterações, adicionamos uma base de teste a todas as tabelas do banco de dados.
 
 By: Jedeias Luiz.
-
-
