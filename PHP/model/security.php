@@ -2,16 +2,15 @@
 
 class Security{
 
-    public $input;
-
     public function input_Check(string $input)
     {
-    
+        
+        $this->input = $input;
+
         $check_arrays = str_split($this->input);
 
         foreach($check_arrays as $input_String){
         
-            // echo"<br>$input_String<br>";
             
             if(($input_String == "-")    ||
             ($input_String == "'")       || 
@@ -31,7 +30,7 @@ class Security{
                 
                 echo "<br> You can't use this character:<br>" . $input_String . "<br> ";
                 
-                header("Refresh: 4, url='../../index.html'");
+                header("Refresh: 4, url='../index.html'");
                 
                 $security_stats = FALSE;
 
