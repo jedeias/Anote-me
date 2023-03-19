@@ -1,5 +1,30 @@
 Arquivo para anotar algumas observações, portanto os demais usuário, por favor não esqueçam de informar quem, fez determinado comentário, e seja objetivo na mensagem, caso haja necessidade de fazer alguma observação, ou informação relevante anote neste arquivo, obrigado pela atenção.
 
-Relatório das atividades realizadas no dia 12 de março de 2023, as atividades iniciaram-se, com o foco de refartáramos os códigos de back-end, já criados porém tivemos alguns empecilhos no banco de dados, portando voltamos a nossa atenção para, tal durante o dia e a cabos por adicionar uma tabela “tipo de usuário”, por tanto facilitamos futuros filtros em nosso banco de dados, esta tabela sede sua chave primaria para as tabelas “secretario, paciente, psicólogo e responsável” permitindo uma facilitação no comando “inner join”, com a finalidade de uma junção de dados mas pratica, além da criação desta tabela e algumas alterações, adicionamos uma base de teste a todas as tabelas do banco de dados.
+Relatório das atividades realizadas no dia 12 de março de 2023, as atividades iniciaram-se, com o foco de refartáramos os códigos de back-end, já criados porém tivemos alguns empecilhos no banco de dados, portando voltamos a nossa atenção para, tal durante o dia e a cabos por adicionar uma tabela “tipo de usuário”, por tanto facilitamos futuros filtros em nosso banco de dados, esta tabela sede sua chave primaria para as tabelas “secretario, paciente, psicólogo e responsável” permitindo uma facilitação no comando “inner join”, com a finalidade de uma junção de dados mas pratica, além da criação desta tabela, e algumas alterações, adicionamos uma base de teste a todas as tabelas do banco de dados.
 
 By: Jedeias Luiz.
+
+feito a substituição de local do Arquivo login.html para a pasta raiz e alterado o nome para index.php
+
+Mudança no local da pagina principal que seria vista de inicio, tanto para secretaria, psicologo ou paciente, retiramos ela da pasta HTML e deixamos ela como arquivo raiz do nosso projeto, a pasta antes chamada de login.html, agora se chama index.html e fica na raiz do projeto.
+Objetivo: Melhorar a manipulação dos diretorios.
+
+
+Apontamos os arquivos a serem refatorados e colocamos em uma nova pasta chamada refatorar_dps.
+Objetivo: Organizar os arquivos ja feitos, ja que estamos mexendo na estrutura das nossas pastas. 
+
+Criamos uma pasta chamada Controller que contem uma classe chamada Login.php.
+Objetivo: responsavel por receber as entradas dos usuarios e processa-las, gerando ações a serem executadas pelo Model.
+
+Criamos uma pasta chamada Model que contem arquivos, são eles: connect.php, security.php, user_check.php. 
+Objetivo:Responsavel por representar a estrutura de dados e as regras de negócio do aplicativo/sistema, nesta camada é realizada a comunicação com o banco de dados. Arquivos criados para melhores validações no email do usuario prevenindo ataques de injeção de SQL.
+
+
+
+Foi criado o arquivo main.php com o objetivo de unir os demais arquivos do projeto, facilitando a visualização do que está ocorrendo no código. Esse arquivo serve como ponto de entrada para a aplicação, coordenando o funcionamento das outras classes e arquivos.
+
+Já o arquivo autoload.php consiste na ferramenta autoload apresentada nas aulas, que tem como objetivo unir as classes do projeto. No entanto, optou-se por não utilizá-lo como o arquivo principal (main), mas sim como uma ferramenta auxiliar para o funcionamento do projeto.
+Objetivo do dia: nosso principal objetivo de hoje 18/03/2023 foi organizar melhor nossas pastas com arquitetura de dados MVC e trazer uma melhor mobilidade dos dados dentro do nosso sistema.
+
+By. Alex Breno.
+

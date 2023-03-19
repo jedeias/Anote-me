@@ -4,8 +4,6 @@ include("connect.php");
 session_id(1);
 session_start();
 
-
-
 if(isset($_POST['entrar']) == true){
 
 $email = $_POST["email"];
