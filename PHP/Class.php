@@ -12,7 +12,7 @@ class Pessoa{
 
 }
 
-user = new Pessoa(); 
+$user = new Pessoa(); 
 
 
 
