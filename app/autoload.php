@@ -14,8 +14,9 @@ function autoload($class_Name){
         
         }
     }
-}
+    
+    spl_autoload_register('autoload');
 
-spl_autoload_register('autoload');
+}
 
 ?>
