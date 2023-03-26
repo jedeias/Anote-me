@@ -28,3 +28,6 @@ Objetivo do dia: nosso principal objetivo de hoje 18/03/2023 foi organizar melho
 
 By. Alex Breno.
 
+
+Feito o reset do projeto para contribuição dos demais colaboradores adicionamdo comitts e remodelagen do diretorio.
+by Jedeias, Alex, Guilherme.
