@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="CSS/login.css">
+</head>
+
+<body>
+
+    <section class="content">
+        
+        <div class="logo-container">
+
+            <div class="logo-text">
+
+                <h1>ANOTE-ME</h1>
+                <p>Pensamentos organizados, vida em ordem.</p>
+
+            </div>
+
+            <div class="logo-image">
+                
+                <img class="logo" src="IMG/logo.png" alt="">
+            
+            </div>
+
+        </div>
+        
+        <div class="login-container">
+            
+            <form class="login" action="PHP/main.php" method="POST" enctype="multipart/form-data">
+                
+                <h1 class="login-label">LOGIN</h1>
+            
+            
+                <input type="text" name="email" placeholder="E-mail" class="usuario-input">
+                <input type="password"  name="senha" placeholder="Senha" class="senha-input">
+                
+                
+                <div class="action-button">
+                
+                    <input type="submit" name="entrar" class="entrar-button" value="Entrar">
+                    
+                    <button class="registrar-button">
+                        <a href="registro.html">Registrar</a>
+                    </button>
+                
+                </div>
+            
+            </form>
+        
+        </div>
+    
+    </section>
+
+   
+</body>
+</html>
