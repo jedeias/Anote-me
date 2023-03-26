@@ -2,7 +2,7 @@
 
 function autoload($class_Name){
 
-    $dirs = array("controller/","model/","view/");
+    $dirs = array("controller/","model/","view/", "config");
 
     foreach($dirs as $dir){
 
@@ -14,9 +14,9 @@ function autoload($class_Name){
         
         }
     }
-    
-    spl_autoload_register('autoload');
 
 }
+
+spl_autoload_register('autoload');
 
 ?>
