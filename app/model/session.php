@@ -7,7 +7,7 @@ class Session
         session_start();
       
         if (!isset($_SESSION)) {
-        header("Refresh: 2; url=../../");
+            header("Refresh: 2; url=../../");
         }
     }
    
