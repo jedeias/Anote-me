@@ -5,14 +5,15 @@ include("autoload.php");
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-session_start();
+$session = new Session_controller();
 
-$_SESSION["email"] = $email;
+$session->session_set("email", $email);
 
-if (!isset($_SESSION['email'])) {
-    header("Location: ./view/login_error.php");
-    exit();
-}
+var_dump($session);
+
+echo("<br>");
+
+var_dump($session->session_get("email"));
 
 $login_sys = new Login();
 
@@ -25,10 +26,10 @@ $redirect_urls = array(
     "default" => "./view/login_error.php"
 );
 
-$redirect_url = isset($redirect_urls[$login_status["user_type"]]) ? $redirect_urls[$login_status["user_type"]] : $redirect_urls["default"];
+//$redirect_url = isset($redirect_urls[$login_status["user_type"]]) ? $redirect_urls[$login_status["user_type"]] : $redirect_urls["default"];
 
-$_SESSION["type"] = $login_status["user_type"];
+// $_SESSION["type"] = $login_status["user_type"];
 
-header("Refresh: 0; url=$redirect_url");
+// header("Refresh: 0; url=$redirect_url");
 
 ?>
