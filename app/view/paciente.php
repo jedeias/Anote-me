@@ -2,8 +2,8 @@
 
 session_start();
 
-if (!isset($_SESSION['emial'])) {
-    header("Location: login_error.php");
+if (!isset($_SESSION['email'])) {
+    header("Refresh: 2; login_error.php");
     exit();
 }
 

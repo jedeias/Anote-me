@@ -32,5 +32,5 @@
 </body>
 </html>
 <?php
-header("Refresh: 2; url=../");
+header("Refresh: 2; url=../../");
 ?>

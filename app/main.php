@@ -18,29 +18,17 @@ $login_sys = new Login();
 
 $login_status = $login_sys->login_check($email, $password);
 
+$redirect_urls = array(
+    "psicologo" => "./view/psicologo.html",
+    "paciente" => "./view/paciente.php",
+    "secretario" => "./view/secretario.html",
+    "default" => "./view/login_error.php"
+);
 
-if($login_status["success"] == false){
-    
-    header("Refresh: 0; url=./view/login_error.html");
-    
-}elseif($login_status["success"] == true and $login_status["user_type"]== 'psicologo'){
-    
-    header("Refresh: 0; url=./view/psicologo.html");
-    
-}elseif ($login_status["success"] == true and $login_status["user_type"]== 'paciente') {
-    
-    header("Refresh: 0; url=./view/paciente.php");
-    
-}elseif ($login_status["success"] == true and $login_status["user_type"]== 'secretario') {
-    
-    header("Refresh: 0; url=./view/secretario.html");
-    
-}else {
-    
-    header("Refresh: 0; url=./view/login_error.html");
-    
-}
+$redirect_url = isset($redirect_urls[$login_status["user_type"]]) ? $redirect_urls[$login_status["user_type"]] : $redirect_urls["default"];
 
-$_SESSION["type"] = $login_status['user_type'];
+$_SESSION["type"] = $login_status["user_type"];
+
+header("Refresh: 0; url=$redirect_url");
 
 ?>
