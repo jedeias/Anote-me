@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+if(!isset($_SESSION))
+{
+    echo "nao encontrada a session";
+}
+
+$nome = $_SESSION['nome'];
+$email = $_SESSION['email'];
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,6 +21,6 @@
     <title>Pagina Psicologo Teste</title>
 </head>
 <body>
-    <h1>Bem vindo a pagina do psicolgo</h1>
+    <h1>Bem vindo <?php  echo $nome; ?> a pagina do psicolgo php</h1>
 </body>
 </html>

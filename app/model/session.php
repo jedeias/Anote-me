@@ -4,11 +4,11 @@ class Session
 {
     function __construct() {
       
-        session_start();
-      
+
         if (!isset($_SESSION)) {
             header("Refresh: 2; url=../../");
         }
+        session_start();
     }
    
    function set($session_nome, $atributo) {
