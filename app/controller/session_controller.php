@@ -10,6 +10,8 @@ class Session_controller{
 
     }
 
+
+    //**↓ Não esta funcionando ...**/
     public function session_get($session_nome)
     {
         $session = new Session();
@@ -25,7 +27,6 @@ class Session_controller{
         $session->destroy();
 
     }
-
 
 }
 

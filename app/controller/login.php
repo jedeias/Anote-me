@@ -11,8 +11,10 @@ class Login
 
     public function user_data(string $email, string $password)
     {
-       $select = new Select();
-       return $result = $select->userData($email, $password); 
+        $select = new Select();
+        
+        return $result = $select->userData($email, $password); 
+
     }
 
 }

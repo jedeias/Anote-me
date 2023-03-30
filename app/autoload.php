@@ -2,7 +2,7 @@
 
 function autoload($class_Name){
 
-    $dirs = array("controller/","model/","view/", "config");
+    $dirs = array("controller/","model/","view/", "config", "../controller/", "../model/", "../view/");
 
     foreach($dirs as $dir){
 

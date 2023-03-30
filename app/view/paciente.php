@@ -1,14 +1,12 @@
 <?php
 
-session_start();
+include("../autoload.php");
 
-if (!isset($_SESSION['email'])) {
-    header("Refresh: 2; login_error.php");
-    exit();
-}
+$session = new session_controller();
 
-$email = $_SESSION['email'];
-$type = $_SESSION["type"];
+$email = $session->session_get("email");
+$type = $session->session_get("type");
+$nome = $session->session_get("nome");
 
 ?>
 <!DOCTYPE html>
@@ -30,7 +28,7 @@ $type = $_SESSION["type"];
             <nav class="dados-wrapper" id="click">
                 <ul class="lista-dados">
                     <li class="center"> <img src="../IMG/emoji.webp" alt="FOTO-DE-PERFIL" class="perfil" id="second-perfil"></li>
-                    <li class="center">Nome</li>
+                    <li class="center">Nome : <?php echo "$nome"; ?></li>
                     <li>Email : <?php echo "$email"; ?></li>
                     <li>Telefone :</li>
                     <li>Responsável : </li>
