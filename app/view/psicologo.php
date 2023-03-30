@@ -1,15 +1,12 @@
 <?php
 
-session_start();
-if(!isset($_SESSION))
-{
-    echo "nao encontrada a session";
-}
+include("../autoload.php");
 
-$nome = $_SESSION['nome'];
-$email = $_SESSION['email'];
+$session = new Session_controller();
 
-
+$nome = $session->session_get('nome');
+$email = $session->session_get('email');
+$type = $session->session_get('type');
 
 ?>
 <!DOCTYPE html>
