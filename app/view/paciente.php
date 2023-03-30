@@ -2,11 +2,11 @@
 
 include("../autoload.php");
 
-$session = new session_controller();
+$session = new Session_controller();
 
-$email = $session->session_get("email");
-$type = $session->session_get("type");
-$nome = $session->session_get("nome");
+$nome = $session->session_get('nome');
+$email = $session->session_get('email');
+$type = $session->session_get('type');
 
 ?>
 <!DOCTYPE html>

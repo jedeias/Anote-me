@@ -1,33 +1,31 @@
 <?php
 
-class Session_controller{
+class Session_controller {
+    
+    private $session;
 
-    public function session_set($session_nome, $atributo)
-    {
-        $session = new Session();
-
-        $session->set($session_nome, $atributo);
-
+    public function __construct() {
+    
+        $this->session = new Session();
+    
     }
 
-
-    //**↓ Não esta funcionando ...**/
-    public function session_get($session_nome)
-    {
-        $session = new Session();
-
-        $session->get($session_nome);
-
+    public function session_set($session_nome, $atributo) {
+    
+        $this->session->set($session_nome, $atributo);
+    
     }
 
-    public function session_destroy()
-    {
-        $session = new Session();
-
-        $session->destroy();
-
+    public function session_get($session_nome) {
+    
+        return $this->session->get($session_nome);
+    
     }
 
+    public function session_destroy() {
+
+        $this->session->destroy();
+    
+    }
 }
-
 ?>
