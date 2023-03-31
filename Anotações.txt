@@ -31,3 +31,7 @@ By. Alex Breno.
 
 Feito o reset do projeto para contribuição dos demais colaboradores adicionamdo comitts e remodelagen do diretorio.
 by Jedeias, Alex, Guilherme.
+
+
+Criado uma conexão com o postman
+By Jedeias.

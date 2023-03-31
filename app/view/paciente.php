@@ -8,6 +8,8 @@ $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
 
+var_dump($nome, $email, $type);
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -50,7 +52,7 @@ $type = $session->session_get('type');
                     <li class="anotacoes">
                         <p>Anotações</p>
                     </li>   
-                    <a href="../aitv recomendadas/atividades.php">
+                    <a href="../view/atividades.php">
                         <li class="agenda-consultas">
                             <p>Atividades Recomendadas</p>
                         </li>
