@@ -9,7 +9,6 @@ class Select {
     public function __construct(){
         $this->conn = new Connect();
     }
-
     public function validateUser($email, $password) {
         $stmt = $this->conn->prepare("SELECT email, senha, tipo_usuario
                                       FROM (
@@ -28,6 +27,19 @@ class Select {
         } else {
             return array("success" => false, "error_message" => "Invalid email or password.");
         }
+    }
+    public function select_all_users(){
+
+        $stmt = $this->conn->query("SELECT nome, email, 'paciente' AS tipo_usuario FROM paciente
+                                     UNION (SELECT nome, email, 'psicologo' AS tipo_usuario FROM psicologo)
+                                     UNION (SELECT nome, email, 'secretario' AS tipo_usuario FROM secretario)");
+
+        echo "<pre>";
+        
+        for ($set = array (); $row = $stmt->fetch_assoc(); $set[] = $row);
+       
+        return($set);
+
     }
 
     //função para buscar dados do usuario, no momento somente nome e email
