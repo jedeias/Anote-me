@@ -48,9 +48,9 @@ $session->session_set("email", $email);
 $session->session_set("nome", $user_name);
 
 $redirect_urls = array(
-    "psicologo" => "./view/psicologo.php",
-    "paciente" => "./view/paciente.php",
-    "secretario" => "./view/secretario.html",
+    "psicologo" => "./view/telas/psicologo/psicologo.php",
+    "paciente" => "./view/telas/paciente/paciente.php",
+    "secretario" => "./view/telas/secretario/secretario.html",
     "default" => "./view/login_error.php"
 );
 

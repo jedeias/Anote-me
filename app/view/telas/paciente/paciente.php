@@ -1,6 +1,6 @@
 <?php
 
-include("../autoload.php");
+include("../../../autoload.php");
 
 $session = new Session_controller();
 
@@ -16,7 +16,7 @@ $type = $session->session_get('type');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anotações</title>
-    <link rel="stylesheet" href="../CSS/styleanotacoes.css">
+    <link rel="stylesheet" href="../../CSS/styleanotacoes.css">
 </head>
 <body id="body">
     <header class="header-container">
