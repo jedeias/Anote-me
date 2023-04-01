@@ -249,12 +249,15 @@ CREATE TABLE `paciente` (
   `CPF` int(11) NOT NULL,
   `sexo` enum('M','F') NOT NULL,
   `data_nasc` date NOT NULL,
+  `fk_atividade` int(11) DEFAULT NULL,
   PRIMARY KEY (`pk_paciente`),
   UNIQUE KEY `email` (`email`),
   KEY `fk_endereco` (`fk_endereco`),
   KEY `fk_telefone` (`fk_telefone`),
   KEY `fk_responsavel` (`fk_responsavel`),
   KEY `fk_tipo_usuario` (`fk_tipo_usuario`),
+  KEY `fk_paciente_atividade` (`fk_atividade`),
+  CONSTRAINT `fk_paciente_atividade` FOREIGN KEY (`fk_atividade`) REFERENCES `atividade` (`pk_atividade`),
   CONSTRAINT `paciente_ibfk_1` FOREIGN KEY (`fk_endereco`) REFERENCES `endereco` (`pk_endereco`),
   CONSTRAINT `paciente_ibfk_2` FOREIGN KEY (`fk_telefone`) REFERENCES `telefone` (`pk_telefone`),
   CONSTRAINT `paciente_ibfk_3` FOREIGN KEY (`fk_responsavel`) REFERENCES `responsavel` (`pk_responsavel`),
@@ -268,7 +271,7 @@ CREATE TABLE `paciente` (
 
 LOCK TABLES `paciente` WRITE;
 /*!40000 ALTER TABLE `paciente` DISABLE KEYS */;
-INSERT INTO `paciente` VALUES (2,1,2,3,1,'Joãozinho da Silva','joaozinho@example.com','senha123','111111111',1234567890,'M','2010-01-01'),(3,2,1,3,2,'Mariazinha Pereira','mariazinha@example.com','senha123','222222222',1098765432,'F','2012-01-01');
+INSERT INTO `paciente` VALUES (2,1,2,3,1,'Joãozinho da Silva','joaozinho@example.com','senha123','111111111',1234567890,'M','2010-01-01',1),(3,2,1,3,2,'Mariazinha Pereira','mariazinha@example.com','senha123','222222222',1098765432,'F','2012-01-01',2);
 /*!40000 ALTER TABLE `paciente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -588,4 +591,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-12 21:31:20
+-- Dump completed on 2023-04-01 10:37:14
