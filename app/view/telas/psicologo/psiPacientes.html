@@ -28,9 +28,9 @@ if($nome == NULL and $email == NULL and $type == NULL){
 <body id="body">
     <header class="header-container">
         <h1>ANOTE-ME</h1>
-        <div id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
+        <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
             <img src="../../IMG/117104319_3204025416385100_1271061160658966926_n.jpg" alt="" class="perfil" id="first-perfil">
-        </div> 
+        </figure> 
         <div class="click-wrapper">
             <nav class="dados-wrapper hidden" id="wrapper-content">
                 <ul class="lista-dados">
@@ -53,34 +53,34 @@ if($nome == NULL and $email == NULL and $type == NULL){
             </nav>
         </div>
     </header>
-    <section class="notepad-container">
-        <section class="menu-container">
+    <main class="notepad-container">
+        <aside class="menu-container">
             <h1>Pacientes</h1>
             <nav class="menu">
-                <div class="paciente-select">
+                <article class="paciente-select">
                     <p>Jose toledo da Silva</p>
                     <p>Josetoledo@gmail.com</p>
                     <p>40 anos</p>
                     <hr>
-                </div>
-                <div class="paciente-select">
+                </article>
+                <article class="paciente-select">
                     <p>Jose toledo da Silva</p>
                     <p>Josetoledo@gmail.com</p>
                     <p>40 anos</p>
                     <hr>
-                </div>
-                <div class="paciente-select">
+                </article>
+                <article class="paciente-select">
                     <p>Jose toledo da Silva</p>
                     <p>Josetoledo@gmail.com</p>
                     <p>40 anos</p>
                     <hr>
-                </div>
+                </article>
             </nav>
-        </section>
-        <div class="notepad-content">
-            <div id="pacienteAnotacaoTable" class="paciente-table show">
+        </aside>
+        <section class="notepad-content">
+            <section id="pacienteAnotacaoTable" class="paciente-table show">
                 <div class="paciente-anotacoes">
-                    <div class="paciente-anotacoes-header">
+                    <article class="paciente-anotacoes-header">
                         <button id="pacientePrevButton" onclick="pacientePrevButton()" class="paciente-prev-button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
                                 <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
@@ -92,8 +92,8 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                 <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                             </svg>
                         </button>
-                    </div>
-                    <div class="activity">
+                    </article>
+                    <article class="activity">
                         <div class="activity-header">
                         <p>18:32</p> 
                         <p>16/02/2023</p>
@@ -105,9 +105,9 @@ if($nome == NULL and $email == NULL and $type == NULL){
                             <p>Sentindo-se: Triste 😢</p>
                             <p>Intensidade: 50%</p>       
                         </div>
-                    </div>
+                    </article>
 
-                    <div class="activity">
+                    <article class="activity">
                         <div class="activity-header">
                         <p>18:32</p> 
                         <p>16/02/2023</p>
@@ -119,9 +119,9 @@ if($nome == NULL and $email == NULL and $type == NULL){
                             <p>Sentindo-se: Triste 😢</p>
                             <p>Intensidade: 50%</p>       
                         </div>
-                    </div>
+                    </article>
 
-                    <div class="activity">
+                    <article class="activity">
                         <div class="activity-header">
                         <p>18:32</p> 
                         <p>16/02/2023</p>
@@ -133,12 +133,13 @@ if($nome == NULL and $email == NULL and $type == NULL){
                             <p>Sentindo-se: Triste 😢</p>
                             <p>Intensidade: 50%</p>       
                         </div>
-                    </div>
+                    </article>
                 </div>
-            </div>
-            <div id="pacienteRecomendadasTable" class="paciente-table">
+            </section>
+
+            <section id="pacienteRecomendadasTable" class="paciente-table">
                 <div class="paciente-anotacoes">
-                    <div class="paciente-anotacoes-header">
+                    <article class="paciente-anotacoes-header">
                         <button id="pacientePrevButton" onclick="pacientePrevButton()" class="paciente-prev-button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
                                 <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
@@ -150,12 +151,16 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                 <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                             </svg>
                         </button>
-                    </div>
-                    <div class="activity-add">
+                    </article>
+
+                    <article class="activity-add">
                         <button id="activityButton" class="activity-button activity-button-plus" onclick="activityClose()" ><img src="../../IMG/ico/plus-svgrepo-com.svg"></button>
-                    </div>
-                    <div id="activityTable" class="activity-add-table hidden" action="" method="POST">
-                        <h1>Adicionar atividade</h1>
+
+                    </article>
+
+                    <article id="activityTable" class="activity-add-table hidden" action="" method="POST">
+                        <h2>Adicionar atividade</h2>
+
                         <div class="activity-add-table-left">
                             <p>Assunto</p>
                         </div>
@@ -166,24 +171,24 @@ if($nome == NULL and $email == NULL and $type == NULL){
                         <textarea name="descricao"></textarea>
                         <input class="activity-save" type="button" value="Salvar" onclick="activityClose()">
                         
-                    </div>
-                    <div class="paciente-atividade">
+                    </article>
+
+                    <article class="paciente-atividade">
                         <div class="activity">
                             <div class="activity-header">
                             <p>16/02/2023</p> 
                             <p>Alimentação</p>
                             <button class="activity-button" name="excluir"><img src="../../IMG/ico/trash-svgrepo-com.svg"></button>
                             </div>
-                            <div class="activity-text">
-                                <p>Conduza sua alimentação para que seja o mais organizada possivel, se alimente 3 vezes a o dia, de manhã, a tarde e a noite, com isso terá mais energia para conduzir o dia.</p>
-                            </div>
+                            <p class="activity-text">Conduza sua alimentação para que seja o mais organizada possivel, se alimente 3 vezes a o dia, de manhã, a tarde e a noite, com isso terá mais energia para conduzir o dia.</p>
                         </div>
-                    </div>
+                    </article>
                 </div>
-            </div>
-            <div id="pacienteAgendaTable" class="paciente-table">
+            </section>
+
+            <section id="pacienteAgendaTable" class="paciente-table">
                 <div class="paciente-anotacoes">
-                    <div class="paciente-anotacoes-header">
+                    <article class="paciente-anotacoes-header">
                         <button id="pacientePrevButton" onclick="pacientePrevButton()" class="paciente-prev-button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
                                 <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
@@ -195,14 +200,14 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                 <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                             </svg>
                         </button>
-                    </div>
+                    </article>
                     <div class="paciente-atividade">
                         <h1>TESTE3</h1>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
+        </section>
+    </main>
     <script src = "../../JS/script.js"> </script>
 </body>
 </html>

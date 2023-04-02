@@ -57,3 +57,20 @@ function pacientePrevButton(){
         pacienteAnotacaoTable.classList.add('show')
     }
 }
+
+let PsicologoTable = document.getElementById("cadastroTablepsi");
+let pacienteTable = document.getElementById("cadastroTablepaci");
+
+
+function teste(){
+    if(PsicologoTable.classList.contains('show')){
+        PsicologoTable.classList.remove('show')
+        pacienteTable.classList.add('show')
+    } else if(pacienteRecomendadasTable.classList.contains('show')){
+        pacienteRecomendadasTable.classList.remove('show')
+        pacienteAgendaTable.classList.add('show')
+    } else if(pacienteAgendaTable.classList.contains('show')){
+        pacienteAgendaTable.classList.remove('show')
+        pacienteAnotacaoTable.classList.add('show')
+    }
+}
