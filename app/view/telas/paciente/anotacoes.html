@@ -81,7 +81,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
             </button>
             <div class="notepad" action="../PHP/receberAnotacao.php" method="post">
 
-                <div class="notepad-header">
+                <article class="notepad-header">
                     <p id="emojiButton" class="emoji-button" onclick="ClickEmoji()">😶</p>
                     <p id="digital-date" class="notepad-date"></p> 
                     <p id = "digital-clock" class="notepad-clock"></p>
@@ -111,7 +111,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                         </select>
                         <input class="emoji-close" type="button" value="Fechar" onclick="ClickEmoji()">
                     </div>
-                </div>
+                </article>
                 <textarea id="text1" maxlength="221" placeholder="Como você está?" name="texto"></textarea>
                 <div class="action-button-container">
                     <button class="action-button">Descartar</button>
