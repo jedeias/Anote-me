@@ -2,6 +2,19 @@
 
 include("autoload.php");
 
+$assunto = "teste";
+$descricao = "teste descricao";
+
+$atividade = new Insert();
+
+$atividade->insert_type_activites($assunto, $descricao);
+var_dump($atividade);
+echo "<br>";
+echo "<br>";
+
+
+
+
     //para produção
 // if(!isset($_POST['email']) && !isset($_POST['password']) ){
 //     echo "Dados não inseridos";
@@ -48,7 +61,7 @@ $session->session_set("email", $email);
 $session->session_set("nome", $user_name);
 
 $redirect_urls = array(
-    "psicologo" => "./view/telas/psicologo/psicologo.php",
+    "psicologo" => "./view/telas/psicologo/psiPacientes.php",
     "paciente" => "./view/telas/paciente/paciente.php",
     "secretario" => "./view/telas/secretario/secretario.html",
     "default" => "./view/login_error.php"

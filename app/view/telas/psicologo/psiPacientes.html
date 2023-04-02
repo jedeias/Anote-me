@@ -155,18 +155,20 @@ if($nome == NULL and $email == NULL and $type == NULL){
 
                     <article class="activity-add">
                         <button id="activityButton" class="activity-button activity-button-plus" onclick="activityClose()" ><img src="../../IMG/ico/plus-svgrepo-com.svg"></button>
+
                     </article>
 
-                    <article id="activityTable" class="activity-add-table hidden">
+                    <article id="activityTable" class="activity-add-table hidden" action="" method="POST">
                         <h2>Adicionar atividade</h2>
+
                         <div class="activity-add-table-left">
                             <p>Assunto</p>
                         </div>
-                        <input type="text">
+                        <input type="text" name="assunto">
                         <div class="activity-add-table-left">
                             <p>Atividade</p>
                         </div>
-                        <textarea></textarea>
+                        <textarea name="descricao"></textarea>
                         <input class="activity-save" type="button" value="Salvar" onclick="activityClose()">
                         
                     </article>
@@ -176,7 +178,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                             <div class="activity-header">
                             <p>16/02/2023</p> 
                             <p>Alimentação</p>
-                            <button class="activity-button"><img src="../../IMG/ico/trash-svgrepo-com.svg"></button>
+                            <button class="activity-button" name="excluir"><img src="../../IMG/ico/trash-svgrepo-com.svg"></button>
                             </div>
                             <p class="activity-text">Conduza sua alimentação para que seja o mais organizada possivel, se alimente 3 vezes a o dia, de manhã, a tarde e a noite, com isso terá mais energia para conduzir o dia.</p>
                         </div>
