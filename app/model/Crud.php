@@ -1,12 +1,8 @@
 <?php
 
-require_once("connect.php");
-
-
-class Insert
+class Crud
 {
     private $conn;
-
 
     public function __construct()
     {
@@ -16,7 +12,6 @@ class Insert
     public function insert_activities()
     {
         $stmt = $this->conn->prepare("INSERT INTO atividade (pk_atividade) VALUES (NULL)");
-
         $stmt->execute();
     }
 
