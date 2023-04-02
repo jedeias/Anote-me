@@ -74,3 +74,15 @@ function psicologoButton(){
     cadastroPsicologoTable.classList.add('show');
 }
 
+var btnVoltarPaciente = document.getElementById("backButtonPaciente");
+
+btnVoltarPaciente.addEventListener("click", function() {
+  window.location.href = document.referrer;
+});
+
+var btnVoltarPsicologo = document.getElementById("backButtonPsicologo");
+
+btnVoltarPsicologo.addEventListener("click", function() {
+  window.location.href = document.referrer;
+});
+
