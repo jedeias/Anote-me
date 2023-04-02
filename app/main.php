@@ -2,13 +2,15 @@
 
 include("autoload.php");
 
-$assunto = "teste";
-$descricao = "teste descricao";
+$assunto = "assunto";
+$descricao = "descricao";
 
-$atividade = new Insert();
+$new_atividade = new Crud();
 
-$atividade->insert_type_activites($assunto, $descricao);
-var_dump($atividade);
+$new_atividade->insert_type_activites($assunto, $descricao);
+$new_atividade->insert_activitie();
+echo "<pre>";
+var_dump($new_atividade);
 echo "<br>";
 echo "<br>";
 
