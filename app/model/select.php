@@ -9,6 +9,7 @@ class Select {
     public function __construct(){
         $this->conn = new Connect();
     }
+
     public function validateUser($email, $password) {
         $stmt = $this->conn->prepare("SELECT email, senha, tipo_usuario
                                       FROM (
@@ -28,19 +29,21 @@ class Select {
             return array("success" => false, "error_message" => "Invalid email or password.");
         }
     }
-    public function select_all_users(){
 
-        $stmt = $this->conn->query("SELECT nome, email, 'paciente' AS tipo_usuario FROM paciente
-                                     UNION (SELECT nome, email, 'psicologo' AS tipo_usuario FROM psicologo)
-                                     UNION (SELECT nome, email, 'secretario' AS tipo_usuario FROM secretario)");
+    // public function validateUser($email, $password) {
+    //     $stmt = $this->conn->query("SELECT email, senha, tipo_usuario
+    //                                   FROM (
+    //                                       SELECT email, senha, 'psicologo' AS tipo_usuario FROM psicologo
+    //                                       UNION ALL
+    //                                       SELECT email, senha, 'paciente' AS tipo_usuario FROM paciente
+    //                                       UNION ALL
+    //                                       SELECT email, senha, 'secretario' AS tipo_usuario FROM secretario
+    //                                   ) usuarios");
 
-        echo "<pre>";
-        
-        for ($set = array (); $row = $stmt->fetch_assoc(); $set[] = $row);
-       
-        return($set);
+    //     for ($set = array (); $row = $stmt->fetch_assoc(); $set[] = $row);
+    //     print_r($set);
 
-    }
+    // }
 
     //função para buscar dados do usuario, no momento somente nome e email
     public function userData($email, $password){

@@ -35,8 +35,6 @@ if (isset($data['email'])){
 
 }
 
-var_dump($email, $password);
-
 $login_sys = new Login();
 
 $login_status = $login_sys->login_check($email, $password);
@@ -60,6 +58,12 @@ $nome = $login_sys->user_data($email, $password);
 
 $redirect_url = isset($redirect_urls[$login_status["user_type"]]) ? $redirect_urls[$login_status["user_type"]] : $redirect_urls["default"];
 
-header("Location: $redirect_url");
+$select = new Select_controller();
+
+
+echo("<pre>");
+var_dump($select);
+
+//header("Location: $redirect_url");
 
 ?>

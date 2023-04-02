@@ -1,0 +1,128 @@
+<?php
+
+include("../../../autoload.php");
+
+
+$session = new Session_controller();
+
+$nome = $session->session_get('nome');
+$email = $session->session_get('email');
+$type = $session->session_get('type');
+
+
+if($nome == NULL and $email == NULL and $type == NULL){
+   header("location: ../../../index.html");
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anotações</title>
+    <link rel="stylesheet" href="../../CSS/secretaria.css">
+</head>
+<body id="body">
+    <header class="header-container">
+        <h1>ANOTE-ME</h1>
+        <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
+            <img src="../../IMG/117104319_3204025416385100_1271061160658966926_n.jpg" alt="" class="perfil" id="first-perfil">
+        </figure> 
+        <div class="click-wrapper">
+            <nav class="dados-wrapper hidden" id="wrapper-content">
+                <ul class="lista-dados">
+                    <li class="center"> <img src="../../IMG/117104319_3204025416385100_1271061160658966926_n.jpg" alt="FOTO-DE-PERFIL" class="perfil" id="second-perfil"></li>
+                    <li class="center"><?php echo $nome; ?></li>
+                    <div class="lista-dados-content">
+                        <li>Email : <?php echo $email; ?></li>
+                        <li>Telefone :</li>
+                        <li>Responsável : </li>
+                        <li>Telefone do Responsável : </li>
+                        <li>Psicologo : </li>
+                        <li>Clinica : </li>
+                    </div>
+                    
+                    <li class="config-container">
+                        <a class="config-button"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>
+                        <a class="config-button"><img class="wrapper-icon" src="../../IMG/ico/arrow-from-shape-right-svgrepo-com.svg" title="Sair"></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="notepad-container">
+        <aside class="menu-container">
+            <nav class="menu">
+                <ul>
+                    <li class="anotacoes">
+                        <p>Cadastro</p>
+                    </li>   
+                </ul>
+            </nav>        
+        </aside>
+        <section class="notepad-content">
+            <article class="cadastro-table" >
+                <button class="cadastro-button">
+                    <h1>Cadastrar Paciente</h1>
+                </button>
+                <button class="cadastro-button">
+                    <h1>Cadastrar Psicologo</h1>
+                </button>
+            </article>
+
+            <article class="cadastro-table">
+                <form class="paciente-cadastro">
+                    <h1 class="title">Cadastro</h1>
+                    <label for="nome"></label>
+                    <input type="text" name="nome" placeholder="Nome:">
+                    <label for="email"></label>
+                    <input type="email" name="email" placeholder="Email:">
+                    <label for="senha"></label>
+                    <input type="password" name="senha" placeholder="Senha:">
+                    <label for="RG"></label>
+                    <input type="text" name="RG" placeholder="RG:">
+                    <label for="Cpf"></label>
+                    <input type="number" name="cpf" placeholder="CPF:">
+                    <label for="sexo"></label>
+                    <select name="sexo" id="" >
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                    </select>
+                    <label for="data_naci"></label>
+                    <input type="date" name="" id="" placeholder="Data de Nascimento">
+                </form>
+            </article>
+
+            <article class="cadastro-table show ">
+                <form class="paciente-cadastro" id="PsicologoTable">
+                    <h1 class="title">Cadastro</h1>
+                    <label for="nome" ></label>
+                    <input type="text" name="nome" placeholder="Nome:">
+                    <label for="email"></label>
+                    <input type="email" name="email"p placeholder="Email:">
+                    <label for="senha"></label>
+                    <input type="password" name="senha" placeholder="Senha:">
+                    <label for="RG"></label>
+                    <input type="text" name="RG" placeholder="RG:">
+                    <label for="CPF"></label>
+                    <input type="Number" name="CPF" placeholder="CPF:">
+                    <label for="CRP"></label>
+                    <input type="text" name="CRP" placeholder="Crp:">
+                    <label for="sexo"></label>
+                    <select name="sexo" id="">
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                    </select>
+                    <label for="data_naci"></label>
+                    <input type="date" name="" id="" placeholder="Data de Nascimento">
+                </form>
+            </article>
+
+        </section>
+    </main>
+    <script src = "../../JS/script.js"> </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <header class="header-container">
+        <h1>ANOTE-ME</h1>
+    </header>
+    <div class="login-container">
+        <form class="login" action="../ScriptsPHP/RecuperarSenha.php" method="post">
+            <h1 class="login-label">Recuperar Sua Senha</h1>
+            <p>Digite seu endereço de e-mail cadastrado e enviaremos um código de verificação para ele</p>
+            <input type="email" name="Email" class="usuario-input">
+            <div class="action-button">
+            <button class="senha-button"><a href="login.html">Ir á área de login</a></button>
+            <button class="entrar-button" name="enviar">Enviar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

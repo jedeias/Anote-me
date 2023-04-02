@@ -17,19 +17,21 @@ class Select_controller{
         $psicologos = array();
         $secretarios = array();
 
-        foreach ($dados as $dado) {
-            switch ($dado['tipo_usuario']) {
-                case 'paciente':
-                    array_push($pacientes, $dado);
-                    break;
-                case 'psicologo':
-                    array_push($psicologos, $dado);
-                    break;
-                case 'secretario':
-                    array_push($secretarios, $dado);
-                    break;
-            }
-        }  
+        return $dados;
+
+        // foreach ($dados as $dado) {
+        //     switch ($dado['tipo_usuario']) {
+        //         case 'paciente':
+        //             array_push($pacientes, $dado);
+        //             break;
+        //         case 'psicologo':
+        //             array_push($psicologos, $dado);
+        //             break;
+        //         case 'secretario':
+        //             array_push($secretarios, $dado);
+        //             break;
+        //     }
+        //}  
     }
 }
 ?>
