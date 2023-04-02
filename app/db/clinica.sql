@@ -2,21 +2,23 @@ CREATE DATABASE clinica_psicologica;
 
 use clinica_psicologica;
 
-CREATE TABLE atividade(
-pk_atividade INT NOT NULL auto_increment,
-PRIMARY KEY (pk_atividade)
-);
 
-DESC atividade;
 
 CREATE TABLE tipo_atividade(
 pk_tipo_atividade int not NULL auto_increment,
-fk_atividade int not NULL,
 finalidade text not null,
 descricao TEXT not NULL,
-PRIMARY KEY(pk_tipo_atividade),
-FOREIGN KEY (fk_atividade) REFERENCES atividade (pk_atividade)
+PRIMARY KEY(pk_tipo_atividade)
 );
+
+CREATE TABLE atividade(
+pk_atividade INT NOT NULL auto_increment,
+fk_tipo_atividade INT,
+PRIMARY KEY (pk_atividade),
+FOREIGN KEY (fk_tipo_atividade) REFERENCES tipo_atividade (pk_tipo_atividade)
+);
+
+DESC atividade;
 
 CREATE TABLE emocoes(
 pk_emocoes INT NOT NULL auto_increment,

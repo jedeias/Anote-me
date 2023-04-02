@@ -81,6 +81,26 @@ INSERT INTO `anotacoes_psicologo` VALUES (11,11,16,'2022-05-10 11:00:00','O paci
 /*!40000 ALTER TABLE `anotacoes_psicologo` ENABLE KEYS */;
 UNLOCK TABLES;
 
+DROP TABLE IF EXISTS `tipo_atividade`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tipo_atividade` (
+  `pk_tipo_atividade` int(11) NOT NULL AUTO_INCREMENT, 
+  `finalidade` text NOT NULL,
+  `descricao` text NOT NULL,
+  PRIMARY KEY (`pk_tipo_atividade`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tipo_atividade`
+--
+
+LOCK TABLES `tipo_atividade` WRITE;
+/*!40000 ALTER TABLE `tipo_atividade` DISABLE KEYS */;
+INSERT INTO `tipo_atividade` VALUES (1,'Lazer','Assistir filme'),(2,'Trabalho','Fazer relatório'),(3,'Esporte','Correr na praia'),(4,'Meditação','Meditar por 10 minutos'),(5,'Artesanato','Fazer um colar');
+/*!40000 ALTER TABLE `tipo_atividade` ENABLE KEYS */;
+UNLOCK TABLES;
 --
 -- Table structure for table `atividade`
 --
@@ -90,7 +110,10 @@ DROP TABLE IF EXISTS `atividade`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `atividade` (
   `pk_atividade` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`pk_atividade`)
+  `fk_tipo_atividade` int(11) NOT NULL,
+  PRIMARY KEY (`pk_atividade`),
+  KEY `fk_tipo_atividade` (`fk_tipo_atividade`),
+  CONSTRAINT `tipo_atividade_ibfk_1` FOREIGN KEY (`fk_tipo_atividade`) REFERENCES `tipo_atividade` (`pk_tipo_atividade`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -100,7 +123,7 @@ CREATE TABLE `atividade` (
 
 LOCK TABLES `atividade` WRITE;
 /*!40000 ALTER TABLE `atividade` DISABLE KEYS */;
-INSERT INTO `atividade` VALUES (1),(2),(3),(4),(5);
+INSERT INTO `atividade` VALUES (1, 1),(2, 2),(3, 3),(4, 4),(5, 5);
 /*!40000 ALTER TABLE `atividade` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -509,29 +532,6 @@ UNLOCK TABLES;
 -- Table structure for table `tipo_atividade`
 --
 
-DROP TABLE IF EXISTS `tipo_atividade`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tipo_atividade` (
-  `pk_tipo_atividade` int(11) NOT NULL AUTO_INCREMENT,
-  `fk_atividade` int(11) NOT NULL,
-  `finalidade` text NOT NULL,
-  `descricao` text NOT NULL,
-  PRIMARY KEY (`pk_tipo_atividade`),
-  KEY `fk_atividade` (`fk_atividade`),
-  CONSTRAINT `tipo_atividade_ibfk_1` FOREIGN KEY (`fk_atividade`) REFERENCES `atividade` (`pk_atividade`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tipo_atividade`
---
-
-LOCK TABLES `tipo_atividade` WRITE;
-/*!40000 ALTER TABLE `tipo_atividade` DISABLE KEYS */;
-INSERT INTO `tipo_atividade` VALUES (1,1,'Lazer','Assistir filme'),(2,1,'Trabalho','Fazer relatório'),(3,2,'Esporte','Correr na praia'),(4,2,'Meditação','Meditar por 10 minutos'),(5,3,'Artesanato','Fazer um colar'),(6,3,'Leitura','Ler um livro de ficção'),(7,4,'Estudos','Estudar matemática'),(8,4,'Aprendizado','Aprender a tocar violão'),(9,5,'Socialização','Ir a um bar com amigos'),(10,5,'Cultura','Visitar um museu');
-/*!40000 ALTER TABLE `tipo_atividade` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `tipo_telefone`
