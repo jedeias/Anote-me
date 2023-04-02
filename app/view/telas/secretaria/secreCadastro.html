@@ -64,18 +64,24 @@ if($nome == NULL and $email == NULL and $type == NULL){
             </nav>        
         </aside>
         <section class="notepad-content">
-            <darticle class="cadastro-table" >
-                <button class="cadastro-button">
+
+            <article class="cadastro-table show" id="cadastroTable">
+                <button class="cadastro-button" onclick="pacienteButton()">
                     <h1>Cadastrar Paciente</h1>
                 </button>
-                <button class="cadastro-button">
+                <button class="cadastro-button" onclick="psicologoButton()">
                     <h1>Cadastrar Psicologo</h1>
                 </button>
-            </darticle>
+            </article>
 
-            <article class="cadastro-table">
+            <article class="cadastro-table" id="cadastroPacienteTable">
+                <button class="backButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                        <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                    </svg>
+                </button>
                 <form class="paciente-cadastro">
-                    <h1 class="title">Cadastro</h1>
+                    <h1 class="title">Cadastro do paciente</h1>
                     <label for="nome"></label>
                     <input type="text" name="nome" placeholder="Nome:">
                     <label for="email"></label>
@@ -93,12 +99,23 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     </select>
                     <label for="data_naci"></label>
                     <input type="date" name="" id="" placeholder="Data de Nascimento">
+             
+
+                    <div class="action-button-container">
+                        <button class="action-button">Descartar</button>
+                        <button class="action-button" type="submit" name="salvar">Salvar</button>
+                    </div>
                 </form>
             </article>
 
-            <article class="cadastro-table show ">
-                <form class="paciente-cadastro" id="PsicologoTable">
-                    <h1 class="title">Cadastro</h1>
+            <article class="cadastro-table" id="psicologoCadastroTable">
+                <button class="backButton" id="backButton" onclick="backButton()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                        <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                    </svg>
+                </button>
+                <form class="paciente-cadastro">
+                    <h1 class="title">Cadastro do Psicológo</h1>
                     <label for="nome" ></label>
                     <input type="text" name="nome" placeholder="Nome:">
                     <label for="email"></label>
@@ -118,7 +135,12 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     </select>
                     <label for="data_naci"></label>
                     <input type="date" name="" id="" placeholder="Data de Nascimento">
+                    <div class="action-button-container">
+                        <button class="action-button">Descartar</button>
+                        <button class="action-button" type="submit" name="salvar">Salvar</button>
+                    </div>
                 </form>
+               
             </article>
 
         </section>

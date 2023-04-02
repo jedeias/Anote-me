@@ -58,19 +58,19 @@ function pacientePrevButton(){
     }
 }
 
-let PsicologoTable = document.getElementById("cadastroTablepsi");
-let pacienteTable = document.getElementById("cadastroTablepaci");
+function pacienteButton(){
+    let cadastroTable = document.getElementById("cadastroTable");
+    let cadastroPacienteTable = document.getElementById("cadastroPacienteTable");
 
-
-function teste(){
-    if(PsicologoTable.classList.contains('show')){
-        PsicologoTable.classList.remove('show')
-        pacienteTable.classList.add('show')
-    } else if(pacienteRecomendadasTable.classList.contains('show')){
-        pacienteRecomendadasTable.classList.remove('show')
-        pacienteAgendaTable.classList.add('show')
-    } else if(pacienteAgendaTable.classList.contains('show')){
-        pacienteAgendaTable.classList.remove('show')
-        pacienteAnotacaoTable.classList.add('show')
-    }
+    cadastroTable.classList.remove('show');
+    cadastroPacienteTable.classList.add('show');
 }
+
+function psicologoButton(){
+    let cadastroTable = document.getElementById("cadastroTable");
+    let cadastroPsicologoTable = document.getElementById("psicologoCadastroTable");
+
+    cadastroTable.classList.remove('show');
+    cadastroPsicologoTable.classList.add('show');
+}
+
