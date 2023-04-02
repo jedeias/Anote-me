@@ -18,6 +18,9 @@
 --
 -- Table structure for table `anotacoes_paciente`
 --
+create database  `clinica_psicologica`;
+
+use `clinica_psicologica`;
 
 DROP TABLE IF EXISTS `anotacoes_paciente`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

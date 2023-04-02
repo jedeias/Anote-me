@@ -16,8 +16,7 @@ class Crud
     {
         $stmt = $this->conn->prepare("INSERT INTO tipo_atividade (pk_tipo_atividade, finalidade, descricao) VALUES (default, '$assunto', '$descricao')"); 
         $stmt->execute();
-
-        
+   
     }
 
     public function insert_activitie()
