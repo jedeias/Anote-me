@@ -18,9 +18,6 @@
 --
 -- Table structure for table `anotacoes_paciente`
 --
-create database  `clinica_psicologica`;
-
-use `clinica_psicologica`;
 
 DROP TABLE IF EXISTS `anotacoes_paciente`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -84,26 +81,6 @@ INSERT INTO `anotacoes_psicologo` VALUES (11,11,16,'2022-05-10 11:00:00','O paci
 /*!40000 ALTER TABLE `anotacoes_psicologo` ENABLE KEYS */;
 UNLOCK TABLES;
 
-DROP TABLE IF EXISTS `tipo_atividade`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tipo_atividade` (
-  `pk_tipo_atividade` int(11) NOT NULL AUTO_INCREMENT, 
-  `finalidade` text NOT NULL,
-  `descricao` text NOT NULL,
-  PRIMARY KEY (`pk_tipo_atividade`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tipo_atividade`
---
-
-LOCK TABLES `tipo_atividade` WRITE;
-/*!40000 ALTER TABLE `tipo_atividade` DISABLE KEYS */;
-INSERT INTO `tipo_atividade` VALUES (1,'Lazer','Assistir filme'),(2,'Trabalho','Fazer relatório'),(3,'Esporte','Correr na praia'),(4,'Meditação','Meditar por 10 minutos'),(5,'Artesanato','Fazer um colar');
-/*!40000 ALTER TABLE `tipo_atividade` ENABLE KEYS */;
-UNLOCK TABLES;
 --
 -- Table structure for table `atividade`
 --
@@ -116,7 +93,7 @@ CREATE TABLE `atividade` (
   `fk_tipo_atividade` int(11) NOT NULL,
   PRIMARY KEY (`pk_atividade`),
   KEY `fk_tipo_atividade` (`fk_tipo_atividade`),
-  CONSTRAINT `tipo_atividade_ibfk_1` FOREIGN KEY (`fk_tipo_atividade`) REFERENCES `tipo_atividade` (`pk_tipo_atividade`)
+  CONSTRAINT `atividade_ibfk_1` FOREIGN KEY (`fk_tipo_atividade`) REFERENCES `tipo_atividade` (`pk_tipo_atividade`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -126,7 +103,7 @@ CREATE TABLE `atividade` (
 
 LOCK TABLES `atividade` WRITE;
 /*!40000 ALTER TABLE `atividade` DISABLE KEYS */;
-INSERT INTO `atividade` VALUES (1, 1),(2, 2),(3, 3),(4, 4),(5, 5);
+INSERT INTO `atividade` VALUES (1,1),(5,2),(2,3),(3,4),(4,5);
 /*!40000 ALTER TABLE `atividade` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,7 +274,7 @@ CREATE TABLE `paciente` (
 
 LOCK TABLES `paciente` WRITE;
 /*!40000 ALTER TABLE `paciente` DISABLE KEYS */;
-INSERT INTO `paciente` VALUES (2,1,2,3,1,'Joãozinho da Silva','joaozinho@example.com','senha123','111111111',1234567890,'M','2010-01-01',1),(3,2,1,3,2,'Mariazinha Pereira','mariazinha@example.com','senha123','222222222',1098765432,'F','2012-01-01',2);
+INSERT INTO `paciente` VALUES (2,1,2,3,1,'Joãozinho da Silva','joaozinho@example.com','senha123','111111111',1234567890,'M','2010-01-01',NULL),(3,2,1,3,2,'Mariazinha Pereira','mariazinha@example.com','senha123','222222222',1098765432,'F','2012-01-01',2);
 /*!40000 ALTER TABLE `paciente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -535,6 +512,26 @@ UNLOCK TABLES;
 -- Table structure for table `tipo_atividade`
 --
 
+DROP TABLE IF EXISTS `tipo_atividade`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tipo_atividade` (
+  `pk_tipo_atividade` int(11) NOT NULL AUTO_INCREMENT,
+  `finalidade` text NOT NULL,
+  `descricao` text NOT NULL,
+  PRIMARY KEY (`pk_tipo_atividade`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tipo_atividade`
+--
+
+LOCK TABLES `tipo_atividade` WRITE;
+/*!40000 ALTER TABLE `tipo_atividade` DISABLE KEYS */;
+INSERT INTO `tipo_atividade` VALUES (1,'Esportes','Atividades relacionadas a prática de esportes'),(2,'Artes','Atividades relacionadas a pintura e escultura'),(3,'Música','Atividades relacionadas a prática musical'),(4,'Teatro','Atividades relacionadas a prática teatral'),(5,'Dança','Atividades relacionadas a prática de dança');
+/*!40000 ALTER TABLE `tipo_atividade` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tipo_telefone`
@@ -594,4 +591,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-01 10:37:14
+-- Dump completed on 2023-04-03 16:05:05
