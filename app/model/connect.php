@@ -1,6 +1,6 @@
 <?php
 
-require_once("./config/host.php");
+require_once("../config/host.php");
 
 class Connect{
     private $conn;
