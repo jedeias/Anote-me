@@ -8,6 +8,12 @@ $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
 
+if (empty($_SESSION)) {
+
+    header("location: ../../../../index.html");
+
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -30,14 +36,14 @@ $type = $session->session_get('type');
                     <li class="center"> <img src="../IMG/emoji.webp" alt="FOTO-DE-PERFIL" class="perfil" id="second-perfil"></li>
                     <li class="center">Nome : <?php echo "$nome"; ?></li>
                     <li>Email : <?php echo "$email"; ?></li>
-                    <li>Telefone :</li>
-                    <li>Responsável : </li>
-                    <li>Telefone do Responsável : </li>
+                    <!-- <li>Telefone :</li>
+                    <li>Responsável : </li> -->
+                    <!-- <li>Telefone do Responsável : </li> -->
                     <li>tipo usuario :<?php echo "$type"; ?> </li>
-                    <li>Clinica : </li>
+                    <!-- <li>Clinica : </li> -->
                     <li class="config-container">
                         <a class="config-button">Config</a>
-                        <a class="config-button">Sair</a>
+                        <a class="config-button" href="../../sair.php">Sair</a>
                     </li>
                 </ul>
             </nav>

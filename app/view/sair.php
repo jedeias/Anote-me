@@ -2,18 +2,17 @@
 
 include "../autoload.php";
 $session = new Session_controller();
-var_dump($session->session_get('nome'));
+
+$session->session_get('nome');
+$session->session_destroy();
+
+header("location: ../../index.html");
 
 
-if(isset($session))
-{
-    $session->session_get('nome');
-    $session->session_destroy();
-}
-
+    
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="pt_br">
 <head>
     <meta charset="UTF-8">
@@ -24,4 +23,4 @@ if(isset($session))
 <body>
     <h1>Voce se deslogou...</h1>
 </body>
-</html>
+</html> -->

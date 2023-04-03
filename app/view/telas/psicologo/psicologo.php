@@ -9,10 +9,11 @@ $email = $session->session_get('email');
 $type = $session->session_get('type');
 
 
-if($nome == NULL and $email == NULL and $type == NULL){
-   header("location: ../../../index.html");
-}
+if (empty($_SESSION)) {
 
+    header("location: ../../../../index.html");
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
