@@ -30,6 +30,9 @@ class Select_controller{
                     break;
             }
         }  
+
+        return $pacientes;
+         //return $array = array("pacientes" => $pacientes, "psicologo" => $psicologos, "secretarios" => $secretarios);
     }
 }
 ?>
