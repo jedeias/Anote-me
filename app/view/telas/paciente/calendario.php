@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src='js/index.global.min.js'></script>
+  <script src='../../JS/index.global.min.js'></script>
   <link rel="stylesheet" href="../../CSS/calendario.css">
   <script>
 
@@ -30,13 +30,13 @@
     <section class="menu-container">
       <nav class="menu">
         <ul>
-          <a href="./anotacoes.html">
+          <a href="anotacoes.php">
             <li class="anotacoes">
               <p>Anotações</p>
             </li>
           </a>
           <a hre>
-            <a href="./atividades.html">
+            <a href="atividades.php">
               <li class="agenda-consultas">
                 <p>Atividades Recomendadas</p>
               </li>

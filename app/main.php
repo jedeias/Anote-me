@@ -2,7 +2,7 @@
 
 include("autoload.php");
 
-$assunto = "assunto";
+/*$assunto = "assunto";
 $descricao = "descricao";
 
 $new_atividade = new Crud();
@@ -13,7 +13,7 @@ echo "<pre>";
 var_dump($new_atividade);
 echo "<br>";
 echo "<br>";
-
+*/
 
 
 
@@ -50,7 +50,7 @@ if (isset($data['email'])){
 
 }
 
-var_dump($email, $password);
+//var_dump($email, $password);
 
 $login_sys = new Login();
 
@@ -64,7 +64,7 @@ $session->session_set("nome", $user_name);
 
 $redirect_urls = array(
     "psicologo" => "./view/telas/psicologo/psiPacientes.php",
-    "paciente" => "./view/telas/paciente/paciente.php",
+    "paciente" => "./view/telas/paciente/anotacoes.php",
     "secretario" => "./view/telas/secretario/secretario.html",
     "default" => "./view/login_error.php"
 );
