@@ -9,7 +9,7 @@ class Login
         return $result = $select->validateUser($email, $password);
     }
 
-    public function user_data($email, string $password)
+    public function user_data($email, $password)
     {
         $select = new Select();
         
