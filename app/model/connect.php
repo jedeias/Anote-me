@@ -2,12 +2,16 @@
 
 require_once("./config/host.php");
 
-class Connect{
+class Connect {
     private $conn;
 
     public function __construct(){
         $host = new Host();
-        $this->conn = new mysqli($host->server, $host->user, $host->password, $host->database);
+        $this->conn = new mysqli(   $host->server, 
+                                    $host->user, 
+                                    $host->password, 
+                                    $host->database);
+                                    
         if ($this->conn->connect_error) {
             die("Conexão falhou: " . $this->conn->connect_error);
         }
