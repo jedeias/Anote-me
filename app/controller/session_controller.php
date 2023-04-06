@@ -1,5 +1,7 @@
 <?php
 
+// extend class Session
+
 class Session_controller {
     
     private $session;

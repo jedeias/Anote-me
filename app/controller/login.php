@@ -1,5 +1,7 @@
 <?php
 
+// Fazer interface
+
 class Login
 {
 

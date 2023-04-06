@@ -1,5 +1,5 @@
 <?php
-
+// extend Host
 require_once("./config/host.php");
 
 class Connect {
@@ -11,7 +11,7 @@ class Connect {
                                     $host->user, 
                                     $host->password, 
                                     $host->database);
-                                    
+
         if ($this->conn->connect_error) {
             die("Conexão falhou: " . $this->conn->connect_error);
         }
