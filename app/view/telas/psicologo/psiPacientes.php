@@ -58,24 +58,23 @@ if (empty($_SESSION)) {
         <aside class="menu-container">
             <h1>Pacientes</h1>
             <nav class="menu">
-                <article class="paciente-select">
-                    <p>Jose toledo da Silva</p>
-                    <p>Josetoledo@gmail.com</p>
-                    <p>40 anos</p>
-                    <hr>
-                </article>
-                <article class="paciente-select">
-                    <p>Jose toledo da Silva</p>
-                    <p>Josetoledo@gmail.com</p>
-                    <p>40 anos</p>
-                    <hr>
-                </article>
-                <article class="paciente-select">
-                    <p>Jose toledo da Silva</p>
-                    <p>Josetoledo@gmail.com</p>
-                    <p>40 anos</p>
-                    <hr>
-                </article>
+                <?php
+                    $select = new Select_controller();
+                    $patients = $select->select_all_users();
+
+                    $i = 0;
+
+                    foreach ($patients as $dado){
+                        echo '<article class="paciente-select">';
+                        echo '<p>'. $patients[$i]['email'] . '</p>';
+                        echo '<p>'. $patients[$i]['nome'] . '</p>';
+                        echo '<p>'.$patients[$i]['tipo_usuario']. '</p>';
+                        echo '<hr>';
+                        echo '</article>';
+                        $i ++;
+                    }
+
+                ?>
             </nav>
         </aside>
         <section class="notepad-content">

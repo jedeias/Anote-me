@@ -35,3 +35,6 @@ by Jedeias, Alex, Guilherme.
 
 Criado uma conexão com o postman
 By Jedeias.
+
+
+Adotar um padrão de nomenclatura de variável CamelCase

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anotações</title>
-    <link rel="stylesheet" href="styleatividades.css">
+    <link rel="stylesheet" href="../../CSS/styleatividades.css">
 </head>
 <body>
     <header class="header-container">
@@ -16,7 +16,7 @@
         <section class="menu-container">
             <nav class="menu">
                 <ul>
-                    <a href="../anotacoes/anotacoes.php">
+                    <a href="anotacoes.php">
                     <li class="anotacoes">
                         <p>Anotações</p>
                     </li>
@@ -24,7 +24,7 @@
                     <li class="agenda-consultas">
                         <p>Atividades Recomendadas</p>
                     </li>
-                    <a href="../calendario/calendario.php">
+                    <a href="calendario.php">
                         <li class="agenda-consultas">
                             <p>Agenda</p>
                         </li>

@@ -2,33 +2,6 @@
 
 include("autoload.php");
 
-$assunto = "assunto";
-$descricao = "descricao";
-
-$new_atividade = new Crud();
-
-$new_atividade->insert_type_activites($assunto, $descricao);
-$new_atividade->insert_activitie();
-echo "<pre>";
-var_dump($new_atividade);
-echo "<br>";
-echo "<br>";
-
-
-
-
-    //para produção
-// if(!isset($_POST['email']) && !isset($_POST['password']) ){
-//     echo "Dados não inseridos";
-// }
-// $email = $_POST['email'];
-// $password = $_POST['password'];
-
-
-
-//para teste
-// Retrieve the JSON data from the request body
-
 
 $json = file_get_contents('php://input');
 
@@ -50,8 +23,6 @@ if (isset($data['email'])){
 
 }
 
-var_dump($email, $password);
-
 $login_sys = new Login();
 
 $login_status = $login_sys->login_check($email, $password);
@@ -64,7 +35,7 @@ $session->session_set("nome", $user_name);
 
 $redirect_urls = array(
     "psicologo" => "./view/telas/psicologo/psiPacientes.php",
-    "paciente" => "./view/telas/paciente/paciente.php",
+    "paciente" => "./view/telas/paciente/anotacoes.php",
     "secretario" => "./view/telas/secretario/secretario.html",
     "default" => "./view/login_error.php"
 );

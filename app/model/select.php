@@ -1,5 +1,9 @@
 <?php
 
+// Listas de todos os usuários
+// Alterar a função validateUser
+
+
 require_once("connect.php");
 
 class Select {

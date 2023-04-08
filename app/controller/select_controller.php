@@ -1,4 +1,8 @@
 <?php
+
+// extend class Select
+
+
 class Select_controller{
 
     private $select;
@@ -30,6 +34,9 @@ class Select_controller{
                     break;
             }
         }  
+
+        return $pacientes;
+         //return $array = array("pacientes" => $pacientes, "psicologo" => $psicologos, "secretarios" => $secretarios);
     }
 }
 ?>
