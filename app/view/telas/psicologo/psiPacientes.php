@@ -7,6 +7,7 @@ $session = new Session();
 $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
+$id = $session->session_get('id');
 
 
 if (empty($_SESSION)) {
@@ -61,10 +62,11 @@ if (empty($_SESSION)) {
                 <?php
                     $select = new Select_controller();
                     $patients = $select->select_all_users();
+                    $note = $select->select_notes_user($id);
 
                     $i = 0;
 
-                    if (empty($_GET)){
+                    /*if (empty($_GET)){
                         $pacienteSelecionado = "nenhum";
                     } else {
                         $pacienteSelecionado = $_GET['paciente'];
@@ -77,7 +79,9 @@ if (empty($_SESSION)) {
                             $selected = 'paciente-selected';
                         } else{
                             $selected = '';
-                        }
+                        }*/
+
+                    foreach ($patients as $dado){
 
                         echo '<article class="paciente-select ' . $selected . '" onclick="selecionarPaciente('.$i.')">';
                         echo '<p>'. $patients[$i]['nome'] . '</p>';

@@ -17,6 +17,7 @@ class Select extends Connect{
                                           UNION ALL
                                           SELECT email, senha, 'secretario' AS tipo_usuario FROM secretario
                                       ) usuarios WHERE email=? and senha=?");
+
         $stmt->bind_param("ss", $email, $password);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -43,9 +44,9 @@ class Select extends Connect{
 
     //função para buscar dados do usuario, no momento somente nome e email
     public function userData($email, $password){
-        $stmt = $this->getConn()->prepare("SELECT email, senha, nome, tipo_usuario
-                                      FROM (
-                                            SELECT email, senha, nome,  'psicologo' AS tipo_usuario FROM psicologo
+        $stmt = $this->getConn()->prepare(" SELECT email, senha, nome, pk tipo_usuario
+                                            FROM (
+                                            SELECT email, senha, nome,  'psicologo' AS tipo_usuario, pk_psicologo  FROM psicologo
                                             UNION ALL
                                             SELECT email, senha, nome, 'paciente' AS tipo_usuario FROM paciente
                                             UNION ALL
@@ -58,6 +59,21 @@ class Select extends Connect{
 
         return $user['nome'];
         
+    }
+
+    public function select_notes_user($id)
+    {
+        
+        $stmt = $this->getConn()->prepare(" SELECT anotacoes_paciente.anotacoes, anotacoes_paciente.data_hora
+                                            FROM anotacoes_paciente
+                                            INNER JOIN psicologo on (anotacoes_paciente.fk_psicologo = psicologo.pk_psicologo)
+                                            WHERE pk_psicologo = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $userId = $result->fetch_assoc();
+
+        return $userId['pk_psicologo'];
     }
 
     public function __destruct()
