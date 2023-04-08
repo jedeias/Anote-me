@@ -1,7 +1,5 @@
 <?php
-
 include("../../../autoload.php");
-
 
 var_dump($_POST);
 
@@ -12,17 +10,17 @@ $email = $session->session_get('email');
 $type = $session->session_get('type');
 $id = $session->session_get('id');
 
-if($nome == NULL and $email == NULL and $type == NULL){
+if($nome == NULL or $email == NULL or $type == NULL){
    header("location: /../../../tcc/index.html");
 }
+$emocao = $_POST["emocao"];
+$emocaoGrau = $_POST["emocaoGrau"];
+$descricao = $_POST["descricao"];
 
-$_POST["emocao"];
-$_POST["emocaoGrau"];
-$_POST["descricao"];
+$session->session_set( "emocao" ,$emocao);
+$session->session_set( "emocaoGrau" ,$emocaoGrau );
+$session->session_set( "descricao" ,$descricao );
 
-echo"<pre>";
-var_dump($_POST);
-echo"<hr>";
-var_dump($_SESSION);
+
 
 ?>

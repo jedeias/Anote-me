@@ -35,14 +35,7 @@ class Crud extends Connection implements CrudController{
         }
     }
 
-    public function query_notas_paciente($email, $emocao, $descricao){
-
-        
-
-    }
-
-
-    public function insert_notas_paciente($email, $emocao, $descricao){
+    public function insert_notas_paciente($id, $emocao, $descricao){
 
         
 
