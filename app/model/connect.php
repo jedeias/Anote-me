@@ -3,15 +3,14 @@
 
 include ($_SERVER['DOCUMENT_ROOT'].'/tcc-1/app/config/host.php');
 
-class Connect {
+class Connect extends Host {
     private $conn;
 
     public function __construct(){
-        $host = new Host();
-        $this->conn = new mysqli(   $host->server, 
-                                    $host->user, 
-                                    $host->password, 
-                                    $host->database);
+        $this->conn = new mysqli(   $this->getServer(), 
+                                    $this->getUser(), 
+                                    $this->getPassword(), 
+                                    $this->getDatabase());
 
         if ($this->conn->connect_error) {
             die("Conexão falhou: " . $this->conn->connect_error);
@@ -31,6 +30,10 @@ class Connect {
     }
 
     public function close() {
+        $this->conn->close();
+    }
+
+    public function __destruct() {
         $this->conn->close();
     }
 

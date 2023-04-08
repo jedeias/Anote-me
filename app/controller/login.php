@@ -4,7 +4,6 @@
 
 class Login
 {
-
     public function login_check($email, $password)
     {
         $select = new Select();
