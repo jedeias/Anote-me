@@ -77,7 +77,9 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
                 </svg>
             </button>
-            <div class="notepad" action="../PHP/receberAnotacao.php" method="post">
+            <div class="notepad"> 
+                
+                <form action="../../../controller/crud/paciente/inserteNota.php" method="POST">
 
                 <article class="notepad-header">
                     <p id="emojiButton" class="emoji-button" onclick="ClickEmoji()">😶</p>
@@ -90,12 +92,12 @@ if($nome == NULL and $email == NULL and $type == NULL){
                             <option value="feliz">😃 Feliz</option>
                             <option value="triste">😥 Triste</option>
                             <option value="ansioso">😰 Ansioso(a)</option>
-                            <option value="com raiva">😠 Com raiva</option>
+                            <option value="com raiva">😠 Com raiva</oapp/view/telas/paciente/anotacoes.phpption>
                             <option value="com medo">😱 Com medo</option>
                         </select>
                         <hr></hr>
                         <h1>Qual foi a intensidade?</h1>
-                        <select id="emojiSelectPercentage" name="emocao">
+                        <select id="emojiSelectPercentage" name="emocaoGrau">
                             <option value="10">10%</option>
                             <option value="10">20%</option>
                             <option value="10">30%</option>
@@ -110,7 +112,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                         <input class="emoji-close" type="button" value="Fechar" onclick="ClickEmoji()">
                     </div>
                 </article>
-                <textarea id="text1" maxlength="221" placeholder="Como você está?" name="texto"></textarea>
+                <textarea id="text1" placeholder="Como você está?" name="descricao"></textarea>
                 <div class="action-button-container">
                     <button class="action-button">Descartar</button>
                     <button class="action-button" type="submit" name="salvar" onclick="modalclick()">Salvar</button>
