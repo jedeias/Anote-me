@@ -30,7 +30,9 @@ $session = new Session();
 
 $session->session_set("email", $email);
 $session->session_set("nome", $login_status["name"]);
+
 $session->session_set("id", $login_status["id"]);
+
 
 $redirect_urls = array(
     "psicologo" => "./view/telas/psicologo/psiPacientes.php",

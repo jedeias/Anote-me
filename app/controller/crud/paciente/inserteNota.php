@@ -17,7 +17,8 @@ $_POST["emocao"];
 $_POST["emocaoGrau"];
 $_POST["descricao"];
 
-
+echo"<pre>";
+var_dump($_POST);
 
 
 ?>

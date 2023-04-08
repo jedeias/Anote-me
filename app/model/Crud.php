@@ -1,6 +1,6 @@
 <?php
 
-class Crud extends Connection{
+class Crud extends Connection implements CrudController{
 
     public function insert_type_activites($assunto, $descricao)
     {
@@ -37,6 +37,18 @@ class Crud extends Connection{
         }
     }
 
+    public function query_notas_paciente($email, $emocao, $descricao){
+
+        
+
+    }
+
+
+    public function insert_notas_paciente($email, $emocao, $descricao){
+
+        
+
+    }
 
 
     

@@ -115,7 +115,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                 <textarea id="text1" placeholder="Como você está?" name="descricao"></textarea>
                 <div class="action-button-container">
                     <button class="action-button">Descartar</button>
-                    <button class="action-button" type="submit" name="salvar" onclick="modalclick()">Salvar</button>
+                    <button class="action-button" type="submit" onclick="modalclick()">Salvar</button>
                 </div>
             <p class="notepad-count">1/1</p>
             </div>
