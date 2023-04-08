@@ -105,7 +105,7 @@
 .menu-container{
     background-color: #1a1a1a;
     overflow: hidden;
-    min-width: 18vw;
+    width: 18vw;
     color: white;
     text-align: center;
     padding: 10px;
@@ -239,6 +239,21 @@ a{
 .foto-confirmação {
     width: 15%;
     height: 15%;
+}
+.paciente-select{
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 7px;
+    overflow: auto;
+    box-sizing: content-box;
+    cursor: pointer;
+}
+.paciente-selected{
+    background-color: grey;
+}
+
+.paciente-select:hover{
+    background-color: grey;
 }
 .paciente-table{
     display: none;

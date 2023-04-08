@@ -1,22 +1,3 @@
-<?php
-
-(include("../../../autoload.php"));
-
-$session = new Session_controller();
-
-$nome = $session->session_get('nome');
-$email = $session->session_get('email');
-$type = $session->session_get('type');
-
-
-if (empty($_SESSION)) {
-
-    header("location: ../../../../index.html");
-
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -28,7 +9,7 @@ if (empty($_SESSION)) {
 </head>
 <body id="body">
     <header class="header-container">
-        <h1 onclick="location.href='psiPacientes.php'">ANOTE-ME</h1>
+        <h1>ANOTE-ME</h1>
         <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
             <img src="../../IMG/117104319_3204025416385100_1271061160658966926_n.jpg" alt="" class="perfil" id="first-perfil">
         </figure> 
@@ -36,9 +17,9 @@ if (empty($_SESSION)) {
             <nav class="dados-wrapper hidden" id="wrapper-content">
                 <ul class="lista-dados">
                     <li class="center"> <img src="../../IMG/117104319_3204025416385100_1271061160658966926_n.jpg" alt="FOTO-DE-PERFIL" class="perfil" id="second-perfil"></li>
-                    <li class="center"><?php echo $nome; ?></li>
+                    <li class="center"></li>
                     <div class="lista-dados-content">
-                        <li>Email : <?php echo $email; ?></li>
+                        <li>Email :</li>
                         <li>Telefone :</li>
                         <li>Responsável : </li>
                         <li>Telefone do Responsável : </li>
@@ -59,33 +40,7 @@ if (empty($_SESSION)) {
             <h1>Pacientes</h1>
             <nav class="menu">
                 <?php
-                    $select = new Select_controller();
-                    $patients = $select->select_all_users();
 
-                    $i = 0;
-
-                    if (empty($_GET)){
-                        $pacienteSelecionado = "nenhum";
-                    } else {
-                        $pacienteSelecionado = $_GET['paciente'];
-                    }
-
-                    foreach ($patients as $dado){
-                        $selected = '';
-
-                        if($pacienteSelecionado == $i){
-                            $selected = 'paciente-selected';
-                        } else{
-                            $selected = '';
-                        }
-
-                        echo '<article class="paciente-select ' . $selected . '" onclick="selecionarPaciente('.$i.')">';
-                        echo '<p>'. $patients[$i]['nome'] . '</p>';
-                        echo '<p>'. $patients[$i]['email'] . '</p>';
-                        echo '<p>'.$patients[$i]['tipo_usuario']. '</p>';
-                        echo '</article>';
-                        $i ++;
-                    }
 
                 ?>
             </nav>
@@ -223,6 +178,6 @@ if (empty($_SESSION)) {
     </main>
 
     <script src="../../JS/script.js"></script>
-
+    
 </body>
 </html>

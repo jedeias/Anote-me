@@ -204,14 +204,14 @@
     display: flex;
     flex-direction: column;
 }
-/*.notepad-count{
+.notepad-count{
     color: #737373;
     position: relative;
     top: -65px;
     right: -320px;
     user-select: none;
 
-}*/
+}
 .notepad-header{
     display: flex;
     justify-content: space-between;
