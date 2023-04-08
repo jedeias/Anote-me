@@ -29,6 +29,12 @@ class Connect{
         $this->conn->close();
     }
 
+    public function __destruct() {
+
+        $this->conn->close();
+    
+    }
+
 
 }
 
