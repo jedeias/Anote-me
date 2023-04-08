@@ -2,32 +2,12 @@
 
 // extend class Session
 
-class Session_controller {
+interface Session_controller {
     
-    private $session;
+    public function session_set($session_nome, $atributo);
+    public function session_get($session_nome);
 
-    public function __construct() {
+    public function session_destroy();
     
-        $this->session = new Session();
-    
-    }
-
-    public function session_set($session_nome, $atributo) {
-    
-        $this->session->set($session_nome, $atributo);
-    
-    }
-
-    public function session_get($session_nome) {
-    
-        return $this->session->get($session_nome);
-    
-    }
-
-    public function session_destroy() {
-
-        $this->session->destroy();
-    
-    }
 }
 ?>

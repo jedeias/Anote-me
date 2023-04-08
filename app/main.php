@@ -28,7 +28,7 @@ $login_sys = new Login();
 $login_status = $login_sys->login_check($email, $password);
 $user_name = $login_sys->user_data($email, $password);
 
-$session = new Session_controller();
+$session = new Session();
 
 $session->session_set("email", $email);
 $session->session_set("nome", $user_name);

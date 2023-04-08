@@ -1,6 +1,6 @@
 <?php
 
-class Session
+class Session implements Session_controller
 {
     function __construct() {
         
@@ -21,6 +21,26 @@ class Session
     function destroy() {
         session_destroy();
     }
+
+
+    public function session_set($session_nome, $atributo) {
+    
+        $this->set($session_nome, $atributo);
+    
+    }
+
+    public function session_get($session_nome) {
+    
+        return $this->get($session_nome);
+    
+    }
+
+    public function session_destroy() {
+
+        $this->destroy();
+    
+    }
+
 }
 
 ?>
