@@ -9,7 +9,6 @@ $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
 
-
 if($nome == NULL and $email == NULL and $type == NULL){
    header("location: ../../../index.html");
 }
@@ -116,7 +115,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     <button class="action-button">Descartar</button>
                     <button class="action-button" type="submit" name="salvar" onclick="modalclick()">Salvar</button>
                 </div>
-                <!--<p class="notepad-count">1/1</p>-->
+            <p class="notepad-count">1/1</p>
             </div>
             <button class="next-button" onclick="clicktext()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
