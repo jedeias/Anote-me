@@ -88,4 +88,5 @@ btnVoltarPsicologo.addEventListener("click", function() {
 
 function selecionarPaciente(numero){
     location.href = '../psicologo/psiPacientes.php?paciente=' + numero;
+
 }

@@ -3,45 +3,41 @@
 // extend class Select
 
 
-class Select_controller{
+class Select_controller extends Select{
 
     private $select;
 
-    public function __construct(){
+    // public function selectUsers()
+    // {
+    //     $dados = $this->select_all_users();
 
-        $this->select = new Select();
+    //     $pacientes = array();
+    //     $psicologos = array();
+    //     $secretarios = array();
 
-    }
+    //     foreach ($dados as $dado) {
+    //         switch ($dado['tipo_usuario']) {
+    //             case 'paciente':
+    //                 array_push($pacientes, $dado);
+    //                 break;
+    //             case 'psicologo':
+    //                 array_push($psicologos, $dado);
+    //                 break;
+    //             case 'secretario':
+    //                 array_push($secretarios, $dado);
+    //                 break;
+    //         }
+    //     }  
+    //      //return $array = array("pacientes" => $pacientes, "psicologo" => $psicologos, "secretarios" => $secretarios);
+    // }
 
-    public function select_all_users()
+    public function select_user_patient($psico_id)
     {
-        $dados = $this->select->select_all_users();
-
-        $pacientes = array();
-        $psicologos = array();
-        $secretarios = array();
-
-        foreach ($dados as $dado) {
-            switch ($dado['tipo_usuario']) {
-                case 'paciente':
-                    array_push($pacientes, $dado);
-                    break;
-                case 'psicologo':
-                    array_push($psicologos, $dado);
-                    break;
-                case 'secretario':
-                    array_push($secretarios, $dado);
-                    break;
-            }
-        }  
-
-        return $pacientes;
-         //return $array = array("pacientes" => $pacientes, "psicologo" => $psicologos, "secretarios" => $secretarios);
+        return $pacientes = $this->select_users_patient($psico_id);
     }
-
-    public function select_notes_user($id)
+    public function select_notes($psico_id, $patient_email)
     {
-        return $result = $this->select->select_notes_user($id);
+        return $result = $this->patient_notes($psico_id, $patient_email);
     }
 }
 ?>
