@@ -239,7 +239,7 @@
     height: 68vh;
     border-radius: 7px;
     resize: none;
-    overflow: hidden;
+    overflow: auto;
     
     
 }
