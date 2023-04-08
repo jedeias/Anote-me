@@ -84,6 +84,7 @@ if (empty($_SESSION)) {
 
                     $select = new Select_controller();
                     $patients = $select->select_user_patient($psico_id);
+                    $patients_notes = $select->select_notes($psico_id, $patient_email);
                     $i = 0;
                     
                     foreach ($patients as $dado){
