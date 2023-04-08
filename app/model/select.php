@@ -9,21 +9,24 @@ require_once("connect.php");
 class Select extends Connect{
     
     public function validateUser($email, $password) {
-        $stmt = $this->getConn()->prepare("SELECT email, senha, tipo_usuario
+        $stmt = $this->getConn()->prepare("SELECT nome, email, senha, tipo_usuario, pk
                                       FROM (
-                                          SELECT email, senha, 'psicologo' AS tipo_usuario FROM psicologo
+                                          SELECT email, senha, 'psicologo' AS tipo_usuario, pk_psicologo AS 'pk', nome FROM psicologo
                                           UNION ALL
-                                          SELECT email, senha, 'paciente' AS tipo_usuario FROM paciente
+                                          SELECT email, senha, 'paciente' AS tipo_usuario, pk_paciente AS 'pk', nome FROM paciente
                                           UNION ALL
-                                          SELECT email, senha, 'secretario' AS tipo_usuario FROM secretario
+                                          SELECT email, senha, 'secretario' AS tipo_usuario, pk_secretario AS 'pk', nome FROM secretario
                                       ) usuarios WHERE email=? and senha=?");
 
         $stmt->bind_param("ss", $email, $password);
         $stmt->execute();
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
+
         if ($user) {
-            return array("success" => true, "user_type" => $user["tipo_usuario"]);
+            
+            return array("success" => true, "user_type" => $user["tipo_usuario"], "name" => $user["nome"], "id" => $user["pk"]);
+
         } else {
             return array("success" => false, "error_message" => "Invalid email or password.");
         }
@@ -43,23 +46,23 @@ class Select extends Connect{
     }
 
     //função para buscar dados do usuario, no momento somente nome e email
-    public function userData($email, $password){
-        $stmt = $this->getConn()->prepare(" SELECT email, senha, nome, pk tipo_usuario
-                                            FROM (
-                                            SELECT email, senha, nome,  'psicologo' AS tipo_usuario, pk_psicologo  FROM psicologo
-                                            UNION ALL
-                                            SELECT email, senha, nome, 'paciente' AS tipo_usuario FROM paciente
-                                            UNION ALL
-                                            SELECT email, senha, nome, 'secretario' AS tipo_usuario FROM secretario
-                                            ) usuarios WHERE email=? and senha=?");
-        $stmt->bind_param("ss", $email, $password);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
+    //public function userData($email, $password){
+    //     $stmt = $this->getConn()->prepare(" SELECT email, senha, nome, pk tipo_usuario
+    //                                         FROM (
+    //                                         SELECT email, senha, nome,  'psicologo' AS tipo_usuario, pk_psicologo  FROM psicologo
+    //                                         UNION ALL
+    //                                         SELECT email, senha, nome, 'paciente' AS tipo_usuario FROM paciente
+    //                                         UNION ALL
+    //                                         SELECT email, senha, nome, 'secretario' AS tipo_usuario FROM secretario
+    //                                         ) usuarios WHERE email=? and senha=?");
+    //     $stmt->bind_param("ss", $email, $password);
+    //     $stmt->execute();
+    //     $result = $stmt->get_result();
+    //     $user = $result->fetch_assoc();
 
-        return $user['nome'];
+    //     return $user['nome'];
         
-    }
+    // }
 
     public function select_notes_user($id)
     {

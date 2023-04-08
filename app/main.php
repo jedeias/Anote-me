@@ -26,12 +26,12 @@ if (isset($data['email'])){
 $login_sys = new Login();
 
 $login_status = $login_sys->login_check($email, $password);
-$user_name = $login_sys->user_data($email, $password);
 
 $session = new Session();
 
 $session->session_set("email", $email);
-$session->session_set("nome", $user_name);
+$session->session_set("nome", $login_status["name"]);
+$session->session_set("nome", $login_status["id"]);
 
 $redirect_urls = array(
     "psicologo" => "./view/telas/psicologo/psiPacientes.php",
@@ -42,7 +42,6 @@ $redirect_urls = array(
 
 $session->session_set('type', $login_status["user_type"]);
 
-$nome = $login_sys->user_data($email, $password);
 
 $redirect_url = isset($redirect_urls[$login_status["user_type"]]) ? $redirect_urls[$login_status["user_type"]] : $redirect_urls["default"];
 
