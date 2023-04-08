@@ -6,15 +6,10 @@
 
 require_once("connect.php");
 
-class Select {
+class Select extends Connect{
     
-    private $conn;
-
-    public function __construct(){
-        $this->conn = new Connect();
-    }
     public function validateUser($email, $password) {
-        $stmt = $this->conn->prepare("SELECT email, senha, tipo_usuario
+        $stmt = $this->getConn()->prepare("SELECT email, senha, tipo_usuario
                                       FROM (
                                           SELECT email, senha, 'psicologo' AS tipo_usuario FROM psicologo
                                           UNION ALL
@@ -34,7 +29,7 @@ class Select {
     }
     public function select_all_users(){
 
-        $stmt = $this->conn->query("SELECT nome, email, 'paciente' AS tipo_usuario FROM paciente
+        $stmt = $this->getConn()->query("SELECT nome, email, 'paciente' AS tipo_usuario FROM paciente
                                      UNION (SELECT nome, email, 'psicologo' AS tipo_usuario FROM psicologo)
                                      UNION (SELECT nome, email, 'secretario' AS tipo_usuario FROM secretario)");
 
@@ -48,7 +43,7 @@ class Select {
 
     //função para buscar dados do usuario, no momento somente nome e email
     public function userData($email, $password){
-        $stmt = $this->conn->prepare("SELECT email, senha, nome, tipo_usuario
+        $stmt = $this->getConn()->prepare("SELECT email, senha, nome, tipo_usuario
                                       FROM (
                                             SELECT email, senha, nome,  'psicologo' AS tipo_usuario FROM psicologo
                                             UNION ALL
@@ -67,7 +62,7 @@ class Select {
 
     public function __destruct()
     {
-        $this->conn->close();
+        $this->getConn()->close();
     }
 
 }

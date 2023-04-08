@@ -1,6 +1,4 @@
 <?php
-// extend Host
-require_once("./config/host.php");
 
 class Connect extends Host {
     private $conn;
@@ -9,11 +7,16 @@ class Connect extends Host {
         $this->conn = new mysqli(   $this->getServer(), 
                                     $this->getUser(), 
                                     $this->getPassword(), 
-                                    $this->getDatabase());
-
+                                    $this->getDatabase()
+                                );
+        
         if ($this->conn->connect_error) {
             die("Conexão falhou: " . $this->conn->connect_error);
         }
+    }
+
+    private function close() {
+        $this->conn->close();
     }
 
     public function query($sql) {
@@ -28,15 +31,13 @@ class Connect extends Host {
         return $this->conn->prepare($sql);
     }
 
-    public function close() {
-        $this->conn->close();
-    }
-
     public function __destruct() {
         $this->conn->close();
     }
 
-
+	public function getConn() {
+		return $this->conn;
+	}
 }
 
 ?>
