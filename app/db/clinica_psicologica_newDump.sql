@@ -28,6 +28,7 @@ CREATE TABLE `anotacoes_paciente` (
   `fk_redflag` int(11) NOT NULL,
   `fk_emocoes` int(11) NOT NULL,
   `fk_paciente` int(11) NOT NULL,
+  `fk_psicologo` int(11) NOT NULL,
   `fk_anotacoes_psicologo` int(11) NOT NULL,
   `anotacoes` text,
   `data_hora` datetime NOT NULL,
@@ -37,7 +38,8 @@ CREATE TABLE `anotacoes_paciente` (
   KEY `fk_anotacoes_psicologo` (`fk_anotacoes_psicologo`),
   CONSTRAINT `anotacoes_paciente_ibfk_1` FOREIGN KEY (`fk_emocoes`) REFERENCES `emocoes` (`pk_emocoes`),
   CONSTRAINT `anotacoes_paciente_ibfk_2` FOREIGN KEY (`fk_paciente`) REFERENCES `paciente` (`pk_paciente`),
-  CONSTRAINT `anotacoes_paciente_ibfk_3` FOREIGN KEY (`fk_anotacoes_psicologo`) REFERENCES `anotacoes_psicologo` (`pk_anotacoes_psicologo`)
+  CONSTRAINT `anotacoes_paciente_ibfk_3` FOREIGN KEY (`fk_anotacoes_psicologo`) REFERENCES `anotacoes_psicologo` (`pk_anotacoes_psicologo`),
+  CONSTRAINT `anotacoes_paciente_ibfk_4` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -209,6 +211,7 @@ CREATE TABLE `emocoes` (
   `local_img` text NOT NULL,
   `descricao` text,
   `emoji` varchar(50) NOT NULL,
+  `intensidade` int(5) NOT NULL,
   PRIMARY KEY (`pk_emocoes`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
