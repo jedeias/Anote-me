@@ -8,7 +8,7 @@ $session = new Session();
 $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
-$id = $session->session_get('id');
+$psico_id = $session->session_get('id');
 
 if (empty($_SESSION)) {
 
@@ -65,11 +65,12 @@ if (empty($_SESSION)) {
                     if (empty($_GET)){
 
                         $pacienteSelecionado = 'nenhum';
-                        $patient_email = null;
+                        $index = null;
 
                     } else {
                         $pacienteSelecionado = $_GET['paciente'];
                         $index = $pacienteSelecionado;
+                      
                     }
                     /*foreach ($patients as $dado){
                         $selected = '';
@@ -82,7 +83,7 @@ if (empty($_SESSION)) {
                     }*/
 
                     $select = new Select_controller();
-                    $patients = $select->select_notes($id, $patient_email);
+                    $patients = $select->select_user_patient($psico_id);
                     $i = 0;
                     
                     foreach ($patients as $dado){
@@ -119,7 +120,7 @@ if (empty($_SESSION)) {
                         </button>
                     </article>
                     <?php   
-                        /*
+                        
                         $k = 0;
                         foreach ($patients as $dado){
 
@@ -136,9 +137,9 @@ if (empty($_SESSION)) {
                             echo "<p>Intensidade: " . $patients[$index]['intensidade']. "%". "</p> ";     
                         echo "</div>";
                         echo "</article>";
-                        //$k ++;
+                        $k ++;
 
-                        }*/
+                        }
                     ?>
                     <article class='activity'>
                         <div class='activity-header'>
