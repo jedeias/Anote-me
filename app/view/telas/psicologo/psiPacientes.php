@@ -83,8 +83,7 @@ if (empty($_SESSION)) {
                     }*/
 
                     $select = new Select_controller();
-                    $patients = $select->select_user_patient($psico_id);
-                    $patients_notes = $select->select_notes($psico_id, $patient_email);
+                    $patients = $select->patient_notes($psico_id);
                     $i = 0;
                     
                     foreach ($patients as $dado){
@@ -99,6 +98,8 @@ if (empty($_SESSION)) {
                         echo "</article>";
                         $i ++;
                         }
+                        $patient_email = $patients[$index]['email'];
+                        $patients_notes = $select->select_notes($psico_id, $patient_email);
                     }
                 ?>
             </nav>
@@ -121,7 +122,7 @@ if (empty($_SESSION)) {
                     </article>
                     <?php   
                         
-                       /* $k = 0;
+                        $k = 0;
                         foreach ($patients as $dado){
 
                         echo"<article class='activity'>";
@@ -139,7 +140,7 @@ if (empty($_SESSION)) {
                         echo "</article>";
                         $k ++;
 
-                        }*/
+                        }
                     ?>
                     <article class='activity'>
                         <div class='activity-header'>

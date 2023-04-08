@@ -81,7 +81,7 @@ class Select extends Connect{
         return $data;
 
     }
-    public function patient_notes($psico_id, $patient_email)
+    public function patient_notes($psico_id)
     {
         
         $stmt = $this->getConn()->prepare(" SELECT paciente.nome, paciente.email, paciente.pk_paciente,
@@ -91,9 +91,9 @@ class Select extends Connect{
                                             INNER JOIN anotacoes_paciente on (anotacoes_paciente.fk_paciente = paciente.pk_paciente)
                                             INNER JOIN emocoes ON (emocoes.pk_emocoes = anotacoes_paciente.fk_emocoes)
                                             INNER JOIN psicologo on (psicologo.pk_psicologo = anotacoes_paciente.fk_psicologo)
-                                            WHERE psicologo.pk_psicologo = ? AND paciente.email = ?");
+                                            WHERE psicologo.pk_psicologo = ?");
                                             
-        $stmt->bind_param("is", $psico_id, $patient_email);
+        $stmt->bind_param("i", $psico_id);
         $stmt->execute();
         $result = $stmt->get_result();
         $data = $result->fetch_all(MYSQLI_ASSOC);                                   
