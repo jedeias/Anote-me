@@ -10,8 +10,6 @@ class Crud
         $this->conn = new Connect();
     }
 
-    
-
     public function insert_type_activites($assunto, $descricao)
     {
         $stmt = $this->conn->prepare("INSERT INTO tipo_atividade (pk_tipo_atividade, finalidade, descricao) VALUES (default, '$assunto', '$descricao')"); 
@@ -19,8 +17,8 @@ class Crud
    
     }
 
-    public function insert_activitie()
-    {
+    public function insert_activitie(){
+        
         $sql = $this->conn->prepare("SELECT max(pk_tipo_atividade) as last_id FROM tipo_atividade");
         if ($sql->execute()) 
         {
