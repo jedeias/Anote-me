@@ -38,5 +38,10 @@ class Select_controller{
         return $pacientes;
          //return $array = array("pacientes" => $pacientes, "psicologo" => $psicologos, "secretarios" => $secretarios);
     }
+
+    public function select_notes_user($id)
+    {
+        return $result = $this->select->select_notes_user($id);
+    }
 }
 ?>

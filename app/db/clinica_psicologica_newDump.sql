@@ -84,6 +84,26 @@ UNLOCK TABLES;
 --
 -- Table structure for table `atividade`
 --
+DROP TABLE IF EXISTS `tipo_atividade`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tipo_atividade` (
+  `pk_tipo_atividade` int(11) NOT NULL AUTO_INCREMENT,
+  `finalidade` text NOT NULL,
+  `descricao` text NOT NULL,
+  PRIMARY KEY (`pk_tipo_atividade`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tipo_atividade`
+--
+
+LOCK TABLES `tipo_atividade` WRITE;
+/*!40000 ALTER TABLE `tipo_atividade` DISABLE KEYS */;
+INSERT INTO `tipo_atividade` VALUES (1,'Esportes','Atividades relacionadas a prática de esportes'),(2,'Artes','Atividades relacionadas a pintura e escultura'),(3,'Música','Atividades relacionadas a prática musical'),(4,'Teatro','Atividades relacionadas a prática teatral'),(5,'Dança','Atividades relacionadas a prática de dança');
+/*!40000 ALTER TABLE `tipo_atividade` ENABLE KEYS */;
+UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `atividade`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -512,26 +532,7 @@ UNLOCK TABLES;
 -- Table structure for table `tipo_atividade`
 --
 
-DROP TABLE IF EXISTS `tipo_atividade`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tipo_atividade` (
-  `pk_tipo_atividade` int(11) NOT NULL AUTO_INCREMENT,
-  `finalidade` text NOT NULL,
-  `descricao` text NOT NULL,
-  PRIMARY KEY (`pk_tipo_atividade`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `tipo_atividade`
---
-
-LOCK TABLES `tipo_atividade` WRITE;
-/*!40000 ALTER TABLE `tipo_atividade` DISABLE KEYS */;
-INSERT INTO `tipo_atividade` VALUES (1,'Esportes','Atividades relacionadas a prática de esportes'),(2,'Artes','Atividades relacionadas a pintura e escultura'),(3,'Música','Atividades relacionadas a prática musical'),(4,'Teatro','Atividades relacionadas a prática teatral'),(5,'Dança','Atividades relacionadas a prática de dança');
-/*!40000 ALTER TABLE `tipo_atividade` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `tipo_telefone`

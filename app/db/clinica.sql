@@ -236,6 +236,7 @@ fk_paciente int not null,
 fk_anotacoes_psicologo int not null,
 anotacoes text null,
 data_hora datetime not null,
+
 primary key(pk_anotacoes_paciente),
 foreign key(fk_emocoes) references emocoes(pk_emocoes),
 foreign key(fk_paciente) references paciente(pk_paciente),
