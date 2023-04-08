@@ -31,7 +31,7 @@ var_dump($login_status);
 $session = new Session();
 
 $session->session_set("email", $email);
-$session->session_set("nome", $login_status["name"]);
+$session->session_set("nome", $login_status["nome"]);
 $session->session_set("id", $login_status["id"]);
 
 

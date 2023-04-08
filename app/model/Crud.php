@@ -13,9 +13,7 @@ class Crud extends Connection implements CrudController{
         
         $sql = $this->prepare("SELECT max(pk_tipo_atividade) as last_id FROM tipo_atividade");
         
-        if ($sql->execute()) 
-        
-        {
+        if ($sql->execute()) {
 
             $result = $sql->get_result()->fetch_assoc();
             $last_id = $result['last_id'];
