@@ -25,7 +25,7 @@ class Select extends Connect{
         $user = $result->fetch_assoc();
 
         if ($user) {
-            return array("success" => true, "user_type" => $user["tipo_usuario"]);
+            return array("success" => true, "user_type" => $user["tipo_usuario"], $user["nome"], $user["pk"]);
         } else {
             return array("success" => false, "error_message" => "Invalid email or password.");
         }
