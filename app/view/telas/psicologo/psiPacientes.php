@@ -91,7 +91,7 @@ if (empty($_SESSION)) {
                             break;
                         }
                         else{
-                        echo "<article class='paciente-select' onclick='selecionarPaciente($index)'>";
+                        echo "<article class='paciente-select' onclick='selecionarPaciente($index)>";
                         echo "<p>". $patients[$i]['nome'] . "</p>";
                         echo "<p>". $patients[$i]['email'] . "</p>";
                         $email = $patients[$i]['email'];
@@ -99,7 +99,6 @@ if (empty($_SESSION)) {
                         $i ++;
                         }
                     }
-                    
                 ?>
             </nav>
         </aside>
@@ -121,7 +120,7 @@ if (empty($_SESSION)) {
                     </article>
                     <?php   
                         
-                        $k = 0;
+                       /* $k = 0;
                         foreach ($patients as $dado){
 
                         echo"<article class='activity'>";
@@ -139,7 +138,7 @@ if (empty($_SESSION)) {
                         echo "</article>";
                         $k ++;
 
-                        }
+                        }*/
                     ?>
                     <article class='activity'>
                         <div class='activity-header'>
