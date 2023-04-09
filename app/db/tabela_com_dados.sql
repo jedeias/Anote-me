@@ -354,7 +354,7 @@ CREATE TABLE IF NOT EXISTS `anotacoes_paciente` (
   KEY `fk_paciente` (`fk_paciente`),
   KEY `fk_anotacoes_psicologo` (`fk_anotacoes_psicologo`),
   CONSTRAINT `anotacoes_paciente_ibfk_1` FOREIGN KEY (`fk_emocoes`) REFERENCES `emocoes` (`pk_emocoes`),
-  CONSTRAINT `anotacoes_paciente_ibfk_2` FOREIGN KEY (`fk_red_flag`) REFERENCES `red_flag` (`pk_red_flag`),
+  CONSTRAINT `anotacoes_paciente_ibfk_2` FOREIGN KEY (`fk_redflag`) REFERENCES `red_flag` (`pk_redflag`),
   CONSTRAINT `anotacoes_paciente_ibfk_3` FOREIGN KEY (`fk_paciente`) REFERENCES `paciente` (`pk_paciente`),
   CONSTRAINT `anotacoes_paciente_ibfk_4` FOREIGN KEY (`fk_anotacoes_psicologo`) REFERENCES `anotacoes_psicologo` (`pk_anotacoes_psicologo`),
   CONSTRAINT `anotacoes_paciente_ibfk_5` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`)
