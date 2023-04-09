@@ -50,7 +50,7 @@ if (empty($_SESSION)) {
                     
                     <li class='config-container'>
                         <a class='config-button'><img class='wrapper-icon' src='../../IMG/ico/gear-svgrepo-com.svg' title='Configurações'></a>
-                        <a class='config-button'><img class='wrapper-icon' src='../../IMG/ico/arrow-from-shape-right-svgrepo-com.svg' title='Sair'></a>
+                        <a class='config-button' href="../../sair.php"><img class='wrapper-icon' src='../../IMG/ico/arrow-from-shape-right-svgrepo-com.svg' title='Sair'></a>
                     </li>
                 </ul>
             </nav>
@@ -122,25 +122,25 @@ if (empty($_SESSION)) {
                     </article>
                     <?php   
                         
-                        $k = 0;
-                        foreach ($patients as $dado){
+                        // $k = 0;
+                        // foreach ($patients as $dado){
 
-                        echo"<article class='activity'>";
-                        echo "<div class='activity-header'>";
-                        echo "<p>" . $patients[$index]['data_hora'] . "</p>"; 
-                        echo "<p>16/02/2023</p>";
-                        echo "</div>";
-                        echo "<div class='activity-text'>";
-                            echo "<p>" . $patients[$index]['anotacoes'] . "</p>";
-                        echo "</div>";
-                        echo "<div class='activity-info'>";
-                            echo "<p>"."Sentindo-se: 😢 ". $patients[$index] ['descricao'] ."</p>";
-                            echo "<p>Intensidade: " . $patients[$index]['intensidade']. "%". "</p> ";     
-                        echo "</div>";
-                        echo "</article>";
-                        $k ++;
+                        // echo"<article class='activity'>";
+                        // echo "<div class='activity-header'>";
+                        // echo "<p>" . $patients[$index]['data_hora'] . "</p>"; 
+                        // echo "<p>16/02/2023</p>";
+                        // echo "</div>";
+                        // echo "<div class='activity-text'>";
+                        //     echo "<p>" . $patients[$index]['anotacoes'] . "</p>";
+                        // echo "</div>";
+                        // echo "<div class='activity-info'>";
+                        //     echo "<p>"."Sentindo-se: 😢 ". $patients[$index] ['descricao'] ."</p>";
+                        //     echo "<p>Intensidade: " . $patients[$index]['intensidade']. "%". "</p> ";     
+                        // echo "</div>";
+                        // echo "</article>";
+                        // $k ++;
 
-                        }
+                        // }
                     ?>
                     <article class='activity'>
                         <div class='activity-header'>
