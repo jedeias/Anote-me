@@ -1,6 +1,6 @@
 <?php
 
-class Crud extends Connection implements CrudController{
+class Crud extends Connect implements CrudController{
 
     public function insert_type_activites($assunto, $descricao)
     {
@@ -34,13 +34,29 @@ class Crud extends Connection implements CrudController{
             echo "not execute first if";
         }
     }
+    public function insert_notas_paciente($id, $emocao, $descricao) {
 
-    public function insert_notas_paciente($id, $emocao, $descricao){
-
-        
-
+        $sql = "INSERT INTO anotacoes_paciente (
+            pk_anotacoes_paciente,
+            fk_redflag,
+            fk_emocoes,
+            fk_paciente,
+            fk_anotacoes_psicologo,
+            anotacoes,
+            data_hora
+        ) 
+        VALUES (
+            null,
+            null,
+            '$emocao',
+            '$id',
+            null,
+            '$descricao',
+            NOW()
+        )";
+    
+        $this->query($sql);
     }
-
 
     
     

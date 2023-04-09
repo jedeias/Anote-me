@@ -88,12 +88,12 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     <div class="emoji-content hidden" id="emojiTab">
                         <h1>Que emoção você sentiu?</h1>
                         <select id="emojiSelect" name="emocao">
-                            <option value="nenhuma">Nenhuma</option>
-                            <option value="feliz">😃 Feliz</option>
-                            <option value="triste">😥 Triste</option>
-                            <option value="ansioso">😰 Ansioso(a)</option>
-                            <option value="com raiva">😠 Com raiva</oapp/view/telas/paciente/anotacoes.phpption>
-                            <option value="com medo">😱 Com medo</option>
+                            <option value="3">Nenhuma</option>
+                            <option value="2">😃 Feliz</option>
+                            <option value="1">😥 Triste</option>
+                            <option value="5">😰 Ansioso(a)</option>
+                            <option value="4">😠 Euforico</oapp/view/telas/paciente/anotacoes.phpption>
+                            <!-- <option value="com medo">😱 Com medo</option> -->
                         </select>
                         <hr></hr>
                         <h1>Qual foi a intensidade?</h1>

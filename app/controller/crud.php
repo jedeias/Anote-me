@@ -2,7 +2,7 @@
 
     interface CrudController{
 
-        public function insert_notas_paciente();
+        public function insert_notas_paciente($id, $emocao, $descricao);
 
     }
 

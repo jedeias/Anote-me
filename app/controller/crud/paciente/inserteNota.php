@@ -1,9 +1,17 @@
 <?php
-include("../../../autoload.php");
 
-var_dump($_POST);
+include("../../../autoload.php");
+include("../../../model/connect.php");
+
+
+
 
 $session = new Session();
+
+echo"<pre>";
+var_dump($_SESSION);
+
+echo"<hr>";
 
 $nome = $session->session_get('nome');
 $email = $session->session_get('email');
@@ -20,6 +28,14 @@ $descricao = $_POST["descricao"];
 $session->session_set( "emocao" ,$emocao);
 $session->session_set( "emocaoGrau" ,$emocaoGrau );
 $session->session_set( "descricao" ,$descricao );
+
+$inser = new Crud();
+
+echo"<br>";
+
+var_dump($inser->insert_notas_paciente ($id, $emocao, $descricao));
+
+$inser->insert_notas_paciente ($id, $emocao, $descricao);
 
 
 
