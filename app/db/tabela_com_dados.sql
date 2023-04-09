@@ -354,9 +354,10 @@ CREATE TABLE IF NOT EXISTS `anotacoes_paciente` (
   KEY `fk_paciente` (`fk_paciente`),
   KEY `fk_anotacoes_psicologo` (`fk_anotacoes_psicologo`),
   CONSTRAINT `anotacoes_paciente_ibfk_1` FOREIGN KEY (`fk_emocoes`) REFERENCES `emocoes` (`pk_emocoes`),
-  CONSTRAINT `anotacoes_paciente_ibfk_2` FOREIGN KEY (`fk_paciente`) REFERENCES `paciente` (`pk_paciente`),
-  CONSTRAINT `anotacoes_paciente_ibfk_3` FOREIGN KEY (`fk_anotacoes_psicologo`) REFERENCES `anotacoes_psicologo` (`pk_anotacoes_psicologo`),
-  CONSTRAINT `anotacoes_paciente_ibfk_4` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`)
+  CONSTRAINT `anotacoes_paciente_ibfk_2` FOREIGN KEY (`fk_red_flag`) REFERENCES `red_flag` (`pk_red_flag`),
+  CONSTRAINT `anotacoes_paciente_ibfk_3` FOREIGN KEY (`fk_paciente`) REFERENCES `paciente` (`pk_paciente`),
+  CONSTRAINT `anotacoes_paciente_ibfk_4` FOREIGN KEY (`fk_anotacoes_psicologo`) REFERENCES `anotacoes_psicologo` (`pk_anotacoes_psicologo`),
+  CONSTRAINT `anotacoes_paciente_ibfk_5` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`)
 );
 REPLACE INTO `anotacoes_paciente` (`pk_anotacoes_paciente`, `fk_redflag`, `fk_emocoes`, `fk_paciente`,`fk_psicologo`,`fk_anotacoes_psicologo`, `anotacoes`, `data_hora`) VALUES
 	(29, 1, 1, 2,11, 11, 'Estou me sentindo muito ansioso', '2022-05-10 11:30:00'),
