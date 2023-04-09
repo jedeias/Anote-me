@@ -26,7 +26,6 @@ if (empty($_SESSION)) {
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Anotações</title>
     <link rel='stylesheet' href='../../CSS/psiPacientes.css'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body id='body'>
     <header class='header-container'>
@@ -41,7 +40,7 @@ if (empty($_SESSION)) {
                     <li class='center'><?php echo $nome; ?></li>
                     <div class='lista-dados-content'>
                         <li>Email : <?php echo $email; ?></li>
-                        <li>Telefone : <?php echo $id; ?></li>
+                        <li>Telefone : <?php echo $psico_id; ?></li>
                         <li>Responsável : </li>
                         <li>Telefone do Responsável : </li>
                         <li>Psicologo : </li>
@@ -64,42 +63,30 @@ if (empty($_SESSION)) {
                     
                     if (empty($_GET)){
 
-                        $pacienteSelecionado = 'nenhum';
                         $index = null;
 
                     } else {
-                        $pacienteSelecionado = $_GET['paciente'];
-                        $index = $pacienteSelecionado;
-                      
-                    }
-                    /*foreach ($patients as $dado){
-                        $selected = '';
 
-                        if($pacienteSelecionado == $index){
-                            $selected = 'paciente-selected';
-                        } else{
-                            $selected = '';
-                        }
-                    }*/
+                        $index = $_GET['paciente'];
+        
+                    }
 
                     $select = new Select_controller();
-                    $patients = $select->patient_notes($psico_id);
+                    $patients = $select->select_user_patient($psico_id);
                     $i = 0;
                     
-                    foreach ($patients as $dado){
-                        if($patients[$i]['email'] == $email){
+                    foreach ($patients as $dado)
+                    {
+                        if($email == $dado['email']){
                             break;
                         }
-                        else{
-                        echo "<article class='paciente-select' onclick='selecionarPaciente($index)>";
-                        echo "<p>". $patients[$i]['nome'] . "</p>";
-                        echo "<p>". $patients[$i]['email'] . "</p>";
-                        $email = $patients[$i]['email'];
+                        echo "<article class='paciente-select' onclick=selecionarPaciente($i)>";
+                        echo "<p>". $dado['nome'] . "</p>";
+                        echo "<p>". $dado['email'] . "</p>";
+                        $email = $dado['email'];
                         echo "</article>";
                         $i ++;
-                        }
-                        $patient_email = $patients[$index]['email'];
-                        $patients_notes = $select->select_notes($psico_id, $patient_email);
+                        
                     }
                 ?>
             </nav>
@@ -121,54 +108,71 @@ if (empty($_SESSION)) {
                         </button>
                     </article>
                     <?php   
-                        
-                        // $k = 0;
-                        // foreach ($patients as $dado){
 
-                        // echo"<article class='activity'>";
-                        // echo "<div class='activity-header'>";
-                        // echo "<p>" . $patients[$index]['data_hora'] . "</p>"; 
-                        // echo "<p>16/02/2023</p>";
-                        // echo "</div>";
-                        // echo "<div class='activity-text'>";
-                        //     echo "<p>" . $patients[$index]['anotacoes'] . "</p>";
-                        // echo "</div>";
-                        // echo "<div class='activity-info'>";
-                        //     echo "<p>"."Sentindo-se: 😢 ". $patients[$index] ['descricao'] ."</p>";
-                        //     echo "<p>Intensidade: " . $patients[$index]['intensidade']. "%". "</p> ";     
-                        // echo "</div>";
-                        // echo "</article>";
-                        // $k ++;
+                        if(!empty($_GET))//SÓ LISTA AS ANOTAÇÕES DO PACIENTE CLICADO
+                        {
 
-                        // }
+                            $email_paciente = $patients[$index]['email'];
+                            $anotacoes = $select->patient_notes($psico_id, $email_paciente);
+
+                            foreach ($anotacoes as $dado)
+                            {
+
+                                echo"<article class='activity'>";
+
+                                    echo "<div class='activity-header'>";
+
+                                        echo "<p>" . $dado['data_hora'] . "</p>"; 
+                                        echo "<p>16/02/2023</p>";
+
+                                    echo "</div>";
+
+                                    echo "<div class='activity-text'>";
+
+                                        echo "<p>" . $dado['anotacoes'] . "</p>";
+
+                                    echo "</div>";
+
+                                    echo "<div class='activity-info'>";
+
+                                        echo "<p>"."Sentindo-se: 😢 ". $dado['descricao'] ."</p>";
+                                        echo "<p>Intensidade: " . $dado['intensidade']. "%". "</p> ";   
+
+                                    echo "</div>";
+
+                                echo "</article>";
+                        }
+                    }//ELE ENTRA NESSE ELSE SEMPRE QUE PASSA DO LOGIN PARA ESSA TELA, AQUI ELE LISTA TODAS AS ANOTAÇÕES DE TODOS OS PACIENTES REFERENTES AO PSICOLOGO LOGADO
+                    else {
+                        foreach($patients as $all)
+                        {
+                        echo"<article class='activity'>";
+
+                        echo "<div class='activity-header'>";
+
+                            echo "<p>" . $all['data_hora'] . "</p>"; 
+                            echo "<p>16/02/2023</p>";
+
+                        echo "</div>";
+
+                        echo "<div class='activity-text'>";
+
+                            echo "<p>" . $all['anotacoes'] . "</p>";
+
+                        echo "</div>";
+
+                        echo "<div class='activity-info'>";
+
+                            echo "<p>"."Sentindo-se: 😢 ". $all['descricao'] ."</p>";
+                            echo "<p>Intensidade: " . $all['intensidade']. "%". "</p> ";   
+
+                        echo "</div>";
+
+                    echo "</article>";
+                        }
+                    }
+
                     ?>
-                    <article class='activity'>
-                        <div class='activity-header'>
-                        <p>18:32</p> 
-                        <p>16/02/2023</p>
-                        </div>
-                        <div class='activity-text'>
-                            <p>Hoje nao estou me sentindo muito bem.</p>
-                        </div>
-                        <div class='activity-info'>
-                            <p>Sentindo-se: Triste 😢</p>
-                            <p>Intensidade: 50%</p>       
-                        </div>
-                    </article>
-
-                    <article class='activity'>
-                        <div class='activity-header'>
-                        <p>18:32</p> 
-                        <p>16/02/2023</p>
-                        </div>
-                        <div class='activity-text'>
-                            <p>Hoje nao estou me sentindo muito bem.</p>
-                        </div>
-                        <div class='activity-info'>
-                            <p>Sentindo-se: Triste 😢</p>
-                            <p>Intensidade: 50%</p>       
-                        </div>
-                    </article>
                 </div>
             </section>
             

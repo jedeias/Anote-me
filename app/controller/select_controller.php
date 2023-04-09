@@ -37,7 +37,8 @@ class Select_controller extends Select{
     }
     public function select_notes($psico_id, $patient_email)
     {
-        return $result = $this->patient_notes($psico_id);
+        return $result = $this->patient_notes($psico_id, $patient_email);
     }
 }
+
 ?>

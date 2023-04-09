@@ -64,11 +64,14 @@ class Select extends Connect{
     public function select_users_patient($psico_id)
     {
         
-        $stmt = $this->getConn()->prepare(" SELECT paciente.nome, paciente.email, paciente.pk_paciente
+        $stmt = $this->getConn()->prepare(" SELECT paciente.nome, paciente.email, paciente.pk_paciente,
+                                            anotacoes_paciente.pk_anotacoes_paciente, anotacoes_paciente.anotacoes, anotacoes_paciente.data_hora,
+                                            emocoes.descricao, emocoes.emoji, emocoes.intensidade
                                             FROM paciente
-                                            INNER JOIN anotacoes_paciente ON (anotacoes_paciente.fk_paciente = paciente.pk_paciente)
-                                            INNER JOIN psicologo ON (psicologo.pk_psicologo = anotacoes_paciente.fk_psicologo)
-                                            WHERE psicologo.pk_psicologo = ?"); 
+                                            INNER JOIN anotacoes_paciente on (anotacoes_paciente.fk_paciente = paciente.pk_paciente)
+                                            INNER JOIN emocoes ON (emocoes.pk_emocoes = anotacoes_paciente.fk_emocoes)
+                                            INNER JOIN psicologo on (psicologo.pk_psicologo = anotacoes_paciente.fk_psicologo)
+                                            WHERE psicologo.pk_psicologo = ? "); 
 
         $stmt->bind_param("i", $psico_id);
         $stmt->execute();
@@ -76,12 +79,10 @@ class Select extends Connect{
         $data = $result->fetch_all(MYSQLI_ASSOC);
     
         echo "<pre>";
-
-        //print_r($data);
         return $data;
 
     }
-    public function patient_notes($psico_id)
+    public function patient_notes($psico_id, $patient_email)
     {
         
         $stmt = $this->getConn()->prepare(" SELECT paciente.nome, paciente.email, paciente.pk_paciente,
@@ -91,9 +92,9 @@ class Select extends Connect{
                                             INNER JOIN anotacoes_paciente on (anotacoes_paciente.fk_paciente = paciente.pk_paciente)
                                             INNER JOIN emocoes ON (emocoes.pk_emocoes = anotacoes_paciente.fk_emocoes)
                                             INNER JOIN psicologo on (psicologo.pk_psicologo = anotacoes_paciente.fk_psicologo)
-                                            WHERE psicologo.pk_psicologo = ?");
+                                            WHERE psicologo.pk_psicologo = ? AND paciente.email = ?");
                                             
-        $stmt->bind_param("i", $psico_id);
+        $stmt->bind_param("is", $psico_id, $patient_email);
         $stmt->execute();
         $result = $stmt->get_result();
         $data = $result->fetch_all(MYSQLI_ASSOC);                                   
