@@ -86,7 +86,7 @@ class Select extends Connect{
     {
         
         $stmt = $this->getConn()->prepare(" SELECT paciente.nome, paciente.email, paciente.pk_paciente,
-                                            anotacoes_paciente.pk_anotacoes_paciente, anotacoes_paciente.anotacoes, anotacoes_paciente.data, anotacoes_paciente.hora,
+                                            anotacoes_paciente.pk_anotacoes_paciente, anotacoes_paciente.anotacoes, DATE_FORMAT(anotacoes_paciente.data, '%d/%m/%y') as data, DATE_FORMAT(anotacoes_paciente.hora, '%H:%i') as hora,
                                             emocoes.descricao, emocoes.emoji, emocoes.intensidade
                                             FROM paciente
                                             INNER JOIN anotacoes_paciente on (anotacoes_paciente.fk_paciente = paciente.pk_paciente)
