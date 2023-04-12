@@ -25,8 +25,6 @@ if (empty($_SESSION)) {
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Anotações</title>
-    <script src='../../JS/index.global.min.js'></script>
-    <link rel="stylesheet" href="../../CSS/calendario.css">
     <link rel='stylesheet' href='../../CSS/psiPacientes.css'>
 </head>
 <body id='body'>
@@ -75,6 +73,7 @@ if (empty($_SESSION)) {
 
                     $select = new Select_controller();
                     $patients = $select->select_user_patient($psico_id);
+                    //print_r($patients);
                     $i = 0;
                     
                     foreach ($patients as $dado)
@@ -115,7 +114,10 @@ if (empty($_SESSION)) {
                         {
 
                             $email_paciente = $patients[$index]['email'];
+                            $pk_paciente = $patients[$index]['pk_paciente'];
+                
                             $anotacoes = $select->patient_notes($psico_id, $email_paciente);
+
 
                             foreach ($anotacoes as $dado)
                             {
@@ -152,8 +154,8 @@ if (empty($_SESSION)) {
 
                         echo "<div class='activity-header'>";
 
-                            echo "<p>" . $all['data_hora'] . "</p>"; 
-                            echo "<p>16/02/2023</p>";
+                            echo "<p>" . $all['data'] . "</p>"; 
+                            echo "<p>" . $all['hora'] . "</p>";
 
                         echo "</div>";
 
@@ -199,20 +201,22 @@ if (empty($_SESSION)) {
 
                     </article>
 
-                    <article id='activityTable' class='activity-add-table hidden' action='' method='POST'>
+                    <form id='activityTable' class='activity-add-table hidden' action='../../../controller/crud/paciente/inserteAtividade.php' method='POST'>
                         <h2>Adicionar atividade</h2>
 
                         <div class='activity-add-table-left'>
                             <p>Assunto</p>
                         </div>
-                        <input type='text' name='assunto'>
+                        <input type='text' name='assunto' required>
                         <div class='activity-add-table-left'>
                             <p>Atividade</p>
                         </div>
-                        <textarea name='descricao'></textarea>
-                        <input class='activity-save' type='button' value='Salvar' onclick='activityClose()'>
+                        <textarea name='atividade' required></textarea>
+                        <input type="hidden" value="<?php echo "$pk_paciente"; ?>" name="fk_paciente">
+                        <input type="hidden" value="<?php echo "$index" ?>" name="curPaciente">
+                        <input class='activity-save' type='submit' value='Salvar' onclick='activityClose()'>
                         
-                    </article>
+                    </form>
 
                     <article class='paciente-atividade'>
                         <div class='activity'>
@@ -275,7 +279,7 @@ if (empty($_SESSION)) {
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary id="saveButton">Salvar</button>
+                                    <button type="button" class="btn btn-primary" id="saveButton">Salvar</button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                                 </div>
                             </div>
@@ -287,45 +291,6 @@ if (empty($_SESSION)) {
     </main>
 
     <script src='../../JS/script.js'></script>
-    <script>
-
-    document.addEventListener("DOMContentLoaded", function() {
-        // cria um calendário usando o FullCalendar
-        var calendarEl = document.getElementById("calendar");
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: "dayGridMonth",
-            locale: "pt-br",
-            selectable: true,
-            select: function(info) {
-            // abre o modal com o formulário de evento
-            $('.modal').modal('show');
-
-            // preenche os campos do formulário com as informações do evento selecionado
-            $('#paciente').val('');
-            $('#psicologo').val('');
-            $('#data').val(info.startStr.substring(0, 10)); // corrigido aqui
-            $('#hora').val(info.startStr.substring(11,16));
-            
-            // salva o evento quando o botão "Salvar" for clicado
-            $('#saveButton').unbind().click(function() {
-                var paciente = $('#paciente').val();
-                var psicologo = $('#psicologo').val();
-                var start = moment($('#data').val() + 'T' + $('#hora').val() + ':00');
-                var end = start.clone().add(1, 'hours');
-                var event = {
-                title: paciente + ' - ' + psicologo,
-                start: start.format(),
-                end: end.format(),
-                allDay: false
-                };
-                calendar.addEvent(event);
-                $('.modal').modal('hide');
-            });
-            }
-        });
-  calendar.render();
-});
-  </script>
 
 </body>
 </html>
