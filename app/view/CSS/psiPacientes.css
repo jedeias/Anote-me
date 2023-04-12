@@ -264,7 +264,7 @@ a{
 }
 #calendar {
     width: 80%; /* ajuste o valor conforme necessário */
-    height: 600px; /* ajuste o valor conforme necessário */
+    height: 700px; /* ajuste o valor conforme necessário */
     margin: auto;
   }
 
@@ -316,7 +316,9 @@ a{
 
 }
 
-
+.modal{
+    display: none;
+}
 .activity-add{
     display: flex;
     justify-content: flex-end;

@@ -28,6 +28,11 @@ if (empty($_SESSION)) {
     <script src='../../JS/index.global.min.js'></script>
     <link rel="stylesheet" href="../../CSS/calendario.css">
     <link rel='stylesheet' href='../../CSS/psiPacientes.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Adicione os arquivos JavaScript do Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNSG+p" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body id='body'>
     <header class='header-container'>
@@ -124,8 +129,9 @@ if (empty($_SESSION)) {
 
                                     echo "<div class='activity-header'>";
 
-                                        echo "<p>" . $dado['data_hora'] . "</p>"; 
-                                        echo "<p>16/02/2023</p>";
+                                        echo "<p>" . $dado['time'] . "</p>"; 
+                                        echo "<p>" . $dado['data'] . "</p>"; 
+                                       // echo "<p>16/02/2023</p>";
 
                                     echo "</div>";
 
@@ -245,6 +251,42 @@ if (empty($_SESSION)) {
                     <div class="psicologo-agenda">
                         <div id='calendar'></div>
                     </div>
+                    <div class="modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Adicionar Evento</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="paciente">Paciente:</label>
+                                            <input type="text" class="form-control" id="paciente">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="psicologo">Psicólogo:</label>
+                                            <input type="text" class="form-control" id="psicologo">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="data">Data:</label>
+                                            <input type="date" class="form-control" id="data">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="hora">Hora:</label>
+                                            <input type="time" class="form-control" id="hora">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary id="saveButton">Salvar</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </section>
@@ -253,16 +295,42 @@ if (empty($_SESSION)) {
     <script src='../../JS/script.js'></script>
     <script>
 
-            document.addEventListener("DOMContentLoaded", function() {
-
-            // cria um calendário usando o FullCalendar
-            var calendarEl = document.getElementById("calendar");
-            var calendar = new FullCalendar.Calendar(calendarEl, {
+    document.addEventListener("DOMContentLoaded", function() {
+        // cria um calendário usando o FullCalendar
+        var calendarEl = document.getElementById("calendar");
+        var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: "dayGridMonth",
             locale: "pt-br",
+            selectable: true,
+            select: function(info) {
+            // abre o modal com o formulário de evento
+            $('.modal').modal('show');
+
+            // preenche os campos do formulário com as informações do evento selecionado
+            $('#paciente').val('');
+            $('#psicologo').val('');
+            $('#data').val(info.startStr.substring(0, 10)); // corrigido aqui
+            $('#hora').val(info.startStr.substring(11,16));
+            
+            // salva o evento quando o botão "Salvar" for clicado
+            $('#saveButton').unbind().click(function() {
+                var paciente = $('#paciente').val();
+                var psicologo = $('#psicologo').val();
+                var start = moment($('#data').val() + 'T' + $('#hora').val() + ':00');
+                var end = start.clone().add(1, 'hours');
+                var event = {
+                title: paciente + ' - ' + psicologo,
+                start: start.format(),
+                end: end.format(),
+                allDay: false
+                };
+                calendar.addEvent(event);
+                $('.modal').modal('hide');
             });
-            calendar.render();
+            }
         });
+  calendar.render();
+});
   </script>
 
 </body>
