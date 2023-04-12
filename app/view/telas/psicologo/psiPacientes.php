@@ -124,8 +124,8 @@ if (empty($_SESSION)) {
 
                                     echo "<div class='activity-header'>";
 
-                                        echo "<p>" . $dado['data_hora'] . "</p>"; 
-                                        echo "<p>16/02/2023</p>";
+                                        echo "<p>" . $dado['hora'] . "</p>"; 
+                                        echo "<p>". $dado['data']."</p>";
 
                                     echo "</div>";
 
