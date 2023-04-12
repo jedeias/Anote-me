@@ -25,6 +25,8 @@ if (empty($_SESSION)) {
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Anotações</title>
+    <script src='../../JS/index.global.min.js'></script>
+    <link rel="stylesheet" href="../../CSS/calendario.css">
     <link rel='stylesheet' href='../../CSS/psiPacientes.css'>
 </head>
 <body id='body'>
@@ -240,8 +242,8 @@ if (empty($_SESSION)) {
                             </svg>
                         </button>
                     </article>
-                    <div class='paciente-atividade'>
-                        <h1>TESTE3</h1>
+                    <div class="psicologo-agenda">
+                        <div id='calendar'></div>
                     </div>
                 </div>
             </section>
@@ -249,6 +251,19 @@ if (empty($_SESSION)) {
     </main>
 
     <script src='../../JS/script.js'></script>
+    <script>
+
+            document.addEventListener("DOMContentLoaded", function() {
+
+            // cria um calendário usando o FullCalendar
+            var calendarEl = document.getElementById("calendar");
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: "dayGridMonth",
+            locale: "pt-br",
+            });
+            calendar.render();
+        });
+  </script>
 
 </body>
 </html>

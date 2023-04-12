@@ -262,6 +262,12 @@ a{
     height: 100%;
     border-radius: 7px;
 }
+#calendar {
+    width: 80%; /* ajuste o valor conforme necessário */
+    height: 600px; /* ajuste o valor conforme necessário */
+    margin: auto;
+  }
+
 .paciente-anotacoes{
     width: 100%;
 }
