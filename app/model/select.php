@@ -84,6 +84,22 @@ class Select extends Connect{
         return $data;
     }
     
+    public function todosDados($id){
+        $stmt = $this->getConn()->prepare("SELECT pk_psicologo AS id, nome, email, senha FROM psicologo WHERE pk_psicologo = ? 
+                                            UNION ALL
+                                            SELECT pk_paciente AS id, nome, email, senha FROM paciente WHERE pk_paciente = ?
+                                            UNION ALL
+                                            SELECT pk_secretario AS id, nome, email, senha FROM secretario WHERE pk_secretario = ?
+                                            ");
+
+        $stmt->bind_param("iii", $id, $id, $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+
+        return $data;
+    }
+    
     public function __destruct()
     {
         $this->getConn()->close();
