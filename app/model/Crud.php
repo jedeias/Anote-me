@@ -47,6 +47,13 @@ class Crud extends Connect implements CrudController{
     
         $this->query($sql);
     }
+
+    public function delete_atividades_paciente($pk_ativdades_paciente){
+
+        $sql = "DELETE FROM atividades_paciente WHERE atividades_paciente.pk_atividades_paciente = '$pk_ativdades_paciente'";
+
+        $this->query($sql);
+    }
     
 }
 

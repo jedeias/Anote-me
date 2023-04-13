@@ -223,19 +223,22 @@ if (empty($_SESSION)) {
 
                     $atividades = $select->select_atividades($psico_id, $pk_paciente);
 
+                    
+
                     foreach ($atividades as $atividade) {
                         echo "<article class='paciente-atividade'>";
                             echo "<div class='activity'>";
                             echo "<div class='activity-header'>";
                             echo "<p>". $atividade['data'] ."</p>";
                             echo "<p>". $atividade['assunto_atividade'] . "</p>";
-                            echo "<button class='activity-button' name='excluir'><img src='../../IMG/ico/trash-svgrepo-com.svg'></button>";
+                            echo "<form method='POST' action='../../../controller/crud/paciente/deleteAtividade.php'><button class='activity-button' name='excluir' value='".$atividade['pk_atividades_paciente']."'><img src='../../IMG/ico/trash-svgrepo-com.svg'></button><input type='hidden' value='$index' name='curPaciente'></form>";
                             echo "</div>";
                             echo "<p class='activity-text'>". $atividade['atividade']  ."</p>";
                             echo "</div>";
                         echo"</article>";
                     }
                     ?>
+
                 </div>
             </section>
 

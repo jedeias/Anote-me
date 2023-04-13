@@ -103,7 +103,7 @@ class Select extends Connect{
     }
     public function select_activities($psico_id, $patient_id)
     {
-        $stmt = $this->getconn()->prepare(" SELECT atividades_paciente.assunto_atividade, atividades_paciente.atividade, DATE_FORMAT(atividades_paciente.data, '%d/%m/%y') as data
+        $stmt = $this->getconn()->prepare(" SELECT atividades_paciente.assunto_atividade, atividades_paciente.atividade, DATE_FORMAT(atividades_paciente.data, '%d/%m/%y') as data, atividades_paciente.pk_atividades_paciente
                                             FROM atividades_paciente
                                             WHERE fk_psicologo = ? AND fk_paciente = ?");
                             
