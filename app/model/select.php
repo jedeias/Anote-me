@@ -10,13 +10,13 @@ class Select extends Connect{
     
     public function validateUser($email, $password) 
     {
-        $stmt = $this->getConn()->prepare("SELECT nome, email, senha, tipo_usuario, pk
+        $stmt = $this->getConn()->prepare("SELECT nome, email, senha, tipo_usuario, pk, fk
                                       FROM (
-                                          SELECT email, senha, 'psicologo' AS tipo_usuario, pk_psicologo AS 'pk', nome FROM psicologo
+                                          SELECT email, senha, 'psicologo' AS tipo_usuario, pk_psicologo AS 'pk', fk_telefone AS 'fk', nome FROM psicologo
                                           UNION ALL
-                                          SELECT email, senha, 'paciente' AS tipo_usuario, pk_paciente AS 'pk', nome FROM paciente
+                                          SELECT email, senha, 'paciente' AS tipo_usuario, pk_paciente AS 'pk', fk_psicologo AS 'fk', nome FROM paciente
                                           UNION ALL
-                                          SELECT email, senha, 'secretario' AS tipo_usuario, pk_secretario AS 'pk', nome FROM secretario
+                                          SELECT email, senha, 'secretario' AS tipo_usuario, pk_secretario AS 'pk', fk_telefone AS 'fk', nome FROM secretario
                                       ) usuarios WHERE email=? and senha=?");
 
         $stmt->bind_param("ss", $email, $password);
@@ -25,7 +25,7 @@ class Select extends Connect{
         $user = $result->fetch_assoc();
 
         if ($user) {
-            return array("success" => true, "user_type" => $user["tipo_usuario"], "nome" => $user["nome"], "id" => $user["pk"]);
+            return array("success" => true, "user_type" => $user["tipo_usuario"], "nome" => $user["nome"], "id" => $user["pk"], "fk_psicologo" => $user["fk"]);
         } else {
             return array("success" => false, "error_message" => "Invalid email or password.");
         }
@@ -80,23 +80,6 @@ class Select extends Connect{
         $stmt->execute();
         $result = $stmt->get_result();
         $data = $result->fetch_all(MYSQLI_ASSOC);                                   
-
-        return $data;
-    }
-
-    //função para pegar os dados das tabelas psicologo, secretario, paciente de acordo com o id
-    public function todosDados($id){
-        $stmt = $this->getConn()->prepare("SELECT pk_psicologo AS id, nome, email, senha FROM psicologo WHERE pk_psicologo = ? 
-                                            UNION ALL
-                                            SELECT pk_paciente AS id, nome, email, senha FROM paciente WHERE pk_paciente = ?
-                                            UNION ALL
-                                            SELECT pk_secretario AS id, nome, email, senha FROM secretario WHERE pk_secretario = ?
-                                            ");
-
-        $stmt->bind_param("iii", $id, $id, $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $data = $result->fetch_all(MYSQLI_ASSOC);
 
         return $data;
     }

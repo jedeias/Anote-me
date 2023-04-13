@@ -114,7 +114,7 @@
     color: #dadada;
     margin: 10px;
     border-radius: 10px;
-    font-weight: 500px;
+    font-weight: 500;
 }
 
 .menu li:hover{
@@ -141,23 +141,29 @@
     padding: 15px;
 }
 .activity{
-    background-color: white;
     height: fit-content;
-    width: 100%;
+    width: 99%;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 7px;
     overflow: auto;
     margin-bottom: 15px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+   
+    
 }
 .activity-header{
     display: flex;
     justify-content: space-between;
     padding: 5px;
-    background-color: green;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color:  #22b573;
     color: white;
 }
-
 .activity-text{
-    padding: 5px;
+    padding: 10px;
     width: 100%;
     height: 70px;
     overflow: auto;

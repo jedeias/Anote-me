@@ -1,3 +1,24 @@
+<?php
+
+include("../../../autoload.php");
+
+
+$session = new Session();
+
+$nome = $session->session_get('nome');
+$email = $session->session_get('email');
+$type = $session->session_get('type');
+$paciente_id = $session->session_get('id');
+$psico_id = $session->session_get('fk_psicologo');
+
+
+
+if($nome == NULL and $email == NULL and $type == NULL){
+   header("location: ../../../index.html");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,9 +29,31 @@
     <link rel="stylesheet" href="../../CSS/styleatividades.css">
 </head>
 <body>
-    <header class="header-container">
+<header class="header-container">
         <h1>ANOTE-ME</h1>
-        <img src="../../img/Default/default.jpg" class="perfil" alt="perfil">
+        <div id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
+            <img src="../../IMG/117104319_3204025416385100_1271061160658966926_n.jpg" alt="" class="perfil" id="first-perfil">
+        </div> 
+        <div class="click-wrapper">
+            <nav class="dados-wrapper hidden" id="wrapper-content">
+                <ul class="lista-dados">
+
+                    <li class="center"> <img src="../../IMG/117104319_3204025416385100_1271061160658966926_n.jpg" alt="FOTO-DE-PERFIL" class="perfil" id="second-perfil"></li>
+                    <li class="center"><?php echo "$nome"; ?></li>
+                    <li>Email : <?php echo "$email"; ?></li>
+                    <!-- <li>Telefone :</li>
+                    <li>Responsável : </li> -->
+                    <!-- <li>Telefone do Responsável : </li> -->
+                    <li>tipo de usuário : <?php echo "$type"; ?> </li>
+                    <!-- <li>Clinica : </li> -->
+                    <li class="config-container">
+                        <a class="config-button"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>
+                        <a class="config-button" href="../../sair.php"><img class="wrapper-icon" src="../../IMG/ico/arrow-from-shape-right-svgrepo-com.svg" title="Sair"></a>
+                    </li>
+                
+                </ul>
+            </nav>
+        </div>
     </header>
     <section class="activity-container">
         <section class="menu-container">
@@ -33,36 +76,27 @@
             </nav>
         </section>
         <section class="activity-content">
+            <?php
 
-            <div class="activity">
-                <div class="activity-header">
-                <p>Alimentação</p> 
-                <p>Inicio: 16/02/2023</p>
-                </div>
-                <div class="activity-text">
-                    <p>Conduza sua alimentação para que seja o mais organizada possivel, se alimente 3 vezes a o dia, de manhã, a tarde e a noite, com isso terá mais energia para conduzir o dia.</p>
-                </div>
-            </div>
-            <div class="activity">
-                <div class="activity-header">
-                <p>Caminhada</p> 
-                <p>Inicio: 13/02/2023</p>
-                </div>
-                <div class="activity-text">
-                    <p>Recomendo que você realize caminhadas pelo menos 4 vezes na semana, de preferencia pela manhã, isso ajudara no seu humor e seu dia sera melhor.</p>
-                </div>
-            </div>
-            <div class="activity">
-                <div class="activity-header">
-                <p>Use menos as redes sociais</p> 
-                <p>Inicio: 5/02/2023</p>
-                </div>
-                <div class="activity-text">
-                    <p>Reduza o seu uso de rede sociais, o uso exagerado das redes pode prejudicar sua qualidade de vida.</p>
-                </div>
-            </div>
+            $select = new Select_controller();
+
+            $atividades = $select->select_atividades($psico_id, $paciente_id);
+            foreach ($atividades as $atividade) {
+                echo "<article class='paciente-atividade'>";
+                    echo "<div class='activity'>";
+                    echo "<div class='activity-header'>";
+                    echo "<p> Assunto: ". $atividade['assunto_atividade'] . "</p>";
+                    echo "<p> Data de início: ". $atividade['data'] ."</p>";
+                    echo "</div>";
+                    echo "<p class='activity-text'>". $atividade['atividade']  ."</p>";
+                    echo "</div>";
+                echo"</article>";
+            }            
+
+            ?>
         </section>
       </div>  
     </section>
+    <script src="../../JS/scriptAnotacoes.js"></script>
 </body>
 </html>

@@ -10,6 +10,8 @@ $email = $session->session_get('email');
 $type = $session->session_get('type');
 $psico_id = $session->session_get('id');
 
+
+
 if (empty($_SESSION)) {
 
     header('location: ../../../../index.html');
@@ -217,17 +219,23 @@ if (empty($_SESSION)) {
                         <input class='activity-save' type='submit' value='Salvar' onclick='activityClose()'>
                         
                     </form>
+                    <?php
 
-                    <article class='paciente-atividade'>
-                        <div class='activity'>
-                            <div class='activity-header'>
-                            <p>16/02/2023</p> 
-                            <p>Alimentação</p>
-                            <button class='activity-button' name='excluir'><img src='../../IMG/ico/trash-svgrepo-com.svg'></button>
-                            </div>
-                            <p class='activity-text'>Conduza sua alimentação para que seja o mais organizada possivel, se alimente 3 vezes a o dia, de manhã, a tarde e a noite, com isso terá mais energia para conduzir o dia.</p>
-                        </div>
-                    </article>
+                    $atividades = $select->select_atividades($psico_id, $pk_paciente);
+
+                    foreach ($atividades as $atividade) {
+                        echo "<article class='paciente-atividade'>";
+                            echo "<div class='activity'>";
+                            echo "<div class='activity-header'>";
+                            echo "<p>". $atividade['data'] ."</p>";
+                            echo "<p>". $atividade['assunto_atividade'] . "</p>";
+                            echo "<button class='activity-button' name='excluir'><img src='../../IMG/ico/trash-svgrepo-com.svg'></button>";
+                            echo "</div>";
+                            echo "<p class='activity-text'>". $atividade['atividade']  ."</p>";
+                            echo "</div>";
+                        echo"</article>";
+                    }
+                    ?>
                 </div>
             </section>
 
