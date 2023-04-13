@@ -3,9 +3,6 @@
 include("../../../autoload.php");
 include("../../../model/connect.php");
 
-
-
-
 $session = new Session();
 
 echo"<pre>";

@@ -10,13 +10,13 @@ class Select extends Connect{
     
     public function validateUser($email, $password) 
     {
-        $stmt = $this->getConn()->prepare("SELECT nome, email, senha, tipo_usuario, pk
+        $stmt = $this->getConn()->prepare("SELECT nome, email, senha, tipo_usuario, pk, fk
                                       FROM (
-                                          SELECT email, senha, 'psicologo' AS tipo_usuario, pk_psicologo AS 'pk', nome FROM psicologo
+                                          SELECT email, senha, 'psicologo' AS tipo_usuario, pk_psicologo AS 'pk', fk_telefone AS 'fk', nome FROM psicologo
                                           UNION ALL
-                                          SELECT email, senha, 'paciente' AS tipo_usuario, pk_paciente AS 'pk', nome FROM paciente
+                                          SELECT email, senha, 'paciente' AS tipo_usuario, pk_paciente AS 'pk', fk_psicologo AS 'fk', nome FROM paciente
                                           UNION ALL
-                                          SELECT email, senha, 'secretario' AS tipo_usuario, pk_secretario AS 'pk', nome FROM secretario
+                                          SELECT email, senha, 'secretario' AS tipo_usuario, pk_secretario AS 'pk', fk_telefone AS 'fk', nome FROM secretario
                                       ) usuarios WHERE email=? and senha=?");
 
         $stmt->bind_param("ss", $email, $password);
@@ -25,7 +25,7 @@ class Select extends Connect{
         $user = $result->fetch_assoc();
 
         if ($user) {
-            return array("success" => true, "user_type" => $user["tipo_usuario"], "nome" => $user["nome"], "id" => $user["pk"]);
+            return array("success" => true, "user_type" => $user["tipo_usuario"], "nome" => $user["nome"], "id" => $user["pk"], "fk_psicologo" => $user["fk"]);
         } else {
             return array("success" => false, "error_message" => "Invalid email or password.");
         }
@@ -99,6 +99,20 @@ class Select extends Connect{
         $result = $stmt->get_result();
         $data = $result->fetch_all(MYSQLI_ASSOC);                                   
 
+        return $data;
+    }
+    public function select_activities($psico_id, $patient_id)
+    {
+        $stmt = $this->getconn()->prepare(" SELECT atividades_paciente.assunto_atividade, atividades_paciente.atividade, DATE_FORMAT(atividades_paciente.data, '%d/%m/%y') as data
+                                            FROM atividades_paciente
+                                            WHERE fk_psicologo = ? AND fk_paciente = ?");
+                            
+                            
+        $stmt->bind_param("ii", $psico_id, $patient_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC);  
+        
         return $data;
     }
     

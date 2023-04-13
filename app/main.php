@@ -33,6 +33,7 @@ $session = new Session();
 $session->session_set("email", $email);
 $session->session_set("nome", $login_status["nome"]);
 $session->session_set("id", $login_status["id"]);
+$session->session_set("fk_psicologo", $login_status["fk_psicologo"]);
 
 
 $redirect_urls = array(
@@ -48,5 +49,7 @@ $session->session_set('type', $login_status["user_type"]);
 $redirect_url = isset($redirect_urls[$login_status["user_type"]]) ? $redirect_urls[$login_status["user_type"]] : $redirect_urls["default"];
 
 header("Location: $redirect_url");
+
+var_dump($login_status["fk_psicologo"]);
 
 ?>
