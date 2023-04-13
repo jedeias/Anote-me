@@ -43,24 +43,6 @@ class Select extends Connect{
 
     }
 
-    //função para buscar dados do usuario, no momento somente nome e email
-    // public function userData($email, $password){
-    //     $stmt = $this->getConn()->prepare(" SELECT email, senha, nome, pk tipo_usuario
-    //                                         FROM (
-    //                                         SELECT email, senha, nome,  'psicologo' AS tipo_usuario, pk_psicologo  FROM psicologo
-    //                                         UNION ALL
-    //                                         SELECT email, senha, nome, 'paciente' AS tipo_usuario FROM paciente
-    //                                         UNION ALL
-    //                                         SELECT email, senha, nome, 'secretario' AS tipo_usuario FROM secretario
-    //                                         ) usuarios WHERE email=? and senha=?");
-    //     $stmt->bind_param("ss", $email, $password);
-    //     $stmt->execute();
-    //     $result = $stmt->get_result();
-    //     $user = $result->fetch_assoc();
-    // //     return $user['nome'];
-        
-    //  }
-
     public function select_users_patient($psico_id)
     {
         
@@ -98,6 +80,23 @@ class Select extends Connect{
         $stmt->execute();
         $result = $stmt->get_result();
         $data = $result->fetch_all(MYSQLI_ASSOC);                                   
+
+        return $data;
+    }
+
+    //função para pegar os dados das tabelas psicologo, secretario, paciente de acordo com o id
+    public function todosDados($id){
+        $stmt = $this->getConn()->prepare("SELECT pk_psicologo AS id, nome, email, senha FROM psicologo WHERE pk_psicologo = ? 
+                                            UNION ALL
+                                            SELECT pk_paciente AS id, nome, email, senha FROM paciente WHERE pk_paciente = ?
+                                            UNION ALL
+                                            SELECT pk_secretario AS id, nome, email, senha FROM secretario WHERE pk_secretario = ?
+                                            ");
+
+        $stmt->bind_param("iii", $id, $id, $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC);
 
         return $data;
     }

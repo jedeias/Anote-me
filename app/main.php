@@ -49,4 +49,7 @@ $redirect_url = isset($redirect_urls[$login_status["user_type"]]) ? $redirect_ur
 
 header("Location: $redirect_url");
 
+
+
+
 ?>
