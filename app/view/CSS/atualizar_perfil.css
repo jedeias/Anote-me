@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:  Arial, Helvetica, sans-serif;
+}
+
+.atualizar-perfil{
+    min-height: 100vh;
+    background-color: #22b573; 
+    display:flex; 
+    align-items: center;     
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.atualizar-perfil form{
+    padding: 20px;
+    background-color: white;
+    box-shadow: black;
+    text-align: center;
+    width: 600px;
+    border-radius: 5px;
+}
+
+
+.atualizar-perfil form h1{
+    margin-bottom: 50px;
+}
+
+.atualizar-perfil form img{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 5px;
+}
+
+.atualizar-perfil form .flex{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.atualizar-perfil form .flex .inputBox{
+    width: 100%;
+}
+.atualizar-perfil form .flex .inputBox span{
+    text-align: start;
+    display: block;
+    margin-top: 15px;
+    font-size: 17px;
+    color: black;
+}
+.atualizar-perfil form .flex .inputBox .box{
+    width: 100%;
+    border-radius: 5px;
+    background-color: rgba(223, 221, 221, 0.92);
+    padding: 12px 14px;
+    font-size: 17px;
+    color: black;
+    margin-top: 10px;
+    outline: none;
+    border: none;
+}
+
+@media (max-width:650px){
+    .atualizar-perfil form .flex{
+        flex-wrap: wrap;
+        gap: 0;
+    }
+}
