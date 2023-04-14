@@ -57,9 +57,24 @@ if($nome == NULL and $email == NULL and $type == NULL){
         <aside class="menu-container">
             <nav class="menu">
                 <ul>
-                    <li class="anotacoes">
-                        <p>Cadastro</p>
-                    </li>   
+                    <a href="secreCadastro.html">
+                        <li>
+                            <p>Cadastro</p>
+                        </li>
+                    </a>  
+
+                    <a href="secrePsicologos.html">
+                        <li>
+                            <p>Psicologos</p>
+                        </li>
+                    </a> 
+
+                    <a href="secrePacientes.html">
+                        <li>
+                            <p>Pacientes</p>
+                        </li>
+                    </a> 
+                    
                 </ul>
             </nav>        
         </aside>
@@ -81,13 +96,10 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     </svg>
                 </button>
                 <form class="paciente-cadastro">
-                    <h1 class="title">Cadastro do paciente</h1>
+                    <h2 class="title-paci">Cadastro do paciente</h2>
                     <label for="nome"></label>
-                    <input type="text" name="nome" placeholder="Nome:">
+                    <input type="text" name="nome" placeholder="Nome do Paciente:">
                     <label for="email"></label>
-                    <input type="email" name="email" placeholder="Email:">
-                    <label for="senha"></label>
-                    <input type="password" name="senha" placeholder="Senha:">
                     <label for="RG"></label>
                     <input type="text" name="RG" placeholder="RG:">
                     <label for="Cpf"></label>
@@ -99,7 +111,52 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     </select>
                     <label for="data_naci"></label>
                     <input type="date" name="" id="" placeholder="Data de Nascimento">
-             
+                    <input type="email" name="email" placeholder="Email:">
+                    <label for="senha"></label>
+                    <input type="password" name="senha" placeholder="Senha:">
+                    <br>
+                    <h2>Informações do Responsavel</h2>
+                    <label for="nome"></label>
+                    <input type="text" name="nome" placeholder="Nome do Responsavel:">
+                    <label for="rg"></label>
+                    <input type="text" name="rg" placeholder="RG do Responsavel:">
+                    <label for="cpf"></label>
+                    <input type="text" name="cpf" placeholder="CPF do Responsavel:">
+                    <label for="email"></label>
+                    <input type="text" name="email" placeholder="Email do Responsavel:">
+                    <br>
+                    <h2>Informações de Contato</h2>
+                    <br>
+                    <h1>Contato Responsavel:</h1>
+                    <label for="ddi"></label>
+                    <input type="number" name="ddi" placeholder="DDI Ex: +55">
+                    <label for="telefone"></label>
+                    <input type="number" name="telefone" id="telefone" placeholder="Numero do Resposavel, Ex: (11) 91234-1234" maxlength="15">
+                    <br>
+                    <h1>Contato Paciente:</h1>
+                    <br>
+                    <label for="ddi"></label>
+                    <input type="number" name="ddi" placeholder="DDI Ex: +55">
+                    <label for="telefone"></label>
+                    <input type="number" name="telefone" id="telefone" placeholder="Numero do Paciente, Ex: (11) 91234-1234" maxlength="15">
+                    <br>
+                    <h2>Endereço</h2>
+                    <br>
+                    <label for="rua"></label>
+                    <input type="text" name="rua" placeholder="Rua:">
+                    <label for="numerocasa"></label>
+                    <input type="text" name="numerocasa" placeholder="numero:">
+                    <label for="bairro"></label>
+                    <input type="text" name="bairro" placeholder="bairro:">
+                    <label for="cep"></label>
+                    <input type="number" name="cep" placeholder="CEP:">
+                    <label for="cidade"></label>
+                    <input type="text" name="cidade" placeholder="Cidade:">
+                    <label for="estado"></label>
+                    <input type="text" name="estado" placeholder="Estado:">
+                    <label for="complemento"></label>
+                    <input type="text" name="estado" placeholder="Complemento: Ex: comdominio jorge, Bloco 2, etc">
+                    <br>
 
                     <div class="action-button-container">
                         <button class="action-button">Descartar</button>
@@ -114,8 +171,8 @@ if($nome == NULL and $email == NULL and $type == NULL){
                         <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
                     </svg>
                 </button>
-                <form class="paciente-cadastro">
-                    <h1 class="title">Cadastro do Psicológo</h1>
+                <form class="psicologo-cadastro">
+                    <h2 class="title-psi">Cadastro do Psicológo</h2>
                     <label for="nome" ></label>
                     <input type="text" name="nome" placeholder="Nome:">
                     <label for="email"></label>
@@ -135,6 +192,31 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     </select>
                     <label for="data_naci"></label>
                     <input type="date" name="" id="" placeholder="Data de Nascimento">
+                    <br>
+                    <h2>Informações de Contato:</h2>
+                    <br>
+                    <label for="ddi"></label>
+                    <input type="number" name="ddi" placeholder="DDI Ex: +55">
+                    <label for="telefone"></label>
+                    <input type="number" name="telefone" id="telefone" placeholder="Numero do Paciente, Ex: (11) 91234-1234" maxlength="15">
+                    <br>
+                    <h2>Endereço:</h2>
+                    <br>
+                    <label for="rua"></label>
+                    <input type="text" name="rua" placeholder="Rua:">
+                    <label for="numerocasa"></label>
+                    <input type="text" name="numerocasa" placeholder="Numero:">
+                    <label for="bairro"></label>
+                    <input type="text" name="bairro" placeholder="Bairro:">
+                    <label for="cep"></label>
+                    <input type="number" name="cep" placeholder="CEP:">
+                    <label for="cidade"></label>
+                    <input type="text" name="cidade" placeholder="Cidade:">
+                    <label for="estado"></label>
+                    <input type="text" name="estado" placeholder="Estado:">
+                    <label for="complemento"></label>
+                    <input type="text" name="estado" placeholder="Complemento: Ex: comdominio jorge, Bloco 2, etc">
+                    <br>
                     <div class="action-button-container">
                         <button class="action-button">Descartar</button>
                         <button class="action-button" type="submit" name="salvar">Salvar</button>
@@ -144,6 +226,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
             </article>
 
         </section>
+
     </main>
     <script src = "../../JS/script.js"> </script>
 </body>
