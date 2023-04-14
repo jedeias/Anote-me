@@ -2,44 +2,35 @@
 
 class Crud extends Connect implements CrudController{
 
-    public function insert_type_activites($assunto, $descricao)
-    {
-        $stmt = $this->prepare("INSERT INTO tipo_atividade (pk_tipo_atividade, finalidade, descricao) VALUES (default, '$assunto', '$descricao')"); 
-        $stmt->execute();
-   
+    private function queryIsertAtiviadesPaciente($fk_paciente, $fk_psicologo, $assunto, $atividade){
+        $sql = "INSERT INTO atividades_paciente(
+            pk_atividades_paciente,
+            fk_paciente,
+            fk_psicologo,
+            assunto_atividade,
+            atividade,
+            data)
+            VALUES (
+            DEFAULT,
+            $fk_paciente,
+            $fk_psicologo,
+            '$assunto',
+            '$atividade',
+            CURDATE()
+            )";
     }
 
-    public function insert_activitie(){
-        
-        $sql = $this->prepare("SELECT max(pk_tipo_atividade) as last_id FROM tipo_atividade");
-        
-        if ($sql->execute()) {
-
-            $result = $sql->get_result()->fetch_assoc();
-            $last_id = $result['last_id'];
-
-            if (isset($result) == 1) 
-            {
-                $stmt = $this->prepare("INSERT INTO atividade (pk_atividade, fk_tipo_atividade) VALUES (default,'$last_id')");
-                if ($stmt !== false) 
-                {
-                    $stmt->execute();
-                } else {
-                    echo "stmt false.";
-                }
-            } else {
-                echo "not existe last id";
-            }
-        } else {
-            echo "not execute first if";
-        }
+    public function insert_atividades_paciente($fk_paciente, $fk_psicologo, $assunto, $atividade){
+            $this->query($this->queryIsertAtiviadesPaciente($fk_paciente, $fk_psicologo, $assunto, $atividade));
     }
-    public function insert_notas_paciente($id, $emocao, $descricao) {
+
+    public function insert_notas_paciente($id, $emocao, $fk_psicologo, $descricao) {
 
         $sql = "INSERT INTO anotacoes_paciente (
             pk_anotacoes_paciente,
             fk_redflag,
             fk_emocoes,
+            fk_psicologo,
             fk_paciente,
             fk_anotacoes_psicologo,
             anotacoes,
@@ -49,6 +40,7 @@ class Crud extends Connect implements CrudController{
             null,
             null,
             '$emocao',
+            '$fk_psicologo',
             '$id',
             null,
             '$descricao',
@@ -57,8 +49,49 @@ class Crud extends Connect implements CrudController{
     
         $this->query($sql);
     }
+   
+    //função para atualizar o perfil psicologo
+    public function atualizar_perfil_psicologo($nome,$email,$senha,$id, $imagem){
+        $stmt = $this->getConn()->prepare("UPDATE psicologo SET nome = ?, email = ?, senha = ?, imagem = ? WHERE pk_psicologo = ?");
+        if (!$stmt) {
+            // Se a preparação da consulta falhar, mostre o erro do MySQLi
+            die("Erro na consulta: " . $this->getConn()->error);
+        }
+        $stmt->bind_param("sssis",$nome, $email, $senha, $id, $imagem);
+        $stmt->execute();
 
-    
+        if ($stmt->affected_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //função para atualizar o perfil paciente
+    public function atualizar_perfil_paciente($id, $nome, $email, $senha){
+        $stmt = $this->getConn()->prepare("UPDATE paciente SET nome = ?, email = ?, senha = ? WHERE id = ?");
+        $stmt->bind_param("isss", $id, $nome, $email, $senha);
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //função para atualizar o perfil secretario
+    public function atualizar_perfil_secretario($id, $nome, $email, $senha){
+        $stmt = $this->getConn()->prepare("UPDATE psicologo SET nome = ?, email = ?, senha = ? WHERE id = ?");
+        $stmt->bind_param("isss", $id, $nome, $email, $senha);
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
 }
 

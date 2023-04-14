@@ -33,6 +33,7 @@ $session = new Session();
 $session->session_set("email", $email);
 $session->session_set("nome", $login_status["nome"]);
 $session->session_set("id", $login_status["id"]);
+$session->session_set("fk_psicologo", $login_status["fk_psicologo"]);
 
 
 $redirect_urls = array(

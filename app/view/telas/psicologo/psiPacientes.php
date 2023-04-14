@@ -10,6 +10,8 @@ $email = $session->session_get('email');
 $type = $session->session_get('type');
 $psico_id = $session->session_get('id');
 
+
+
 if (empty($_SESSION)) {
 
     header('location: ../../../../index.html');
@@ -26,7 +28,6 @@ if (empty($_SESSION)) {
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Anotações</title>
     <link rel='stylesheet' href='../../CSS/psiPacientes.css'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body id='body'>
     <header class='header-container'>
@@ -41,7 +42,7 @@ if (empty($_SESSION)) {
                     <li class='center'><?php echo $nome; ?></li>
                     <div class='lista-dados-content'>
                         <li>Email : <?php echo $email; ?></li>
-                        <li>Telefone : <?php echo $id; ?></li>
+                        <li>Telefone : <?php echo $psico_id; ?></li>
                         <li>Responsável : </li>
                         <li>Telefone do Responsável : </li>
                         <li>Psicologo : </li>
@@ -49,8 +50,8 @@ if (empty($_SESSION)) {
                     </div>
                     
                     <li class='config-container'>
-                        <a class='config-button'><img class='wrapper-icon' src='../../IMG/ico/gear-svgrepo-com.svg' title='Configurações'></a>
-                        <a class='config-button'><img class='wrapper-icon' src='../../IMG/ico/arrow-from-shape-right-svgrepo-com.svg' title='Sair'></a>
+                        <a class='config-button' href="./atualizar_registro.php"><img class='wrapper-icon' src='../../IMG/ico/gear-svgrepo-com.svg' title='Configurações'></a>
+                        <a class='config-button' href="../../sair.php"><img class='wrapper-icon' src='../../IMG/ico/arrow-from-shape-right-svgrepo-com.svg' title='Sair'></a>
                     </li>
                 </ul>
             </nav>
@@ -64,42 +65,31 @@ if (empty($_SESSION)) {
                     
                     if (empty($_GET)){
 
-                        $pacienteSelecionado = 'nenhum';
                         $index = null;
 
                     } else {
-                        $pacienteSelecionado = $_GET['paciente'];
-                        $index = $pacienteSelecionado;
-                      
-                    }
-                    /*foreach ($patients as $dado){
-                        $selected = '';
 
-                        if($pacienteSelecionado == $index){
-                            $selected = 'paciente-selected';
-                        } else{
-                            $selected = '';
-                        }
-                    }*/
+                        $index = $_GET['paciente'];
+        
+                    }
 
                     $select = new Select_controller();
-                    $patients = $select->patient_notes($psico_id);
+                    $patients = $select->select_user_patient($psico_id);
+                    //print_r($patients);
                     $i = 0;
                     
-                    foreach ($patients as $dado){
-                        if($patients[$i]['email'] == $email){
+                    foreach ($patients as $dado)
+                    {
+                        if($email == $dado['email']){
                             break;
                         }
-                        else{
-                        echo "<article class='paciente-select' onclick='selecionarPaciente($index)>";
-                        echo "<p>". $patients[$i]['nome'] . "</p>";
-                        echo "<p>". $patients[$i]['email'] . "</p>";
-                        $email = $patients[$i]['email'];
+                        echo "<article class='paciente-select' onclick=selecionarPaciente($i)>";
+                        echo "<p>". $dado['nome'] . "</p>";
+                        echo "<p>". $dado['email'] . "</p>";
+                        $email = $dado['email'];
                         echo "</article>";
                         $i ++;
-                        }
-                        $patient_email = $patients[$index]['email'];
-                        $patients_notes = $select->select_notes($psico_id, $patient_email);
+                        
                     }
                 ?>
             </nav>
@@ -121,54 +111,74 @@ if (empty($_SESSION)) {
                         </button>
                     </article>
                     <?php   
-                        
-                        $k = 0;
-                        foreach ($patients as $dado){
 
-                        echo"<article class='activity'>";
-                        echo "<div class='activity-header'>";
-                        echo "<p>" . $patients[$index]['data_hora'] . "</p>"; 
-                        echo "<p>16/02/2023</p>";
-                        echo "</div>";
-                        echo "<div class='activity-text'>";
-                            echo "<p>" . $patients[$index]['anotacoes'] . "</p>";
-                        echo "</div>";
-                        echo "<div class='activity-info'>";
-                            echo "<p>"."Sentindo-se: 😢 ". $patients[$index] ['descricao'] ."</p>";
-                            echo "<p>Intensidade: " . $patients[$index]['intensidade']. "%". "</p> ";     
-                        echo "</div>";
-                        echo "</article>";
-                        $k ++;
+                        if(!empty($_GET))//SÓ LISTA AS ANOTAÇÕES DO PACIENTE CLICADO
+                        {
 
+                            $email_paciente = $patients[$index]['email'];
+                            $pk_paciente = $patients[$index]['pk_paciente'];
+                
+                            $anotacoes = $select->patient_notes($psico_id, $email_paciente);
+
+
+                            foreach ($anotacoes as $dado)
+                            {
+
+                                echo"<article class='activity'>";
+
+                                    echo "<div class='activity-header'>";
+
+                                        echo "<p>" . $dado['hora'] . "</p>"; 
+                                        echo "<p>". $dado['data']. "</p>";
+
+                                    echo "</div>";
+
+                                    echo "<div class='activity-text'>";
+
+                                        echo "<p>" . $dado['anotacoes'] . "</p>";
+
+                                    echo "</div>";
+
+                                    echo "<div class='activity-info'>";
+
+                                        echo "<p>"."Sentindo-se: 😢 ". $dado['descricao'] ."</p>";
+                                        echo "<p>Intensidade: " . $dado['intensidade']. "%". "</p> ";   
+
+                                    echo "</div>";
+
+                                echo "</article>";
                         }
-                    ?>
-                    <article class='activity'>
-                        <div class='activity-header'>
-                        <p>18:32</p> 
-                        <p>16/02/2023</p>
-                        </div>
-                        <div class='activity-text'>
-                            <p>Hoje nao estou me sentindo muito bem.</p>
-                        </div>
-                        <div class='activity-info'>
-                            <p>Sentindo-se: Triste 😢</p>
-                            <p>Intensidade: 50%</p>       
-                        </div>
-                    </article>
+                    }//ELE ENTRA NESSE ELSE SEMPRE QUE PASSA DO LOGIN PARA ESSA TELA, AQUI ELE LISTA TODAS AS ANOTAÇÕES DE TODOS OS PACIENTES REFERENTES AO PSICOLOGO LOGADO
+                    else {
+                        foreach($patients as $all)
+                        {
+                        echo"<article class='activity'>";
 
-                    <article class='activity'>
-                        <div class='activity-header'>
-                        <p>18:32</p> 
-                        <p>16/02/2023</p>
-                        </div>
-                        <div class='activity-text'>
-                            <p>Hoje nao estou me sentindo muito bem.</p>
-                        </div>
-                        <div class='activity-info'>
-                            <p>Sentindo-se: Triste 😢</p>
-                            <p>Intensidade: 50%</p>       
-                        </div>
-                    </article>
+                        echo "<div class='activity-header'>";
+
+                            echo "<p>" . $all['data'] . "</p>"; 
+                            echo "<p>" . $all['hora'] . "</p>";
+
+                        echo "</div>";
+
+                        echo "<div class='activity-text'>";
+
+                            echo "<p>" . $all['anotacoes'] . "</p>";
+
+                        echo "</div>";
+
+                        echo "<div class='activity-info'>";
+
+                            echo "<p>"."Sentindo-se: 😢 ". $all['descricao'] ."</p>";
+                            echo "<p>Intensidade: " . $all['intensidade']. "%". "</p> ";   
+
+                        echo "</div>";
+
+                    echo "</article>";
+                        }
+                    }
+
+                    ?>
                 </div>
             </section>
             
@@ -193,31 +203,39 @@ if (empty($_SESSION)) {
 
                     </article>
 
-                    <article id='activityTable' class='activity-add-table hidden' action='' method='POST'>
+                    <form id='activityTable' class='activity-add-table hidden' action='../../../controller/crud/paciente/inserteAtividade.php' method='POST'>
                         <h2>Adicionar atividade</h2>
 
                         <div class='activity-add-table-left'>
                             <p>Assunto</p>
                         </div>
-                        <input type='text' name='assunto'>
+                        <input type='text' name='assunto' required>
                         <div class='activity-add-table-left'>
                             <p>Atividade</p>
                         </div>
-                        <textarea name='descricao'></textarea>
-                        <input class='activity-save' type='button' value='Salvar' onclick='activityClose()'>
+                        <textarea name='atividade' required></textarea>
+                        <input type="hidden" value="<?php echo "$pk_paciente"; ?>" name="fk_paciente">
+                        <input type="hidden" value="<?php echo "$index" ?>" name="curPaciente">
+                        <input class='activity-save' type='submit' value='Salvar' onclick='activityClose()'>
                         
-                    </article>
+                    </form>
+                    <?php
 
-                    <article class='paciente-atividade'>
-                        <div class='activity'>
-                            <div class='activity-header'>
-                            <p>16/02/2023</p> 
-                            <p>Alimentação</p>
-                            <button class='activity-button' name='excluir'><img src='../../IMG/ico/trash-svgrepo-com.svg'></button>
-                            </div>
-                            <p class='activity-text'>Conduza sua alimentação para que seja o mais organizada possivel, se alimente 3 vezes a o dia, de manhã, a tarde e a noite, com isso terá mais energia para conduzir o dia.</p>
-                        </div>
-                    </article>
+                    $atividades = $select->select_atividades($psico_id, $pk_paciente);
+
+                    foreach ($atividades as $atividade) {
+                        echo "<article class='paciente-atividade'>";
+                            echo "<div class='activity'>";
+                            echo "<div class='activity-header'>";
+                            echo "<p>". $atividade['data'] ."</p>";
+                            echo "<p>". $atividade['assunto_atividade'] . "</p>";
+                            echo "<button class='activity-button' name='excluir'><img src='../../IMG/ico/trash-svgrepo-com.svg'></button>";
+                            echo "</div>";
+                            echo "<p class='activity-text'>". $atividade['atividade']  ."</p>";
+                            echo "</div>";
+                        echo"</article>";
+                    }
+                    ?>
                 </div>
             </section>
 
@@ -236,8 +254,44 @@ if (empty($_SESSION)) {
                             </svg>
                         </button>
                     </article>
-                    <div class='paciente-atividade'>
-                        <h1>TESTE3</h1>
+                    <div class="psicologo-agenda">
+                        <div id='calendar'></div>
+                    </div>
+                    <div class="modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Adicionar Evento</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="paciente">Paciente:</label>
+                                            <input type="text" class="form-control" id="paciente">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="psicologo">Psicólogo:</label>
+                                            <input type="text" class="form-control" id="psicologo">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="data">Data:</label>
+                                            <input type="date" class="form-control" id="data">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="hora">Hora:</label>
+                                            <input type="time" class="form-control" id="hora">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" id="saveButton">Salvar</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
