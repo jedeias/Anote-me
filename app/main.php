@@ -12,6 +12,8 @@ $login_sys = new Login();
 
 $login_status = $login_sys->login_check($email, $password);
 
+var_dump($login_status);
+
 $session = new Session();
 
 $session->session_set("email", $email);
@@ -32,6 +34,6 @@ $session->session_set('type', $login_status["user_type"]);
 
 $redirect_url = isset($redirect_urls[$login_status["user_type"]]) ? $redirect_urls[$login_status["user_type"]] : $redirect_urls["default"];
 
-header("Location: $redirect_url");
+//header("Location: $redirect_url");
 
 ?>

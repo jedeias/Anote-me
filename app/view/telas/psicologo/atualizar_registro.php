@@ -25,10 +25,10 @@ if (empty($_SESSION)) {
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <?php
-        $sql = new Select_controller();
+        $sql = new Select();
         $dados = $sql->getDados($psico_id);
 
-		var_dump($dados[0]['imagem']);
+		var_dump($dados[0]['imagem']); // what hell this vardump is going here ... ????
     ?>
 	<title>Meu perfil</title>
 	<link rel="stylesheet" href="../../CSS/atualizar_perfil.css">
@@ -47,6 +47,9 @@ if (empty($_SESSION)) {
 			?>
 			<div class="flex">
 				<?php
+
+					//if this not working we have to clear!
+
 					// if(isset($mensagem)){
 					// 	fereach($mensagem as $mensagem){
 					// 		echo '<div class="mensagem">'.$mensagem.'</div>';
