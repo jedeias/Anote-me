@@ -34,7 +34,7 @@ class Select extends Connect implements selectController{
 
     #interface end
 
-    public function validateUser($email, $password) 
+    private function validateUser($email, $password) 
     {
 
         $sql = $this->getConn()->query("SELECT nome, email, senha, tipo_usuario, pk, fk
@@ -56,7 +56,7 @@ class Select extends Connect implements selectController{
 
     }
     
-    public function select_all_users()
+    private function select_all_users()
     {
 
         $stmt = $this->getConn()->query("   SELECT nome, email, 'paciente' AS tipo_usuario, pk_paciente AS 'pk' FROM paciente
@@ -69,7 +69,7 @@ class Select extends Connect implements selectController{
 
     }
 
-    public function select_users_patient($psico_id)
+    private function select_users_patient($psico_id)
     {
         
         $stmt = $this->getConn()->prepare(" SELECT paciente.nome, paciente.email, paciente.pk_paciente,
@@ -90,7 +90,7 @@ class Select extends Connect implements selectController{
         return $data;
 
     }
-    public function patient_notes($psico_id, $patient_email)
+    private function patient_notes($psico_id, $patient_email)
     {
         
         $stmt = $this->getConn()->prepare(" SELECT paciente.nome, paciente.email, paciente.pk_paciente,
@@ -109,7 +109,7 @@ class Select extends Connect implements selectController{
 
         return $data;
     }
-    public function select_activities($psico_id, $patient_id)
+    private function select_activities($psico_id, $patient_id)
     {
         $stmt = $this->getconn()->prepare(" SELECT atividades_paciente.assunto_atividade, atividades_paciente.atividade, DATE_FORMAT(atividades_paciente.data, '%d/%m/%y') as data, atividades_paciente.pk_atividades_paciente
                                             FROM atividades_paciente
@@ -124,7 +124,7 @@ class Select extends Connect implements selectController{
         return $data;
     }
     
-    public function todosDados($id){
+    private function todosDados($id){
         $conn = $this->getConn();
         $stmt = mysqli_prepare($conn, "SELECT pk_psicologo AS id, nome, email, senha, imagem FROM psicologo WHERE pk_psicologo = ? 
                                         UNION ALL

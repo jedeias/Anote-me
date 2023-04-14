@@ -6,7 +6,7 @@ class Login extends Select
 
     public function login_check($email, $password){
 
-        $result = $this->validateUser($email, $password);
+        $result = $this->loginCheck($email, $password);
         
         echo"<pre>";
         var_dump($result);

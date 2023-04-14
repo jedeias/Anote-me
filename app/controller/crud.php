@@ -10,5 +10,25 @@
     }
 
 
+    interface Update{
+
+    }
+
+    interface Delete{
+
+    }
+
+    interface IncertePaciente{
+
+    }
+
+    interface IncertePsicologo{
+
+    }
+
+    interface IncerteSecretario{
+
+    }
+
 ?>
 

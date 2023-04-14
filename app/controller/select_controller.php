@@ -14,4 +14,21 @@ interface selectController {
 
     public function loginCheck($email, $password);
 }
+
+interface selectPaciente{
+    
+}
+
+interface selectPsicologo{
+
+}
+
+interface selectSecretario{
+
+}
+
+interface selectGeneric{
+
+}
+
 ?>

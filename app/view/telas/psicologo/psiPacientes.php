@@ -118,7 +118,7 @@ if (empty($_SESSION)) {
                             $email_paciente = $patients[$index]['email'];
                             $pk_paciente = $patients[$index]['pk_paciente'];
                 
-                            $anotacoes = $select->patient_notes($psico_id, $email_paciente);
+                            $anotacoes = $select->select_notes($psico_id, $email_paciente);
 
 
                             foreach ($anotacoes as $dado)
