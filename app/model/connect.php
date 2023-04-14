@@ -23,16 +23,16 @@ class Connect extends Host {
     }
 
     public function fetchArray($result) {
-        return $result->fetch_array();
+        return $result->fetch();
     }
 
     public function prepare($sql) {
         return $this->conn->prepare($sql);
     }
     
-    public function bind_param($stmt, ...$params) {
-        return $stmt->bind_param(...$params);
-    }
+    // public function bind_param($stmt, ...$params) {
+    //     return $stmt->bind_param(...$params);
+    // }
     
     public function execute($stmt) {
         return $stmt->execute();

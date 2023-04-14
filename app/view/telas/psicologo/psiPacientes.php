@@ -220,7 +220,7 @@ if (empty($_SESSION)) {
                         
                     </form>
                     <?php
-
+                    /*
                     $atividades = $select->select_atividades($psico_id, $pk_paciente);
 
                     foreach ($atividades as $atividade) {
@@ -235,6 +235,7 @@ if (empty($_SESSION)) {
                             echo "</div>";
                         echo"</article>";
                     }
+                    */
                     ?>
                 </div>
             </section>

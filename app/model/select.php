@@ -2,17 +2,13 @@
 
 // Listas de todos os usuários
 // Alterar a função validateUser
-include("./controller/select_controller.php");
+include ($_SERVER['DOCUMENT_ROOT'].'/tcc/app/controller/select_controller.php');
 
 require_once("connect.php");
 
-//texto minimamente agressivo a baixo porem funcional.
 
-// Essas porcarias de bind_param() só estão causando problemas. 
-// Ou se resolve de forma definitiva ou usa apenas query, que no caso do mysqli, 
-// vai dar no mesmo problema.
 class Select extends Connect implements selectController{
-    
+
     #interface start
 
     public function select_user_patient($psico_id)
@@ -28,31 +24,38 @@ class Select extends Connect implements selectController{
         return $result = $this->todosDados($id);
     }
 
-    #interface end
+    public function getAllUser(){
+        return $result = $this->select_all_users();
+    }
 
+    public function loginCheck($email, $password){
+        return $result = $this->validateUser($email, $password);
+    }
+
+    #interface end
 
     public function validateUser($email, $password) 
     {
-        $stmt = $this->getConn()->prepare("SELECT nome, email, senha, tipo_usuario, pk, fk
+
+        $sql = $this->getConn()->query("SELECT nome, email, senha, tipo_usuario, pk, fk
         FROM (
             SELECT email, senha, 'psicologo' AS tipo_usuario, pk_psicologo AS 'pk', fk_telefone AS 'fk', nome FROM psicologo
             UNION ALL
             SELECT email, senha, 'paciente' AS tipo_usuario, pk_paciente AS 'pk', fk_psicologo AS 'fk', nome FROM paciente
             UNION ALL
             SELECT email, senha, 'secretario' AS tipo_usuario, pk_secretario AS 'pk', fk_telefone AS 'fk', nome FROM secretario
-        ) usuarios WHERE email=? and senha=?");
+        ) usuarios WHERE email='$email' and senha='$password'");
 
-        $stmt->bind_param("ss",$email,$password);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
+        if($sql) {
+            $user = $sql->fetch_assoc();
 
-        if ($user) {
             return array("success" => true, "user_type" => $user["tipo_usuario"], "nome" => $user["nome"], "id" => $user["pk"], "fk_psicologo" => $user["fk"]);
         } else {
             return array("success" => false, "error_message" => "Invalid email or password.");
         }
+
     }
+    
     public function select_all_users()
     {
 

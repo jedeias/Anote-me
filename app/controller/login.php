@@ -8,10 +8,11 @@ class Login extends Select
 
         $result = $this->validateUser($email, $password);
         
+        echo"<pre>";
         var_dump($result);
         if($result["success"] == false){
 
-            //header("location: ../index.html");
+            header("location: ../index.html");
 
         }
         
