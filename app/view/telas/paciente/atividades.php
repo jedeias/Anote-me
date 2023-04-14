@@ -97,6 +97,6 @@ if($nome == NULL and $email == NULL and $type == NULL){
         </section>
       </div>  
     </section>
-    <script src="../../JS/scriptAnotacoes.js"></script>
+    <script src="../../JS/script.js"></script>
 </body>
 </html>

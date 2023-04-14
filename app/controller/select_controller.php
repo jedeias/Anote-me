@@ -2,8 +2,7 @@
 
 // extend class Select
 
-
-interface selectController{
+interface selectController {
 
     public function select_user_patient($psico_id);
 
