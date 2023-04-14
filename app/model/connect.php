@@ -36,6 +36,14 @@ class Connect extends Host {
         return $this->conn->prepare($sql);
     }
 
+    public function bind_param($stmt, $types, $params) {
+        return $stmt->bind_param($types, $params);
+    }
+
+    public function execute($stmt) {
+        return $stmt->execute();
+    }
+
     public function __destruct() {
         $this->conn->close();
     }
@@ -43,6 +51,8 @@ class Connect extends Host {
 	public function getConn() {
 		return $this->conn;
 	}
+
+
 }
 
 ?>

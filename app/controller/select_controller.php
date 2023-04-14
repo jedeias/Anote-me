@@ -39,10 +39,9 @@ class Select_controller extends Select{
     {
         return $result = $this->patient_notes($psico_id, $patient_email);
     }
-    
-    public function select_atividades($psico_id, $patient_id)
-    {
-        return $result = $this-> select_activities($psico_id, $patient_id);
+
+    public function getDados($id){
+        return $result = $this->todosDados($id);
     }
 }
 

@@ -50,7 +50,7 @@ if (empty($_SESSION)) {
                     </div>
                     
                     <li class='config-container'>
-                        <a class='config-button'><img class='wrapper-icon' src='../../IMG/ico/gear-svgrepo-com.svg' title='Configurações'></a>
+                        <a class='config-button' href="./atualizar_registro.php"><img class='wrapper-icon' src='../../IMG/ico/gear-svgrepo-com.svg' title='Configurações'></a>
                         <a class='config-button' href="../../sair.php"><img class='wrapper-icon' src='../../IMG/ico/arrow-from-shape-right-svgrepo-com.svg' title='Sair'></a>
                     </li>
                 </ul>

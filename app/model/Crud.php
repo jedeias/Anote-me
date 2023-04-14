@@ -2,7 +2,7 @@
 
 class Crud extends Connect implements CrudController{
 
-    public function insert_atividades_paciente($fk_paciente, $fk_psicologo, $assunto, $atividade){
+    private function queryIsertAtiviadesPaciente($fk_paciente, $fk_psicologo, $assunto, $atividade){
         $sql = "INSERT INTO atividades_paciente(
             pk_atividades_paciente,
             fk_paciente,
@@ -18,8 +18,10 @@ class Crud extends Connect implements CrudController{
             '$atividade',
             CURDATE()
             )";
+    }
 
-            $this->query($sql);
+    public function insert_atividades_paciente($fk_paciente, $fk_psicologo, $assunto, $atividade){
+            $this->query($this->queryIsertAtiviadesPaciente($fk_paciente, $fk_psicologo, $assunto, $atividade));
     }
 
     public function insert_notas_paciente($id, $emocao, $fk_psicologo, $descricao) {
@@ -54,6 +56,22 @@ class Crud extends Connect implements CrudController{
 
         $this->query($sql);
     }
+
+    //função para atualizar o perfil psicologo
+    public function atualizar_perfil_psicologo($nome,$email,$senha,$id){
+            $stmt = $this->getConn()->prepare("UPDATE psicologo SET nome = ?, email = ?, senha = ? WHERE pk_psicologo = ?");
+            if (!$stmt) {
+                // Se a preparação da consulta falhar, mostre o erro do MySQLi
+                die("Erro na consulta: " . $this->getConn()->error);
+            }
+            $stmt->bind_param("sssi",$nome, $email, $senha, $id);
+            $stmt->execute();
+    
+            if ($stmt->affected_rows > 0) {
+                return true;
+            } else {
+                return false;
+            }
     
 }
 
