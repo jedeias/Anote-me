@@ -2,31 +2,15 @@
 
 include("autoload.php");
 
-
-$json = file_get_contents('php://input');
-
-$data = json_decode($json, true);
-
-if (isset($data['email'])){
-    
-    $email = $data['email'];
-    $password = $data['password'];
-
-}else{
-
-    if(!isset($_POST['email']) && !isset($_POST['password']) ){
-    echo "Dados não inseridos";
-    }
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
+if(!isset($_POST['email']) && !isset($_POST['password']) ){
+echo "Dados não inseridos";
 }
+$email = $_POST['email'];
+$password = $_POST['password'];
 
 $login_sys = new Login();
 
 $login_status = $login_sys->login_check($email, $password);
-
-var_dump($login_status);
 
 $session = new Session();
 
