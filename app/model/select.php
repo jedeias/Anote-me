@@ -1,8 +1,8 @@
 <?php
 
+include ($_SERVER['DOCUMENT_ROOT'].'/tcc/app/controller/select_controller.php');
 // Listas de todos os usuários
 // Alterar a função validateUser
-include("./controller/select_controller.php");
 
 require_once("connect.php");
 
@@ -122,18 +122,21 @@ class Select extends Connect implements selectController{
     }
     
     public function todosDados($id){
-        $stmt = $this->getConn()->prepare("SELECT pk_psicologo AS id, nome, email, senha, imagem FROM psicologo WHERE pk_psicologo = ? 
-                                            UNION ALL
-                                            SELECT pk_paciente AS id, nome, email, senha FROM paciente WHERE pk_paciente = ?
-                                            UNION ALL
-                                            SELECT pk_secretario AS id, nome, email, senha FROM secretario WHERE pk_secretario = ?
-                                            ");
-
-        $stmt->bind_param("iii", $id, $id, $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $data = $result->fetch_all(MYSQLI_ASSOC);
-
+        $conn = $this->getConn();
+        $stmt = mysqli_prepare($conn, "SELECT pk_psicologo AS id, nome, email, senha, imagem FROM psicologo WHERE pk_psicologo = ? 
+                                        UNION ALL
+                                        SELECT pk_paciente AS id, nome, email, senha, NULL AS imagem FROM paciente WHERE pk_paciente = ?
+                                        UNION ALL
+                                        SELECT pk_secretario AS id, nome, email, senha, NULL AS imagem FROM secretario WHERE pk_secretario = ?
+                                        ");
+    
+        mysqli_stmt_bind_param($stmt, "iii", $id, $id, $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    
+        mysqli_stmt_close($stmt);
+    
         return $data;
     }
     

@@ -34,6 +34,6 @@ $session->session_set('type', $login_status["user_type"]);
 
 $redirect_url = isset($redirect_urls[$login_status["user_type"]]) ? $redirect_urls[$login_status["user_type"]] : $redirect_urls["default"];
 
-//header("Location: $redirect_url");
+header("Location: $redirect_url");
 
 ?>
