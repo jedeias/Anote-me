@@ -73,7 +73,7 @@ if (empty($_SESSION)) {
         
                     }
 
-                    $select = new Select_controller();
+                    $select = new Select();
                     $patients = $select->select_user_patient($psico_id);
                     //print_r($patients);
                     $i = 0;

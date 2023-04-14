@@ -1,19 +1,13 @@
 <?php
 
 // extend Host
-
 include ($_SERVER['DOCUMENT_ROOT'].'/tcc/app/config/host.php');
-
 
 class Connect extends Host {
     private $conn;
 
     public function __construct(){
-        $this->conn = new mysqli(   $this->getServer(), 
-                                    $this->getUser(), 
-                                    $this->getPassword(), 
-                                    $this->getDatabase()
-                                );
+        $this->conn = new mysqli($this->getServer(), $this->getUser(), $this->getPassword(), $this->getDatabase());
         
         if ($this->conn->connect_error) {
             die("Conexão falhou: " . $this->conn->connect_error);
@@ -35,24 +29,22 @@ class Connect extends Host {
     public function prepare($sql) {
         return $this->conn->prepare($sql);
     }
-
-    public function bind_param($stmt, $types, $params) {
-        return $stmt->bind_param($types, $params);
+    
+    public function bind_param($stmt, ...$params) {
+        return $stmt->bind_param(...$params);
     }
-
+    
     public function execute($stmt) {
         return $stmt->execute();
     }
-
+    
     public function __destruct() {
         $this->conn->close();
     }
 
-	public function getConn() {
-		return $this->conn;
-	}
-
-
+    public function getConn() {
+        return $this->conn;
+    }
 }
 
 ?>

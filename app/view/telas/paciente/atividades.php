@@ -78,7 +78,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
         <section class="activity-content">
             <?php
 
-            $select = new Select_controller();
+            $select = new Select();
 
             $atividades = $select->select_atividades($psico_id, $paciente_id);
             foreach ($atividades as $atividade) {
