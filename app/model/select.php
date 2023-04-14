@@ -99,7 +99,7 @@ class Select extends Connect{
     }
     
     public function todosDados($id){
-        $stmt = $this->getConn()->prepare("SELECT pk_psicologo AS id, nome, email, senha FROM psicologo WHERE pk_psicologo = ? 
+        $stmt = $this->getConn()->prepare("SELECT pk_psicologo AS id, nome, email, senha, imagem FROM psicologo WHERE pk_psicologo = ? 
                                             UNION ALL
                                             SELECT pk_paciente AS id, nome, email, senha FROM paciente WHERE pk_paciente = ?
                                             UNION ALL
