@@ -63,7 +63,9 @@
     margin-top: 10px;
     outline: none;
     border: none;
-}
+} 
+
+
 
 @media (max-width:650px){
     .atualizar-perfil form .flex{

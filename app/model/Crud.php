@@ -56,39 +56,37 @@ class Crud extends Connect implements CrudController{
 
         $this->query($sql);
     }
-
-    //função para atualizar o perfil psicologo
-    public function atualizar_perfil_psicologo($nome,$email,$senha,$id){
-        $conn = $this->getConn();
-        $stmt = mysqli_prepare($conn, "UPDATE psicologo SET nome = ?, email = ?, senha = ?, imagem = ? WHERE pk_psicologo = ?");
+     
+    public function atualizar_imagem_psicologo($id, $imagem){
+        $stmt = $this->getConn()->prepare("UPDATE psicologo SET imagem = ? WHERE pk_psicologo = ?");
         if (!$stmt) {
             // Se a preparação da consulta falhar, mostre o erro do MySQLi
-            die("Erro na consulta: " . mysqli_error($conn));
+            die("Erro na consulta: " . $this->getConn()->error);
         }
-        mysqli_stmt_bind_param($stmt, "sssi", $nome, $email, $senha, $id);
-        mysqli_stmt_execute($stmt);
-    
-        if (mysqli_stmt_affected_rows($stmt) > 0) {
+        $stmt->bind_param("is", $id, $imagem);
+        $stmt->execute();
+        if ($stmt->affected_rows > 0) {
             return true;
         } else {
             return false;
         }
-    }      
-    // public function atualizar_perfil_psicologo($nome,$email,$senha,$id){
-    //     $stmt = $this->getConn()->prepare("UPDATE psicologo SET nome = ?, email = ?, senha = ?, imagem = ? WHERE pk_psicologo = ?");
-    //     if (!$stmt) {
-    //         // Se a preparação da consulta falhar, mostre o erro do MySQLi
-    //         die("Erro na consulta: " . $this->getConn()->error);
-    //     }
-    //     $stmt->bind_param("sssis",$nome, $email, $senha, $id, $imagem);
-    //     $stmt->execute();
+    }
 
-    //     if ($stmt->affected_rows > 0) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
+    public function atualizar_perfil_psicologo($nome, $email, $senha, $id){
+        $stmt = $this->getConn()->prepare("UPDATE psicologo SET nome = ?, email = ?, senha = ? WHERE pk_psicologo = ?");
+        if (!$stmt) {
+            // Se a preparação da consulta falhar, mostre o erro do MySQLi
+            die("Erro na consulta: " . $this->getConn()->error);
+        }
+        $stmt->bind_param("sssi",$nome, $email, $senha, $id);
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     //função para atualizar o perfil paciente
     public function atualizar_perfil_paciente($id, $nome, $email, $senha){
