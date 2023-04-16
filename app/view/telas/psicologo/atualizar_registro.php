@@ -23,8 +23,10 @@ if (empty($_SESSION)) {
 	
         $sql = new Select();
         $dados = $sql->getDados($psico_id);
-		$imagem = $sql->getImagem($psico_id);
-		//var_dump($imagem);
+
+		// $pegar_imagem = new Select();
+		// $imagem = $pegar_imagem->getImagem($psico_id);
+
     ?>
 	<title>Meu perfil</title>
 	<link rel="stylesheet" href="../../CSS/atualizar_perfil.css">

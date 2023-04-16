@@ -27,12 +27,12 @@ if (empty($_SESSION)) {
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Anotações</title>
+    <title>Anote-me</title>
     <link rel='stylesheet' href='../../CSS/psiPacientes.css'>
 </head>
 <body id='body'>
     <header class='header-container'>
-        <h1 onclick='location.href=psiPacientes.php'>ANOTE-ME</h1>
+        <h1 onclick="location.href=psiPacientes.php">ANOTE-ME</h1>
         <figure id='wrapperButton' class='click-perfil' onclick='ClickPerfil()'> 
             <?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
                 <img src="<?php echo $imagem['imagem'] ?>" alt="" class='perfil' id='first-perfil'>
@@ -161,32 +161,8 @@ if (empty($_SESSION)) {
                         }
                     }//ELE ENTRA NESSE ELSE SEMPRE QUE PASSA DO LOGIN PARA ESSA TELA, AQUI ELE LISTA TODAS AS ANOTAÇÕES DE TODOS OS PACIENTES REFERENTES AO PSICOLOGO LOGADO
                     else {
-                        foreach($patients as $all)
-                        {
-                        echo"<article class='activity'>";
+                        echo"<p class='sem-paciente'>Selecione um paciente para ver suas anotações.</p>";
 
-                        echo "<div class='activity-header'>";
-
-                            echo "<p>" . $all['data'] . "</p>"; 
-                            echo "<p>" . $all['hora'] . "</p>";
-
-                        echo "</div>";
-
-                        echo "<div class='activity-text'>";
-
-                            echo "<p>" . $all['anotacoes'] . "</p>";
-
-                        echo "</div>";
-
-                        echo "<div class='activity-info'>";
-
-                            echo "<p>"."Sentindo-se: 😢 ". $all['descricao'] ."</p>";
-                            echo "<p>Intensidade: " . $all['intensidade']. "%". "</p> ";   
-
-                        echo "</div>";
-
-                    echo "</article>";
-                        }
                     }
 
                     ?>
@@ -209,11 +185,6 @@ if (empty($_SESSION)) {
                         </button>
                     </article>
 
-                    <article class='activity-add'>
-                        <button id='activityButton' class='activity-button activity-button-plus' onclick='activityClose()' ><img src='../../IMG/ico/plus-svgrepo-com.svg'></button>
-
-                    </article>
-
                     <form id='activityTable' class='activity-add-table hidden' action='../../../controller/crud/paciente/inserteAtividade.php' method='POST'>
                         <h2>Adicionar atividade</h2>
 
@@ -231,11 +202,14 @@ if (empty($_SESSION)) {
                         
                     </form>
                     <?php
-                    /*
-                    $atividades = $select->select_atividades($psico_id, $pk_paciente);
-
+                    
                     
 
+                    if(!empty($_GET)){
+                        echo"<article class='activity-add'>";
+                        echo"<button id='activityButton' class='activity-button activity-button-plus' onclick='activityClose()' ><img src='../../IMG/ico/plus-svgrepo-com.svg'></button>";
+                        echo"</article>";
+                    $atividades = $select->select_activities($psico_id, $pk_paciente);
                     foreach ($atividades as $atividade) {
                         echo "<article class='paciente-atividade'>";
                             echo "<div class='activity'>";
@@ -247,8 +221,16 @@ if (empty($_SESSION)) {
                             echo "<p class='activity-text'>". $atividade['atividade']  ."</p>";
                             echo "</div>";
                         echo"</article>";
+                    } 
+
+                    }else{
+                        echo"<p class='sem-paciente'>Selecione um paciente para ver suas atividades.</p>";
                     }
-                    */
+
+                    
+                    
+
+                    
                     ?>
 
                 </div>

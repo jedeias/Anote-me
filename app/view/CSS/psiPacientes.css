@@ -262,6 +262,7 @@ a{
     height: 100%;
     border-radius: 7px;
 }
+
 #calendar {
     width: 80%; /* ajuste o valor conforme necessário */
     height: 700px; /* ajuste o valor conforme necessário */
@@ -275,6 +276,11 @@ a{
     text-align: center;
     padding: 20px;
 }
+.paciente-anotacoes .sem-paciente{
+    margin-top: 30vh;
+    text-align: center;
+}
+
 
 .paciente-anotacao{
     width: 99%;
