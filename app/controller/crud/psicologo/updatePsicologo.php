@@ -1,6 +1,6 @@
 <?php
 
-
+echo "estou aqui";
 (include('../../../autoload.php'));
 
 $session = new Session();
@@ -10,6 +10,8 @@ $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
 $psico_id = $session->session_get('id');
+
+var_dump($psico_id);
 
 if (empty($_SESSION)) {
 
@@ -21,26 +23,24 @@ if (empty($_SESSION)) {
 
 require_once("../../../controller/crud.php");
 // atualização do perfil
-if(isset($_POST['atualizar'])){
+if(isset($_POST['atualizar_perfil'])){
 
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
-    $psico_id = $session->session_get('id');
-    // $atualizar_senha = $_POST['atualizar_senha'];
-    // $nova_senha = $_POST['nova_senha'];
-    // $confirmar_senha = $_POST['confirmar_senha'];
+    echo "<pre>";
     
 
-    // if(!empty($atualizar_senha) || !empty($nova_senha) || !empty($confirmar_senha)){
-    //     if($atualizar_senha != $senha_antiga){
-    //         $mensagem[] = 'senha antiga não é igual';
-    //     }elseif($nova_senha != $confirmar_senha){
-    //         $mensagem[] = 'confirmar senha nao é igual';
-    //     }else{
-            
-    //     }
+    // if(isset($_FILES['atualizar_foto']) && $_FILES['atualizar_foto']['error'] == 0) {
+    //     $imagem = $_FILES['atualizar_foto']['name'];
+    //     $imagem_temp = $_FILES['atualizar_foto']['tmp_name'];
+    //     $imagem_dir = '../../../IMG/' . $imagem;
+    //     move_uploaded_file($imagem_temp, $imagem_dir);
+        
+    //     var_dump($imagem);
     // }
+    
+    $nome = $_POST['atualizar_nome'];
+    $email = $_POST['atualizar_email'];
+    $senha = $_POST['senha'];
+    $psico_id = $session->session_get('id');
 
 
     $crud = new Crud();

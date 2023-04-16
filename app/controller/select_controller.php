@@ -10,6 +10,8 @@ interface selectController {
     
     public function getDados($id);
 
+    public function getImagem($id);
+
     public function getAllUser();
 
     public function loginCheck($email, $password);
