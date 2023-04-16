@@ -28,7 +28,7 @@ if (empty($_SESSION)) {
         $sql = new Select();
         $dados = $sql->getDados($psico_id);
 
-		var_dump($dados[0]['imagem']); // what hell this vardump is going here ... ????
+		//var_dump($dados[0]['imagem']); // what hell this vardump is going here ... ????
     ?>
 	<title>Meu perfil</title>
 	<link rel="stylesheet" href="../../CSS/atualizar_perfil.css">

@@ -109,7 +109,7 @@ class Select extends Connect implements selectController{
 
         return $data;
     }
-    private function select_activities($psico_id, $patient_id)
+    public function select_activities($psico_id, $patient_id)
     {
         $stmt = $this->getconn()->prepare(" SELECT atividades_paciente.assunto_atividade, atividades_paciente.atividade, DATE_FORMAT(atividades_paciente.data, '%d/%m/%y') as data, atividades_paciente.pk_atividades_paciente
                                             FROM atividades_paciente
@@ -121,7 +121,8 @@ class Select extends Connect implements selectController{
         $result = $stmt->get_result();
         $data = $result->fetch_all(MYSQLI_ASSOC);
 
-        return $data;
+
+        return $result;
     }
     
     private function todosDados($id){
@@ -149,4 +150,5 @@ class Select extends Connect implements selectController{
     }
 
 }
+
 ?>
