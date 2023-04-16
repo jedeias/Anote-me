@@ -146,26 +146,29 @@ class Select extends Connect implements selectController{
         return $data;
     }
 
+    //tudo certo 
     private function imagemPerfil($id){
         $conn = $this->getConn();
         $stmt = mysqli_prepare($conn, "SELECT pk_psicologo AS id, imagem FROM psicologo WHERE pk_psicologo = ? 
-                                        UNION ALL
-                                        SELECT pk_paciente AS id, imagem  FROM paciente WHERE pk_paciente = ?
-                                        UNION ALL
-                                        SELECT pk_secretario AS id, imagem FROM secretario WHERE pk_secretario = ?
-                                        ");
+                                    UNION ALL
+                                    SELECT pk_paciente AS id, imagem  FROM paciente WHERE pk_paciente = ?
+                                    UNION ALL
+                                    SELECT pk_secretario AS id, imagem FROM secretario WHERE pk_secretario = ?
+                                    ");
+        if (!$stmt) {
+            die("Erro na preparação da consulta: " . mysqli_error($conn));
+        }
         mysqli_stmt_bind_param($stmt, "iii", $id, $id, $id);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
-    
-        if ($result === false) {
-            // Se a execução da consulta falhar, mostre o erro do MySQLi
-            die("Erro na consulta: " . mysqli_error($conn));
+
+        if (!$result) {
+            die("Erro na execução da consulta: " . mysqli_error($conn));
         }
-    
-        $imagem = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        $imagem = mysqli_fetch_array($result);
         mysqli_stmt_close($stmt);
-    
+
         return $imagem;  
     }
     

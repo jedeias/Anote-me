@@ -5,7 +5,7 @@ $session = new Session();
 $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
-$psico_id = $session->session_get('id');
+$paci_id = $session->session_get('id');
 
 if (empty($_SESSION)) {
     header('location: ../../../../index.html');
@@ -22,9 +22,9 @@ if (empty($_SESSION)) {
     <?php
 	
         $sql = new Select();
-        $dados = $sql->getDados($psico_id);
-		$imagem = $sql->getImagem($psico_id);
-		//var_dump($imagem);
+        $dados = $sql->getDados($paci_id);
+		$imagem = $sql->getImagem($paci_id);
+
     ?>
 	<title>Meu perfil</title>
 	<link rel="stylesheet" href="../../CSS/atualizar_perfil.css">
@@ -32,7 +32,7 @@ if (empty($_SESSION)) {
 <body>
 	<div class="atualizar-perfil">
 
-		<form method="POST" action="../../../controller/crud/psicologo/updatePsicologo.php" enctype="multipart/form-data">
+		<form method="POST" action="../../../controller/crud/paciente/updatePaciente.php" enctype="multipart/form-data">
 			<h1>Bem vindo(a) <?php echo $nome ?></h1>
 			<div class="flex">
 				<div class="inputBox">
@@ -50,7 +50,7 @@ if (empty($_SESSION)) {
 				</div>
 			</div>
 			<input type="submit" value="Atualizar Dados" name="atualizar_perfil">
-			<a href="./psiPacientes.php" class="voltar">Voltar</a>
+			<a href="./anotacoes.php" class="voltar">Voltar</a>
 		</form>
 
 		<div class="image">

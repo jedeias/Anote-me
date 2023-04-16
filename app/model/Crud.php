@@ -56,57 +56,49 @@ class Crud extends Connect implements CrudController{
 
         $this->query($sql);
     }
-     
-    public function atualizar_imagem_psicologo($id, $imagem){
-        $stmt = $this->getConn()->prepare("UPDATE psicologo SET imagem = ? WHERE pk_psicologo = ?");
+
+    // atualizar a imagem do perfil do usuario de acordo com a tabela
+    public function atualizar_imagem($tabela, $imagem, $id){
+        // verificar se o ID corresponde a um registro válido na tabela especificada
+        $stmt = $this->getConn()->prepare("SELECT * FROM $tabela WHERE $tabela.pk_$tabela = ?");
         if (!$stmt) {
             // Se a preparação da consulta falhar, mostre o erro do MySQLi
             die("Erro na consulta: " . $this->getConn()->error);
         }
-        $stmt->bind_param("is", $id, $imagem);
+        $stmt->bind_param("i", $id);
         $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows == 0) {
+            // ID inválido, retornar false
+            return false;
+        }
+    
+        // executar a consulta UPDATE na tabela especificada
+        $stmt = $this->getConn()->prepare("UPDATE $tabela SET imagem = ? WHERE $tabela.pk_$tabela = ?");
+        if (!$stmt) {
+            // Se a preparação da consulta falhar, mostre o erro do MySQLi
+            die("Erro na consulta: " . $this->getConn()->error);
+        }
+        $stmt->bind_param("si",$imagem, $id);
+        $stmt->execute();
+    
         if ($stmt->affected_rows > 0) {
             return true;
         } else {
             return false;
-        }
+        }   
     }
 
-    public function atualizar_perfil_psicologo($nome, $email, $senha, $id){
-        $stmt = $this->getConn()->prepare("UPDATE psicologo SET nome = ?, email = ?, senha = ? WHERE pk_psicologo = ?");
+    // função para atualizar o perfil dos usuarios de acordo com a tabela
+    public function atualizar_perfil($tabela, $nome, $email, $senha, $id){
+        $stmt = $this->getConn()->prepare("UPDATE $tabela SET nome = ?, email = ?, senha = ? WHERE $tabela.pk_$tabela = ?");
         if (!$stmt) {
             // Se a preparação da consulta falhar, mostre o erro do MySQLi
             die("Erro na consulta: " . $this->getConn()->error);
         }
         $stmt->bind_param("sssi",$nome, $email, $senha, $id);
         $stmt->execute();
-
-        if ($stmt->affected_rows > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    //função para atualizar o perfil paciente
-    public function atualizar_perfil_paciente($id, $nome, $email, $senha){
-        $stmt = $this->getConn()->prepare("UPDATE paciente SET nome = ?, email = ?, senha = ? WHERE id = ?");
-        $stmt->bind_param("isss", $id, $nome, $email, $senha);
-        $stmt->execute();
-
-        if ($stmt->affected_rows > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    //função para atualizar o perfil secretario
-    public function atualizar_perfil_secretario($id, $nome, $email, $senha){
-        $stmt = $this->getConn()->prepare("UPDATE psicologo SET nome = ?, email = ?, senha = ? WHERE id = ?");
-        $stmt->bind_param("isss", $id, $nome, $email, $senha);
-        $stmt->execute();
-
+    
         if ($stmt->affected_rows > 0) {
             return true;
         } else {

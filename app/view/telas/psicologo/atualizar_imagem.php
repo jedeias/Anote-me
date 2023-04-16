@@ -26,31 +26,26 @@ if (empty($_SESSION)) {
 		$imagem = $sql->getImagem($psico_id);
 		//var_dump($imagem);
     ?>
-	<title>Meu perfil</title>
+	<title>Meu Imagem</title>
 	<link rel="stylesheet" href="../../CSS/atualizar_perfil.css">
 </head>
 <body>
 	<div class="atualizar-perfil">
-
-		<form method="POST" action="../../../controller/crud/psicologo/updatePsicologo.php" enctype="multipart/form-data">
-			<h1>Bem vindo(a) <?php echo $nome ?></h1>
+		<form method="POST" action="../../../controller/crud/psicologo/updateImage.php" enctype="multipart/form-data">
+			<h1>Atualizar Imagem</h1>
 			<div class="flex">
 				<div class="inputBox">
 					<?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
-						<a href="./atualizar_imagem.php"><img src="<?php echo $imagem['imagem'] ?>" alt=""></a>
+						<img src="<?php echo $imagem['imagem'] ?>" alt="">
 					<?php else: ?>
-						<a href="./atualizar_imagem.php"><img src="../../IMG/default.jpg" alt=""></a>
+						<img src="../../IMG/default.jpg" alt="">
 					<?php endif; ?>
-					<span>Nome :</span>
-					<input class="box" type="text" id="nome" name="atualizar_nome" value="<?php echo $dados[0]['nome']?>">
-					<span>Email :</span>
-					<input class="box" type="text" id="email" name="atualizar_email" value="<?php echo $dados[0]['email']?>">
-					<span>Senha :</span>
-					<input class="box" type="password" name="senha" value="<?php echo $dados[0]['senha'] ?>" placeholder="Nova senha">
+					<span>Atualizar foto :</span>
+					<input class="box" type="file" name="imagem" accept="image/jpg, image/jpeg, image/png">
 				</div>
 			</div>
-			<input type="submit" value="Atualizar Dados" name="atualizar_perfil">
-			<a href="./psiPacientes.php" class="voltar">Voltar</a>
+			<input type="submit" value="Atualizar Imagem" name="atualizar_imagem">
+			<a href="./atualizar_registro.php" class="voltar">Voltar</a>
 		</form>
 
 		<div class="image">
