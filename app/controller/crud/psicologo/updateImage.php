@@ -38,7 +38,6 @@ if(isset($_POST['atualizar_imagem'])){
         $crud = new Crud();
         $atualizar = $crud->atualizar_imagem('psicologo', $novo_caminho, $psico_id);
 
-        var_dump($atualizar);
         if ($atualizar) {
 
             header('location: ../../../view/telas/psicologo/atualizar_registro.php');
@@ -47,6 +46,8 @@ if(isset($_POST['atualizar_imagem'])){
             echo "Erro ao atualizar o perfil.";
         }
     }
+
+    header('location: ../../../view/telas/psicologo/atualizar_registro.php');
 }
 
 ?>

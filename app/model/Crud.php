@@ -72,6 +72,14 @@ class Crud extends Connect implements CrudController{
             // ID inválido, retornar false
             return false;
         }
+
+        // recuperar o caminho da imagem antiga antes de atualizá-la
+        $stmt = $this->getConn()->prepare("SELECT imagem FROM $tabela WHERE $tabela.pk_$tabela = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $caminho_antigo = $row['imagem'];
     
         // executar a consulta UPDATE na tabela especificada
         $stmt = $this->getConn()->prepare("UPDATE $tabela SET imagem = ? WHERE $tabela.pk_$tabela = ?");
@@ -83,10 +91,14 @@ class Crud extends Connect implements CrudController{
         $stmt->execute();
     
         if ($stmt->affected_rows > 0) {
+            // apagar a imagem antiga do diretório
+            if (!empty($caminho_antigo)) {
+                unlink($caminho_antigo);
+            }
             return true;
         } else {
             return false;
-        }   
+        }  
     }
 
     // função para atualizar o perfil dos usuarios de acordo com a tabela
