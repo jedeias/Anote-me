@@ -32,20 +32,22 @@ if (empty($_SESSION)) {
 <body>
 	<div class="atualizar-perfil">
 		<form method="POST" action="../../../controller/crud/psicologo/updateImage.php" enctype="multipart/form-data">
-			<h1>Atualizar Imagem</h1>
+			<div class="name-title">Atualizar imagem</div>
 			<div class="flex">
 				<div class="inputBox">
 					<?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
 						<img src="<?php echo $imagem['imagem'] ?>" alt="">
 					<?php else: ?>
-						<img src="../../IMG/default.jpg" alt="">
+						<img class="img-default" src="../../IMG/default.jpg" alt="">
 					<?php endif; ?>
 					<span>Atualizar foto :</span>
-					<input class="box" type="file" name="imagem" accept="image/jpg, image/jpeg, image/png">
+					<input class="box-file" type="file" name="imagem" accept="image/jpg, image/jpeg, image/png">
 				</div>
 			</div>
-			<input type="submit" value="Atualizar Imagem" name="atualizar_imagem">
-			<a href="./atualizar_registro.php" class="voltar">Voltar</a>
+			<div class="btn-footer">
+			<input class="form-btn" type="submit" value="Atualizar Imagem" name="atualizar_imagem">
+			<a href="./atualizar_registro.php"><button class="form-btn" type="button">Voltar</button></a>
+			</div>
 		</form>
 
 		<div class="image">

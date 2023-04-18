@@ -5,7 +5,7 @@ $session = new Session();
 $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
-$paci_id = $session->session_get('id');
+$psico_id = $session->session_get('id');
 
 if (empty($_SESSION)) {
     header('location: ../../../../index.html');
@@ -22,8 +22,8 @@ if (empty($_SESSION)) {
     <?php
 	
         $sql = new Select();
-        $dados = $sql->getDados($paci_id);
-		$imagem = $sql->getImagem($paci_id);
+        $dados = $sql->getDados($psico_id);
+		$imagem = $sql->getImagem($psico_id);
 
     ?>
 	<title>Meu perfil</title>
@@ -32,25 +32,33 @@ if (empty($_SESSION)) {
 <body>
 	<div class="atualizar-perfil">
 
-		<form method="POST" action="../../../controller/crud/paciente/updatePaciente.php" enctype="multipart/form-data">
-			<h1>Bem vindo(a) <?php echo $nome ?></h1>
+		<form method="POST" action="../../../controller/crud/psicologo/updatePsicologo.php" enctype="multipart/form-data">
+			<div class="name-title">Bem vindo(a) <?php echo $nome ?></div>
 			<div class="flex">
 				<div class="inputBox">
 					<?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
-						<a href="./atualizar_imagem.php"><img src="<?php echo $imagem['imagem'] ?>" alt=""></a>
+						<a class="img-img" href="./atualizar_imagem.php">
+							<img src="<?php echo $imagem['imagem'] ?>" alt="">
+							<p class="img-hover">Atualizar imagem</p>
+						</a>
 					<?php else: ?>
-						<a href="./atualizar_imagem.php"><img src="../../IMG/default.jpg" alt=""></a>
+					<a class="img-img" href="./atualizar_imagem.php">
+						<img class="img-default" src="../../IMG/default.jpg" alt="">
+						<p class="img-hover">Atualizar imagem</p>
+					</a>
 					<?php endif; ?>
-					<span>Nome :</span>
+					<span>Nome</span>
 					<input class="box" type="text" id="nome" name="atualizar_nome" value="<?php echo $dados[0]['nome']?>">
-					<span>Email :</span>
+					<span>Email</span>
 					<input class="box" type="text" id="email" name="atualizar_email" value="<?php echo $dados[0]['email']?>">
-					<span>Senha :</span>
+					<span>Senha</span>
 					<input class="box" type="password" name="senha" value="<?php echo $dados[0]['senha'] ?>" placeholder="Nova senha">
 				</div>
 			</div>
-			<input type="submit" value="Atualizar Dados" name="atualizar_perfil">
-			<a href="./anotacoes.php" class="voltar">Voltar</a>
+			<div class="btn-footer">
+				<input class="form-btn" type="submit" value="Atualizar Dados" name="atualizar_perfil">
+				<a href="./anotacoes.php"><button type="button" class="form-btn">Voltar</button></a>
+			</div>
 		</form>
 
 		<div class="image">

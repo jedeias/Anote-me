@@ -137,7 +137,8 @@
 }
 .perfil{
     width: 50px;
-    border-radius: 50px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .notepad-container{
