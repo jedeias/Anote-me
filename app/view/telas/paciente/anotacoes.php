@@ -70,16 +70,16 @@ if($nome == NULL and $email == NULL and $type == NULL){
         <section class="menu-container">
             <nav class="menu">
                 <ul>
-                    <li class="anotacoes">
+                    <li class="active">
                         <p>Anotações</p>
                     </li>   
                     <a href="atividades.php">
-                        <li class="agenda-consultas">
+                        <li class="menu-select">
                             <p>Atividades Recomendadas</p>
                         </li>
                     </a>
                     <a href="calendario.php">
-                        <li class="agenda-consultas">
+                        <li class="menu-select">
                             <p>Agenda</p>
                         </li>
                     </a>
@@ -108,7 +108,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                             <option value="2">😃 Feliz</option>
                             <option value="1">😥 Triste</option>
                             <option value="5">😰 Ansioso(a)</option>
-                            <option value="4">😠 Euforico</oapp/view/telas/paciente/anotacoes.phpption>
+                            <option value="4">😠 Euforico</option>
                             <!-- <option value="com medo">😱 Com medo</option> -->
                         </select>
                         <hr></hr>
