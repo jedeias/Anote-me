@@ -2,16 +2,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:  Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .atualizar-perfil{
-    min-height: 100vh;
+
     background-color: #22b573; 
     display:flex; 
     align-items: center;     
     justify-content: space-around;
     padding: 20px;
+    height: 100vh;
 }
 
 .atualizar-perfil form{
@@ -19,23 +20,57 @@
     background-color: white;
     box-shadow: black;
     text-align: center;
-    width: 600px;
-    border-radius: 5px;
+    width: 500px;
+    border-radius: 7px;
 }
 
 
-.atualizar-perfil form h1{
+.atualizar-perfil form .name-title{
+    font-weight: 600;
+    font-size: 25px;
     margin-bottom: 50px;
+    color: #3d3d3d;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .atualizar-perfil form img{
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 5px;
 }
 
+.img-img{
+    position: relative;
+}
+.img-hover{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 150px;
+    height: 150px;  
+    bottom: 9px;
+    right: 0;
+    left: 0;
+    border-radius: 50%;
+    background: grey;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .3s, visibility .3s ease-in-out;
+    color: #fff;
+}
+.img-img:hover .img-hover {
+    visibility: visible;
+    opacity: 90%;
+  }
+
+.img-default{
+    border: 1px solid #9c9c9c;
+}
 .atualizar-perfil form .flex{
     display: flex;
     justify-content: center;
@@ -51,19 +86,50 @@
     display: block;
     margin-top: 15px;
     font-size: 17px;
-    color: black;
+    color: #3d3d3d;
+    font-weight: 500;
 }
 .atualizar-perfil form .flex .inputBox .box{
+    padding: 7px;
     width: 100%;
-    border-radius: 5px;
-    background-color: rgba(223, 221, 221, 0.92);
-    padding: 12px 14px;
-    font-size: 17px;
+    margin-top: 5px;
+    background-color: #fff;
     color: black;
-    margin-top: 10px;
-    outline: none;
+    margin-bottom: 25px;
+    border: 1px #062156 solid;
+    border-radius: 5px;
+} 
+.atualizar-perfil form .flex .inputBox .box-file{
+    padding: 7px;
+    width: 100%;
+    margin-top: 5px;
+    background-color: #fff;
+    color: black;
+    margin-bottom: 25px;
+    border: 1px #062156 solid;
+    border-radius: 5px;
+} 
+
+
+form .form-btn{
+    width: 120px;
+    height: 30px;
+    border-radius: 5px;
     border: none;
+    background-color: #22b573;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
 }
+
+.btn-footer{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+
+
 
 @media (max-width:650px){
     .atualizar-perfil form .flex{

@@ -8,6 +8,10 @@ $session = new Session();
 $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
+$paci_id = $session->session_get('id');
+
+$pegar_imagem = new Select();
+$imagem = $pegar_imagem->getImagem($paci_id);
 
 if($nome == NULL and $email == NULL and $type == NULL){
    header("location: ../../../index.html");
@@ -26,23 +30,35 @@ if($nome == NULL and $email == NULL and $type == NULL){
 <body id="body">
     <header class="header-container">
         <h1>ANOTE-ME</h1>
-        <div id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
-            <img src="../../IMG/117104319_3204025416385100_1271061160658966926_n.jpg" alt="" class="perfil" id="first-perfil">
-        </div> 
+        <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
+            <?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
+                <img src="<?php echo $imagem['imagem'] ?>" alt="" class='perfil' id='first-perfil'>
+            <?php else: ?>
+                <img src="../../IMG/default.jpg" alt="" class='perfil'>
+            <?php endif; ?>
+        </figure> 
         <div class="click-wrapper">
             <nav class="dados-wrapper hidden" id="wrapper-content">
                 <ul class="lista-dados">
 
-                    <li class="center"> <img src="../../IMG/117104319_3204025416385100_1271061160658966926_n.jpg" alt="FOTO-DE-PERFIL" class="perfil" id="second-perfil"></li>
+                    <li class="center"> 
+                        <?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
+                            <img src="<?php echo $imagem['imagem'] ?>" alt="FOTO-DE-PERFIL" class='perfil' id='second-perfil'>
+                        <?php else: ?>
+                            <img src="../../IMG/default.jpg" alt="" class='perfil'>
+                        <?php endif; ?>
+                    </li>
                     <li class="center"><?php echo "$nome"; ?></li>
-                    <li>Email : <?php echo "$email"; ?></li>
-                    <!-- <li>Telefone :</li>
-                    <li>Responsável : </li> -->
-                    <!-- <li>Telefone do Responsável : </li> -->
-                    <li>tipo de usuário : <?php echo "$type"; ?> </li>
-                    <!-- <li>Clinica : </li> -->
+                    <div class='lista-dados-content'>
+                        <li>Email : <?php echo $email; ?></li>
+                        <li>Telefone : <?php echo $paci_id; ?></li>
+                        <li>Responsável : </li>
+                        <li>Telefone do Responsável : </li>
+                        <li>Psicologo : </li>
+                        <li>Clinica : </li>
+                    </div>
                     <li class="config-container">
-                        <a class="config-button"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>
+                        <a class="config-button" href="./atualizar_registro.php"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>
                         <a class="config-button" href="../../sair.php"><img class="wrapper-icon" src="../../IMG/ico/arrow-from-shape-right-svgrepo-com.svg" title="Sair"></a>
                     </li>
                 
@@ -54,16 +70,16 @@ if($nome == NULL and $email == NULL and $type == NULL){
         <section class="menu-container">
             <nav class="menu">
                 <ul>
-                    <li class="anotacoes">
+                    <li class="active">
                         <p>Anotações</p>
                     </li>   
                     <a href="atividades.php">
-                        <li class="agenda-consultas">
+                        <li class="menu-select">
                             <p>Atividades Recomendadas</p>
                         </li>
                     </a>
                     <a href="calendario.php">
-                        <li class="agenda-consultas">
+                        <li class="menu-select">
                             <p>Agenda</p>
                         </li>
                     </a>
@@ -92,7 +108,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                             <option value="2">😃 Feliz</option>
                             <option value="1">😥 Triste</option>
                             <option value="5">😰 Ansioso(a)</option>
-                            <option value="4">😠 Euforico</oapp/view/telas/paciente/anotacoes.phpption>
+                            <option value="4">😠 Euforico</option>
                             <!-- <option value="com medo">😱 Com medo</option> -->
                         </select>
                         <hr></hr>

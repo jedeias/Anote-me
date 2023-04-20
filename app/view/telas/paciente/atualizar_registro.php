@@ -57,7 +57,7 @@ if (empty($_SESSION)) {
 			</div>
 			<div class="btn-footer">
 				<input class="form-btn" type="submit" value="Atualizar Dados" name="atualizar_perfil">
-				<a href="./psiPacientes.php"><button type="button" class="form-btn">Voltar</button></a>
+				<a href="./anotacoes.php"><button type="button" class="form-btn">Voltar</button></a>
 			</div>
 		</form>
 

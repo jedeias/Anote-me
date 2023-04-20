@@ -23,6 +23,9 @@ class Select extends Connect implements selectController{
     public function getDados($id){
         return $result = $this->todosDados($id);
     }
+    public function getImagem($id){
+        return $result = $this->imagemPerfil($id);
+    }
 
     public function getAllUser(){
         return $result = $this->select_all_users();
@@ -109,7 +112,7 @@ class Select extends Connect implements selectController{
 
         return $data;
     }
-    private function select_activities($psico_id, $patient_id)
+    public function select_activities($psico_id, $patient_id)
     {
         $stmt = $this->getconn()->prepare(" SELECT atividades_paciente.assunto_atividade, atividades_paciente.atividade, DATE_FORMAT(atividades_paciente.data, '%d/%m/%y') as data, atividades_paciente.pk_atividades_paciente
                                             FROM atividades_paciente
@@ -121,16 +124,17 @@ class Select extends Connect implements selectController{
         $result = $stmt->get_result();
         $data = $result->fetch_all(MYSQLI_ASSOC);
 
-        return $data;
+
+        return $result;
     }
     
     private function todosDados($id){
         $conn = $this->getConn();
-        $stmt = mysqli_prepare($conn, "SELECT pk_psicologo AS id, nome, email, senha, imagem FROM psicologo WHERE pk_psicologo = ? 
+        $stmt = mysqli_prepare($conn, "SELECT pk_psicologo AS id, nome, email, senha FROM psicologo WHERE pk_psicologo = ? 
                                         UNION ALL
-                                        SELECT pk_paciente AS id, nome, email, senha, NULL AS imagem FROM paciente WHERE pk_paciente = ?
+                                        SELECT pk_paciente AS id, nome, email, senha  FROM paciente WHERE pk_paciente = ?
                                         UNION ALL
-                                        SELECT pk_secretario AS id, nome, email, senha, NULL AS imagem FROM secretario WHERE pk_secretario = ?
+                                        SELECT pk_secretario AS id, nome, email, senha FROM secretario WHERE pk_secretario = ?
                                         ");
     
         mysqli_stmt_bind_param($stmt, "iii", $id, $id, $id);
@@ -142,6 +146,32 @@ class Select extends Connect implements selectController{
     
         return $data;
     }
+
+    //tudo certo 
+    private function imagemPerfil($id){
+        $conn = $this->getConn();
+        $stmt = mysqli_prepare($conn, "SELECT pk_psicologo AS id, imagem FROM psicologo WHERE pk_psicologo = ? 
+                                    UNION ALL
+                                    SELECT pk_paciente AS id, imagem  FROM paciente WHERE pk_paciente = ?
+                                    UNION ALL
+                                    SELECT pk_secretario AS id, imagem FROM secretario WHERE pk_secretario = ?
+                                    ");
+        if (!$stmt) {
+            die("Erro na preparação da consulta: " . mysqli_error($conn));
+        }
+        mysqli_stmt_bind_param($stmt, "iii", $id, $id, $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (!$result) {
+            die("Erro na execução da consulta: " . mysqli_error($conn));
+        }
+
+        $imagem = mysqli_fetch_array($result);
+        mysqli_stmt_close($stmt);
+
+        return $imagem;  
+    }
     
     public function __destruct()
     {
@@ -149,4 +179,5 @@ class Select extends Connect implements selectController{
     }
 
 }
+
 ?>
