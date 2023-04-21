@@ -209,7 +209,7 @@ if (empty($_SESSION)) {
                         echo"<article class='activity-add'>";
                         echo"<button id='activityButton' class='activity-button activity-button-plus' onclick='activityClose()' ><img src='../../IMG/ico/plus-svgrepo-com.svg'></button>";
                         echo"</article>";
-                    $atividades = $select->select_activities($psico_id, $pk_paciente);
+                    $atividades = $select->select_atividades($psico_id, $pk_paciente);
                     foreach ($atividades as $atividade) {
                         echo "<article class='paciente-atividade'>";
                             echo "<div class='activity'>";
@@ -225,12 +225,7 @@ if (empty($_SESSION)) {
 
                     }else{
                         echo"<p class='sem-paciente'>Selecione um paciente para ver suas atividades.</p>";
-                    }
-
-                    
-                    
-
-                    
+                    }    
                     ?>
 
                 </div>
