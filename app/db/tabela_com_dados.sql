@@ -203,6 +203,7 @@ REPLACE INTO `responsavel` (`pk_responsavel`, `fk_endereco`, `fk_telefone`, `fk_
 	(2, 2, 2, 1, 'Ciclano de Tal', 'ciclano@example.com', '987654321', 1098765432);
 	
 	
+  
 	
 CREATE TABLE IF NOT EXISTS `tipo_atividade` (
   `pk_tipo_atividade` int(11) NOT NULL AUTO_INCREMENT,
@@ -271,7 +272,27 @@ REPLACE INTO `paciente` (`pk_paciente`, `fk_endereco`, `fk_telefone`, `fk_tipo_u
 	(6, 5, 5, 3, 2, 12, 'Carlos Eduardo', 'carlos@example.com', 'senha123', '555555555', 864209753, 'M', '2018-01-01', 4);
 	
 	
-	
+
+CREATE TABLE IF NOT EXISTS `atividades_paciente` (
+  `pk_atividades_paciente` int NOT NULL AUTO_INCREMENT,
+  `fk_paciente` int NOT NULL,
+  `fk_psicologo` int NOT NULL,
+  `assunto_atividade` varchar(50) NOT NULL DEFAULT '',
+  `atividade` varchar(500) NOT NULL DEFAULT '',
+  `data` date NOT NULL,
+  PRIMARY KEY (`pk_atividades_paciente`) USING BTREE,
+  KEY `fk_paciente` (`fk_paciente`),
+  KEY `fk_psicologo` (`fk_psicologo`),
+  CONSTRAINT `FK__paciente` FOREIGN KEY (`fk_paciente`) REFERENCES `paciente` (`pk_paciente`),
+  CONSTRAINT `FK__psicologo` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Copiando dados para a tabela clinica_psicologica.atividades_paciente: ~0 rows (aproximadamente)
+
+INSERT INTO `atividades_paciente` (`pk_atividades_paciente`, `fk_paciente`, `fk_psicologo`, `assunto_atividade`, `atividade`, `data`) VALUES
+	(1, 2, 11, 'Esporte', 'fazer mais esporte', '2023-04-13');
+
+
 CREATE TABLE IF NOT EXISTS `emocoes` (
   `pk_emocoes` int(11) NOT NULL AUTO_INCREMENT,
   `local_img` text NOT NULL,
