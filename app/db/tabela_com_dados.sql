@@ -247,6 +247,7 @@ CREATE TABLE IF NOT EXISTS `paciente` (
   `imagem` varchar(100) NULL,
   PRIMARY KEY (`pk_paciente`),
   UNIQUE KEY `email` (`email`),
+  KEY `psicologo` (`psicologo`),
   KEY `fk_endereco` (`fk_endereco`),
   KEY `fk_telefone` (`fk_telefone`),
   KEY `fk_responsavel` (`fk_responsavel`),

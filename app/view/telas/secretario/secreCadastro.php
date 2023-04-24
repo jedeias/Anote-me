@@ -3,7 +3,7 @@
 include("../../../autoload.php");
 
 
-$session = new Session_controller();
+$session = new Session();
 
 $nome = $session->session_get('nome');
 $email = $session->session_get('email');
@@ -11,7 +11,7 @@ $type = $session->session_get('type');
 
 
 if($nome == NULL and $email == NULL and $type == NULL){
-   header("location: ../../../index.html");
+   header("location: ../../sair.php");
 }
 
 ?>
