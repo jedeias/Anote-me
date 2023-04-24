@@ -224,12 +224,7 @@ if (empty($_SESSION)) {
 
                     }else{
                         echo"<p class='sem-paciente'>Selecione um paciente para ver suas atividades.</p>";
-                    }
-
-                    
-                    
-
-                    
+                    }    
                     ?>
 
                 </div>

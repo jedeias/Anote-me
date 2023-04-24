@@ -19,11 +19,11 @@ class Crud extends Connect implements CrudController{
             CURDATE()
             )";
 
-        return($sql);
+        return $sql;
     }
 
     public function insert_atividades_paciente($fk_paciente, $fk_psicologo, $assunto, $atividade){
-            $this->query($this->queryIsertAtiviadesPaciente($fk_paciente, $fk_psicologo, $assunto, $atividade));
+            $this->getConn()->query($this->queryIsertAtiviadesPaciente($fk_paciente, $fk_psicologo, $assunto, $atividade));
     }
 
     public function insert_notas_paciente($id, $emocao, $emocaoGrau, $descricao) {

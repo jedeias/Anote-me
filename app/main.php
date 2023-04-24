@@ -12,8 +12,6 @@ $login_sys = new Login();
 
 $login_status = $login_sys->login_check($email, $password);
 
-// var_dump($login_status);
-
 $session = new Session();
 
 $session->session_set("email", $email);

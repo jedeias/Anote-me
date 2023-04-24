@@ -7,7 +7,12 @@ class Connect extends Host {
     private $conn;
 
     public function __construct(){
-        $this->conn = new mysqli($this->getServer(), $this->getUser(), $this->getPassword(), $this->getDatabase());
+        
+        $this->conn = new mysqli(   $this->getServer(), 
+                                    $this->getUser(), 
+                                    $this->getPassword(), 
+                                    $this->getDatabase()
+                                );
         
         if ($this->conn->connect_error) {
             die("Conexão falhou: " . $this->conn->connect_error);
