@@ -3,7 +3,7 @@
 include("../../../autoload.php");
 
 
-$session = new Session_controller();
+$session = new Session();
 
 $nome = $session->session_get('nome');
 $email = $session->session_get('email');
@@ -75,35 +75,35 @@ if($nome == NULL and $email == NULL and $type == NULL){
                 </ul>
             </nav>        
         </aside>
-
-        
         <section class="notepad-content">
-            <article class="psi-table">
-                <header class="psi-paci-header-text">
-                    <h1>Psicologos</h1>
-                </header>
-                <article class="article-grid-list">
-                    <section class="psi-paci-list">
-                        <div class="psi-paci-text-div">
-                            <p>nome: cleitin </p>
-                            <p>Data_Nasc: sei la</p>
-                            <p>test: teste</p>
-                            <p>test: teste</p>
-                        </div>
-                    </section>
-                    
-                    <section class="psi-paci-list">
-                        <div class="psi-paci-text-div">
-                            <p>nome: junin </p>
-                            <p>Data_Nasc: sei la</p>
-                            <p>test: teste</p>
-                            <p>test: teste</p>
-                        </div>
-                    </section>
-
+            <section class="notepad-content">
+                <article class="psi-table">
+                    <header class="psi-paci-header-text">
+                        <h1>Pacientes</h1>
+                    </header>
+                    <article class="article-grid-list">
+                        <section class="psi-paci-list">
+                            <div class="psi-paci-text-div">
+                                <p>nome: jorgin </p>
+                                <p>Data_Nasc: sei la</p>
+                                <p>test: teste</p>
+                                <p>test: teste</p>
+                            </div>
+                        </section>
+                        
+                        <section class="psi-paci-list">
+                            <div class="psi-paci-text-div">
+                                <p>nome: jorgin </p>
+                                <p>Data_Nasc: sei la</p>
+                                <p>test: teste</p>
+                                <p>test: teste</p>
+                            </div>
+                        </section>
+                        
+                        
+                        
+                    </article>
                 </article>
-            </article>
-            
         </section>
     </main>
     <script src = "../../JS/script.js"> </script>

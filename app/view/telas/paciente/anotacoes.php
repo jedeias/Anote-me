@@ -18,6 +18,8 @@ if($nome == NULL and $email == NULL and $type == NULL){
 }
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

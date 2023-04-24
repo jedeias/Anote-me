@@ -248,6 +248,7 @@ CREATE TABLE IF NOT EXISTS `paciente` (
   `imagem` varchar(100) NULL,
   PRIMARY KEY (`pk_paciente`),
   UNIQUE KEY `email` (`email`),
+  KEY `psicologo` (`psicologo`),
   KEY `fk_endereco` (`fk_endereco`),
   KEY `fk_telefone` (`fk_telefone`),
   KEY `fk_responsavel` (`fk_responsavel`),
@@ -378,7 +379,7 @@ CREATE TABLE IF NOT EXISTS `anotacoes_paciente` (
   CONSTRAINT `anotacoes_paciente_ibfk_3` FOREIGN KEY (`fk_paciente`) REFERENCES `paciente` (`pk_paciente`),
   CONSTRAINT `anotacoes_paciente_ibfk_5` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`)
 );
-REPLACE INTO `anotacoes_paciente` (`pk_anotacoes_paciente`, `fk_redflag`, `fk_paciente`,`fk_psicologo`, `anotacoes`, `data`,`hora`) VALUES
+REPLACE INTO `anotacoes_paciente` (`pk_anotacoes_paciente`, `fk_redflag`, `fk_paciente`,`fk_psicologo`, `anotacao`, `data`,`hora`) VALUES
 	(29, 1, 2,11, 'Estou me sentindo muito ansioso', '2022-05-10', '11:30:00'),
 	(30, 2, 3,11, 'Estou me sentindo triste e sem autoestima', '2022-05-12', '12:30:00');
 
