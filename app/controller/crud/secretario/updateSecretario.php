@@ -34,7 +34,7 @@ if(isset($_POST['atualizar_perfil'])){
         header('location: ../../../view/telas/secretario/secretario.php');
     } else {
 
-        //header('location: ../../../view/telas/secretario/secrePsicologos.php');
+        header('location: ../../../view/telas/secretario/secrePsicologos.php');
         echo "Erro ao atualizar o perfil.";
     }
 }
