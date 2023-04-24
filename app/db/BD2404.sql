@@ -37,12 +37,13 @@ CREATE TABLE IF NOT EXISTS `anotacoes_paciente` (
   CONSTRAINT `anotacoes_paciente_ibfk_2` FOREIGN KEY (`fk_redflag`) REFERENCES `red_flag` (`pk_red_flag`),
   CONSTRAINT `anotacoes_paciente_ibfk_3` FOREIGN KEY (`fk_paciente`) REFERENCES `paciente` (`pk_paciente`),
   CONSTRAINT `FK_anotacoes_paciente_psicologo` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Copiando dados para a tabela clinica_psicologica.anotacoes_paciente: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela clinica_psicologica.anotacoes_paciente: ~2 rows (aproximadamente)
 DELETE FROM `anotacoes_paciente`;
 INSERT INTO `anotacoes_paciente` (`pk_anotacoes_paciente`, `fk_redflag`, `fk_paciente`, `fk_psicologo`, `anotacao`, `emocao`, `intensidade`, `data`, `hora`) VALUES
-	(43, 8, 2, 11, 'teste', 'ansioso', 60, '2023-04-21', '13:15:00');
+	(43, 8, 2, 11, 'teste', 'ansioso', 60, '2023-04-21', '13:15:00'),
+	(44, NULL, 2, NULL, 'teste', 'indiferente', 10, '2023-04-24', '11:53:00');
 
 -- Copiando estrutura para tabela clinica_psicologica.anotacoes_psicologo
 CREATE TABLE IF NOT EXISTS `anotacoes_psicologo` (
@@ -78,10 +79,12 @@ CREATE TABLE IF NOT EXISTS `atividades_paciente` (
   KEY `fk_psicologo` (`fk_psicologo`),
   CONSTRAINT `FK__paciente` FOREIGN KEY (`fk_paciente`) REFERENCES `paciente` (`pk_paciente`),
   CONSTRAINT `FK__psicologo` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Copiando dados para a tabela clinica_psicologica.atividades_paciente: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela clinica_psicologica.atividades_paciente: ~1 rows (aproximadamente)
 DELETE FROM `atividades_paciente`;
+INSERT INTO `atividades_paciente` (`pk_atividades_paciente`, `fk_paciente`, `fk_psicologo`, `assunto_atividade`, `atividade`, `data`) VALUES
+	(31, 2, 11, 'teste', 'teste', '2023-04-24');
 
 -- Copiando estrutura para tabela clinica_psicologica.clinica
 CREATE TABLE IF NOT EXISTS `clinica` (
