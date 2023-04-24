@@ -28,7 +28,6 @@ class Crud extends Connect implements CrudController{
 
     public function insert_notas_paciente($id, $emocao, $emocaoGrau, $descricao) {
 
-
         $sql = "INSERT INTO anotacoes_paciente (
             pk_anotacoes_paciente,
             fk_redflag,
@@ -48,7 +47,6 @@ class Crud extends Connect implements CrudController{
             '$emocaoGrau',
             CURDATE(),
             DATE_FORMAT(NOW(), '%k:%i')
-
         )";
     
         $this->query($sql);

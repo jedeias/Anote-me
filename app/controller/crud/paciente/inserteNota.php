@@ -30,6 +30,7 @@ $inser = new Crud();
 
 echo"<br>";
 
-$inser->insert_notas_paciente ($id, $emocao,$emocaoGrau, $descricao);
+$inser->insert_notas_paciente($id, $emocao,$emocaoGrau, $descricao);
+
 
 header("location: /../../tcc/app/view/telas/paciente/anotacoes.php?savednote");
