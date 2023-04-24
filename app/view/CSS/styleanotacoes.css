@@ -252,6 +252,21 @@
     
     
 }
+.previous-note{
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        border: none;
+        background-position-y: 33px;
+        line-height: 35px;
+        padding: 30px;
+        margin: 7px;
+        font-size: 25px;
+        font-weight: 500;
+        width: 25vw;
+        height: 68vh;
+        border-radius: 7px;
+        background-color: white;
+        overflow: auto; 
+}
 
 .prev-button, .next-button{
     width: 50px;
@@ -306,10 +321,36 @@ a{
     background-color: red;
 }
 
+.saved-note{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 100px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: 40%;
+    border-radius: 7px;
+    font-weight: 500;
+    background-color: #333333;
+    color: white;
+    animation: fadeOut 3s ease-out forwards;
+    opacity: 1;
+}
+
 .janela-modal.abrir{
     display: inline-block;
 }
 
 .hidden{
     display: none;
+}
+
+@keyframes fadeOut{
+    0% { opacity: 1}
+    50% { opacity: 1}
+    100% {opacity: 0%; visibility: hidden;}
 }

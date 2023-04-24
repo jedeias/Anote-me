@@ -18,33 +18,37 @@ class Crud extends Connect implements CrudController{
             '$atividade',
             CURDATE()
             )";
+
+        return($sql);
     }
 
     public function insert_atividades_paciente($fk_paciente, $fk_psicologo, $assunto, $atividade){
             $this->query($this->queryIsertAtiviadesPaciente($fk_paciente, $fk_psicologo, $assunto, $atividade));
     }
 
-    public function insert_notas_paciente($id, $emocao, $fk_psicologo, $descricao) {
+    public function insert_notas_paciente($id, $emocao, $emocaoGrau, $descricao) {
+
 
         $sql = "INSERT INTO anotacoes_paciente (
             pk_anotacoes_paciente,
             fk_redflag,
-            fk_emocoes,
-            fk_psicologo,
             fk_paciente,
-            fk_anotacoes_psicologo,
-            anotacoes,
-            data_hora
+            anotacao,
+            emocao,
+            intensidade,
+            data,
+            hora
         ) 
         VALUES (
             null,
             null,
-            '$emocao',
-            '$fk_psicologo',
-            '$id',
-            null,
+            $id,
             '$descricao',
-            NOW()
+            '$emocao',
+            '$emocaoGrau',
+            CURDATE(),
+            DATE_FORMAT(NOW(), '%k:%i')
+
         )";
     
         $this->query($sql);

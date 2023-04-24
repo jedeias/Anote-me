@@ -90,7 +90,7 @@ function toogle() {
 let emojiSelect = document.getElementById("emojiSelect");
 function onChange(){
     var SelectedEmoji = emojiSelect.value;
-    if(SelectedEmoji == "nenhuma"){
+    if(SelectedEmoji == "indiferente"){
         emojiButton.innerText = "😶"
     } else if(SelectedEmoji == "feliz"){
         emojiButton.innerText = "😃"
@@ -98,9 +98,9 @@ function onChange(){
         emojiButton.innerText = "😥"
     } else if(SelectedEmoji == "ansioso"){
         emojiButton.innerText = "😰"
-    } else if(SelectedEmoji == "com raiva"){
+    } else if(SelectedEmoji == "raiva"){
         emojiButton.innerText = "😠"
-    } else if(SelectedEmoji = "com medo"){
+    } else if(SelectedEmoji == "medo"){
         emojiButton.innerText = "😱"
     }
 }

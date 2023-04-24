@@ -20,6 +20,10 @@ class Select extends Connect implements selectController{
         return $result = $this->patient_notes($psico_id, $patient_email);
     }
 
+    public function select_atividades($psico_id, $patient_id){
+        return $result = $this->select_activities($psico_id, $patient_id);
+    }
+
     public function getDados($id){
         return $result = $this->todosDados($id);
     }
@@ -75,14 +79,8 @@ class Select extends Connect implements selectController{
     private function select_users_patient($psico_id)
     {
         
-        $stmt = $this->getConn()->prepare(" SELECT paciente.nome, paciente.email, paciente.pk_paciente,
-                                            anotacoes_paciente.pk_anotacoes_paciente, anotacoes_paciente.anotacoes, anotacoes_paciente.data, anotacoes_paciente.hora,
-                                            emocoes.descricao, emocoes.emoji, emocoes.intensidade
-                                            FROM paciente
-                                            INNER JOIN anotacoes_paciente on (anotacoes_paciente.fk_paciente = paciente.pk_paciente)
-                                            INNER JOIN emocoes ON (emocoes.pk_emocoes = anotacoes_paciente.fk_emocoes)
-                                            INNER JOIN psicologo on (psicologo.pk_psicologo = anotacoes_paciente.fk_psicologo)
-                                            WHERE psicologo.pk_psicologo = ? "); 
+        $stmt = $this->getConn()->prepare("SELECT paciente.nome, paciente.email, paciente.pk_paciente
+        FROM paciente WHERE paciente.fk_psicologo = ?"); 
 
         $stmt->bind_param("i", $psico_id);
         $stmt->execute();
@@ -96,14 +94,8 @@ class Select extends Connect implements selectController{
     private function patient_notes($psico_id, $patient_email)
     {
         
-        $stmt = $this->getConn()->prepare(" SELECT paciente.nome, paciente.email, paciente.pk_paciente,
-                                            anotacoes_paciente.pk_anotacoes_paciente, anotacoes_paciente.anotacoes, DATE_FORMAT(anotacoes_paciente.data, '%d/%m/%y') as data, DATE_FORMAT(anotacoes_paciente.hora, '%H:%i') as hora,
-                                            emocoes.descricao, emocoes.emoji, emocoes.intensidade
-                                            FROM paciente
-                                            INNER JOIN anotacoes_paciente on (anotacoes_paciente.fk_paciente = paciente.pk_paciente)
-                                            INNER JOIN emocoes ON (emocoes.pk_emocoes = anotacoes_paciente.fk_emocoes)
-                                            INNER JOIN psicologo on (psicologo.pk_psicologo = anotacoes_paciente.fk_psicologo)
-                                            WHERE psicologo.pk_psicologo = ? AND paciente.email = ?");
+        $stmt = $this->getConn()->prepare("SELECT paciente.nome, paciente.email, paciente.pk_paciente, anotacoes_paciente.pk_anotacoes_paciente, anotacoes_paciente.anotacao, anotacoes_paciente.emocao, anotacoes_paciente.intensidade, DATE_FORMAT(anotacoes_paciente.data, '%d/%m/%y') as data, DATE_FORMAT(anotacoes_paciente.hora, '%H:%i') as hora
+        FROM anotacoes_paciente INNER JOIN paciente ON (anotacoes_paciente.fk_paciente = paciente.pk_paciente) INNER JOIN psicologo ON (paciente.fk_psicologo = psicologo.pk_psicologo) WHERE psicologo.pk_psicologo = ? AND paciente.email = ?");
                                             
         $stmt->bind_param("is", $psico_id, $patient_email);
         $stmt->execute();
@@ -112,7 +104,7 @@ class Select extends Connect implements selectController{
 
         return $data;
     }
-    public function select_activities($psico_id, $patient_id)
+    private function select_activities($psico_id, $patient_id)
     {
         $stmt = $this->getconn()->prepare(" SELECT atividades_paciente.assunto_atividade, atividades_paciente.atividade, DATE_FORMAT(atividades_paciente.data, '%d/%m/%y') as data, atividades_paciente.pk_atividades_paciente
                                             FROM atividades_paciente
@@ -122,10 +114,10 @@ class Select extends Connect implements selectController{
         $stmt->bind_param("ii", $psico_id, $patient_id);
         $stmt->execute();
         $result = $stmt->get_result();
-        $data = $result->fetch_all(MYSQLI_ASSOC);
+        $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 
-        return $result;
+        return $data;
     }
     
     private function todosDados($id){

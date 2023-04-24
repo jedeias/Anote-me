@@ -91,6 +91,14 @@ function selecionarPaciente(numero){
 
 }
 
+function deleteAlert(e){
+    var confirmacao = confirm("Deseja mesmo excluir esta atividade?");
+
+    if(!confirmacao){
+        e.preventDefault();
+    }
+}
+
 function mascara (o,f){
     v_obj = o
     v_fun = f

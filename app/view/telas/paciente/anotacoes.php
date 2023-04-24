@@ -93,8 +93,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
                 </svg>
             </button>
-            <div class="notepad"> 
-                
+            <div class="notepad">           
                 <form action="../../../controller/crud/paciente/inserteNota.php" method="POST">
 
                 <article class="notepad-header">
@@ -104,26 +103,26 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     <div class="emoji-content hidden" id="emojiTab">
                         <h1>Que emoção você sentiu?</h1>
                         <select id="emojiSelect" name="emocao">
-                            <option value="3">Nenhuma</option>
-                            <option value="2">😃 Feliz</option>
-                            <option value="1">😥 Triste</option>
-                            <option value="5">😰 Ansioso(a)</option>
-                            <option value="4">😠 Euforico</option>
-                            <!-- <option value="com medo">😱 Com medo</option> -->
+                            <option value="indiferente">Indiferente</option>
+                            <option value="feliz">😃 Feliz</option>
+                            <option value="triste">😥 Triste</option>
+                            <option value="ansioso">😰 Ansioso(a)</option>
+                            <option value="raiva">😠 Com raiva</option>
+                            <option value="medo">😱 Com medo</option>
                         </select>
                         <hr></hr>
                         <h1>Qual foi a intensidade?</h1>
                         <select id="emojiSelectPercentage" name="emocaoGrau">
                             <option value="10">10%</option>
-                            <option value="10">20%</option>
-                            <option value="10">30%</option>
-                            <option value="10">40%</option>
-                            <option value="10">50%</option>
-                            <option value="10">60%</option>
-                            <option value="10">70%</option>
-                            <option value="10">80%</option>
-                            <option value="10">90%</option>
-                            <option value="10">100%</option>
+                            <option value="20">20%</option>
+                            <option value="30">30%</option>
+                            <option value="40">40%</option>
+                            <option value="50">50%</option>
+                            <option value="60">60%</option>
+                            <option value="70">70%</option>
+                            <option value="80">80%</option>
+                            <option value="90">90%</option>
+                            <option value="100">100%</option>
                         </select>
                         <input class="emoji-close" type="button" value="Fechar" onclick="ClickEmoji()">
                     </div>
@@ -133,6 +132,8 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     <button class="action-button">Descartar</button>
                     <button class="action-button" type="submit" onclick="modalclick()">Salvar</button>
                 </div>
+
+            </form>
             <p class="notepad-count">1/1</p>
             </div>
             <button class="next-button" onclick="clicktext()">
@@ -141,6 +142,15 @@ if($nome == NULL and $email == NULL and $type == NULL){
                 </svg>
             </button>
         </section>
+        <?php
+
+        if(isset($_GET["savednote"])){
+          echo "<div class='saved-note'>";
+          echo "<p>Anotação Salva!</p>";
+          echo "</div>";
+        }
+        
+        ?>
     </section>
 
     <script src="../../JS/scriptAnotacoes.js"></script>

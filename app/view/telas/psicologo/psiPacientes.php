@@ -86,13 +86,12 @@ if (empty($_SESSION)) {
 
                     $select = new Select();
                     $patients = $select->select_user_patient($psico_id);
-                    //print_r($patients);
                     $i = 0;
                     
                     foreach ($patients as $dado)
                     {
                         if($email == $dado['email']){
-                            break;
+                            continue;
                         }
                         echo "<article class='paciente-select' onclick=selecionarPaciente($i)>";
                         echo "<p>". $dado['nome'] . "</p>";
@@ -121,11 +120,10 @@ if (empty($_SESSION)) {
                             </svg>
                         </button>
                     </article>
+                    <div class="activity-container">
                     <?php   
-
                         if(!empty($_GET))//SÓ LISTA AS ANOTAÇÕES DO PACIENTE CLICADO
                         {
-
                             $email_paciente = $patients[$index]['email'];
                             $pk_paciente = $patients[$index]['pk_paciente'];
                 
@@ -146,13 +144,13 @@ if (empty($_SESSION)) {
 
                                     echo "<div class='activity-text'>";
 
-                                        echo "<p>" . $dado['anotacoes'] . "</p>";
+                                        echo "<p>" . $dado['anotacao'] . "</p>";
 
                                     echo "</div>";
 
                                     echo "<div class='activity-info'>";
 
-                                        echo "<p>"."Sentindo-se: 😢 ". $dado['descricao'] ."</p>";
+                                        echo "<p>"."Sentindo-se: 😢 ". $dado['emocao'] ."</p>";
                                         echo "<p>Intensidade: " . $dado['intensidade']. "%". "</p> ";   
 
                                     echo "</div>";
@@ -166,6 +164,7 @@ if (empty($_SESSION)) {
                     }
 
                     ?>
+                    </div>
                 </div>
             </section>
             
@@ -209,14 +208,14 @@ if (empty($_SESSION)) {
                         echo"<article class='activity-add'>";
                         echo"<button id='activityButton' class='activity-button activity-button-plus' onclick='activityClose()' ><img src='../../IMG/ico/plus-svgrepo-com.svg'></button>";
                         echo"</article>";
-                    $atividades = $select->select_activities($psico_id, $pk_paciente);
+                    $atividades = $select->select_atividades($psico_id, $pk_paciente);
                     foreach ($atividades as $atividade) {
                         echo "<article class='paciente-atividade'>";
                             echo "<div class='activity'>";
                             echo "<div class='activity-header'>";
                             echo "<p>". $atividade['data'] ."</p>";
                             echo "<p>". $atividade['assunto_atividade'] . "</p>";
-                            echo "<form method='POST' action='../../../controller/crud/paciente/deleteAtividade.php'><button class='activity-button' name='excluir' value='".$atividade['pk_atividades_paciente']."'><img src='../../IMG/ico/trash-svgrepo-com.svg'></button><input type='hidden' value='$index' name='curPaciente'></form>";
+                            echo "<form method='POST' onsubmit='deleteAlert(event)' action='../../../controller/crud/paciente/deleteAtividade.php'><button class='activity-button' name='excluir' value='".$atividade['pk_atividades_paciente']."'><img src='../../IMG/ico/trash-svgrepo-com.svg'></button><input type='hidden' value='$index' name='curPaciente'></form>";
                             echo "</div>";
                             echo "<p class='activity-text'>". $atividade['atividade']  ."</p>";
                             echo "</div>";
