@@ -9,7 +9,7 @@ $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
 $paciente_id = $session->session_get('id');
-$psico_id = $session->session_get('fk_psicologo');
+$id = $session->session_get('fk_psicologo');
 
 $pegar_imagem = new Select();
 $imagem = $pegar_imagem->getImagem($paciente_id);
@@ -92,7 +92,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
 
             $select = new Select();
 
-            $atividades = $select->select_atividades($psico_id, $paciente_id);
+            $atividades = $select->select_atividades($id, $paciente_id);
         
             foreach ($atividades as $atividade) {
                 echo "<article class='paciente-atividade'>";

@@ -8,10 +8,10 @@ $session = new Session();
 $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
-$paci_id = $session->session_get('id');
+$id = $session->session_get('id');
 
 $pegar_imagem = new Select();
-$imagem = $pegar_imagem->getImagem($paci_id);
+$imagem = $pegar_imagem->getImagem($id);
 
 if($nome == NULL and $email == NULL and $type == NULL){
    header("location: ../../../index.html");
@@ -53,7 +53,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     <li class="center"><?php echo "$nome"; ?></li>
                     <div class='lista-dados-content'>
                         <li>Email : <?php echo $email; ?></li>
-                        <li>Telefone : <?php echo $paci_id; ?></li>
+                        <li>Telefone : <?php echo $id; ?></li>
                         <li>Responsável : </li>
                         <li>Telefone do Responsável : </li>
                         <li>Psicologo : </li>

@@ -5,7 +5,7 @@ $session = new Session();
 $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
-$paci_id = $session->session_get('id');
+$id = $session->session_get('id');
 
 if (empty($_SESSION)) {
     header('location: ../../../../index.html');
@@ -22,8 +22,8 @@ if (empty($_SESSION)) {
     <?php
 	
         $sql = new Select();
-        $dados = $sql->getDados($paci_id);
-		$imagem = $sql->getImagem($paci_id);
+        $dados = $sql->getDados($id);
+		$imagem = $sql->getImagem($id);
 		//var_dump($imagem);
     ?>
 	<title>Meu Imagem</title>

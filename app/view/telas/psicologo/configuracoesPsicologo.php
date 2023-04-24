@@ -8,7 +8,7 @@ $session = new Session();
 $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
-$psico_id = $session->session_get('id');
+$id = $session->session_get('id');
 
 
 
@@ -39,7 +39,7 @@ if (empty($_SESSION)) {
                     <li class='center'><?php echo $nome; ?></li>
                     <div class='lista-dados-content'>
                         <li>Email : <?php echo $email; ?></li>
-                        <li>Telefone : <?php echo $psico_id; ?></li>
+                        <li>Telefone : <?php echo $id; ?></li>
                         <li>Responsável : </li>
                         <li>Telefone do Responsável : </li>
                         <li>Psicologo : </li>
