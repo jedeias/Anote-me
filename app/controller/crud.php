@@ -1,16 +1,14 @@
 <?php
 
-    interface CrudController{
+    interface CrudController extends Update, Delete, IncertePsicologo, IncertePaciente{
 
-        public function insert_notas_paciente($id, $emocao, $emocaoGrau, $descricao);
-        public function insert_atividades_paciente($fk_psicologo, $fk_paciente, $assunto, $atividade);
-        public function atualizar_imagem($tabela, $imagem, $id);
-        public function atualizar_perfil($tabela, $nome, $email, $senha, $id);
-    
     }
 
 
     interface Update{
+
+        public function atualizar_imagem($tabela, $imagem, $id);
+        public function atualizar_perfil($tabela, $nome, $email, $senha, $id);
 
     }
 
@@ -20,9 +18,12 @@
 
     interface IncertePaciente{
 
+        public function insert_notas_paciente($id, $emocao, $emocaoGrau, $descricao);
+
     }
 
     interface IncertePsicologo{
+        public function insert_atividades_paciente($fk_psicologo, $fk_paciente, $assunto, $atividade);
 
     }
 
