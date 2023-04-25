@@ -9,9 +9,10 @@ $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
 $paci_id = $session->session_get('id');
+$psico_id = $session->session_get('fk_psicologo');
 
-$pegar_imagem = new Select();
-$imagem = $pegar_imagem->getImagem($paci_id);
+$selecionar = new Select();
+$imagem = $selecionar->getImagem($paci_id);
 
 if($nome == NULL and $email == NULL and $type == NULL){
    header("location: ../../../index.html");
@@ -70,7 +71,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
         <section class="menu-container">
             <nav class="menu">
                 <ul>
-                    <li class="active">
+                    <li class="active-menu">
                         <p>Anotações</p>
                     </li>   
                     <a href="atividades.php">
@@ -88,14 +89,42 @@ if($nome == NULL and $email == NULL and $type == NULL){
             </nav>
         </section>
         <section class="notepad-content">
-            <button class="prev-button">
+            <button class="prev-button" onclick="prevNote()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
                     <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
                 </svg>
             </button>
-            <div class="notepad">           
-                <form action="../../../controller/crud/paciente/inserteNota.php" method="POST">
+            <?php
 
+            ob_start();
+              $anotacoes = $selecionar->select_notes($psico_id, $email);
+              
+              $numAnotacoes = 0;
+
+              foreach($anotacoes as $anotacao){
+                $numAnotacoes = $numAnotacoes+1;
+                echo"<div id='anotacao".$numAnotacoes."' class='notepad'>";
+                echo"<article class='notepad-header'>";
+                echo"<p class='emoji-button' title='Intensidade: ".$anotacao['intensidade']."%'>😶</p>";
+                echo"<p class='notepad-date'>".$anotacao['data']."</p>";
+                echo"<p class='notepad-clock'>".$anotacao['hora']."</p>";
+                echo"</article>";
+                echo"<textarea class='prev-note-text' readonly>".$anotacao['anotacao']."</textarea>";
+                echo"<div class='action-button-container'>";
+                echo"<button class='action-button prev-note-descartar'>Descartar</button>";
+                echo"</div>";
+                echo"</div>";
+              }
+
+              echo "<div class='hidden' id='numAnotacoes' data-valor='".$numAnotacoes."'> </div>";
+
+              $html = ob_get_clean();
+            $html = preg_replace('/\s+/', ' ', $html);
+
+            echo $html;
+            ?>
+            <div id="anotacao<?php echo $numAnotacoes + 1;?>" class="notepad active">           
+                <form action="../../../controller/crud/paciente/inserteNota.php" method="POST">
                 <article class="notepad-header">
                     <p id="emojiButton" class="emoji-button" onclick="ClickEmoji()">😶</p>
                     <p id="digital-date" class="notepad-date"></p> 
@@ -127,20 +156,20 @@ if($nome == NULL and $email == NULL and $type == NULL){
                         <input class="emoji-close" type="button" value="Fechar" onclick="ClickEmoji()">
                     </div>
                 </article>
-                <textarea id="text1" placeholder="Como você está?" name="descricao"></textarea>
+                <textarea required id="textarea" placeholder="Como você está?" name="descricao"></textarea>
                 <div class="action-button-container">
-                    <button class="action-button">Descartar</button>
+                    <button type=button class="action-button" onclick="DescartarAnotacao()">Descartar</button>
                     <button class="action-button" type="submit" onclick="modalclick()">Salvar</button>
                 </div>
 
             </form>
-            <p class="notepad-count">1/1</p>
             </div>
-            <button class="next-button" onclick="clicktext()">
+            <button class="next-button" onclick="nextNote()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
                     <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                 </svg>
             </button>
+            <p class='notepad-count'>1/1</p>
         </section>
         <?php
 

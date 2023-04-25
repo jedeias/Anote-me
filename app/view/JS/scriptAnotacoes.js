@@ -105,6 +105,7 @@ function onChange(){
     }
 }
 
+
 emojiSelect.onchange = onChange;
 onChange();
 
@@ -119,4 +120,62 @@ function modalclick() {
         }
     })
 }
+
+
+let numAnotacoes = parseInt(document.getElementById("numAnotacoes").getAttribute("data-valor"));
+
+let selAnotacao = numAnotacoes + 1;
+
+function DescartarAnotacao(){
+
+    let textArea = document.getElementById('textarea');
+    if(textArea.value != ''){
+        if(confirm('Deseja mesmo descartar esta anotação?') == true){
+            textArea.value = '';
+    }
+    }
+
+}
+
+function prevNote(){
+    let curNote = document.getElementById('anotacao' + selAnotacao);
+
+    if(selAnotacao !== 1){
+        var incomingNote = selAnotacao - 1;
+    } else {
+        var incomingNote = selAnotacao;
+    }
+    let prevNote = document.getElementById('anotacao' + incomingNote);
+
+    curNote.classList.remove('active');
+    prevNote.classList.add('active');
+
+    if(selAnotacao > 1 && selAnotacao != 1){
+        selAnotacao = selAnotacao - 1;
+    }
+    console.log(selAnotacao);
+}
+
+function nextNote(){
+    let curNote = document.getElementById('anotacao' + selAnotacao);
+    if(selAnotacao !== numAnotacoes + 1){
+        var incomingNote = selAnotacao + 1;
+    } else {
+        var incomingNote = selAnotacao;
+    }
+    let nextNote = document.getElementById('anotacao' + incomingNote);
+
+    curNote.classList.remove('active');
+    nextNote.classList.add('active');
+
+    if(selAnotacao < numAnotacoes + 1){
+        selAnotacao = selAnotacao + 1;
+    }
+
+    console.log(selAnotacao);
+
+}
+
+console.log(selAnotacao);
+
 

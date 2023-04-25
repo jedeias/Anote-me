@@ -94,7 +94,7 @@ class Select extends Connect implements selectController{
     private function patient_notes($psico_id, $patient_email)
     {
         
-        $stmt = $this->getConn()->prepare("SELECT paciente.nome, paciente.email, paciente.pk_paciente, anotacoes_paciente.pk_anotacoes_paciente, anotacoes_paciente.anotacao, anotacoes_paciente.emocao, anotacoes_paciente.intensidade, DATE_FORMAT(anotacoes_paciente.data, '%d/%m/%y') as data, DATE_FORMAT(anotacoes_paciente.hora, '%H:%i') as hora
+        $stmt = $this->getConn()->prepare("SELECT paciente.nome, paciente.email, paciente.pk_paciente, anotacoes_paciente.pk_anotacoes_paciente, anotacoes_paciente.anotacao, anotacoes_paciente.emocao, anotacoes_paciente.intensidade, DATE_FORMAT(anotacoes_paciente.data, '%d/%m/%Y') as data, DATE_FORMAT(anotacoes_paciente.hora, '%H : %i') as hora
         FROM anotacoes_paciente INNER JOIN paciente ON (anotacoes_paciente.fk_paciente = paciente.pk_paciente) INNER JOIN psicologo ON (paciente.fk_psicologo = psicologo.pk_psicologo) WHERE psicologo.pk_psicologo = ? AND paciente.email = ?");
                                             
         $stmt->bind_param("is", $psico_id, $patient_email);
