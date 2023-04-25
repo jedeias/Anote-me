@@ -28,7 +28,10 @@ if($nome == NULL and $email == NULL and $type == NULL){
 </head>
 <body id="body">
 <header class='header-container'>
+
         <h1 onclick="location.href=psiPacientes.php">ANOTE-ME</h1>
+        <h1 onclick="location.href=secretario.php">ANOTE-ME</h1>
+        
         <figure id='wrapperButton' class='click-perfil' onclick='ClickPerfil()'> 
             <?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
                 <img src="<?php echo $imagem['imagem'] ?>" alt="" class='perfil' id='first-perfil'>
@@ -65,7 +68,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
         <aside class="menu-container">
             <nav class="menu">
                 <ul>
-                    <a href="./secreCadastro.html">
+                    <a href="./secreCadastro.php">
                         <li class="anotacoes">
                             <p>Cadastro</p>
                         </li>

@@ -1,4 +1,5 @@
 <?php
+
 (include('../../../autoload.php'));
 
 $session = new Session();
@@ -6,9 +7,9 @@ $session = new Session();
 $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
-$paci_id = $session->session_get('id');
+$id = $session->session_get('id');
 
-
+// se nao existir session ele volta para a raiz do app
 if (empty($_SESSION)) {
 
     header('location: ../../../../index.html');
@@ -21,13 +22,13 @@ require_once("../../../controller/crud.php");
 if(isset($_POST['atualizar_perfil'])){
 
     $nome = $_POST['atualizar_nome'];
-    $email = $_POST['atualizar_email'];
+    $telefone = $_POST['atualizar_telefone'];
     $senha = $_POST['senha'];
-    $psico_id = $session->session_get('id');
+    $id = $session->session_get('id');
 
     $crud = new Crud();
-    $atualizar = $crud->atualizar_perfil("paciente", $nome, $email, $senha,$paci_id);
-
+    $atualizar = $crud->atualizar_perfil("paciente", $nome, $telefone, $senha,$id);
+    
     // verifique se a atualização foi bem sucedida e redirecione o usuário para a página do perfil
     if ($atualizar) {
         $nome = $session->session_set('nome', $nome);

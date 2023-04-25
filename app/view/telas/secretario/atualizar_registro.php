@@ -50,7 +50,7 @@ if (empty($_SESSION)) {
 					<span>Nome</span>
 					<input class="box" type="text" id="nome" name="atualizar_nome" value="<?php echo $dados[0]['nome']?>">
 					<span>Email</span>
-					<input class="box" type="text" id="email" name="atualizar_email" value="<?php echo $dados[0]['email']?>">
+					<input class="box" type="text" id="telefone" name="atualizar_telefone" value="<?php echo $dados[0]['numero']?>">
 					<span>Senha</span>
 					<input class="box" type="password" name="senha" value="<?php echo $dados[0]['senha'] ?>" placeholder="Nova senha">
 				</div>

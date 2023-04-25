@@ -19,17 +19,14 @@ if($nome == NULL or $email == NULL or $type == NULL){
    header("location: /../../../tcc/index.html");
 }
 
+$_SESSION['get_executed'] = false;
 
-$pk_atividade = $_POST['excluir'];
+$pk_anotacao = $_POST['excluir'];
 
 $delete = new Crud();
 
-$delete->delete_atividades_paciente($pk_atividade);
+$delete->delete_anotacao_paciente($pk_anotacao);
 
-$curPaciente = $_POST['curPaciente'];
+header("location: ../../../view/telas/paciente/anotacoes.php?deletednote");
 
-header("location: ../../../view/telas/psicologo/psiPacientes.php?paciente=".$curPaciente."");
-
-echo "$pk_atividade";
-
-?>
+var_dump($pk_anotacao);

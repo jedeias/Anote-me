@@ -94,7 +94,7 @@ class Select extends Connect implements selectController{
     private function patient_notes($psico_id, $patient_email)
     {
         
-        $stmt = $this->getConn()->prepare("SELECT paciente.nome, paciente.email, paciente.pk_paciente, anotacoes_paciente.pk_anotacoes_paciente, anotacoes_paciente.anotacao, anotacoes_paciente.emocao, anotacoes_paciente.intensidade, DATE_FORMAT(anotacoes_paciente.data, '%d/%m/%y') as data, DATE_FORMAT(anotacoes_paciente.hora, '%H:%i') as hora
+        $stmt = $this->getConn()->prepare("SELECT paciente.nome, paciente.email, paciente.pk_paciente, anotacoes_paciente.pk_anotacoes_paciente, anotacoes_paciente.anotacao, anotacoes_paciente.emocao, anotacoes_paciente.intensidade, DATE_FORMAT(anotacoes_paciente.data, '%d/%m/%Y') as data, DATE_FORMAT(anotacoes_paciente.hora, '%H : %i') as hora
         FROM anotacoes_paciente INNER JOIN paciente ON (anotacoes_paciente.fk_paciente = paciente.pk_paciente) INNER JOIN psicologo ON (paciente.fk_psicologo = psicologo.pk_psicologo) WHERE psicologo.pk_psicologo = ? AND paciente.email = ?");
                                             
         $stmt->bind_param("is", $psico_id, $patient_email);
@@ -122,11 +122,17 @@ class Select extends Connect implements selectController{
     
     private function todosDados($id){
         $conn = $this->getConn();
-        $stmt = mysqli_prepare($conn, "SELECT pk_psicologo AS id, nome, email, senha FROM psicologo WHERE pk_psicologo = ? 
+        $stmt = mysqli_prepare($conn, "SELECT pk_psicologo AS id, nome, email, senha, telefone.numero FROM psicologo 
+                                            JOIN telefone ON psicologo.fk_telefone = telefone.pk_telefone
+                                            WHERE psicologo.pk_psicologo = ? 
                                         UNION ALL
-                                        SELECT pk_paciente AS id, nome, email, senha  FROM paciente WHERE pk_paciente = ?
+                                        SELECT pk_paciente AS id, nome, email, senha, telefone.numero  FROM paciente 
+                                            JOIN telefone ON paciente.fk_telefone = telefone.pk_telefone
+                                            WHERE paciente.pk_paciente = ?
                                         UNION ALL
-                                        SELECT pk_secretario AS id, nome, email, senha FROM secretario WHERE pk_secretario = ?
+                                        SELECT pk_secretario AS id, nome, email, senha, telefone.numero FROM secretario 
+                                            JOIN telefone ON secretario.fk_telefone = telefone.pk_telefone
+                                            WHERE secretario.pk_secretario = ?
                                         ");
     
         mysqli_stmt_bind_param($stmt, "iii", $id, $id, $id);

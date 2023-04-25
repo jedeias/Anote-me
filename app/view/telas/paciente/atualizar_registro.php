@@ -5,7 +5,7 @@ $session = new Session();
 $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
-$psico_id = $session->session_get('id');
+$id = $session->session_get('id');
 
 if (empty($_SESSION)) {
     header('location: ../../../../index.html');
@@ -22,8 +22,9 @@ if (empty($_SESSION)) {
     <?php
 	
         $sql = new Select();
-        $dados = $sql->getDados($psico_id);
-		$imagem = $sql->getImagem($psico_id);
+        $dados = $sql->getDados($id);
+		$imagem = $sql->getImagem($id);
+		
 
     ?>
 	<title>Meu perfil</title>
@@ -32,7 +33,7 @@ if (empty($_SESSION)) {
 <body>
 	<div class="atualizar-perfil">
 
-		<form method="POST" action="../../../controller/crud/psicologo/updatePsicologo.php" enctype="multipart/form-data">
+		<form method="POST" action="../../../controller/crud/paciente/updatePaciente.php" enctype="multipart/form-data">
 			<div class="name-title">Bem vindo(a) <?php echo $nome ?></div>
 			<div class="flex">
 				<div class="inputBox">
@@ -49,8 +50,8 @@ if (empty($_SESSION)) {
 					<?php endif; ?>
 					<span>Nome</span>
 					<input class="box" type="text" id="nome" name="atualizar_nome" value="<?php echo $dados[0]['nome']?>">
-					<span>Email</span>
-					<input class="box" type="text" id="email" name="atualizar_email" value="<?php echo $dados[0]['email']?>">
+					<span>Telefone</span>
+					<input class="box" type="text" id="telefone" name="atualizar_telefone" value="<?php echo $dados[0]['numero']?>">
 					<span>Senha</span>
 					<input class="box" type="password" name="senha" value="<?php echo $dados[0]['senha'] ?>" placeholder="Nova senha">
 				</div>

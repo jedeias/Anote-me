@@ -105,6 +105,7 @@ function onChange(){
     }
 }
 
+
 emojiSelect.onchange = onChange;
 onChange();
 
@@ -119,4 +120,92 @@ function modalclick() {
         }
     })
 }
+
+
+let numAnotacoes = parseInt(document.getElementById("numAnotacoes").getAttribute("data-valor"));
+
+let selAnotacao = numAnotacoes + 1;
+
+function DescartarAnotacao(){
+
+    let textArea = document.getElementById('textarea');
+    if(textArea.value != ''){
+        if(confirm('Deseja mesmo descartar esta anotação?') == true){
+            textArea.value = '';
+    }
+    }
+
+}
+
+let notepadCount = document.getElementById('notepad-count');
+
+notepadCount.innerText = selAnotacao + '/' + numAnotacoes;
+
+function prevNote(){
+    let curNote = document.getElementById('anotacao' + selAnotacao);
+
+    if(selAnotacao !== 1){
+        var incomingNote = selAnotacao - 1;
+    } else {
+        var incomingNote = selAnotacao;
+    }
+    let prevNote = document.getElementById('anotacao' + incomingNote);
+
+    curNote.classList.remove('active');
+    prevNote.classList.add('active');
+
+    if(selAnotacao > 1 && selAnotacao != 1){
+        selAnotacao = selAnotacao - 1;
+    }
+
+    textToEmoji(selAnotacao);
+    notepadCount.innerText = selAnotacao + '/' + numAnotacoes;
+}
+
+function nextNote(){
+    let curNote = document.getElementById('anotacao' + selAnotacao);
+    if(selAnotacao !== numAnotacoes + 1){
+        var incomingNote = selAnotacao + 1;
+    } else {
+        var incomingNote = selAnotacao;
+    }
+    let nextNote = document.getElementById('anotacao' + incomingNote);
+
+    curNote.classList.remove('active');
+    nextNote.classList.add('active');
+
+    if(selAnotacao < numAnotacoes + 1){
+        selAnotacao = selAnotacao + 1;
+    }
+
+    notepadCount.innerText = selAnotacao + '/' + numAnotacoes;
+}
+
+function textToEmoji(id){
+    let emocaoText = document.getElementById('emojiAnotacao' + id);
+    if(emocaoText.innerHTML == "indiferente"){
+        emocaoText.innerText = "😶"
+    } else if(emocaoText.innerHTML == "feliz"){
+        emocaoText.innerText = "😃"
+    } else if(emocaoText.innerHTML == "triste"){
+        emocaoText.innerText = "😥"
+    } else if(emocaoText.innerHTML == "ansioso"){
+        emocaoText.innerText = "😰"
+    } else if(emocaoText.innerHTML == "raiva"){
+        emocaoText.innerText = "😠"
+    } else if(emocaoText.innerHTML == "medo"){
+        emocaoText.innerText = "😱"
+    }
+}
+
+function deleteAlertAnotacao(e){
+    var confirmacao = confirm("Deseja mesmo excluir esta anotação?");
+
+    if(!confirmacao){
+        e.preventDefault();
+    }
+}
+
+console.log(selAnotacao);
+
 
