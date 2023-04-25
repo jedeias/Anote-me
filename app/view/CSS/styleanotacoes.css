@@ -216,8 +216,8 @@
 .notepad-count{
     color: #737373;
     position: relative;
-    top: -20px;
-    right: 30%;
+    top: 35%;
+    right: 22%;
     user-select: none;
 
 }
@@ -255,6 +255,12 @@
 .prev-note-descartar{
     margin-top: 3px;
     width: 96%;
+}
+
+.delete-form{
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 .prev-button, .next-button{
     width: 50px;

@@ -150,7 +150,8 @@ if (empty($_SESSION)) {
 
                                     echo "<div class='activity-info'>";
 
-                                        echo "<p>"."Sentindo-se: 😢 ". $dado['emocao'] ."</p>";
+                                        echo "<p>Sentindo-se: ". $dado['emocao'] ."</p>";
+                                        
                                         echo "<p>Intensidade: " . $dado['intensidade']. "%". "</p> ";   
 
                                     echo "</div>";

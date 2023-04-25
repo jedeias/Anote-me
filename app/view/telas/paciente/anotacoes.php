@@ -105,13 +105,13 @@ if($nome == NULL and $email == NULL and $type == NULL){
                 $numAnotacoes = $numAnotacoes+1;
                 echo"<div id='anotacao".$numAnotacoes."' class='notepad'>";
                 echo"<article class='notepad-header'>";
-                echo"<p class='emoji-button' title='Intensidade: ".$anotacao['intensidade']."%'>😶</p>";
+                echo"<p id='emojiAnotacao".$numAnotacoes."'class='emoji-button' title='Emoção: ".$anotacao['emocao']."&#013Intensidade: ".$anotacao['intensidade']."%'>".$anotacao['emocao']."</p>";
                 echo"<p class='notepad-date'>".$anotacao['data']."</p>";
                 echo"<p class='notepad-clock'>".$anotacao['hora']."</p>";
                 echo"</article>";
                 echo"<textarea class='prev-note-text' readonly>".$anotacao['anotacao']."</textarea>";
                 echo"<div class='action-button-container'>";
-                echo"<button class='action-button prev-note-descartar'>Descartar</button>";
+                echo"<form class='delete-form' method='POST' onsubmit='deleteAlertAnotacao(event)' action='../../../controller/crud/paciente/deleteAnotacao.php'><button class='action-button prev-note-descartar' name='excluir' value='".$anotacao['pk_anotacoes_paciente']."'>Descartar</button></form>";
                 echo"</div>";
                 echo"</div>";
               }
@@ -169,15 +169,25 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                 </svg>
             </button>
-            <p class='notepad-count'>1/1</p>
+            <p id='notepad-count' class='notepad-count'>1/1</p>
         </section>
         <?php
 
-        if(isset($_GET["savednote"])){
-          echo "<div class='saved-note'>";
-          echo "<p>Anotação Salva!</p>";
-          echo "</div>";
+        if (!isset($_SESSION['get_executed']) || !$_SESSION['get_executed']) {
+            if(isset($_GET["savednote"])){
+                echo "<div class='saved-note'>";
+                echo "<p>Anotação Salva!</p>";
+                echo "</div>";
+              }
+      
+              if(isset($_GET["deletednote"])){
+                echo "<div class='saved-note'>";
+                echo "<p>Anotação Deletada</p>";
+                echo "</div>";   
+              }           
+            $_SESSION['get_executed'] = true;
         }
+
         
         ?>
     </section>

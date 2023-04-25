@@ -19,6 +19,7 @@ if($nome == NULL or $email == NULL or $type == NULL){
    header("location: /../../../tcc/index.html");
 }
 
+
 $pk_atividade = $_POST['excluir'];
 
 $delete = new Crud();

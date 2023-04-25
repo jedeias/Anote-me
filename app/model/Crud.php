@@ -61,6 +61,12 @@ class Crud extends Connect implements CrudController{
         $this->query($sql);
     }
 
+    public function delete_anotacao_paciente($pk_anotacoes_paciente){
+        $sql = "DELETE FROM anotacoes_paciente WHERE anotacoes_paciente.pk_anotacoes_paciente = '$pk_anotacoes_paciente'";
+
+        $this->query($sql);
+    }
+
     // atualizar a imagem do perfil do usuario de acordo com a tabela
     public function atualizar_imagem($tabela, $imagem, $id){
         // verificar se o ID corresponde a um registro válido na tabela especificada

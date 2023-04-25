@@ -18,20 +18,15 @@ $id = $session->session_get('id');
 if($nome == NULL or $email == NULL or $type == NULL){
    header("location: /../../../tcc/index.html");
 }
-$emocao = $_POST["emocao"];
-$emocaoGrau = $_POST["emocaoGrau"];
-$descricao = $_POST["descricao"];
-
-$session->session_set( "emocao" ,$emocao);
-$session->session_set( "emocaoGrau" ,$emocaoGrau );
-$session->session_set( "descricao" ,$descricao );
 
 $_SESSION['get_executed'] = false;
 
-$inser = new Crud();
+$pk_anotacao = $_POST['excluir'];
 
-echo"<br>";
+$delete = new Crud();
 
-$inser->insert_notas_paciente ($id, $emocao,$emocaoGrau, $descricao);
+$delete->delete_anotacao_paciente($pk_anotacao);
 
-header("location: /../../tcc/app/view/telas/paciente/anotacoes.php?savednote");
+header("location: ../../../view/telas/paciente/anotacoes.php?deletednote");
+
+var_dump($pk_anotacao);

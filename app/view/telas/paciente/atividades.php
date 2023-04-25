@@ -92,7 +92,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
 
             $select = new Select();
 
-            $atividades = $select->select_activities($psico_id, $paciente_id);
+            $atividades = $select->select_atividades($psico_id, $paciente_id);
             foreach ($atividades as $atividade) {
                 echo "<article class='paciente-atividade'>";
                     echo "<div class='activity'>";
