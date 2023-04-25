@@ -19,6 +19,8 @@ if($nome == NULL and $email == NULL and $type == NULL){
 }
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -52,7 +54,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     <li class="center"><?php echo "$nome"; ?></li>
                     <div class='lista-dados-content'>
                         <li>Email : <?php echo $email; ?></li>
-                        <li>Telefone : <?php echo $paci_id; ?></li>
+                        <li>Telefone : <?php echo $id; ?></li>
                         <li>Responsável : </li>
                         <li>Telefone do Responsável : </li>
                         <li>Psicologo : </li>

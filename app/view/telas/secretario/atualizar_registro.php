@@ -24,7 +24,6 @@ if (empty($_SESSION)) {
         $sql = new Select();
         $dados = $sql->getDados($id);
 		$imagem = $sql->getImagem($id);
-		
 
     ?>
 	<title>Meu perfil</title>
@@ -33,7 +32,7 @@ if (empty($_SESSION)) {
 <body>
 	<div class="atualizar-perfil">
 
-		<form method="POST" action="../../../controller/crud/paciente/updatePaciente.php" enctype="multipart/form-data">
+		<form method="POST" action="../../../controller/crud/secretario/updateSecretario.php" enctype="multipart/form-data">
 			<div class="name-title">Bem vindo(a) <?php echo $nome ?></div>
 			<div class="flex">
 				<div class="inputBox">
@@ -50,7 +49,7 @@ if (empty($_SESSION)) {
 					<?php endif; ?>
 					<span>Nome</span>
 					<input class="box" type="text" id="nome" name="atualizar_nome" value="<?php echo $dados[0]['nome']?>">
-					<span>Telefone</span>
+					<span>Email</span>
 					<input class="box" type="text" id="telefone" name="atualizar_telefone" value="<?php echo $dados[0]['numero']?>">
 					<span>Senha</span>
 					<input class="box" type="password" name="senha" value="<?php echo $dados[0]['senha'] ?>" placeholder="Nova senha">
@@ -58,7 +57,7 @@ if (empty($_SESSION)) {
 			</div>
 			<div class="btn-footer">
 				<input class="form-btn" type="submit" value="Atualizar Dados" name="atualizar_perfil">
-				<a href="./anotacoes.php"><button type="button" class="form-btn">Voltar</button></a>
+				<a href="secretario.php"><button type="button" class="form-btn">Voltar</button></a>
 			</div>
 		</form>
 

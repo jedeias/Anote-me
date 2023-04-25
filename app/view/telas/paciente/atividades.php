@@ -9,7 +9,7 @@ $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
 $paciente_id = $session->session_get('id');
-$psico_id = $session->session_get('fk_psicologo');
+$id = $session->session_get('fk_psicologo');
 
 $pegar_imagem = new Select();
 $imagem = $pegar_imagem->getImagem($paciente_id);

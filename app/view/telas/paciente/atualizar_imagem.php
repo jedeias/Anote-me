@@ -5,7 +5,7 @@ $session = new Session();
 $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
-$psico_id = $session->session_get('id');
+$id = $session->session_get('id');
 
 if (empty($_SESSION)) {
     header('location: ../../../../index.html');
@@ -22,8 +22,8 @@ if (empty($_SESSION)) {
     <?php
 	
         $sql = new Select();
-        $dados = $sql->getDados($psico_id);
-		$imagem = $sql->getImagem($psico_id);
+        $dados = $sql->getDados($id);
+		$imagem = $sql->getImagem($id);
 		//var_dump($imagem);
     ?>
 	<title>Meu Imagem</title>
@@ -31,7 +31,7 @@ if (empty($_SESSION)) {
 </head>
 <body>
 	<div class="atualizar-perfil">
-		<form method="POST" action="../../../controller/crud/psicologo/updateImage.php" enctype="multipart/form-data">
+		<form method="POST" action="../../../controller/crud/paciente/updateImage.php" enctype="multipart/form-data">
 			<div class="name-title">Atualizar imagem</div>
 			<div class="flex">
 				<div class="inputBox">

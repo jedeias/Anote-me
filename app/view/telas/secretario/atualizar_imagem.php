@@ -24,41 +24,29 @@ if (empty($_SESSION)) {
         $sql = new Select();
         $dados = $sql->getDados($id);
 		$imagem = $sql->getImagem($id);
-		
-
+		//var_dump($imagem);
     ?>
-	<title>Meu perfil</title>
+	<title>Meu Imagem</title>
 	<link rel="stylesheet" href="../../CSS/atualizar_perfil.css">
 </head>
 <body>
 	<div class="atualizar-perfil">
-
-		<form method="POST" action="../../../controller/crud/paciente/updatePaciente.php" enctype="multipart/form-data">
-			<div class="name-title">Bem vindo(a) <?php echo $nome ?></div>
+		<form method="POST" action="../../../controller/crud/secretario/updateImage.php" enctype="multipart/form-data">
+			<div class="name-title">Atualizar imagem</div>
 			<div class="flex">
 				<div class="inputBox">
 					<?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
-						<a class="img-img" href="./atualizar_imagem.php">
-							<img src="<?php echo $imagem['imagem'] ?>" alt="">
-							<p class="img-hover">Atualizar imagem</p>
-						</a>
+						<img src="<?php echo $imagem['imagem'] ?>" alt="">
 					<?php else: ?>
-					<a class="img-img" href="./atualizar_imagem.php">
 						<img class="img-default" src="../../IMG/default.jpg" alt="">
-						<p class="img-hover">Atualizar imagem</p>
-					</a>
 					<?php endif; ?>
-					<span>Nome</span>
-					<input class="box" type="text" id="nome" name="atualizar_nome" value="<?php echo $dados[0]['nome']?>">
-					<span>Telefone</span>
-					<input class="box" type="text" id="telefone" name="atualizar_telefone" value="<?php echo $dados[0]['numero']?>">
-					<span>Senha</span>
-					<input class="box" type="password" name="senha" value="<?php echo $dados[0]['senha'] ?>" placeholder="Nova senha">
+					<span>Atualizar foto :</span>
+					<input class="box-file" type="file" name="imagem" accept="image/jpg, image/jpeg, image/png">
 				</div>
 			</div>
 			<div class="btn-footer">
-				<input class="form-btn" type="submit" value="Atualizar Dados" name="atualizar_perfil">
-				<a href="./anotacoes.php"><button type="button" class="form-btn">Voltar</button></a>
+			<input class="form-btn" type="submit" value="Atualizar Imagem" name="atualizar_imagem">
+			<a href="./atualizar_registro.php"><button class="form-btn" type="button">Voltar</button></a>
 			</div>
 		</form>
 

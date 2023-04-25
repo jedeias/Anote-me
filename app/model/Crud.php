@@ -28,7 +28,6 @@ class Crud extends Connect implements CrudController{
 
     public function insert_notas_paciente($id, $emocao, $emocaoGrau, $descricao) {
 
-
         $sql = "INSERT INTO anotacoes_paciente (
             pk_anotacoes_paciente,
             fk_redflag,
@@ -48,7 +47,6 @@ class Crud extends Connect implements CrudController{
             '$emocaoGrau',
             CURDATE(),
             DATE_FORMAT(NOW(), '%k:%i')
-
         )";
     
         $this->query($sql);
@@ -84,12 +82,12 @@ class Crud extends Connect implements CrudController{
         }
 
         // recuperar o caminho da imagem antiga antes de atualizá-la
-        $stmt = $this->getConn()->prepare("SELECT imagem FROM $tabela WHERE $tabela.pk_$tabela = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        $caminho_antigo = $row['imagem'];
+        // $stmt = $this->getConn()->prepare("SELECT imagem FROM $tabela WHERE $tabela.pk_$tabela = ?");
+        // $stmt->bind_param("i", $id);
+        // $stmt->execute();
+        // $result = $stmt->get_result();
+        // $row = $result->fetch_assoc();
+        // $caminho_antigo = $row['imagem'];
     
         // executar a consulta UPDATE na tabela especificada
         $stmt = $this->getConn()->prepare("UPDATE $tabela SET imagem = ? WHERE $tabela.pk_$tabela = ?");
@@ -102,9 +100,9 @@ class Crud extends Connect implements CrudController{
     
         if ($stmt->affected_rows > 0) {
             // apagar a imagem antiga do diretório
-            if (!empty($caminho_antigo)) {
-                unlink($caminho_antigo);
-            }
+            // if (!empty($caminho_antigo)) {
+            //     unlink($caminho_antigo);
+            // }
             return true;
         } else {
             return false;
@@ -112,13 +110,13 @@ class Crud extends Connect implements CrudController{
     }
 
     // função para atualizar o perfil dos usuarios de acordo com a tabela
-    public function atualizar_perfil($tabela, $nome, $email, $senha, $id){
-        $stmt = $this->getConn()->prepare("UPDATE $tabela SET nome = ?, email = ?, senha = ? WHERE $tabela.pk_$tabela = ?");
+    public function atualizar_perfil($tabela, $nome, $telefone, $senha, $id){
+        $stmt = $this->getConn()->prepare("UPDATE $tabela, telefone SET nome = ?, telefone.numero = ?, senha = ? WHERE $tabela.pk_$tabela = ? AND $tabela.fk_telefone = telefone.pk_telefone");
         if (!$stmt) {
             // Se a preparação da consulta falhar, mostre o erro do MySQLi
             die("Erro na consulta: " . $this->getConn()->error);
         }
-        $stmt->bind_param("sssi",$nome, $email, $senha, $id);
+        $stmt->bind_param("sssi",$nome, $telefone, $senha, $id);
         $stmt->execute();
     
         if ($stmt->affected_rows > 0) {

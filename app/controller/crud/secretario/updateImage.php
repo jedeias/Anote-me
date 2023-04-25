@@ -30,18 +30,18 @@ if(isset($_POST['atualizar_imagem'])){
         move_uploaded_file($caminho_temporario, $novo_caminho);
 
         $crud = new Crud();
-        $atualizar = $crud->atualizar_imagem('paciente', $novo_caminho, $id);
+        $atualizar = $crud->atualizar_imagem('secretario', $novo_caminho, $id);
 
         if ($atualizar) {
 
-            header('location: ../../../view/telas/paciente/atualizar_registro.php');
+            header('location: ../../../view/telas/secretario/atualizar_registro.php');
 
         } else {
             echo "Erro ao atualizar o perfil.";
         }
     }
 
-    header('location: ../../../view/telas/paciente/atualizar_registro.php');
+    header('location: ../../../view/telas/secretario/atualizar_registro.php');
 }
 
 ?>

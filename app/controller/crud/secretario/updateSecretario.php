@@ -27,17 +27,16 @@ if(isset($_POST['atualizar_perfil'])){
     $id = $session->session_get('id');
 
     $crud = new Crud();
-    $atualizar = $crud->atualizar_perfil("psicologo", $nome, $telefone, $senha,$id);
+    $atualizar = $crud->atualizar_perfil("secretario", $nome, $telefone, $senha,$id);
     
     // verifique se a atualização foi bem sucedida e redirecione o usuário para a página do perfil
     if ($atualizar) {
         $nome = $session->session_set('nome', $nome);
 
-        header('location: ../../../view/telas/psicologo/psiPacientes.php');
-
+        header('location: ../../../view/telas/secretario/home.php');
     } else {
 
-        header('location: ../../../view/telas/psicologo/psiPacientes.php');
+        header('location: ../../../view/telas/secretario/home.php');
         
     }
 }

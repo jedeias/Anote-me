@@ -202,37 +202,33 @@ REPLACE INTO `responsavel` (`pk_responsavel`, `fk_endereco`, `fk_telefone`, `fk_
 	(1, 1, 1, 1, 'Fulano de Tal', 'fulano@example.com', '123456789', 1234567890),
 	(2, 2, 2, 1, 'Ciclano de Tal', 'ciclano@example.com', '987654321', 1098765432);
 	
-	
-  
-	
-CREATE TABLE IF NOT EXISTS `tipo_atividade` (
-  `pk_tipo_atividade` int(11) NOT NULL AUTO_INCREMENT,
-  `finalidade` text NOT NULL,
-  `descricao` text NOT NULL,
-  PRIMARY KEY (`pk_tipo_atividade`)
-);
-REPLACE INTO `tipo_atividade` (`pk_tipo_atividade`, `finalidade`, `descricao`) VALUES
-	(1, 'Esportes', 'Atividades relacionadas a prática de esportes'),
-	(2, 'Artes', 'Atividades relacionadas a pintura e escultura'),
-	(3, 'Música', 'Atividades relacionadas a prática musical'),
-	(4, 'Teatro', 'Atividades relacionadas a prática teatral'),
-	(5, 'Dança', 'Atividades relacionadas a prática de dança');
+-- CREATE TABLE IF NOT EXISTS `tipo_atividade` (
+--   `pk_tipo_atividade` int(11) NOT NULL AUTO_INCREMENT,
+--   `finalidade` text NOT NULL,
+--   `descricao` text NOT NULL,
+--   PRIMARY KEY (`pk_tipo_atividade`)
+-- );
+-- REPLACE INTO `tipo_atividade` (`pk_tipo_atividade`, `finalidade`, `descricao`) VALUES
+-- 	(1, 'Esportes', 'Atividades relacionadas a prática de esportes'),
+-- 	(2, 'Artes', 'Atividades relacionadas a pintura e escultura'),
+-- 	(3, 'Música', 'Atividades relacionadas a prática musical'),
+-- 	(4, 'Teatro', 'Atividades relacionadas a prática teatral'),
+-- 	(5, 'Dança', 'Atividades relacionadas a prática de dança');
 	
 	
-CREATE TABLE IF NOT EXISTS `atividade` (
-  `pk_atividade` int(11) NOT NULL AUTO_INCREMENT,
-  `fk_tipo_atividade` int(11) NOT NULL,
-  PRIMARY KEY (`pk_atividade`),
-  KEY `fk_tipo_atividade` (`fk_tipo_atividade`),
-  CONSTRAINT `atividade_ibfk_1` FOREIGN KEY (`fk_tipo_atividade`) REFERENCES `tipo_atividade` (`pk_tipo_atividade`)
-);
-REPLACE INTO `atividade` (`pk_atividade`, `fk_tipo_atividade`) VALUES
-	(1, 1),
-	(5, 2),
-	(2, 3),
-	(3, 4),
-	(4, 5);
-	
+-- CREATE TABLE IF NOT EXISTS `atividade` (
+--   `pk_atividade` int(11) NOT NULL AUTO_INCREMENT,
+--   `fk_tipo_atividade` int(11) NOT NULL,
+--   PRIMARY KEY (`pk_atividade`),
+--   KEY `fk_tipo_atividade` (`fk_tipo_atividade`),
+--   CONSTRAINT `atividade_ibfk_1` FOREIGN KEY (`fk_tipo_atividade`) REFERENCES `tipo_atividade` (`pk_tipo_atividade`)
+-- );
+-- REPLACE INTO `atividade` (`pk_atividade`, `fk_tipo_atividade`) VALUES
+-- 	(1, 1),
+-- 	(5, 2),
+-- 	(2, 3),
+-- 	(3, 4),
+-- 	(4, 5);
 	
 CREATE TABLE IF NOT EXISTS `paciente` (
   `pk_paciente` int(11) NOT NULL AUTO_INCREMENT,
@@ -241,7 +237,6 @@ CREATE TABLE IF NOT EXISTS `paciente` (
   `fk_tipo_usuario` int(11) NOT NULL,
   `fk_responsavel` int(11) NOT NULL,
   `fk_psicologo` int(11) NOT NULL,
-  `fk_atividade` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `senha` varchar(8) NOT NULL,
@@ -252,24 +247,23 @@ CREATE TABLE IF NOT EXISTS `paciente` (
   `imagem` varchar(100) NULL,
   PRIMARY KEY (`pk_paciente`),
   UNIQUE KEY `email` (`email`),
+  KEY `psicologo` (`psicologo`),
   KEY `fk_endereco` (`fk_endereco`),
   KEY `fk_telefone` (`fk_telefone`),
   KEY `fk_responsavel` (`fk_responsavel`),
   KEY `fk_tipo_usuario` (`fk_tipo_usuario`),
-  KEY `fk_paciente_atividade` (`fk_atividade`),
-  CONSTRAINT `fk_paciente_atividade` FOREIGN KEY (`fk_atividade`) REFERENCES `atividade` (`pk_atividade`),
   CONSTRAINT `paciente_ibfk_1` FOREIGN KEY (`fk_endereco`) REFERENCES `endereco` (`pk_endereco`),
   CONSTRAINT `paciente_ibfk_2` FOREIGN KEY (`fk_telefone`) REFERENCES `telefone` (`pk_telefone`),
   CONSTRAINT `paciente_ibfk_3` FOREIGN KEY (`fk_responsavel`) REFERENCES `responsavel` (`pk_responsavel`),
   CONSTRAINT `paciente_ibfk_4` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`),
   CONSTRAINT `paciente_ibfk_5` FOREIGN KEY (`fk_tipo_usuario`) REFERENCES `tipo_usuario` (`pk_tipo_usuario`)
 );
-REPLACE INTO `paciente` (`pk_paciente`, `fk_endereco`, `fk_telefone`, `fk_tipo_usuario`, `fk_responsavel`,`fk_psicologo`, `nome`, `email`, `senha`, `RG`, `CPF`, `sexo`, `data_nasc`, `fk_atividade`) VALUES
-	(2, 1, 2, 3, 1, 11, 'Joãozinho da Silva', 'joaozinho@example.com', 'senha123', '111111111', 123456789, 'M', '2010-01-01', 5),
-	(3, 2, 1, 3, 2, 11, 'Mariazinha Pereira', 'mariazinha@example.com', 'senha123', '222222222', 109876543, 'F', '2012-01-01', 2),
-	(4, 3, 4, 3, 1, 12, 'Pedrinho Souza', 'pedrinho@example.com', 'senha123', '333333333', 246801357, 'M', '2014-01-01', 1),
-	(5, 4, 3, 3, 2, 13, 'Lucinha Carvalho', 'lucinha@example.com', 'senha123', '444444444', 135790246, 'F', '2016-01-01', 3),
-	(6, 5, 5, 3, 2, 12, 'Carlos Eduardo', 'carlos@example.com', 'senha123', '555555555', 864209753, 'M', '2018-01-01', 4);
+REPLACE INTO `paciente` (`pk_paciente`, `fk_endereco`, `fk_telefone`, `fk_tipo_usuario`, `fk_responsavel`,`fk_psicologo`, `nome`, `email`, `senha`, `RG`, `CPF`, `sexo`, `data_nasc`) VALUES
+	(2, 1, 2, 3, 1, 11, 'Joãozinho da Silva', 'joaozinho@example.com', 'senha123', '111111111', 123456789, 'M', '2010-01-01'),
+	(3, 2, 1, 3, 2, 11, 'Mariazinha Pereira', 'mariazinha@example.com', 'senha123', '222222222', 109876543, 'F', '2012-01-01'),
+	(4, 3, 4, 3, 1, 12, 'Pedrinho Souza', 'pedrinho@example.com', 'senha123', '333333333', 246801357, 'M', '2014-01-01'),
+	(5, 4, 3, 3, 2, 13, 'Lucinha Carvalho', 'lucinha@example.com', 'senha123', '444444444', 135790246, 'F', '2016-01-01'),
+	(6, 5, 5, 3, 2, 12, 'Carlos Eduardo', 'carlos@example.com', 'senha123', '555555555', 864209753, 'M', '2018-01-01');
 	
 	
 
@@ -285,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `atividades_paciente` (
   KEY `fk_psicologo` (`fk_psicologo`),
   CONSTRAINT `FK__paciente` FOREIGN KEY (`fk_paciente`) REFERENCES `paciente` (`pk_paciente`),
   CONSTRAINT `FK__psicologo` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 -- Copiando dados para a tabela clinica_psicologica.atividades_paciente: ~0 rows (aproximadamente)
 
@@ -293,20 +287,20 @@ INSERT INTO `atividades_paciente` (`pk_atividades_paciente`, `fk_paciente`, `fk_
 	(1, 2, 11, 'Esporte', 'fazer mais esporte', '2023-04-13');
 
 
-CREATE TABLE IF NOT EXISTS `emocoes` (
-  `pk_emocoes` int(11) NOT NULL AUTO_INCREMENT,
-  `local_img` text NOT NULL,
-  `descricao` text,
-  `emoji` varchar(50) NOT NULL,
-  `intensidade` int(5) NOT NULL,
-  PRIMARY KEY (`pk_emocoes`)
-);
-REPLACE INTO `emocoes` (`pk_emocoes`, `local_img`, `descricao`, `emoji`,`intensidade`) VALUES
-	(1, '', 'triste', 'foto_triste',45),
-	(2, '', 'feliz', 'foto_triste',65),
-	(3, '', 'indiferente', 'foto_triste',85),
-	(4, '', 'euforico', 'foto_triste',95),
-	(5, '', 'ancioso', 'foto_triste',100);
+-- CREATE TABLE IF NOT EXISTS `emocoes` (
+--   `pk_emocoes` int(11) NOT NULL AUTO_INCREMENT,
+--   `local_img` text NOT NULL,
+--   `descricao` text,
+--   `emoji` varchar(50) NOT NULL,
+--   `intensidade` int(5) NOT NULL,
+--   PRIMARY KEY (`pk_emocoes`)
+-- );
+-- REPLACE INTO `emocoes` (`pk_emocoes`, `local_img`, `descricao`, `emoji`,`intensidade`) VALUES
+-- 	(1, '', 'triste', 'foto_triste',45),
+-- 	(2, '', 'feliz', 'foto_triste',65),
+-- 	(3, '', 'indiferente', 'foto_triste',85),
+-- 	(4, '', 'euforico', 'foto_triste',95),
+-- 	(5, '', 'ancioso', 'foto_triste',100);
 
 
 CREATE TABLE IF NOT EXISTS `red_flag` (
@@ -369,26 +363,22 @@ REPLACE INTO `anotacoes_psicologo` (`pk_anotacoes_psicologo`, `fk_psicologo`, `f
 CREATE TABLE IF NOT EXISTS `anotacoes_paciente` (
   `pk_anotacoes_paciente` int(11) NOT NULL AUTO_INCREMENT,
   `fk_redflag` int(11) NOT NULL,
-  `fk_emocoes` int(11) NOT NULL,
   `fk_paciente` int(11) NOT NULL,
   `fk_psicologo` int(11) NOT NULL,
-  `fk_anotacoes_psicologo` int(11) NOT NULL,
-  `anotacoes` text,
+  `anotacao` VARCHAR(500),
+  `emocao` VARCHAR(50),
+  `intensidade` INT,
   `data` date NOT NULL,
   `hora` time NOT NULL,
   PRIMARY KEY (`pk_anotacoes_paciente`),
-  KEY `fk_emocoes` (`fk_emocoes`),
   KEY `fk_paciente` (`fk_paciente`),
-  KEY `fk_anotacoes_psicologo` (`fk_anotacoes_psicologo`),
-  CONSTRAINT `anotacoes_paciente_ibfk_1` FOREIGN KEY (`fk_emocoes`) REFERENCES `emocoes` (`pk_emocoes`),
   CONSTRAINT `anotacoes_paciente_ibfk_2` FOREIGN KEY (`fk_redflag`) REFERENCES `red_flag` (`pk_red_flag`),
   CONSTRAINT `anotacoes_paciente_ibfk_3` FOREIGN KEY (`fk_paciente`) REFERENCES `paciente` (`pk_paciente`),
-  CONSTRAINT `anotacoes_paciente_ibfk_4` FOREIGN KEY (`fk_anotacoes_psicologo`) REFERENCES `anotacoes_psicologo` (`pk_anotacoes_psicologo`),
   CONSTRAINT `anotacoes_paciente_ibfk_5` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`)
 );
-REPLACE INTO `anotacoes_paciente` (`pk_anotacoes_paciente`, `fk_redflag`, `fk_emocoes`, `fk_paciente`,`fk_psicologo`,`fk_anotacoes_psicologo`, `anotacoes`, `data`,`hora`) VALUES
-	(29, 1, 1, 2,11, 11, 'Estou me sentindo muito ansioso', '2022-05-10', '11:30:00'),
-	(30, 2, 2, 3,11, 12, 'Estou me sentindo triste e sem autoestima', '2022-05-12', '12:30:00');
+REPLACE INTO `anotacoes_paciente` (`pk_anotacoes_paciente`, `fk_redflag`, `fk_paciente`,`fk_psicologo`, `anotacao`, `data`,`hora`) VALUES
+	(29, 1, 2,11, 'Estou me sentindo muito ansioso', '2022-05-10', '11:30:00'),
+	(30, 2, 3,11, 'Estou me sentindo triste e sem autoestima', '2022-05-12', '12:30:00');
 
 
 

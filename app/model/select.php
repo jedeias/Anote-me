@@ -122,11 +122,17 @@ class Select extends Connect implements selectController{
     
     private function todosDados($id){
         $conn = $this->getConn();
-        $stmt = mysqli_prepare($conn, "SELECT pk_psicologo AS id, nome, email, senha FROM psicologo WHERE pk_psicologo = ? 
+        $stmt = mysqli_prepare($conn, "SELECT pk_psicologo AS id, nome, email, senha, telefone.numero FROM psicologo 
+                                            JOIN telefone ON psicologo.fk_telefone = telefone.pk_telefone
+                                            WHERE psicologo.pk_psicologo = ? 
                                         UNION ALL
-                                        SELECT pk_paciente AS id, nome, email, senha  FROM paciente WHERE pk_paciente = ?
+                                        SELECT pk_paciente AS id, nome, email, senha, telefone.numero  FROM paciente 
+                                            JOIN telefone ON paciente.fk_telefone = telefone.pk_telefone
+                                            WHERE paciente.pk_paciente = ?
                                         UNION ALL
-                                        SELECT pk_secretario AS id, nome, email, senha FROM secretario WHERE pk_secretario = ?
+                                        SELECT pk_secretario AS id, nome, email, senha, telefone.numero FROM secretario 
+                                            JOIN telefone ON secretario.fk_telefone = telefone.pk_telefone
+                                            WHERE secretario.pk_secretario = ?
                                         ");
     
         mysqli_stmt_bind_param($stmt, "iii", $id, $id, $id);

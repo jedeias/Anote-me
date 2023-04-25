@@ -8,10 +8,10 @@ $session = new Session();
 $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
-$psico_id = $session->session_get('id');
+$id = $session->session_get('id');
 
 $pegar_imagem = new Select();
-$imagem = $pegar_imagem->getImagem($psico_id);
+$imagem = $pegar_imagem->getImagem($id);
 
 if (empty($_SESSION)) {
 
@@ -53,7 +53,7 @@ if (empty($_SESSION)) {
                     <li class='center'><?php echo $nome; ?></li>
                     <div class='lista-dados-content'>
                         <li>Email : <?php echo $email; ?></li>
-                        <li>Telefone : <?php echo $psico_id; ?></li>
+                        <li>Telefone : <?php echo $id; ?></li>
                         <li>Responsável : </li>
                         <li>Telefone do Responsável : </li>
                         <li>Psicologo : </li>
@@ -85,7 +85,7 @@ if (empty($_SESSION)) {
                     }
 
                     $select = new Select();
-                    $patients = $select->select_user_patient($psico_id);
+                    $patients = $select->select_user_patient($id);
                     $i = 0;
                     
                     foreach ($patients as $dado)
@@ -127,7 +127,7 @@ if (empty($_SESSION)) {
                             $email_paciente = $patients[$index]['email'];
                             $pk_paciente = $patients[$index]['pk_paciente'];
                 
-                            $anotacoes = $select->select_notes($psico_id, $email_paciente);
+                            $anotacoes = $select->select_notes($id, $email_paciente);
 
 
                             foreach ($anotacoes as $dado)
@@ -209,7 +209,7 @@ if (empty($_SESSION)) {
                         echo"<article class='activity-add'>";
                         echo"<button id='activityButton' class='activity-button activity-button-plus' onclick='activityClose()' ><img src='../../IMG/ico/plus-svgrepo-com.svg'></button>";
                         echo"</article>";
-                    $atividades = $select->select_atividades($psico_id, $pk_paciente);
+                    $atividades = $select->select_atividades($id, $pk_paciente);
                     foreach ($atividades as $atividade) {
                         echo "<article class='paciente-atividade'>";
                             echo "<div class='activity'>";
