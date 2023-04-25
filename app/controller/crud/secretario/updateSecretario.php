@@ -21,7 +21,7 @@ if(isset($_POST['atualizar_perfil'])){
 
     $nome = $_POST['atualizar_nome'];
     $email = $_POST['atualizar_email'];
-    $senha = $_POST['senha'];
+    $senha = $_POST['senha'];   
     $id = $session->session_get('id');
 
     $crud = new Crud();

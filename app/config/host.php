@@ -9,19 +9,19 @@ class Host{
     private $user = "root";
     private $password = "";
 
-    public function getServer()
+    protected function getServer()
     {
         return $this->server;
     }
-	public function getDatabase() {
+	protected function getDatabase() {
 		return $this->database;
 	}
 
-	public function getUser() {
+	protected function getUser() {
 		return $this->user;
 	}
 
-	public function getPassword() {
+	protected function getPassword() {
 		return $this->password;
 	}
 }

@@ -77,13 +77,13 @@ function psicologoButton(){
 var btnVoltarPaciente = document.getElementById("backButtonPaciente");
 
 btnVoltarPaciente.addEventListener("click", function() {
-    window.location.href = "secreCadastro.html";
+    window.location.href = "secreCadastro.php";
 });
 
 var btnVoltarPsicologo = document.getElementById("backButtonPsicologo");
 
 btnVoltarPsicologo.addEventListener("click", function() {
-    window.location.href = "secreCadastro.html";
+    window.location.href = "secreCadastro.php";
 });
 
 function selecionarPaciente(numero){
