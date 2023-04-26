@@ -22,7 +22,6 @@ class Session implements Session_controller
         session_destroy();
     }
 
-
     public function session_set($session_nome, $atributo) {
     
         $this->set($session_nome, $atributo);

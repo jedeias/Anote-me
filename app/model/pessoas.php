@@ -2,12 +2,15 @@
 
 class Pessoas{
 
-    protected $nome;
-    protected $RG;
-    protected $cpf;
-    protected $sexo;
-    protected $email;
-    protected $senha;
+    private $nome;
+    private $RG;
+    private $cpf;
+    private $sexo;
+    private $email;
+    private $senha;
+	private $dataNasc;
+	private $endereco;
+    private $telefone;
 
 	public function getSenha() {
 		return $this->senha;
@@ -62,6 +65,36 @@ class Pessoas{
 		$this->nome = $nome;
 		return $this;
 	}
+	
+	public function getDataNasc() {
+		return $this->dataNasc;
+	}
+
+	public function setDataNasc($dataNasc): self {
+		$this->dataNasc = $dataNasc;
+		return $this;
+	}
+
+	
+	public function getEndereco() {
+		return $this->endereco;
+	}
+
+	public function setEndereco($endereco): self {
+		$this->endereco = $endereco;
+		return $this;
+	}
+
+    public function getTelefone()
+    {
+        return $this->telefone;
+    }
+
+    public function setTelefone($telefone): self{
+        $this->telefone = $telefone;
+        return $this;
+    }
+
 }
 
 ?>

@@ -6,37 +6,36 @@ include ($_SERVER['DOCUMENT_ROOT'].'/tcc/app/controller/select_controller.php');
 
 require_once("connect.php");
 
-
 class Select extends Connect implements selectController{
 
     #interface start
 
     public function select_user_patient($psico_id)
     {
-        return $pacientes = $this->select_users_patient($psico_id);
+        return $this->select_users_patient($psico_id);
     }
     public function select_notes($psico_id, $patient_email)
     {
-        return $result = $this->patient_notes($psico_id, $patient_email);
+        return $this->patient_notes($psico_id, $patient_email);
     }
 
     public function select_atividades($psico_id, $patient_id){
-        return $result = $this->select_activities($psico_id, $patient_id);
+        return $this->select_activities($psico_id, $patient_id);
     }
 
     public function getDados($id){
-        return $result = $this->todosDados($id);
+        return $this->todosDados($id);
     }
     public function getImagem($id){
-        return $result = $this->imagemPerfil($id);
+        return $this->imagemPerfil($id);
     }
 
     public function getAllUser(){
-        return $result = $this->select_all_users();
+        return $this->select_all_users();
     }
 
     public function loginCheck($email, $password){
-        return $result = $this->validateUser($email, $password);
+        return $this->validateUser($email, $password);
     }
 
     #interface end
@@ -104,6 +103,9 @@ class Select extends Connect implements selectController{
 
         return $data;
     }
+
+
+    
     private function select_activities($psico_id, $patient_id)
     {
         $stmt = $this->getconn()->prepare(" SELECT atividades_paciente.assunto_atividade, atividades_paciente.atividade, DATE_FORMAT(atividades_paciente.data, '%d/%m/%y') as data, atividades_paciente.pk_atividades_paciente
