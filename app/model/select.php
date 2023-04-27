@@ -24,6 +24,12 @@ class Select extends Connect implements selectController{
         return $result = $this->select_activities($psico_id, $patient_id);
     }
 
+    public function getDadosPsicologoPaciente($id){
+        return $result = $this->dadosPsicologoPaciente($id);
+    }
+    public function getDadosResponsavel($id){
+        return $result = $this->dadosResponsavel($id);
+    }
     public function getDados($id){
         return $result = $this->todosDados($id);
     }
@@ -119,6 +125,42 @@ class Select extends Connect implements selectController{
 
         return $data;
     }
+
+    private function dadosPsicologoPaciente($id){
+        $conn = $this->getConn();
+        $stmt = mysqli_prepare($conn, "SELECT pk_paciente AS id, psicologo.nome as nome_psicologo FROM paciente                                        
+                                        JOIN psicologo ON paciente.fk_psicologo = psicologo.pk_psicologo                
+                                        WHERE paciente.pk_paciente = ?");
+        if(!$stmt) {
+            die("erro na preparação da consulta: " . mysqli_error($conn));
+        }
+
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        return $data;
+        
+    }
+    private function dadosResponsavel($id){
+        $conn = $this->getConn();
+        $stmt = mysqli_prepare($conn, "SELECT pk_paciente AS id, responsavel.nome, telefone.numero as numero_responsavel FROM paciente                                        
+                                        JOIN responsavel ON paciente.fk_responsavel = responsavel.pk_responsavel
+                                        LEFT JOIN telefone ON responsavel.fk_telefone = telefone.pk_telefone
+                                        WHERE paciente.pk_paciente = ?");
+        if(!$stmt)        {
+            die("erro na preparação da consulta: " . mysqli_error($conn));
+        }
+
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        return $data;
+    }
+
     
     private function todosDados($id){
         $conn = $this->getConn();
@@ -126,7 +168,7 @@ class Select extends Connect implements selectController{
                                             JOIN telefone ON psicologo.fk_telefone = telefone.pk_telefone
                                             WHERE psicologo.pk_psicologo = ? 
                                         UNION ALL
-                                        SELECT pk_paciente AS id, nome, email, senha, telefone.numero  FROM paciente 
+                                        SELECT pk_paciente AS id, paciente.nome, paciente.email, paciente.senha, telefone.numero FROM paciente 
                                             JOIN telefone ON paciente.fk_telefone = telefone.pk_telefone
                                             WHERE paciente.pk_paciente = ?
                                         UNION ALL
@@ -134,6 +176,9 @@ class Select extends Connect implements selectController{
                                             JOIN telefone ON secretario.fk_telefone = telefone.pk_telefone
                                             WHERE secretario.pk_secretario = ?
                                         ");
+        if (!$stmt) {
+            die("Erro na preparação da consulta: " . mysqli_error($conn));
+        }
     
         mysqli_stmt_bind_param($stmt, "iii", $id, $id, $id);
         mysqli_stmt_execute($stmt);
@@ -145,7 +190,7 @@ class Select extends Connect implements selectController{
         return $data;
     }
 
-    //tudo certo 
+
     private function imagemPerfil($id){
         $conn = $this->getConn();
         $stmt = mysqli_prepare($conn, "SELECT pk_psicologo AS id, imagem FROM psicologo WHERE pk_psicologo = ? 

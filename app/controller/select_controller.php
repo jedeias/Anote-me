@@ -30,6 +30,10 @@ interface selectGeneric{
 
     public function getAllUser();
 
+    public function getDadosPsicologoPaciente($id);
+
+    public function getDadosResponsavel($id);
+
     public function getDados($id);
 
     public function getImagem($id);

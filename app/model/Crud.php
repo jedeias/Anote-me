@@ -67,28 +67,21 @@ class Crud extends Connect implements CrudController{
 
     // atualizar a imagem do perfil do usuario de acordo com a tabela
     public function atualizar_imagem($tabela, $imagem, $id){
-        // verificar se o ID corresponde a um registro válido na tabela especificada
+
         $stmt = $this->getConn()->prepare("SELECT * FROM $tabela WHERE $tabela.pk_$tabela = ?");
         if (!$stmt) {
-            // Se a preparação da consulta falhar, mostre o erro do MySQLi
+
             die("Erro na consulta: " . $this->getConn()->error);
         }
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows == 0) {
-            // ID inválido, retornar false
+
             return false;
         }
-
-        // recuperar o caminho da imagem antiga antes de atualizá-la
-        // $stmt = $this->getConn()->prepare("SELECT imagem FROM $tabela WHERE $tabela.pk_$tabela = ?");
-        // $stmt->bind_param("i", $id);
-        // $stmt->execute();
-        // $result = $stmt->get_result();
-        // $row = $result->fetch_assoc();
-        // $caminho_antigo = $row['imagem'];
     
+
         // executar a consulta UPDATE na tabela especificada
         $stmt = $this->getConn()->prepare("UPDATE $tabela SET imagem = ? WHERE $tabela.pk_$tabela = ?");
         if (!$stmt) {
@@ -99,10 +92,6 @@ class Crud extends Connect implements CrudController{
         $stmt->execute();
     
         if ($stmt->affected_rows > 0) {
-            // apagar a imagem antiga do diretório
-            // if (!empty($caminho_antigo)) {
-            //     unlink($caminho_antigo);
-            // }
             return true;
         } else {
             return false;
@@ -113,7 +102,6 @@ class Crud extends Connect implements CrudController{
     public function atualizar_perfil($tabela, $nome, $telefone, $senha, $id){
         $stmt = $this->getConn()->prepare("UPDATE $tabela, telefone SET nome = ?, telefone.numero = ?, senha = ? WHERE $tabela.pk_$tabela = ? AND $tabela.fk_telefone = telefone.pk_telefone");
         if (!$stmt) {
-            // Se a preparação da consulta falhar, mostre o erro do MySQLi
             die("Erro na consulta: " . $this->getConn()->error);
         }
         $stmt->bind_param("sssi",$nome, $telefone, $senha, $id);

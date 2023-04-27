@@ -12,6 +12,9 @@ $paci_id = $session->session_get('id');
 $psico_id = $session->session_get('fk_psicologo');
 
 $selecionar = new Select();
+$dados = $selecionar->getDados($paci_id);
+$responsavel = $selecionar->getDadosResponsavel($paci_id);
+$psicologo = $selecionar->getDadosPsicologoPaciente($paci_id);
 $imagem = $selecionar->getImagem($paci_id);
 
 if($nome == NULL and $email == NULL and $type == NULL){
@@ -54,10 +57,10 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     <li class="center"><?php echo "$nome"; ?></li>
                     <div class='lista-dados-content'>
                         <li>Email : <?php echo $email; ?></li>
-                        <li>Telefone : <?php echo $paci_id; ?></li>
-                        <li>Responsável : </li>
-                        <li>Telefone do Responsável : </li>
-                        <li>Psicologo : </li>
+                        <li>Telefone : <?php echo $dados[0]['numero']; ?></li>
+                        <li>Responsável : <?php echo $responsavel[0]['nome']; ?></li>
+                        <li>Telefone do Responsável : <?php echo $responsavel[0]['numero_responsavel']; ?></li>
+                        <li>Psicologo : <?php echo $psicologo[0]['nome_psicologo'];?></li>
                         <li>Clinica : </li>
                     </div>
                     <li class="config-container">
