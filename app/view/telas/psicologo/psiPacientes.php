@@ -85,7 +85,7 @@ if (empty($_SESSION)) {
                     }
 
                     $select = new Select();
-                    $patients = $select->select_user_patient($id);
+                    $patients = $select->selectUserPatient($id);
                     $i = 0;
                     
                     foreach ($patients as $dado)

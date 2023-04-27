@@ -1,7 +1,7 @@
 <?php
 
 // extend Host
-include ($_SERVER['DOCUMENT_ROOT'].'/tcc/app/config/host.php');
+// include ($_SERVER['DOCUMENT_ROOT'].'/tcc/app/config/host.php');
 
 class Connect extends Host {
     private $conn;
@@ -34,10 +34,6 @@ class Connect extends Host {
     public function prepare($sql) {
         return $this->conn->prepare($sql);
     }
-    
-    // public function bind_param($stmt, ...$params) {
-    //     return $stmt->bind_param(...$params);
-    // }
     
     public function execute($stmt) {
         return $stmt->execute();
