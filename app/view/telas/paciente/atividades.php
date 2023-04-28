@@ -14,6 +14,7 @@ $psico_id = $session->session_get('fk_psicologo');
 $pegar_imagem = new Select();
 $imagem = $pegar_imagem->getImagem($paciente_id);
 
+$imagem = $imagem['imagem'];
 
 if($nome == NULL and $email == NULL and $type == NULL){
    header("location: ../../../index.html");
@@ -34,8 +35,8 @@ if($nome == NULL and $email == NULL and $type == NULL){
 <header class="header-container">
         <h1>ANOTE-ME</h1>
         <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
-            <?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
-                <img src="<?php echo $imagem['imagem'] ?>" alt="" class='perfil' id='first-perfil'>
+            <?php if(isset($imagem) && $imagem != NULL): ?>
+                <img src="<?php echo "../$imagem"; ?>" alt="" class='perfil' id='first-perfil'>
             <?php else: ?>
                 <img src="../../IMG/default.jpg" alt="" class='perfil'>
             <?php endif; ?>
@@ -45,33 +46,34 @@ if($nome == NULL and $email == NULL and $type == NULL){
                 <ul class="lista-dados">
 
                     <li class="center"> 
-                        <?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
-                            <img src="<?php echo $imagem['imagem'] ?>" alt="FOTO-DE-PERFIL" class='perfil' id='second-perfil'>
+                        <?php if(isset($imagem) && $imagem != NULL): ?>
+                            <img src="<?php echo "../$imagem"; ?>" alt="FOTO-DE-PERFIL" class='perfil' id='second-perfil'>
                         <?php else: ?>
                             <img src="../../IMG/default.jpg" alt="" class='perfil'>
                         <?php endif; ?>
                     </li>
                     <li class="center"><?php echo "$nome"; ?></li>
-                    <li>Email : <?php echo "$email"; ?></li>
-                    <!-- <li>Telefone :</li>
-                    <li>Responsável : </li> -->
-                    <!-- <li>Telefone do Responsável : </li> -->
-                    <li>tipo de usuário : <?php echo "$type"; ?> </li>
-                    <!-- <li>Clinica : </li> -->
+                    <div class='lista-dados-content'>
+                        <li>Email : <?php echo $email; ?></li>
+                        <li>Telefone : <?php echo $dados[0]['numero']; ?></li>
+                        <li>Responsável : <?php echo $responsavel[0]['nome']; ?></li>
+                        <li>Telefone do Responsável : <?php echo $responsavel[0]['numero_responsavel']; ?></li>
+                        <li>Psicologo : <?php echo $psicologo[0]['nome_psicologo'];?></li>
+                        <li>Clinica : </li>
+                    </div>
                     <li class="config-container">
-                        <a class="config-button" href="./atualizar_registro.php"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>
+                        <a class="config-button" href="../atualizar_registro.php"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>
                         <a class="config-button" href="../../sair.php"><img class="wrapper-icon" src="../../IMG/ico/arrow-from-shape-right-svgrepo-com.svg" title="Sair"></a>
                     </li>
                 
                 </ul>
             </nav>
         </div>
-    </header>
-    <section class="activity-container">
+    </header>    <section class="activity-container">
         <section class="menu-container">
             <nav class="menu">
                 <ul>
-                    <a href="anotacoes.php">
+                    <a href="paciente.php">
                     <li class="anotacoes">
                         <p>Anotações</p>
                     </li>
@@ -103,6 +105,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     echo "<p class='activity-text'>". $atividade['atividade']  ."</p>";
                     echo "</div>";
                 echo"</article>";
+
             }            
 
             ?>

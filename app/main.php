@@ -20,8 +20,8 @@ $session->session_set("id", $login_status["id"]);
 $session->session_set("fk_psicologo", $login_status["fk_psicologo"]);
 
 $redirect_urls = array(
-    "psicologo" => "./view/telas/psicologo/psiPacientes.php",
-    "paciente" => "./view/telas/paciente/anotacoes.php",
+    "psicologo" => "./view/telas/psicologo/psicologo.php",
+    "paciente" => "./view/telas/paciente/paciente.php",
     "secretario" => "./view/telas/secretario/secretario.php",
     "default" => "./view/login_error.php"
 );

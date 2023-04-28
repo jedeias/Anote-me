@@ -98,22 +98,39 @@ class Crud extends Connect implements CrudController{
         }  
     }
 
-    // função para atualizar o perfil dos usuarios de acordo com a tabela
-    public function atualizar_perfil($tabela, $nome, $telefone, $senha, $id){
-        $stmt = $this->getConn()->prepare("UPDATE $tabela, telefone SET nome = ?, telefone.numero = ?, senha = ? WHERE $tabela.pk_$tabela = ? AND $tabela.fk_telefone = telefone.pk_telefone");
+    // // função para atualizar o perfil dos usuarios de acordo com a tabela
+    // public function atualizar_perfil($tabela, $nome, $telefone, $senha, $id){
+    //     $stmt = $this->getConn()->prepare("UPDATE $tabela, telefon SET nome = ?, tabela.email = ?, senha = ? WHERE $tabela.pk_$tabela = ? AND $tabela.fk_telefone = telefone.pk_telefone");
+    //     if (!$stmt) {
+    //         die("Erro na consulta: " . $this->getConn()->error);
+    //     }
+    //     $stmt->bind_param("sssi",$nome, $email, $senha, $id);
+    //     $stmt->execute();
+    
+    //     if ($stmt->affected_rows > 0) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+    
+
+
+    public function atualizar_perfil($tabela, $nome, $email, $senha, $id){
+        $stmt = $this->getConn()->prepare("UPDATE $tabela SET nome = ?, email = ?, senha = ? WHERE pk_$tabela = ?");
         if (!$stmt) {
             die("Erro na consulta: " . $this->getConn()->error);
         }
-        $stmt->bind_param("sssi",$nome, $telefone, $senha, $id);
+        $stmt->bind_param("sssi", $nome, $email, $senha, $id);
         $stmt->execute();
-    
+        
         if ($stmt->affected_rows > 0) {
             return true;
         } else {
             return false;
         }
     }
-    
+
 }
 
 ?>

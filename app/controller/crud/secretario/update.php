@@ -22,23 +22,24 @@ require_once("../../../controller/crud.php");
 if(isset($_POST['atualizar_perfil'])){
 
     $nome = $_POST['atualizar_nome'];
-    $telefone = $_POST['atualizar_telefone'];
+
+    $email = $_POST['atualizar_email'];
+    $senha = $_POST['senha'];   
+    $telefone = $_POST['email'];
     $senha = $_POST['senha'];
+
     $id = $session->session_get('id');
 
     $crud = new Crud();
-    $atualizar = $crud->atualizar_perfil("psicologo", $nome, $telefone, $senha,$id);
+    $atualizar = $crud->atualizar_perfil("$type", $nome, $telefone, $senha,$id);
     
     // verifique se a atualização foi bem sucedida e redirecione o usuário para a página do perfil
     if ($atualizar) {
         $nome = $session->session_set('nome', $nome);
 
-        header('location: ../../../view/telas/psicologo/psiPacientes.php');
-
+        header('location: ../../../view/telas/'.$type.'/'.$type.'.php');
     } else {
-
-        header('location: ../../../view/telas/psicologo/psiPacientes.php');
-        
+        header('location: ../../../view/telas/'.$type.'/'.$type.'.php');
     }
 }
 

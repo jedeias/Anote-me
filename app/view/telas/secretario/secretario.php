@@ -2,7 +2,6 @@
 
 include("../../../autoload.php");
 
-
 $session = new Session();
 
 $nome = $session->session_get('nome');
@@ -12,6 +11,8 @@ $id = $session->session_get('id');
 
 $pegar_imagem = new Select();
 $imagem = $pegar_imagem->getImagem($id);
+
+$imagem = $imagem['imagem'];
 
 if($nome == NULL and $email == NULL and $type == NULL){
    header("location: ../../../index.html");
@@ -29,36 +30,37 @@ if($nome == NULL and $email == NULL and $type == NULL){
     <link rel="stylesheet" href="../../CSS/secretaria.css">
 </head>
 <body id="body">
-<header class='header-container'>
-        <h1 onclick="location.href=psiPacientes.php">ANOTE-ME</h1>
-        <figure id='wrapperButton' class='click-perfil' onclick='ClickPerfil()'> 
-            <?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
-                <img src="<?php echo $imagem['imagem'] ?>" alt="" class='perfil' id='first-perfil'>
+<header class="header-container">
+        <h1>ANOTE-ME</h1>
+        <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
+            <?php if(isset($imagem) && $imagem != NULL): ?>
+                <img src="<?php echo "../$imagem"; ?>" alt="" class='perfil' id='first-perfil'>
             <?php else: ?>
                 <img src="../../IMG/default.jpg" alt="" class='perfil'>
             <?php endif; ?>
         </figure> 
-        <div class='click-wrapper'>
-            <nav class='dados-wrapper hidden' id='wrapper-content'>
-                <ul class='lista-dados'>
-                    <li class='center'> 
-                        <?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
-                            <img src="<?php echo $imagem['imagem'] ?>" alt="FOTO-DE-PERFIL" class='perfil' id='second-perfil'>
+        <div class="click-wrapper">
+            <nav class="dados-wrapper hidden" id="wrapper-content">
+                <ul class="lista-dados">
+
+                    <li class="center"> 
+                        <?php if(isset($imagem) && $imagem != NULL): ?>
+                            <img src="<?php echo "../$imagem"; ?>" alt="FOTO-DE-PERFIL" class='perfil' id='second-perfil'>
                         <?php else: ?>
                             <img src="../../IMG/default.jpg" alt="" class='perfil'>
                         <?php endif; ?>
                     </li>
-                    <li class='center'><?php echo $nome; ?></li>
+                    <li class="center"><?php echo "$nome"; ?></li>
                     <div class='lista-dados-content'>
                         <li>Email : <?php echo $email; ?></li>
-                        <li>Telefone : </li>
+                        <li>Telefone :</li>
                         <li>Clinica : </li>
                     </div>
-                    
                     <li class="config-container">
-                        <a class="config-button" href="./atualizar_registro.php"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>
+                        <a class="config-button" href="../atualizar_registro.php"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>
                         <a class="config-button" href="../../sair.php"><img class="wrapper-icon" src="../../IMG/ico/arrow-from-shape-right-svgrepo-com.svg" title="Sair"></a>
                     </li>
+                
                 </ul>
             </nav>
         </div>
@@ -72,12 +74,12 @@ if($nome == NULL and $email == NULL and $type == NULL){
                             <p>Cadastro</p>
                         </li>
                     </a>
-                    <a href="./secrePsicologos.php">
+                    <a href="./secretario.php">
                         <li>
                             <p>Psicologos</p>
                         </li>
                     </a>
-                    <a href="./secrePacientes.php">
+                    <a href="./secretario.php">
                         <li>
                             <p>Pacientes</p>
                         </li>
@@ -85,7 +87,6 @@ if($nome == NULL and $email == NULL and $type == NULL){
                 </ul>
             </nav>        
         </aside>
-
         
         <section class="notepad-content">
             <article class="psi-table">
@@ -116,6 +117,6 @@ if($nome == NULL and $email == NULL and $type == NULL){
             
         </section>
     </main>
-    <script src = "../../JS/script.js"> </script>
+    <script src = "../../JS/script.js"></script>
 </body>
 </html>

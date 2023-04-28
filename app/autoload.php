@@ -1,5 +1,4 @@
 <?php
-
 function autoload($class_Name){
 
     $dirs = array(  "controller/",

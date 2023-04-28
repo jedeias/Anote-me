@@ -30,5 +30,5 @@ $insert->insert_atividades_paciente($fk_paciente, $fk_psicologo, $assunto, $ativ
 
 $curPaciente = $_POST['curPaciente'];
 
-header("location: ../../../view/telas/psicologo/psiPacientes.php?paciente=".$curPaciente."");
+header("location: ../../../view/telas/psicologo/psicologo.php?paciente=".$curPaciente."");
 

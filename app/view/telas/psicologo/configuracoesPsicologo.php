@@ -31,7 +31,7 @@ if (empty($_SESSION)) {
 </head>
 <body id='body'>
     <header class='header-container'>
-        <h1 onclick="location.href=psiPacientes.php">ANOTE-ME</h1>
+        <h1 onclick="location.href=psicologo.php">ANOTE-ME</h1>
         <div class='click-wrapper'>
             <nav class='dados-wrapper hidden' id='wrapper-content'>
                 <ul class='lista-dados'>
@@ -47,7 +47,7 @@ if (empty($_SESSION)) {
                     </div>
                     
                     <li class='config-container'>
-                        <a class='config-button' href="./atualizar_registro.php"><img class='wrapper-icon' src='../../IMG/ico/gear-svgrepo-com.svg' title='Configurações'></a>
+                        <a class='config-button' href="../atualizar_registro.php"><img class='wrapper-icon' src='../../IMG/ico/gear-svgrepo-com.svg' title='Configurações'></a>
                         <a class='config-button' href="../../sair.php"><img class='wrapper-icon' src='../../IMG/ico/arrow-from-shape-right-svgrepo-com.svg' title='Sair'></a>
                     </li>
                 </ul>

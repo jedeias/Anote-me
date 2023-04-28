@@ -51,10 +51,10 @@ class Endereco{
 
 }
 
-$endereco = new Endereco('04905002');
+// $endereco = new Endereco('04905002');
 
-echo "<pre>";
-var_dump ($endereco->getEndereco());
+// echo "<pre>";
+// var_dump ($endereco->getEndereco());
 
 
 /*

@@ -57,7 +57,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     <li>tipo de usuário : <?php echo "$type"; ?> </li>
                     <!-- <li>Clinica : </li> -->
                     <li class="config-container">
-                        <a class="config-button" href="./atualizar_registro.php"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>
+                        <a class="config-button" href="../atualizar_registro.php"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>
                         <a class="config-button" href="../../sair.php"><img class="wrapper-icon" src="../../IMG/ico/arrow-from-shape-right-svgrepo-com.svg" title="Sair"></a>
                     </li>
                 
@@ -69,7 +69,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
     <section class="menu-container">
       <nav class="menu">
         <ul>
-          <a href="anotacoes.php">
+          <a href="paciente.php">
             <li class="anotacoes">
               <p>Anotações</p>
             </li>
