@@ -4,7 +4,7 @@ include ($_SERVER['DOCUMENT_ROOT'].'/tcc/app/controller/select_controller.php');
 // Listas de todos os usuários
 // Alterar a função validateUser
 
-require_once("connect.php");
+// require_once("connect.php");
 
 class Select extends Connect implements selectController{
 

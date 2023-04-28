@@ -1,6 +1,6 @@
 <?php
 
-(include('../../../autoload.php'));
+(include('../../autoload.php'));
 
 $session = new Session();
 
@@ -11,10 +11,10 @@ $id = $session->session_get('id');
 
 
 if (empty($_SESSION)) {
-    header('location: ../../../../index.html');
+    header('location: ../../../index.html');
 }
 
-require_once("../../../controller/crud.php");
+// require_once("../../../controller/crud.php");
 
 if(isset($_POST['atualizar_imagem'])){
 
@@ -30,18 +30,18 @@ if(isset($_POST['atualizar_imagem'])){
         move_uploaded_file($caminho_temporario, $novo_caminho);
 
         $crud = new Crud();
-        $atualizar = $crud->atualizar_imagem('secretario', $novo_caminho, $id);
+        $atualizar = $crud->atualizar_imagem($type, $novo_caminho, $id);
 
         if ($atualizar) {
 
-            header('location: ../../../view/telas/secretario/atualizar_registro.php');
+            header('location: ../../../view/telas/'.$type.'/atualizar_registro.php');
 
         } else {
             echo "Erro ao atualizar o perfil.";
         }
     }
 
-    header('location: ../../../view/telas/secretario/atualizar_registro.php');
+    header('location: ../../../app/view/telas/'.$type.'/atualizar_registro.php');
 }
 
 ?>

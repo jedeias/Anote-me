@@ -1,5 +1,7 @@
 /*BANCO DE DADOS COM DADOS JA INSERIDOS.*/
 
+drop database `clinica_psicologica`;
+
 CREATE DATABASE IF NOT EXISTS `clinica_psicologica`;
 
 USE `clinica_psicologica`;
@@ -247,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `paciente` (
   `imagem` varchar(100) NULL,
   PRIMARY KEY (`pk_paciente`),
   UNIQUE KEY `email` (`email`),
-  KEY `psicologo` (`psicologo`),
+  KEY `psicologo` (`fk_psicologo`),
   KEY `fk_endereco` (`fk_endereco`),
   KEY `fk_telefone` (`fk_telefone`),
   KEY `fk_responsavel` (`fk_responsavel`),

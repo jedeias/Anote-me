@@ -11,13 +11,14 @@ function autoload($class_Name){
                     "../controller/", 
                     "../model/", 
                     "../view", 
+                    "../../view/",
                     "../../../controller/", 
                     "../../../model/", 
                     "../../../view/");
 
     foreach($dirs as $dir){
 
-        $file = ("$dir" . "$class_Name" . ".php");
+        $file = (($_SERVER['DOCUMENT_ROOT'].'/tcc/app/'."$dir" . "$class_Name" . ".php"));
 
         if(file_exists($file)){
         

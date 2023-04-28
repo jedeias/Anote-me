@@ -32,7 +32,7 @@ if (empty($_SESSION)) {
 <body>
 	<div class="atualizar-perfil">
 
-		<form method="POST" action="../../../controller/crud/secretario/updateSecretario.php" enctype="multipart/form-data">
+		<form method="POST" action="../../../controller/crud/updateImage.php" enctype="multipart/form-data">
 			<div class="name-title">Bem vindo(a) <?php echo $nome ?></div>
 			<div class="flex">
 				<div class="inputBox">

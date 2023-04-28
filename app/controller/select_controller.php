@@ -19,7 +19,6 @@ interface selectPsicologo{
 }
 
 interface selectSecretario{
-
     
     
 }

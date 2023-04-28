@@ -31,7 +31,7 @@ if (empty($_SESSION)) {
 </head>
 <body>
 	<div class="atualizar-perfil">
-		<form method="POST" action="../../../controller/crud/paciente/updateImage.php" enctype="multipart/form-data">
+		<form method="POST" action="../../../controller/crud/updateImage.php" enctype="multipart/form-data">
 			<div class="name-title">Atualizar imagem</div>
 			<div class="flex">
 				<div class="inputBox">
