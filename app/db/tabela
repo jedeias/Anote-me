@@ -1,0 +1,48 @@
+-- --------------------------------------------------------
+-- Servidor:                     127.0.0.1
+-- Versão do servidor:           5.7.33 - MySQL Community Server (GPL)
+-- OS do Servidor:               Win64
+-- HeidiSQL Versão:              11.2.0.6213
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+-- Copiando estrutura do banco de dados para clinica_psicologica
+CREATE DATABASE IF NOT EXISTS `clinica_psicologica` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `clinica_psicologica`;
+
+-- Copiando estrutura para tabela clinica_psicologica.anotacoes_paciente
+CREATE TABLE IF NOT EXISTS `anotacoes_paciente` (
+  `pk_anotacoes_paciente` int(11) NOT NULL AUTO_INCREMENT,
+  `fk_redflag` int(11) NOT NULL,
+  `fk_emocoes` int(11) NOT NULL,
+  `fk_paciente` int(11) NOT NULL,
+  `fk_anotacoes_psicologo` int(11) DEFAULT NULL,
+  `anotacoes` text,
+  `data_hora` datetime NOT NULL,
+  PRIMARY KEY (`pk_anotacoes_paciente`),
+  KEY `fk_emocoes` (`fk_emocoes`),
+  KEY `fk_paciente` (`fk_paciente`),
+  KEY `fk_anotacoes_psicologo` (`fk_anotacoes_psicologo`),
+  CONSTRAINT `anotacoes_paciente_ibfk_1` FOREIGN KEY (`fk_emocoes`) REFERENCES `emocoes` (`pk_emocoes`),
+  CONSTRAINT `anotacoes_paciente_ibfk_2` FOREIGN KEY (`fk_paciente`) REFERENCES `paciente` (`pk_paciente`),
+  CONSTRAINT `anotacoes_paciente_ibfk_3` FOREIGN KEY (`fk_anotacoes_psicologo`) REFERENCES `anotacoes_psicologo` (`pk_anotacoes_psicologo`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+
+-- Copiando dados para a tabela clinica_psicologica.anotacoes_paciente: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `anotacoes_paciente` DISABLE KEYS */;
+REPLACE INTO `anotacoes_paciente` (`pk_anotacoes_paciente`, `fk_redflag`, `fk_emocoes`, `fk_paciente`, `fk_anotacoes_psicologo`, `anotacoes`, `data_hora`) VALUES
+	(29, 1, 1, 2, 11, 'Estou me sentindo muito ansioso', '2022-05-10 11:30:00'),
+	(30, 2, 2, 3, 12, 'Estou me sentindo triste e sem autoestima', '2022-05-12 12:30:00');
+/*!40000 ALTER TABLE `anotacoes_paciente` ENABLE KEYS */;
+
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
