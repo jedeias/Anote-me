@@ -182,7 +182,7 @@ if (empty($_SESSION)) {
                         </button>
                     </article>
 
-                    <form id='activityTable' class='activity-add-table hidden' action='../../../controller/crud/paciente/inserteAtividade.php' method='POST'>
+                    <form id='activityTable' class='activity-add-table hidden' action='../../../controller/crud/psicologo/inserteAtividade.php' method='POST'>
                         <h2>Adicionar atividade</h2>
 
                         <div class='activity-add-table-left'>
@@ -213,7 +213,7 @@ if (empty($_SESSION)) {
                             echo "<div class='activity-header'>";
                             echo "<p>". $atividade['data'] ."</p>";
                             echo "<p>". $atividade['assunto_atividade'] . "</p>";
-                            echo "<form method='POST' onsubmit='deleteAlert(event)' action='../../../controller/crud/paciente/deleteAtividade.php'><button class='activity-button' name='excluir' value='".$atividade['pk_atividades_paciente']."'><img src='../../IMG/ico/trash-svgrepo-com.svg'></button><input type='hidden' value='$index' name='curPaciente'></form>";
+                            echo "<form method='POST' onsubmit='deleteAlert(event)' action='../../../controller/crud/psicologo/deleteAtividade.php'><button class='activity-button' name='excluir' value='".$atividade['pk_atividades_paciente']."'><img src='../../IMG/ico/trash-svgrepo-com.svg'></button><input type='hidden' value='$index' name='curPaciente'></form>";
                             echo "</div>";
                             echo "<p class='activity-text'>". $atividade['atividade']  ."</p>";
                             echo "</div>";
