@@ -8,28 +8,28 @@ echo "Dados não inseridos";
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$login_sys = new Login();
+$loginSys = new Login();
 
-$login_status = $login_sys->login_check($email, $password);
+$loginStatus = $loginSys->login_check($email, $password);
 
 $session = new Session();
 
 $session->session_set("email", $email);
-$session->session_set("nome", $login_status["nome"]);
-$session->session_set("id", $login_status["id"]);
-$session->session_set("fk_psicologo", $login_status["fk_psicologo"]);
+$session->session_set("nome", $loginStatus["nome"]);
+$session->session_set("id", $loginStatus["id"]);
+$session->session_set("fk_psicologo", $loginStatus["fk_psicologo"]);
 
-$redirect_urls = array(
+$redirectUrls = array(
     "psicologo" => "./view/telas/psicologo/psicologo.php",
     "paciente" => "./view/telas/paciente/paciente.php",
     "secretario" => "./view/telas/secretario/secretario.php",
     "default" => "./view/login_error.php"
 );
 
-$session->session_set('type', $login_status["user_type"]);
+$session->session_set('type', $loginStatus["user_type"]);
 
-$redirect_url = isset($redirect_urls[$login_status["user_type"]]) ? $redirect_urls[$login_status["user_type"]] : $redirect_urls["default"];
+$redirectUrl = isset($redirectUrls[$loginStatus["user_type"]]) ? $redirectUrls[$loginStatus["user_type"]] : $redirectUrls["default"];
 
-header("Location: $redirect_url");
+header("Location: $redirectUrl");
 
 ?>
