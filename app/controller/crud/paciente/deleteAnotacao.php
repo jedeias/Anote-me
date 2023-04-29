@@ -21,6 +21,8 @@ $_SESSION['get_executed'] = false;
 
 $pk_anotacao = $_POST['excluir'];
 
+
+
 $delete = new Crud();
 
 $delete->delete_anotacao_paciente($pk_anotacao);

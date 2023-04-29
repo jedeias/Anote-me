@@ -21,6 +21,8 @@ if($nome == NULL or $email == NULL or $type == NULL){
 
 $pk_atividade = $_POST['excluir'];
 
+
+
 $delete = new Crud();
 
 $delete->delete_atividades_paciente($pk_atividade);

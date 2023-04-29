@@ -1,5 +1,5 @@
 <?php
-function autoload($class_Name){
+function autoload($className){
 
     $dirs = array(  "controller/",
                     "model/",
@@ -17,7 +17,7 @@ function autoload($class_Name){
 
     foreach($dirs as $dir){
 
-        $file = (($_SERVER['DOCUMENT_ROOT'].'/tcc/app/'."$dir" . "$class_Name" . ".php"));
+        $file = (($_SERVER['DOCUMENT_ROOT'].'/tcc/app/'."$dir" . "$className" . ".php"));
 
         if(file_exists($file)){
         
