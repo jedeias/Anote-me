@@ -1,8 +1,4 @@
 <?php
-
-// extend Host
-// include ($_SERVER['DOCUMENT_ROOT'].'/tcc/app/config/host.php');
-
 class Connect extends Host {
     private $conn;
 

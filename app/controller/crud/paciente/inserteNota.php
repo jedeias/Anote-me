@@ -14,6 +14,7 @@ $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
 $id = $session->session_get('id');
+$fkPsicologo = $session->session_get('fk_psicologo');
 
 if($nome == NULL or $email == NULL or $type == NULL){
    header("location: /../../../tcc/index.html");
@@ -21,6 +22,7 @@ if($nome == NULL or $email == NULL or $type == NULL){
 $emocao = $_POST["emocao"];
 $emocaoGrau = $_POST["emocaoGrau"];
 $descricao = $_POST["descricao"];
+
 
 $session->session_set( "emocao" ,$emocao);
 $session->session_set( "emocaoGrau" ,$emocaoGrau );
@@ -32,7 +34,7 @@ $inser = new Crud();
 
 echo"<br>";
 
-$inser->insert_notas_paciente($id, $emocao,$emocaoGrau, $descricao);
+$inser->insert_notas_paciente($id, $fkPsicologo, $emocao,$emocaoGrau, $descricao);
 
 
-header("location: /../../tcc/app/view/telas/paciente/anotacoes.php?savednote");
+header("location: /../../tcc/app/view/telas/paciente/paciente.php?savednote");

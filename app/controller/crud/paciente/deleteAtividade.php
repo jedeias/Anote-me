@@ -1,6 +1,8 @@
 <?php
 
 include("../../../autoload.php");
+include("../../../model/connect.php");
+
 $session = new Session();
 
 echo"<pre>";
@@ -17,14 +19,17 @@ if($nome == NULL or $email == NULL or $type == NULL){
    header("location: /../../../tcc/index.html");
 }
 
-$_SESSION['get_executed'] = false;
 
-$pk_anotacao = $_POST['excluir'];
+$pk_atividade = $_POST['excluir'];
 
 $delete = new Crud();
 
-$delete->delete_anotacao_paciente($pk_anotacao);
+$delete->delete_atividades_paciente($pk_atividade);
 
-header("location: ../../../view/telas/paciente/anotacoes.php?deletednote");
+$curPaciente = $_POST['curPaciente'];
 
-var_dump($pk_anotacao);
+header("location: ../../../view/telas/psicologo/psiPacientes.php?paciente=".$curPaciente."");
+
+echo "$pk_atividade";
+
+?>

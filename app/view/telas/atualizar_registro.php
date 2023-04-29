@@ -13,7 +13,13 @@ if (empty($_SESSION)) {
 
 $back = "$type/$type.php";
 
-$action = '../../controller/crud/update.php'
+$action = '../../controller/crud/update.php';
+
+$sql = new Select();
+$dados = $sql->getDados($id);
+$imagem = $sql->getImagem($id);
+
+$imagem = $imagem['imagem'];
 
 ?>
 
@@ -23,13 +29,6 @@ $action = '../../controller/crud/update.php'
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <?php
-	
-        $sql = new Select();
-        $dados = $sql->getDados($id);
-		$imagem = $sql->getImagem($id);
-
-    ?>
 	<title>Meu perfil</title>
 	<link rel="stylesheet" href="../CSS/atualizar_perfil.css">
 </head>
@@ -40,9 +39,9 @@ $action = '../../controller/crud/update.php'
 			<div class="name-title">Bem vindo(a) <?php echo $nome ?></div>
 			<div class="flex">
 				<div class="inputBox">
-					<?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
+					<?php if(isset($imagem) && $imagem != NULL): ?>
 						<a class="img-img" href="atualizar_imagem.php">
-							<img src="<?php echo $imagem['imagem'] ?>" alt="">
+							<img src="<?php echo "../IMG/imagem_perfil/$imagem"; ?>" alt="">
 							<p class="img-hover">Atualizar imagem</p>
 						</a>
 					<?php else: ?>

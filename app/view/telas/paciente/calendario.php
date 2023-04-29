@@ -14,6 +14,8 @@ $id = $session->session_get('fk_psicologo');
 $pegar_imagem = new Select();
 $imagem = $pegar_imagem->getImagem($paciente_id);
 
+$imagem = $imagem['imagem'];
+
 if($nome == NULL and $email == NULL and $type == NULL){
    header("location: ../../../index.html");
 }
@@ -33,8 +35,8 @@ if($nome == NULL and $email == NULL and $type == NULL){
 <header class="header-container">
         <h1>ANOTE-ME</h1>
         <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
-            <?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
-                <img src="<?php echo $imagem['imagem'] ?>" alt="" class='perfil' id='first-perfil'>
+            <?php if(isset($imagem) && $imagem != NULL): ?>
+                <img src="<?php echo "../../IMG/imagem_perfil/$imagem"; ?>" alt="" class='perfil' id='first-perfil'>
             <?php else: ?>
                 <img src="../../IMG/default.jpg" alt="" class='perfil'>
             <?php endif; ?>
@@ -43,8 +45,8 @@ if($nome == NULL and $email == NULL and $type == NULL){
             <nav class="dados-wrapper hidden" id="wrapper-content">
                 <ul class="lista-dados">
                   <li class="center"> 
-                        <?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
-                            <img src="<?php echo $imagem['imagem'] ?>" alt="FOTO-DE-PERFIL" class='perfil' id='second-perfil'>
+                        <?php if(isset($imagem) && $imagem != NULL): ?>
+                            <img src="<?php echo $imagem ?>" alt="FOTO-DE-PERFIL" class='perfil' id='second-perfil'>
                         <?php else: ?>
                             <img src="../../IMG/default.jpg" alt="" class='perfil'>
                         <?php endif; ?>

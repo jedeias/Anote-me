@@ -26,12 +26,13 @@ class Crud extends Connect implements CrudController{
             $this->getConn()->query($this->queryIsertAtiviadesPaciente($fk_paciente, $fk_psicologo, $assunto, $atividade));
     }
 
-    public function insert_notas_paciente($id, $emocao, $emocaoGrau, $descricao) {
+    public function insert_notas_paciente($id, $idPsicologo, $emocao, $emocaoGrau, $descricao) {
 
         $sql = "INSERT INTO anotacoes_paciente (
             pk_anotacoes_paciente,
             fk_redflag,
             fk_paciente,
+            fk_psicologo,
             anotacao,
             emocao,
             intensidade,
@@ -40,8 +41,9 @@ class Crud extends Connect implements CrudController{
         ) 
         VALUES (
             null,
-            null,
+            '11',
             $id,
+            '$idPsicologo',
             '$descricao',
             '$emocao',
             '$emocaoGrau',
@@ -113,8 +115,6 @@ class Crud extends Connect implements CrudController{
     //         return false;
     //     }
     // }
-    
-
 
     public function atualizar_perfil($tabela, $nome, $email, $senha, $id){
         $stmt = $this->getConn()->prepare("UPDATE $tabela SET nome = ?, email = ?, senha = ? WHERE pk_$tabela = ?");

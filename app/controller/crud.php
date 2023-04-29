@@ -18,7 +18,7 @@
 
     interface IncertePaciente{
 
-        public function insert_notas_paciente($id, $emocao, $emocaoGrau, $descricao);
+        public function insert_notas_paciente($id, $idPsicologo, $emocao, $emocaoGrau, $descricao);
 
     }
 

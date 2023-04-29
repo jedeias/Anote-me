@@ -8,8 +8,6 @@ class Login extends Select
 
         $result = $this->loginCheck($email, $password);
         
-        echo"<pre>";
-        var_dump($result);
         if($result["success"] == false){
 
             header("location: ../index.html");

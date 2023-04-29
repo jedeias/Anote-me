@@ -37,7 +37,7 @@ if (empty($_SESSION)) {
         <h1>ANOTE-ME</h1>
         <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
             <?php if(isset($imagem) && $imagem != NULL): ?>
-                <img src="<?php echo "../$imagem"; ?>" alt="" class='perfil' id='first-perfil'>
+                <img src="<?php echo "../../IMG/imagem_perfil/$imagem"; ?>" alt="" class='perfil' id='first-perfil'>
             <?php else: ?>
                 <img src="../../IMG/default.jpg" alt="" class='perfil'>
             <?php endif; ?>
@@ -48,7 +48,7 @@ if (empty($_SESSION)) {
 
                     <li class="center"> 
                         <?php if(isset($imagem) && $imagem != NULL): ?>
-                            <img src="<?php echo "../$imagem"; ?>" alt="FOTO-DE-PERFIL" class='perfil' id='second-perfil'>
+                            <img src="<?php echo "../../IMG/imagem_perfil/$imagem"; ?>" alt="FOTO-DE-PERFIL" class='perfil' id='second-perfil'>
                         <?php else: ?>
                             <img src="../../IMG/default.jpg" alt="" class='perfil'>
                         <?php endif; ?>

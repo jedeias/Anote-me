@@ -13,6 +13,11 @@ if (empty($_SESSION)) {
 
 $back = "$type/$type.php";
 
+$sql = new Select();
+$dados = $sql->getDados($id);
+$imagem = $sql->getImagem($id);
+$imagem = $imagem['imagem'];
+
 ?>
 
 <!DOCTYPE html>
@@ -21,24 +26,18 @@ $back = "$type/$type.php";
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <?php
 
-        $sql = new Select();
-        $dados = $sql->getDados($id);
-		$imagem = $sql->getImagem($id);
-		
-    ?>
 	<title>Meu Imagem</title>
 	<link rel="stylesheet" href="../CSS/atualizar_perfil.css">
 </head>
 <body>
 	<div class="atualizar-perfil">
 		<form method="POST" action="../../controller/crud/updateImage.php" enctype="multipart/form-data">
-			<div class="name-title">Atualizar imagme</div>
+			<div class="name-title">Atualizar imagem</div>
 			<div class="flex">
 				<div class="inputBox">
-					<?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
-						<img src="<?php echo $imagem['imagem'] ?>" alt="">
+					<?php if(isset($imagem) && $imagem != NULL): ?>
+						<img src="<?php echo "../IMG/imagem_perfil/$imagem"; ?>" alt="">
 					<?php else: ?>
 						<img class="img-default" src="../IMG/default.jpg" alt="">
 					<?php endif; ?>
