@@ -20,18 +20,18 @@ if($nome == NULL or $email == NULL or $type == NULL){
 }
 
 
-$pkAtividade = $_POST['excluir'];
+$pk_atividade = $_POST['excluir'];
 
 
 
 $delete = new Crud();
 
-$delete->delete_atividades_paciente($pkAtividade);
+$delete->delete_atividades_paciente($pk_atividade);
 
 $curPaciente = $_POST['curPaciente'];
 
 header("location: ../../../view/telas/psicologo/psicologo.php?paciente=".$curPaciente."");
 
-echo "$pkAtividade";
+echo "$pk_atividade";
 
 ?>

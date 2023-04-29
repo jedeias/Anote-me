@@ -21,14 +21,14 @@ if($nome == NULL or $email == NULL or $type == NULL){
 
 $_SESSION['get_executed'] = false;
 
-$pkAnotacao = $_POST['excluir'];
+$pk_anotacao = $_POST['excluir'];
 
 
 
 $delete = new Crud();
 
-$delete->delete_anotacao_paciente($pkAnotacao);
+$delete->delete_anotacao_paciente($pk_anotacao);
 
 header("location: ../../../view/telas/paciente/anotacoes.php?deletednote");
 
-var_dump($pkAnotacao);
+var_dump($pk_anotacao);
