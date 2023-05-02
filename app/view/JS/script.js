@@ -128,7 +128,7 @@ window.onload = function(){
 	}
 }
 
-//
+// Mostrar Senha ao clicar no olho
 
 function mostrarSenha(lugar){
 
@@ -161,4 +161,20 @@ function mostrarSenha(lugar){
             break;
     }
 
+}
+
+function conferirSenha(lugar){
+    switch(lugar){
+        case 'paciForm': 
+            const senha = document.getElementById('paciSenha');
+            const confirmSenha = document.getElementById('paciConfirmSenha');
+            
+            if(senha.value === confirmSenha.value){
+                confirmSenha.setCustomValidity('')
+            } else {
+                confirmSenha.setCustomValidity('Senhas não conferem');
+                preventDefault();
+            }
+            break;
+    }
 }

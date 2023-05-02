@@ -89,5 +89,185 @@ body{
     color: #3d3d3d;
 }
 
+.logo-main{
+    display: flex;
+}
+
+.logo-side{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.feliz, .raiva, .triste{
+    top: 7px;
+    bottom: 0;
+    position: absolute;
+}
+
+.logo-side .feliz, .logo-side .triste, .logo-side .raiva{
+    font-size: 30px;
+    opacity: 0;
+}
+
+.logo-text h1{
+    animation: logoShow 1s ease-in-out ;
+}
+.logo-text p{
+    opacity: 1;
+    animation: descShow 2s ease-in-out ;
+}
+
+.logo-side .me{
+    animation: switchMe 10s ease-in-out;
+}
+
+.logo-side .feliz{
+    animation: switchFeliz 10s ease-in-out;
+}
+
+.logo-side .raiva{
+    animation: switchRaiva 10s ease-in-out;
+}
+
+.logo-side .triste{
+    animation: switchTriste 10s ease-in-out;
+}
+
+@keyframes logoShow {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes descShow {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    50% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes switchMe {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    10%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    45% {
+        opacity: 1;
+        transform: scale(100%);
+    }
+    50% {
+        transform: scale(0%);
+    }
+
+    75%{
+        transform: scale(0%);
+    }
+    80% {
+        transform: scale(100%);
+    }
+    
+}
+
+@keyframes switchFeliz{
+    0% {
+        opacity: 0;
+        transform: scale(0%);
+    }
+    45% {
+        opacity: 0;
+        transform: scale(0%);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(100%);
+    }
+    55% {
+        opacity: 1;
+        transform: scale(100%);
+    }
+    60% {
+        opacity: 0;
+        transform: scale(0%);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0%);
+    }
+}
+
+@keyframes switchRaiva{
+    0% {
+        opacity: 0;
+        transform: scale(0%);
+    }
+    55% {
+        opacity: 0;
+        transform: scale(0%);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(100%);
+    }
+    65% {
+        opacity: 1;
+        transform: scale(100%);
+    }
+    70% {
+        opacity: 0;
+        transform: scale(0%);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0%);
+    }
+}
+
+@keyframes switchTriste{
+    0% {
+        opacity: 0;
+        transform: scale(0%);
+    }
+    65% {
+        opacity: 0;
+        transform: scale(0%);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(100%);
+    }
+    75% {
+        opacity: 1;
+        transform: scale(100%);
+    }
+    80% {
+        opacity: 0;
+        transform: scale(0%);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0%);
+    }
+}
+
 
 

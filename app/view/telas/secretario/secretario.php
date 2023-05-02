@@ -96,7 +96,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
         </aside>
         <section class="notepad-content">
 
-            <article class="cadastro-table no-border" id="cadastroTable">
+            <article class="cadastro-table show no-border" id="cadastroTable">
                 <button class="cadastro-button left-button" onclick="pacienteButton()">
                     <h1>Cadastrar Paciente</h1>
                 </button>
@@ -105,7 +105,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                 </button>
             </article>
 
-            <article class="cadastro-table show" id="cadastroPacienteTable">
+            <article class="cadastro-table" id="cadastroPacienteTable">
                 <button class="backButton" id="backButtonPaciente">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
                         <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
@@ -187,7 +187,6 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                         <option value="SP">São Paulo</option>
                                         <option value="SE">Sergipe</option>
                                         <option value="TO">Tocantins</option>
-                                        <option value="EX">Estrangeiro</option>
                                     </select>
                                 </div>
                                 <div class="big-input">
@@ -197,14 +196,15 @@ if($nome == NULL and $email == NULL and $type == NULL){
                             </div>
                             <label for="senha">Senha</label>
                             <div class="senha-container">
-                                <input type="password" name="senha" required id="paciSenha">
+                                <input type="password" name="senha" onchange="conferirSenha('paciForm')" required id="paciSenha">
                                 <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciShowSenha" onclick="mostrarSenha('paciForm')" alt="">
                             </div>
                             <label for="confirmarSenha">Confirmar Senha</label>
                             <div class="senha-container">
-                                <input type="password" name="confirmarSenha" required id="paciConfirmSenha">
+                                <input type="password" name="confirmarSenha" onchange="conferirSenha('paciForm')" required id="paciConfirmSenha">
                                 <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciConfirmShowSenha" onclick="mostrarSenha('paciConfirmForm')" alt="">
                             </div>
+                            
                             
                             <input type="submit">
                         
