@@ -96,7 +96,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
         </aside>
         <section class="notepad-content">
 
-            <article class="cadastro-table show no-border" id="cadastroTable">
+            <article class="cadastro-table no-border" id="cadastroTable">
                 <button class="cadastro-button left-button" onclick="pacienteButton()">
                     <h1>Cadastrar Paciente</h1>
                 </button>
@@ -105,7 +105,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                 </button>
             </article>
 
-            <article class="cadastro-table" id="cadastroPacienteTable">
+            <article class="cadastro-table show" id="cadastroPacienteTable">
                 <button class="backButton" id="backButtonPaciente">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
                         <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
@@ -204,8 +204,38 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                 <input type="password" name="confirmarSenha" onchange="conferirSenha('paciForm')" required id="paciConfirmSenha">
                                 <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciConfirmShowSenha" onclick="mostrarSenha('paciConfirmForm')" alt="">
                             </div>
-                            
-                            
+                            <div class="check-input">
+                                <input name="responsavelBox" id="responsavelBox" type="Checkbox">
+                                <label for="responsavelBox">Este paciente possui um responsavel</label>
+                            </div>
+                            <div class="responsavel-form" id="responsavelForm">
+                                <hr>
+                                <h1>Cadastrar Responsável</h1>
+                                <div class="cross-input">
+                                <div>
+                                    <label for="resNome">Nome</label>
+                                    <input type="text" name="resNome">
+                                </div>
+                                <div>
+                                    <label for="resSobrenome">Sobrenome</label>
+                                    <input type="text" name="resSobrenome">
+                                </div>
+                                </div>
+                                <label for="resEmail">Email</label>
+                                <input type="email" name="resEmail">
+                                <div class="cross-input">
+                                <div>
+                                    <label for="resRG">RG</label>
+                                    <input type="text" name="resRG">
+                                </div>
+                                <div>
+                                    <label for="resCPF">CPF</label>
+                                    <input type="text" name="resCPF">
+                                </div>
+                                </div>
+                                <label for="resTelefone">Telefone</label>
+                                <input placeholder="(11) 96123-4567" name="resTelefone" id="telefone" type="tel" minlength="8" maxlength="15">
+                            </div>
                             <input type="submit">
                         
                 </div>

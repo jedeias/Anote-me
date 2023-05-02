@@ -178,3 +178,21 @@ function conferirSenha(lugar){
             break;
     }
 }
+
+function showResponsavelForm(){
+    console.log("foi");
+    let responsavelForm = document.getElementById('responsavelForm');
+    if(document.getElementById('responsavelBox').checked){
+        console.log("testeform")
+        if(!responsavelForm.classList.contains('showBlock')){
+            responsavelForm.classList.add('showBlock')
+        }
+    } else {
+        if(responsavelForm.classList.contains('showBlock')){
+            responsavelForm.classList.remove('showBlock')
+        }    
+    }
+}
+
+    let responsavelBox = document.getElementById('responsavelBox');
+    responsavelBox.addEventListener("click", showResponsavelForm);
