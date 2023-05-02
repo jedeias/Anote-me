@@ -34,7 +34,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
         <h1>ANOTE-ME</h1>
         <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
             <?php if(isset($imagem) && $imagem != NULL): ?>
-                <img src="<?php echo "../../IMG/imagem_perfil/$imagem"; ?>" alt="" class='perfil' id='first-perfil'>
+                <img src="<?php echo "../$imagem"; ?>" alt="" class='perfil' id='first-perfil'>
             <?php else: ?>
                 <img src="../../IMG/default.jpg" alt="" class='perfil'>
             <?php endif; ?>
@@ -45,7 +45,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
 
                     <li class="center"> 
                         <?php if(isset($imagem) && $imagem != NULL): ?>
-                            <img src="<?php echo "../../IMG/imagem_perfil/$imagem"; ?>" alt="FOTO-DE-PERFIL" class='perfil' id='second-perfil'>
+                            <img src="<?php echo "../$imagem"; ?>" alt="FOTO-DE-PERFIL" class='perfil' id='second-perfil'>
                         <?php else: ?>
                             <img src="../../IMG/default.jpg" alt="" class='perfil'>
                         <?php endif; ?>
@@ -76,12 +76,12 @@ if($nome == NULL and $email == NULL and $type == NULL){
                             <p>Cadastro</p>
                         </li>
                     </a>
-                    <a href="./secretario.php">
+                    <a href="./secreListarPsico.php">
                         <li>
                             <p>Psicologos</p>
                         </li>
                     </a>
-                    <a href="./secrePacientes.php">
+                    <a href="./secreListarPaci.php">
                         <li>
                             <p>Pacientes</p>
                         </li>

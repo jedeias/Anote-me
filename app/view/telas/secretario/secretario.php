@@ -2,6 +2,7 @@
 
 include("../../../autoload.php");
 
+
 $session = new Session();
 
 $nome = $session->session_get('nome');
@@ -34,7 +35,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
         <h1>ANOTE-ME</h1>
         <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
             <?php if(isset($imagem) && $imagem != NULL): ?>
-                <img src="<?php echo "../../IMG/imagem_perfil/$imagem"; ?>" alt="" class='perfil' id='first-perfil'>
+                <img src="<?php echo "../$imagem"; ?>" alt="" class='perfil' id='first-perfil'>
             <?php else: ?>
                 <img src="../../IMG/default.jpg" alt="" class='perfil'>
             <?php endif; ?>
@@ -45,7 +46,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
 
                     <li class="center"> 
                         <?php if(isset($imagem) && $imagem != NULL): ?>
-                            <img src="<?php echo "../../IMG/imagem_perfil/$imagem"; ?>" alt="FOTO-DE-PERFIL" class='perfil' id='second-perfil'>
+                            <img src="<?php echo "../$imagem"; ?>" alt="FOTO-DE-PERFIL" class='perfil' id='second-perfil'>
                         <?php else: ?>
                             <img src="../../IMG/default.jpg" alt="" class='perfil'>
                         <?php endif; ?>
@@ -53,7 +54,10 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     <li class="center"><?php echo "$nome"; ?></li>
                     <div class='lista-dados-content'>
                         <li>Email : <?php echo $email; ?></li>
-                        <li>Telefone :</li>
+                        <li>Telefone : <?php echo $dados[0]['numero']; ?></li>
+                        <li>Responsável : <?php echo $responsavel[0]['nome']; ?></li>
+                        <li>Telefone do Responsável : <?php echo $responsavel[0]['numero_responsavel']; ?></li>
+                        <li>Psicologo : <?php echo $psicologo[0]['nome_psicologo'];?></li>
                         <li>Clinica : </li>
                     </div>
                     <li class="config-container">
@@ -69,54 +73,156 @@ if($nome == NULL and $email == NULL and $type == NULL){
         <aside class="menu-container">
             <nav class="menu">
                 <ul>
-                    <a href="./secreCadastro.php">
-                        <li class="anotacoes">
+                    <a href="secreCadastro.php">
+                        <li>
                             <p>Cadastro</p>
                         </li>
-                    </a>
-                    <a href="./secretario.php">
+                    </a>  
+
+                    <a href="secreListarPsico.php">
                         <li>
                             <p>Psicologos</p>
                         </li>
-                    </a>
-                    <a href="./secretario.php">
+                    </a> 
+
+                <a href="secreListarPaci.php">
                         <li>
                             <p>Pacientes</p>
                         </li>
-                    </a>
+                    </a> 
+                    
                 </ul>
             </nav>        
         </aside>
-        
         <section class="notepad-content">
-            <article class="psi-table">
-                <header class="psi-paci-header-text">
-                    <h1>Psicologos</h1>
-                </header>
-                <article class="article-grid-list">
-                    <section class="psi-paci-list">
-                        <div class="psi-paci-text-div">
-                            <p>nome: cleitin </p>
-                            <p>Data_Nasc: sei la</p>
-                            <p>test: teste</p>
-                            <p>test: teste</p>
-                        </div>
-                    </section>
-                    
-                    <section class="psi-paci-list">
-                        <div class="psi-paci-text-div">
-                            <p>nome: junin </p>
-                            <p>Data_Nasc: sei la</p>
-                            <p>test: teste</p>
-                            <p>test: teste</p>
-                        </div>
-                    </section>
 
-                </article>
+            <article class="cadastro-table no-border" id="cadastroTable">
+                <button class="cadastro-button left-button" onclick="pacienteButton()">
+                    <h1>Cadastrar Paciente</h1>
+                </button>
+                <button class="cadastro-button right-button" onclick="psicologoButton()">
+                    <h1>Cadastrar Psicologo</h1>
+                </button>
             </article>
-            
+
+            <article class="cadastro-table show" id="cadastroPacienteTable">
+                <button class="backButton" id="backButtonPaciente">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                        <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                    </svg>
+                </button>
+                <div class="paciente-cadastro-container">
+                        <h1>Cadastrar Paciente</h1>
+                        <form method="POST" action="teste.php">
+                            <div class="cross-input">
+                            <div>
+                                <label for="nome">Nome</label>
+                                <input type="text" name="nome">
+                            </div>
+                            <div>
+                                <label for="nome">Sobrenome</label>
+                                <input type="text" name="sobrenome">
+                            </div>
+                            </div>
+                            <label for="email">Email</label>
+                            <input type="email" name="email">
+                            <div class="cross-input">
+                            <div>
+                                <label for="RG">RG</label>
+                                <input type="text" name="RG">
+                            </div>
+                            <div>
+                                <label for="CPF">CPF</label>
+                                <input type="text" name="CPF">
+                            </div>
+                            </div>
+                            <label for="data-nasc">Data de Nascimento</label>
+                            <input type="date" name="data-nasc">
+                            <label for="sexo">Sexo</label>
+                            <select name="sexo">
+                                <option value="M">Masculino</option>
+                                <option value="F">Feminino</option>
+                            </select>
+                            <label for="telefone">Telefone</label>
+                            <input placeholder="(11) 96123-4567" name="telefone" id="telefone" type="tel" minlength="8" maxlength="15">
+                            <p class="form-subtitle">Endereço</p>
+                            <label for="CEP">CEP</label>
+                            <input id="paciCEP" type="text" name="cep">
+                            <label for="rua">Rua</label>
+                            <input id="paciRua" type="text" name="rua">
+                            <label for="bairro">Bairro</label>
+                            <input id="paciBairro" type="text" name="bairro">
+                            <label for="casaNum">Número</label>
+                            <input type="text" name="casaNum">
+                            <label for="complemento">Complemento</label>
+                            <input type="text" name="complemento">
+                            <div class="cross-input">
+                                <div class="small-input">
+                                    <label for="estado">Estado</label>
+                                    <select id="paciEstado" name="estado">
+                                        <option value="AC">Acre</option>
+                                        <option value="AL">Alagoas</option>
+                                        <option value="AP">Amapá</option>
+                                        <option value="AM">Amazonas</option>
+                                        <option value="BA">Bahia</option>
+                                        <option value="CE">Ceará</option>
+                                        <option value="DF">Distrito Federal</option>
+                                        <option value="ES">Espírito Santo</option>
+                                        <option value="GO">Goiás</option>
+                                        <option value="MA">Maranhão</option>
+                                        <option value="MT">Mato Grosso</option>
+                                        <option value="MS">Mato Grosso do Sul</option>
+                                        <option value="MG">Minas Gerais</option>
+                                        <option value="PA">Pará</option>
+                                        <option value="PB">Paraíba</option>
+                                        <option value="PR">Paraná</option>
+                                        <option value="PE">Pernambuco</option>
+                                        <option value="PI">Piauí</option>
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="RN">Rio Grande do Norte</option>
+                                        <option value="RS">Rio Grande do Sul</option>
+                                        <option value="RO">Rondônia</option>
+                                        <option value="RR">Roraima</option>
+                                        <option value="SC">Santa Catarina</option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="SE">Sergipe</option>
+                                        <option value="TO">Tocantins</option>
+                                        <option value="EX">Estrangeiro</option>
+                                    </select>
+                                </div>
+                                <div class="big-input">
+                                    <label for="cidade">Cidade</label>
+                                    <input class="form-space" id="paciCidade" type="text" name="cidade">
+                                </div>
+                            </div>
+                            <label for="senha">Senha</label>
+                            <div class="senha-container">
+                                <input type="password" name="senha" required id="paciSenha">
+                                <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciShowSenha" onclick="mostrarSenha('paciForm')" alt="">
+                            </div>
+                            <label for="confirmarSenha">Confirmar Senha</label>
+                            <div class="senha-container">
+                                <input type="password" name="confirmarSenha" required id="paciConfirmSenha">
+                                <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciConfirmShowSenha" onclick="mostrarSenha('paciConfirmForm')" alt="">
+                            </div>
+                            
+                            <input type="submit">
+                        
+                </div>
+            </article>
+
+            <article class="cadastro-table" id="psicologoCadastroTable">
+                <button class="backButton" id="backButtonPsicologo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                        <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                    </svg>
+                </button>
+            </article>
+
         </section>
+
     </main>
-    <script src = "../../JS/script.js"></script>
+    <script src = "../../JS/script.js"> </script>
+    <script src = "../../JS/cep.js"> </script>
 </body>
 </html>

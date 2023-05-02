@@ -77,13 +77,13 @@ function psicologoButton(){
 var btnVoltarPaciente = document.getElementById("backButtonPaciente");
 
 btnVoltarPaciente.addEventListener("click", function() {
-    window.location.href = "secreCadastro.php";
+    window.location.href = "secretario.php";
 });
 
 var btnVoltarPsicologo = document.getElementById("backButtonPsicologo");
 
 btnVoltarPsicologo.addEventListener("click", function() {
-    window.location.href = "secreCadastro.php";
+    window.location.href = "secretario.php";
 });
 
 function selecionarPaciente(numero){
@@ -98,6 +98,8 @@ function deleteAlert(e){
         e.preventDefault();
     }
 }
+
+//Mascara Numero de telefone
 
 function mascara (o,f){
     v_obj = o
@@ -124,4 +126,39 @@ window.onload = function(){
 	id('telefone').onkeyup = function(){
 		mascara( this, mtel );
 	}
+}
+
+//
+
+function mostrarSenha(lugar){
+
+    switch(lugar){
+        case 'paciForm' :
+            var inputPass = document.getElementById("paciSenha");
+            var showPassBtn = document.getElementById("paciShowSenha");
+            if (inputPass.type === 'password'){
+                inputPass.setAttribute('type','text');
+                showPassBtn.setAttribute('src','../../IMG/ico/eye-slash-fill.svg');
+                showPassBtn.setAttribute('title','Ocultar Senha')
+            } else {
+                inputPass.setAttribute('type','password');
+                showPassBtn.setAttribute('src','../../IMG/ico/eye-fill.svg');
+                showPassBtn.setAttribute('title','Mostrar Senha')
+            }
+            break;
+        case 'paciConfirmForm' :
+            var inputPass = document.getElementById("paciConfirmSenha");
+            var showPassBtn = document.getElementById("paciConfirmShowSenha");
+            if (inputPass.type === 'password'){
+                inputPass.setAttribute('type','text');
+                showPassBtn.setAttribute('src','../../IMG/ico/eye-slash-fill.svg');
+                showPassBtn.setAttribute('title','Ocultar Senha')
+            } else {
+                inputPass.setAttribute('type','password');
+                showPassBtn.setAttribute('src','../../IMG/ico/eye-fill.svg');
+                showPassBtn.setAttribute('title','Mostrar Senha')
+            }
+            break;
+    }
+
 }
