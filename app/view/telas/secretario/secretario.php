@@ -137,7 +137,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                             </div>
                             </div>
                             <label for="data-nasc">Data de Nascimento</label>
-                            <input type="date" name="data-nasc">
+                            <input type="date" name="data-nasc" id="dataNascPaci">
                             <label for="sexo">Sexo</label>
                             <select name="sexo">
                                 <option value="M">Masculino</option>

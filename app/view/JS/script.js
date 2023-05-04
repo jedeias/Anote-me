@@ -194,5 +194,7 @@ function showResponsavelForm(){
     }
 }
 
-    let responsavelBox = document.getElementById('responsavelBox');
-    responsavelBox.addEventListener("click", showResponsavelForm);
+let responsavelBox = document.getElementById('responsavelBox');
+responsavelBox.addEventListener("click", showResponsavelForm);
+
+
