@@ -43,8 +43,18 @@ class Select extends Connect implements selectController{
     public function loginCheck($email, $password){
         return $this->validateUser($email, $password);
     }
+    public function selectPsicologos(){
+        return $this->selectPsicologosPriv();
+    }
 
     #interface end
+
+    private function selectPsicologosPriv(){
+        $sql = $this->getConn()->query("SELECT pk_psicologo, nome FROM psicologo");
+        $data = $sql->fetch_all(MYSQLI_ASSOC);
+
+        return $data;
+    }
 
     private function validateUser($email, $password) 
     {

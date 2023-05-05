@@ -179,18 +179,26 @@ function conferirSenha(lugar){
     }
 }
 
+let responsavelInput = document.querySelectorAll("div.responsavel-form input");
+let menorQue18 = false;
+
 function showResponsavelForm(){
-    console.log("foi");
     let responsavelForm = document.getElementById('responsavelForm');
     if(document.getElementById('responsavelBox').checked){
         console.log("testeform")
         if(!responsavelForm.classList.contains('showBlock')){
             responsavelForm.classList.add('showBlock')
         }
+        for (var i=0; i < responsavelInput.length; i++) {
+            responsavelInput[i].removeAttribute('disabled');
+        }
     } else {
         if(responsavelForm.classList.contains('showBlock')){
             responsavelForm.classList.remove('showBlock')
-        }    
+        } 
+        for (var i=0; i < responsavelInput.length; i++) {
+            responsavelInput[i].setAttribute('disabled', '');
+        }
     }
 }
 
@@ -198,3 +206,28 @@ let responsavelBox = document.getElementById('responsavelBox');
 responsavelBox.addEventListener("click", showResponsavelForm);
 
 
+let dataNasc = document.getElementById('dataNascPaci');
+dataNasc.addEventListener('blur', compararDataNasc);
+
+function compararDataNasc(){
+    let dataAtual = new Date();
+
+    let dataNascValue = dataNasc.value;
+    let dataNascSplit = dataNascValue.split("-");
+
+    let dataNascJs = new Date(dataNascSplit[0], dataNascSplit[1] -1, dataNascSplit[2]);
+    let diferenca = dataAtual.getTime() - dataNascJs.getTime();
+
+    let idade = Math.floor(diferenca / (1000 * 60 * 60 * 24 * 365.25));
+
+    if(idade < 18){
+        let responsavelBox = document.getElementById('responsavelBox');
+        responsavelBox.checked = 'checked';
+    } else {
+        let responsavelBox = document.getElementById('responsavelBox');
+        responsavelBox.checked = false;
+
+    }
+
+
+}

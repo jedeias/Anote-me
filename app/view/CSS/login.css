@@ -14,6 +14,15 @@ body{
 .logo-container h1{
     font-size: 40px;
 }
+
+.invalido{
+    text-align: left;
+    color: red;
+    position: absolute;
+    top: 95px;
+    opacity: 0;
+    animation: invalido 5s ease-out;
+}
 .logo-container{
     color: white;
     padding: 70px;
@@ -50,6 +59,7 @@ body{
     padding: 60px;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 .action-button{
     display: flex;
@@ -57,7 +67,7 @@ body{
 }
 
 .entrar-button, .registrar-button{
-    width: 120px;
+    width: 100%;
     height: 30px;
     border-radius: 5px;
     border: none;
@@ -279,6 +289,12 @@ body{
     100% {
         background-position: 0 0;
     }
+}
+
+@keyframes invalido {
+    from {opacity: 1;}
+    80%{opacity: 1;}
+    to {opacity: 0;}
 }
 
 

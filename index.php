@@ -42,23 +42,24 @@
             <form class="login" action="app/main.php" method="POST" enctype="multipart/form-data">
                 
                 <h1 class="login-label">LOGIN</h1>
-            
-            
-                <input type="text" name="email" placeholder="E-mail" class="usuario-input">
+                <?php
+                    include("app/autoload.php");
+                    $session = new Session();
+                    if ($session->session_get("get_executed") == false) {
+                        if(isset($_GET["invalido"])){
+                            echo "<p class='invalido'>Usuario ou senha inválidos!</p>";
+                        }       
+                        $session->session_set("get_executed", true);
+                    }
+                ?>            
+                <input type="text" name="email" placeholder="E-mail" class="usuario-input" required>
                
             
-                <input type="password"  name="password" placeholder="Senha" class="senha-input">
+                <input type="password"  name="password" placeholder="Senha" class="senha-input" required>
                 
                 <div class="action-button">
                 
                     <input type="submit" name="entrar" class="entrar-button" value="Entrar">
-                    
-                    <button class="registrar-button">
-                    
-                        <a href="registro.html">Registrar</a>
-                    
-                    </button>
-                
                 </div>
             
             </form>

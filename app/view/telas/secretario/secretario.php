@@ -117,27 +117,27 @@ if($nome == NULL and $email == NULL and $type == NULL){
                             <div class="cross-input">
                             <div>
                                 <label for="nome">Nome</label>
-                                <input type="text" name="nome">
+                                <input type="text" name="nome" required>
                             </div>
                             <div>
                                 <label for="nome">Sobrenome</label>
-                                <input type="text" name="sobrenome">
+                                <input type="text" name="sobrenome" required>
                             </div>
                             </div>
                             <label for="email">Email</label>
-                            <input type="email" name="email">
+                            <input type="email" name="email" required>
                             <div class="cross-input">
                             <div>
                                 <label for="RG">RG</label>
-                                <input type="text" name="RG">
+                                <input type="text" name="RG" required>
                             </div>
                             <div>
                                 <label for="CPF">CPF</label>
-                                <input type="text" name="CPF">
+                                <input type="text" name="CPF" required>
                             </div>
                             </div>
                             <label for="data-nasc">Data de Nascimento</label>
-                            <input type="date" name="data-nasc" id="dataNascPaci">
+                            <input type="date" name="data-nasc" id="dataNascPaci" max="<?php echo date('Y-m-d'); ?>">
                             <label for="sexo">Sexo</label>
                             <select name="sexo">
                                 <option value="M">Masculino</option>
@@ -145,15 +145,28 @@ if($nome == NULL and $email == NULL and $type == NULL){
                             </select>
                             <label for="telefone">Telefone</label>
                             <input placeholder="(11) 96123-4567" name="telefone" id="telefone" type="tel" minlength="8" maxlength="15">
+                            <?php
+                                $select = new Select();
+                                $pisicologos = $select->selectPsicologos();
+
+                                echo "<label for='psicologoResponsavel'>Psicologo Responsável</label>";
+                                echo "<select name='psicologoResponsavel'>";
+                                foreach($pisicologos as $psicologo){
+                                    echo "<option value='".$psicologo['pk_psicologo']."'>".$psicologo['nome']."</option>";
+                                }
+
+                                echo "</select>";
+
+                            ?>
                             <p class="form-subtitle">Endereço</p>
                             <label for="CEP">CEP</label>
-                            <input id="paciCEP" type="text" name="cep">
+                            <input id="paciCEP" type="text" name="cep" required>
                             <label for="rua">Rua</label>
-                            <input id="paciRua" type="text" name="rua">
+                            <input id="paciRua" type="text" name="rua" required>
                             <label for="bairro">Bairro</label>
-                            <input id="paciBairro" type="text" name="bairro">
+                            <input id="paciBairro" type="text" name="bairro" required>
                             <label for="casaNum">Número</label>
-                            <input type="text" name="casaNum">
+                            <input type="text" name="casaNum" required>
                             <label for="complemento">Complemento</label>
                             <input type="text" name="complemento">
                             <div class="cross-input">
@@ -191,7 +204,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                 </div>
                                 <div class="big-input">
                                     <label for="cidade">Cidade</label>
-                                    <input class="form-space" id="paciCidade" type="text" name="cidade">
+                                    <input class="form-space" id="paciCidade" type="text" name="cidade" required>
                                 </div>
                             </div>
                             <label for="senha">Senha</label>
@@ -214,27 +227,27 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                 <div class="cross-input">
                                 <div>
                                     <label for="resNome">Nome</label>
-                                    <input type="text" name="resNome">
+                                    <input type="text" name="resNome" required disabled>
                                 </div>
                                 <div>
                                     <label for="resSobrenome">Sobrenome</label>
-                                    <input type="text" name="resSobrenome">
+                                    <input type="text" name="resSobrenome" required disabled>
                                 </div>
                                 </div>
                                 <label for="resEmail">Email</label>
-                                <input type="email" name="resEmail">
+                                <input type="email" name="resEmail" required disabled>
                                 <div class="cross-input">
                                 <div>
                                     <label for="resRG">RG</label>
-                                    <input type="text" name="resRG">
+                                    <input type="text" name="resRG" required disabled>
                                 </div>
                                 <div>
                                     <label for="resCPF">CPF</label>
-                                    <input type="text" name="resCPF">
+                                    <input type="text" name="resCPF" required disabled>
                                 </div>
                                 </div>
                                 <label for="resTelefone">Telefone</label>
-                                <input placeholder="(11) 96123-4567" name="resTelefone" id="telefone" type="tel" minlength="8" maxlength="15">
+                                <input placeholder="(11) 96123-4567" name="resTelefone" id="telefone" type="tel" minlength="8" maxlength="15" required disabled>
                             </div>
                             <input type="submit">
                         

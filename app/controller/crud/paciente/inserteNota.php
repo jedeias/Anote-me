@@ -28,7 +28,7 @@ $session->session_set( "emocao" ,$emocao);
 $session->session_set( "emocaoGrau" ,$emocaoGrau );
 $session->session_set( "descricao" ,$descricao );
 
-$_SESSION['get_executed'] = false;
+
 
 $inser = new Crud();
 
