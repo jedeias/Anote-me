@@ -159,7 +159,23 @@ function mostrarSenha(lugar){
                 showPassBtn.setAttribute('title','Mostrar Senha')
             }
             break;
+        case 'loginForm':
+            console.log('teste');
+            var inputPass = document.getElementById("loginSenha");
+            var showPassBtn = document.getElementById("loginShowSenha");
+            if (inputPass.type === 'password'){
+                inputPass.setAttribute('type','text');
+                showPassBtn.setAttribute('src','app/view/IMG/ico/eye-slash-fill.svg');
+                showPassBtn.setAttribute('title','Ocultar Senha')
+            } else {
+                inputPass.setAttribute('type','password');
+                showPassBtn.setAttribute('src','app/view/IMG/ico/eye-fill.svg');
+                showPassBtn.setAttribute('title','Mostrar Senha')
+            }
+            break;
+
     }
+    
 
 }
 
@@ -220,13 +236,21 @@ function compararDataNasc(){
 
     let idade = Math.floor(diferenca / (1000 * 60 * 60 * 24 * 365.25));
 
-    if(idade < 18){
-        let responsavelBox = document.getElementById('responsavelBox');
-        responsavelBox.checked = 'checked';
-    } else {
-        let responsavelBox = document.getElementById('responsavelBox');
-        responsavelBox.checked = false;
+    let responsavelBox = document.getElementById('responsavelBox');
+    let checkText = document.getElementById('checkText');
+    let checkDisabled = document.getElementById('checkDisabled');
 
+    if(idade < 18){
+        console.log("menos de 18");
+        responsavelBox.checked = 'checked';
+        checkText.style.display = 'block';
+        checkDisabled.style.display = 'block';
+        showResponsavelForm();
+    } else {
+        responsavelBox.checked = false;
+        checkText.style.display = 'none';
+        checkDisabled.style.display = 'none';
+        showResponsavelForm();
     }
 
 

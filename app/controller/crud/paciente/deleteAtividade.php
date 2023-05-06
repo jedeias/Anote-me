@@ -16,7 +16,7 @@ $type = $session->session_get('type');
 $id = $session->session_get('id');
 
 if($nome == NULL or $email == NULL or $type == NULL){
-   header("location: /../../../tcc/index.html");
+   header("location: /../../../tcc/index.php");
 }
 
 

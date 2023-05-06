@@ -41,7 +41,7 @@ class Crud extends Connect implements CrudController{
         ) 
         VALUES (
             null,
-            '11',
+            '1',
             $id,
             '$idPsicologo',
             '$descricao',

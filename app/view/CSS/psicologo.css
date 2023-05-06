@@ -71,6 +71,17 @@
     text-align: left;
     margin-bottom: 5px;
 }
+
+.dados-title{
+    color: rgb(189, 189, 189);
+}
+
+.lista-dados hr{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: none;
+}
+
 .lista-dados .center{
     text-align: center;
 }

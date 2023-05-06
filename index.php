@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="app/view/CSS/login.css">
+    <script src="app/view/JS/script.js"></script>
 </head>
 
 <body>
@@ -55,7 +56,10 @@
                 <input type="text" name="email" placeholder="E-mail" class="usuario-input" required>
                
             
-                <input type="password"  name="password" placeholder="Senha" class="senha-input" required>
+                <div class="senha-container">
+                        <input type="password" name="password" required id="loginSenha" placeholder="Senha" class="senha-input">
+                        <img title="Mostrar Senha" src="app/view/IMG/ico/eye-fill.svg" id="loginShowSenha" onclick="mostrarSenha('loginForm')" alt="">
+                </div>
                 
                 <div class="action-button">
                 

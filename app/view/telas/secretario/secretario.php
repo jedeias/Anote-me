@@ -53,12 +53,11 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     </li>
                     <li class="center"><?php echo "$nome"; ?></li>
                     <div class='lista-dados-content'>
-                        <li>Email : <?php echo $email; ?></li>
-                        <li>Telefone : <?php echo $dados[0]['numero']; ?></li>
-                        <li>Responsável : <?php echo $responsavel[0]['nome']; ?></li>
-                        <li>Telefone do Responsável : <?php echo $responsavel[0]['numero_responsavel']; ?></li>
-                        <li>Psicologo : <?php echo $psicologo[0]['nome_psicologo'];?></li>
-                        <li>Clinica : </li>
+                        <li class="dados-title">Email</li>
+                        <li><?php echo $email; ?></li>
+                        <hr>
+                        <li class="dados-title">Telefone</li>
+                        <li>91234-5678</li>
                     </div>
                     <li class="config-container">
                         <a class="config-button" href="../atualizar_registro.php"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>
@@ -217,10 +216,14 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                 <input type="password" name="confirmarSenha" onchange="conferirSenha('paciForm')" required id="paciConfirmSenha">
                                 <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciConfirmShowSenha" onclick="mostrarSenha('paciConfirmForm')" alt="">
                             </div>
-                            <div class="check-input">
-                                <input name="responsavelBox" id="responsavelBox" type="Checkbox">
-                                <label for="responsavelBox">Este paciente possui um responsavel</label>
+                            <div class="check-container">
+                                <div class="check-input">
+                                    <input name="responsavelBox" id="responsavelBox" type="Checkbox">
+                                    <label for="responsavelBox">Este paciente possui um responsavel</label>
+                                </div>
+                                <div class="check-disabled" id="checkDisabled"></div>
                             </div>
+                            <p class="check-text" id="checkText">Paciente menor que 18 anos, responsável obrigatorio.</p>
                             <div class="responsavel-form" id="responsavelForm">
                                 <hr>
                                 <h1>Cadastrar Responsável</h1>
