@@ -19,7 +19,7 @@ $imagem = $imagem['imagem'];
 
 if (empty($_SESSION)) {
 
-    header('location: ../../../../index.html');
+    header('location: ../../../../index.php');
 
 }
 

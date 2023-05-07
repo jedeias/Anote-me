@@ -52,6 +52,34 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
+.lista-dados {
+    padding: 5% 5% 3%;
+}
+.lista-dados-content{
+    background-color: #333333;
+    padding: 10px;
+    margin: 7px;
+    border-radius: 10px;
+}
+.lista-dados li {
+    list-style-type: none;
+    text-align: left;
+    margin-bottom: 0px;
+}
+
+.dados-title{
+    color: rgb(189, 189, 189);
+}
+
+.lista-dados hr{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: none;
+}
+.lista-dados .center{
+    text-align: center;
+}
+
 .wrapper-icon{
  width: 25px;   
  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(347deg) brightness(108%) contrast(102%);
@@ -124,7 +152,9 @@
 }
 .perfil{
     width: 50px;
-    border-radius: 50px;
+    height: 50px;
+    border-radius: 70px;
+    object-fit: cover;
 }
 
 .activity-container{
