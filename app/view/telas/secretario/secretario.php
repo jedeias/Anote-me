@@ -5,6 +5,7 @@ include("../../../autoload.php");
 
 $session = new Session();
 
+
 $nome = $session->session_get('nome');
 $email = $session->session_get('email');
 $type = $session->session_get('type');
@@ -20,6 +21,57 @@ $imagem = $imagem['imagem'];
 if($nome == NULL and $email == NULL and $type == NULL){
    header("location: ../../../index.php");
 }
+
+?>
+
+<?php
+
+//valores pre setados com o intuito de teste.
+
+
+    $_POST = array(
+        //paciente
+        "nome" => "João",
+        "sobrenome" => "Silva",
+        "email" => "joao.silva@example.com",
+        "RG" => "123456",
+        "CPF" => "111.222.333-4",
+        "data-nasc" => "01/01/2000",
+        "sexo" => "M",
+        "senha" => "123456",
+        "confirmarSenha" => "123456",
+        
+        //telefone
+        "telefone" => "(11) 99999-999",
+        
+        //endereço
+        "cep" => "01234-567",
+        "rua" => "Rua Teste",
+        "bairro" => "Bairro Teste",
+        "casaNum" => "123",
+        "complemento" => "Apartamento 123",
+        "estado" => "SP",
+        "cidade" => "São Paulo",
+        
+        "responsavelBox" => "on",
+        
+        //responsavel
+        "resNome" => "Maria",
+        "resSobrenome" => "Silva",
+        "resEmail" => "maria.silva@example.com",
+        "resRG" => "654321",
+        "resCPF" => "111.222.333-0",
+        "resTelefone" => "(11) 98888-8888"
+            
+        );
+
+    
+    if($_POST == true){
+        
+        $insert = new Crud();
+        
+        $insert->insertPaciente($_POST);
+    }
 
 ?>
 
@@ -55,13 +107,9 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     </li>
                     <li class="center"><?php echo "$nome"; ?></li>
                     <div class='lista-dados-content'>
-                        <li class="dados-title">Email</li>
-                        <li><?php echo $email; ?></li>
-                        <hr>
-                        <li class="dados-title">Telefone</li>
-                        <li><?php echo $dados[0]['numero']; ?></li>
-                        <hr>
-                       
+                        <li>Email : <?php echo $email; ?></li>
+                        <li>Telefone :</li>
+                        <li>Clinica : </li>
                     </div>
                     <li class="config-container">
                         <a class="config-button" href="../atualizar_registro.php"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>

@@ -29,6 +29,8 @@
 
     interface IncerteSecretario{
 
+        public function FunctionName();
+
     }
 
 ?>

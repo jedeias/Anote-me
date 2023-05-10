@@ -1,7 +1,6 @@
 <?php
 
-class Pessoas{
-
+class Pessoas implements Pessoas{
     private $nome;
     private $RG;
     private $cpf;
@@ -9,8 +8,8 @@ class Pessoas{
     private $email;
     private $senha;
 	private $dataNasc;
-	private $endereco;
-    private $telefone;
+	private object $endereco;
+    private object $telefone;
 
 	public function getSenha() {
 		return $this->senha;
@@ -94,6 +93,99 @@ class Pessoas{
         $this->telefone = $telefone;
         return $this;
     }
+
+
+	#Interface
+
+    public function getPessoasSenha(){
+
+		$this->getSenha();
+	}
+    
+    public function setPessoasSenha($senha){
+
+		$this->setSenha();
+	}
+
+    public function getPessoasEmail(){
+
+		$this->getEmail();
+	}
+    
+    public function setPessoasEmail($email){
+
+		$this->setEmail();
+	}
+
+    public function getPessoasSexo(){
+
+		$this->getSexo();
+	}
+    
+    public function setPessoasSexo($sexo){
+
+		$this->setSexo();
+	}
+
+    public function getPessoasCpf(){
+
+		$this->getCpf();
+	}
+    
+    public function setPessoasCpf($cpf){
+
+		$this->setCpf();
+	}
+    
+    public function getPessoasRG(){
+
+		$this->getRG();
+	}
+    
+    public function setPessoasRG($RG){
+
+		$this->setRG();
+	}
+
+    public function getPessoasNome(){
+
+		$this->getNome();
+	}
+    
+    public function setPessoasNome($nome){
+
+		$this->setNome();
+	}
+
+    public function getPessoasDataNasc(){
+
+		$this->getDataNasc();
+	} 
+
+    public function setPessoasDataNasc($dataNasc){
+
+		$this->setDataNasc();
+	} 
+
+    public function getPessoasEndereco(){
+
+		$this->getEndereco();
+	} 
+
+    public function setPessoasEndereco($endereco){
+
+		$this->setEndereco();
+	} 
+
+    public function getPessoasTelefone(){
+
+		$this->getTelefone();
+	}
+    
+    public function setPessoasTelefone($telefone){
+
+		$this->setTelefone();
+	}
 
 }
 

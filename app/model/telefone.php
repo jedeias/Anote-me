@@ -1,5 +1,5 @@
 <?php
-class Telefone {
+class Telefone implements Telefone{
     
     private $ddd;
     private $numero;
@@ -9,11 +9,11 @@ class Telefone {
         $this->setNumero($numero);
     }
 
-    public function getDdd() {
+    private function getDdd() {
         return $this->ddd;
     }
 
-    public function setDdd($ddd) {
+    private function setDdd($ddd) {
         if (preg_match("/^\d{2}$/", $ddd)) {
             $this->ddd = $ddd;
         } else {
@@ -21,11 +21,11 @@ class Telefone {
         }
     }
 
-    public function getNumero() {
+    private function getNumero() {
         return $this->numero;
     }
 
-    public function setNumero($numero) {
+    private function setNumero($numero) {
         if (preg_match("/^\d{8,9}$/", $numero)) {
             $this->numero = $numero;
         } else {
@@ -33,10 +33,24 @@ class Telefone {
         }
     }
 
+    #interface
+
+    public function setTelefoneDdd($ddd){
+        $this->setDdd($ddd);
+    }
+
+    public function setTelefoneNumero($numero){
+        $this->setNumero($numero);
+    }
+
+    public function GetTelefoneDdd(){
+        $this->getDdd();
+    }
+
+    public function getTelefoneNumero(){
+        $this->getNumero();
+    }
+
 }
-
-// $telefone = new Telefone("11","987654321");
-
-// echo($telefone->getDdd() ." ". $telefone->getNumero());
 
 ?>

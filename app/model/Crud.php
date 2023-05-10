@@ -23,7 +23,7 @@ class Crud extends Connect implements CrudController{
     }
 
     public function insert_atividades_paciente($fk_paciente, $fk_psicologo, $assunto, $atividade){
-            $this->getConn()->query($this->queryIsertAtiviadesPaciente($fk_paciente, $fk_psicologo, $assunto, $atividade));
+            $this->query($this->queryIsertAtiviadesPaciente($fk_paciente, $fk_psicologo, $assunto, $atividade));
     }
 
     public function insert_notas_paciente($id, $idPsicologo, $emocao, $emocaoGrau, $descricao) {
@@ -100,22 +100,6 @@ class Crud extends Connect implements CrudController{
         }  
     }
 
-    // // função para atualizar o perfil dos usuarios de acordo com a tabela
-    // public function atualizar_perfil($tabela, $nome, $telefone, $senha, $id){
-    //     $stmt = $this->getConn()->prepare("UPDATE $tabela, telefon SET nome = ?, tabela.email = ?, senha = ? WHERE $tabela.pk_$tabela = ? AND $tabela.fk_telefone = telefone.pk_telefone");
-    //     if (!$stmt) {
-    //         die("Erro na consulta: " . $this->getConn()->error);
-    //     }
-    //     $stmt->bind_param("sssi",$nome, $email, $senha, $id);
-    //     $stmt->execute();
-    
-    //     if ($stmt->affected_rows > 0) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-
     public function atualizar_perfil($tabela, $nome, $email, $senha, $id){
         $stmt = $this->getConn()->prepare("UPDATE $tabela SET nome = ?, email = ?, senha = ? WHERE pk_$tabela = ?");
         if (!$stmt) {
@@ -131,6 +115,81 @@ class Crud extends Connect implements CrudController{
         }
     }
 
+    public function insertEndereco(object $object)
+    {
+
+        $enderecoQuery = "INSERT INTO endereco (rua, numero, bairro, cep, cidade, estado, complemento) 
+        VALUES ('{$object->getRua()}', '{$object->getnumero()}', '{$object->getBairro()}', '{$object->getCep()}', 
+                '{$object->getCidade()}', '{$object->getBairro()}', '{$object->getComplemento()}')";
+
+        if (!$this->query($enderecoQuery)) {
+        die("Erro na query: " . mysqli_error($this->getConn()));
+        }
+
+    }
+
+
+    function insertPaciente($dados) {
+
+        require_once("tratamentoDeDados.php");
+
+        $filter = new Filter();
+
+        $cep = $filter->filterString($dados["cep"]);
+
+        $enderecoQuery = "INSERT INTO endereco (rua, numero, bairro, cep, cidade, estado, complemento) 
+                  VALUES ('{$dados['rua']}', '{$dados['casaNum']}', '{$dados['bairro']}', '{$cep->elemente}', 
+                          '{$dados['cidade']}', '{$dados['estado']}', '{$dados['complemento']}')";
+
+        if (!$this->query($enderecoQuery)) {
+            die("Erro na query: " . mysqli_error($this->getConn()));
+        }
+
+        $telefone = $filter->filterString($dados["telefone"]); 
+
+        $telefone = $filter->getAtributtOnString($telefone->elemente, 2, 9);
+
+        $ddd = $filter->getAtributtOnString($dados["telefone"], 1, 2);
+
+
+        $fk_endereco = $this->getConn()->insert_id; // Pega o ID do endereço inserido
+
+        $telefoneQuery = "INSERT INTO telefone (fk_tipo_telefone, ddd, numero, ddi)
+                           VALUES (1, '{$ddd->string}', '{$telefone->elemente}', 55)";
+        if (!$this->query($telefoneQuery)) {
+            die("Erro na query: " . mysqli_error($this->getConn()));
+        }
+
+        $resCPF = $filter->filterString($dados["resCPF"]);
+
+        $fk_telefone = $this->getConn()->insert_id; // Pega o ID do telefone inserido
+
+
+        if(isset($dados['responsavelBox'])) {
+            $responsavelQuery = "INSERT INTO responsavel (fk_endereco, fk_telefone, fk_tipo_usuario, nome, email, RG, CPF) 
+                                 VALUES ('$fk_endereco', '$fk_telefone', 3, '{$dados['resNome']} {$dados['resSobrenome']}', '{$dados['resEmail']}', '{$dados['resRG']}', '{$resCPF->elemente}')";
+            if (!$this->query($responsavelQuery)) {
+                die("Erro na query: " . mysqli_error($this->getConn()));
+            }
+                
+
+            $fk_responsavel = $this->getConn()->insert_id; 
+        } else {
+            $fk_responsavel = null;
+        }
+        
+        $CPF = $filter->filterString($dados["CPF"]);
+        
+        $pacienteQuery = "INSERT INTO paciente (fk_endereco, fk_telefone, fk_tipo_usuario, fk_responsavel, fk_psicologo, nome, email, senha, RG, CPF, sexo, data_nasc) 
+                          VALUES ('$fk_endereco', '$fk_telefone', 2, '$fk_responsavel', 11 ,'{$dados['nome']} {$dados['sobrenome']}', '{$dados['email']}', '{$dados['senha']}', '{$dados['RG']}', '{$CPF->elemente}', '{$dados['sexo']}', STR_TO_DATE('{$dados['data-nasc']}', '%d/%m/%Y'))";
+        if (!$this->query($pacienteQuery)) {
+            die("Erro na query: " . mysqli_error($this->getConn()));
+        }
+        
+        $fk_paciente = $this->getConn()->insert_id; // Pega o ID do paciente inserido
+        
+        return $fk_paciente;
+    }
 }
 
 ?>

@@ -1,7 +1,4 @@
 <?php
-
-// Pressetar metodos especiais
-
 class Host{
 
     private $server = "localhost";
