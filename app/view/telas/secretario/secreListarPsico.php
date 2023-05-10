@@ -71,17 +71,17 @@ if($nome == NULL and $email == NULL and $type == NULL){
         <aside class="menu-container">
             <nav class="menu">
                 <ul>
-                    <a href="./secreCadastro.php">
+                    <a href="secretario.php">
                         <li class="anotacoes">
                             <p>Cadastro</p>
                         </li>
                     </a>
-                    <a href="./secretario.php">
+                    <a href="secreListarPsico.php">
                         <li>
                             <p>Psicologos</p>
                         </li>
                     </a>
-                    <a href="./secretario.php">
+                    <a href="secreListarPaci.php">
                         <li>
                             <p>Pacientes</p>
                         </li>
@@ -96,21 +96,24 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     <h1>Psicologos</h1>
                 </header>
                 <article class="article-grid-list">
-                    <section class="psi-paci-list">
+                    <section class="psi-paci-list" data-tilt data-tilt-scale="1.05" data-tilt-reverse>
+                        <img class="psi-paci-img" src="../../IMG/default.jpg" alt="foto de perfil">
+                        <h1>Clentin da Silva</h1>
                         <div class="psi-paci-text-div">
-                            <p>nome: cleitin </p>
-                            <p>Data_Nasc: sei la</p>
-                            <p>test: teste</p>
-                            <p>test: teste</p>
+                            <h1>Pacientes</h1>
+                            <p>Maria Carla</p>
+                            <p>Josias Matos</p>
+                            <p>Rodrigo louco</p>
                         </div>
                     </section>
-                    
-                    <section class="psi-paci-list">
+                    <section class="psi-paci-list" data-tilt data-tilt-scale="1.05" data-tilt-reverse>
+                        <img class="psi-paci-img" src="../../IMG/imagem_perfil/fiodor.jpg" alt="foto de perfil">
+                        <h1>Jedeias Filho</h1>
                         <div class="psi-paci-text-div">
-                            <p>nome: junin </p>
-                            <p>Data_Nasc: sei la</p>
-                            <p>test: teste</p>
-                            <p>test: teste</p>
+                            <h1>Pacientes</h1>
+                            <p>Maria Carla</p>
+                            <p>Josias Matos</p>
+                            <p>Rodrigo louco</p>
                         </div>
                     </section>
 
@@ -120,5 +123,6 @@ if($nome == NULL and $email == NULL and $type == NULL){
         </section>
     </main>
     <script src = "../../JS/script.js"></script>
+    <script src="../../JS/vanilla-tilt.js"></script>
 </body>
 </html>

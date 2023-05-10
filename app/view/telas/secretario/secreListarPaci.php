@@ -74,17 +74,17 @@ if($nome == NULL and $email == NULL and $type == NULL){
         <aside class="menu-container">
             <nav class="menu">
                 <ul>
-                    <a href="./secreCadastro.php">
+                    <a href="secretario.php">
                         <li class="anotacoes">
                             <p>Cadastro</p>
                         </li>
                     </a>
-                    <a href="./secreListarPsico.php">
+                    <a href="secreListarPsico.php">
                         <li>
                             <p>Psicologos</p>
                         </li>
                     </a>
-                    <a href="./secreListarPaci.php">
+                    <a href="secreListarPaci.php">
                         <li>
                             <p>Pacientes</p>
                         </li>

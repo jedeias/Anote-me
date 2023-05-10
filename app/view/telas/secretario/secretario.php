@@ -76,7 +76,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
         <aside class="menu-container">
             <nav class="menu">
                 <ul>
-                    <a href="secreCadastro.php">
+                    <a href="secretario.php">
                         <li>
                             <p>Cadastro</p>
                         </li>
@@ -99,7 +99,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
         </aside>
         <section class="notepad-content">
 
-            <article class="cadastro-table no-border" id="cadastroTable">
+            <article class="cadastro-table show no-border" id="cadastroTable">
                 <button class="cadastro-button left-button" onclick="pacienteButton()">
                     <h1>Cadastrar Paciente</h1>
                 </button>
@@ -108,7 +108,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                 </button>
             </article>
 
-            <article class="cadastro-table show" id="cadastroPacienteTable">
+            <article class="cadastro-table" id="cadastroPacienteTable">
                 <button class="backButton" id="backButtonPaciente">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
                         <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
@@ -257,6 +257,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                 <input placeholder="(11) 96123-4567" name="resTelefone" id="telefone" type="tel" minlength="8" maxlength="15" required disabled>
                             </div>
                             <input type="submit">
+                            </form>
                         
                 </div>
             </article>
@@ -267,6 +268,104 @@ if($nome == NULL and $email == NULL and $type == NULL){
                         <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
                     </svg>
                 </button>
+                <div class="psicologo-cadastro-container">
+                        <h1>Cadastrar Psicologo</h1>
+                        <form method="POST" action="teste.php">
+                            <div class="cross-input">
+                            <div>
+                                <label for="nome">Nome</label>
+                                <input type="text" name="nome" required>
+                            </div>
+                            <div>
+                                <label for="nome">Sobrenome</label>
+                                <input type="text" name="sobrenome" required>
+                            </div>
+                            </div>
+                            <label for="email">Email</label>
+                            <input type="email" name="email" required>
+                            <div class="cross-input">
+                            <div>
+                                <label for="RG">RG</label>
+                                <input type="text" name="RG" required>
+                            </div>
+                            <div>
+                                <label for="CPF">CPF</label>
+                                <input type="text" name="CPF" required>
+                            </div>
+                            </div>
+                            <label for="data-nasc">Data de Nascimento</label>
+                            <input type="date" name="data-nasc" max="<?php echo date('Y-m-d'); ?>">
+                            <label for="sexo">Sexo</label>
+                            <select name="sexo">
+                                <option value="M">Masculino</option>
+                                <option value="F">Feminino</option>
+                            </select>
+                            <label for="telefone">Telefone</label>
+                            <input placeholder="(11) 96123-4567" name="telefone" id="telefone" type="tel" minlength="8" maxlength="15">
+                            <p class="form-subtitle">Endereço</p>
+                            <label for="CEP">CEP</label>
+                            <input id="psiCEP" type="text" name="cep" required>
+                            <label for="rua">Rua</label>
+                            <input id="psiRua" type="text" name="rua" required>
+                            <label for="bairro">Bairro</label>
+                            <input id="psiBairro" type="text" name="bairro" required>
+                            <label for="casaNum">Número</label>
+                            <input type="text" name="casaNum" required>
+                            <label for="complemento">Complemento</label>
+                            <input type="text" name="complemento">
+                            <div class="cross-input">
+                                <div class="small-input">
+                                    <label for="estado">Estado</label>
+                                    <select id="psiEstado" name="estado">
+                                        <option value="AC">Acre</option>
+                                        <option value="AL">Alagoas</option>
+                                        <option value="AP">Amapá</option>
+                                        <option value="AM">Amazonas</option>
+                                        <option value="BA">Bahia</option>
+                                        <option value="CE">Ceará</option>
+                                        <option value="DF">Distrito Federal</option>
+                                        <option value="ES">Espírito Santo</option>
+                                        <option value="GO">Goiás</option>
+                                        <option value="MA">Maranhão</option>
+                                        <option value="MT">Mato Grosso</option>
+                                        <option value="MS">Mato Grosso do Sul</option>
+                                        <option value="MG">Minas Gerais</option>
+                                        <option value="PA">Pará</option>
+                                        <option value="PB">Paraíba</option>
+                                        <option value="PR">Paraná</option>
+                                        <option value="PE">Pernambuco</option>
+                                        <option value="PI">Piauí</option>
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="RN">Rio Grande do Norte</option>
+                                        <option value="RS">Rio Grande do Sul</option>
+                                        <option value="RO">Rondônia</option>
+                                        <option value="RR">Roraima</option>
+                                        <option value="SC">Santa Catarina</option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="SE">Sergipe</option>
+                                        <option value="TO">Tocantins</option>
+                                    </select>
+                                </div>
+                                <div class="big-input">
+                                    <label for="cidade">Cidade</label>
+                                    <input class="form-space" id="psiCidade" type="text" name="cidade" required>
+                                </div>
+                            </div>
+                            <label for="senha">Senha</label>
+                            <div class="senha-container">
+                                <input type="password" name="senha" onchange="conferirSenha('paciForm')" required id="paciSenha">
+                                <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciShowSenha" onclick="mostrarSenha('paciForm')" alt="">
+                            </div>
+                            <label for="confirmarSenha">Confirmar Senha</label>
+                            <div class="senha-container">
+                                <input type="password" name="confirmarSenha" onchange="conferirSenha('paciForm')" required id="paciConfirmSenha">
+                                <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciConfirmShowSenha" onclick="mostrarSenha('paciConfirmForm')" alt="">
+                            </div>
+                            <input type="submit">
+                            </form>
+                        
+                </div>
+                
             </article>
 
         </section>
