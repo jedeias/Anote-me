@@ -17,7 +17,7 @@ $imagem = $pegar_imagem->getImagem($paciente_id);
 $imagem = $imagem['imagem'];
 
 if($nome == NULL and $email == NULL and $type == NULL){
-   header("location: ../../../index.html");
+   header("location: ../../../index.php");
 }
 
 ?>
@@ -43,21 +43,25 @@ if($nome == NULL and $email == NULL and $type == NULL){
         </figure> 
         <div class="click-wrapper">
             <nav class="dados-wrapper hidden" id="wrapper-content">
+        
+
                 <ul class="lista-dados">
-                  <li class="center"> 
+
+                    <li class="center"> 
                         <?php if(isset($imagem) && $imagem != NULL): ?>
-                            <img src="<?php echo $imagem ?>" alt="FOTO-DE-PERFIL" class='perfil' id='second-perfil'>
+                            <img src="<?php echo "../../IMG/imagem_perfil/$imagem"; ?>" alt="FOTO-DE-PERFIL" class='perfil' id='second-perfil'>
                         <?php else: ?>
                             <img src="../../IMG/default.jpg" alt="" class='perfil'>
                         <?php endif; ?>
                     </li>
                     <li class="center"><?php echo "$nome"; ?></li>
-                    <li>Email : <?php echo "$email"; ?></li>
-                    <!-- <li>Telefone :</li>
-                    <li>Responsável : </li> -->
-                    <!-- <li>Telefone do Responsável : </li> -->
-                    <li>tipo de usuário : <?php echo "$type"; ?> </li>
-                    <!-- <li>Clinica : </li> -->
+                    <div class='lista-dados-content'>
+                        <li class="dados-title">Email</li>
+                        <li><?php echo $email; ?></li>
+                        <hr>
+                        <li class="dados-title">tipo de usuário : <?php echo "$type"; ?> </li>
+                        <hr>
+                    </div>
                     <li class="config-container">
                         <a class="config-button" href="../atualizar_registro.php"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>
                         <a class="config-button" href="../../sair.php"><img class="wrapper-icon" src="../../IMG/ico/arrow-from-shape-right-svgrepo-com.svg" title="Sair"></a>

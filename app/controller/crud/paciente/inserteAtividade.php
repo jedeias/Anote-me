@@ -23,6 +23,7 @@ $fk_paciente = intval($_POST["fk_paciente"]);
 $fk_psicologo = $session->session_get('id');
 $assunto = $_POST["assunto"];
 $atividade = $_POST["atividade"];
+$session->session_set("get_executed", false);
 
 $insert = new Crud();
 

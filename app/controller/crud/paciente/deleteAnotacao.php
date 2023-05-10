@@ -27,6 +27,6 @@ $delete = new Crud();
 
 $delete->delete_anotacao_paciente($pk_anotacao);
 
-header("location: ../../../view/telas/paciente/anotacoes.php?deletednote");
+header("location: ../../../view/telas/paciente/paciente.php?deletednote");
 
 var_dump($pk_anotacao);

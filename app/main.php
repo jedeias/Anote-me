@@ -18,13 +18,15 @@ $session->session_set("email", $email);
 $session->session_set("nome", $loginStatus["nome"]);
 $session->session_set("id", $loginStatus["id"]);
 $session->session_set("fk_psicologo", $loginStatus["fk_psicologo"]);
+$session->session_set("get_executed", false);
 
 $redirectUrls = array(
     "psicologo" => "./view/telas/psicologo/psicologo.php",
     "paciente" => "./view/telas/paciente/paciente.php",
     "secretario" => "./view/telas/secretario/secretario.php",
-    "default" => "./view/login_error.php"
+    "default" => "../index.php?invalido"
 );
+
 
 $session->session_set('type', $loginStatus["user_type"]);
 

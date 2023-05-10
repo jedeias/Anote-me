@@ -14,7 +14,7 @@ $id = $session->session_get('id');
 
 if (empty($_SESSION)) {
 
-    header('location: ../../../../index.html');
+    header('location: ../../../../index.php');
 
 }
 

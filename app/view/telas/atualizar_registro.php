@@ -8,7 +8,7 @@ $type = $session->session_get('type');
 $id = $session->session_get('id');
 
 if (empty($_SESSION)) {
-    header('location: ../../../index.html');
+    header('location: ../../../index.php');
 }
 
 $back = "$type/$type.php";

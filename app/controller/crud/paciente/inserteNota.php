@@ -17,7 +17,7 @@ $id = $session->session_get('id');
 $fkPsicologo = $session->session_get('fk_psicologo');
 
 if($nome == NULL or $email == NULL or $type == NULL){
-   header("location: /../../../tcc/index.html");
+   header("location: /../../../tcc/index.php");
 }
 $emocao = $_POST["emocao"];
 $emocaoGrau = $_POST["emocaoGrau"];
@@ -27,8 +27,9 @@ $descricao = $_POST["descricao"];
 $session->session_set( "emocao" ,$emocao);
 $session->session_set( "emocaoGrau" ,$emocaoGrau );
 $session->session_set( "descricao" ,$descricao );
+$session->session_set("get_executed", false);
 
-$_SESSION['get_executed'] = false;
+
 
 $inser = new Crud();
 

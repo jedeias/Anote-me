@@ -14,6 +14,15 @@ body{
 .logo-container h1{
     font-size: 40px;
 }
+
+.invalido{
+    text-align: left;
+    color: red;
+    position: absolute;
+    top: 95px;
+    opacity: 0;
+    animation: invalido 5s ease-out;
+}
 .logo-container{
     color: white;
     padding: 70px;
@@ -39,6 +48,29 @@ body{
     box-shadow: 0 0 10px rgba(0,0,0,0.09);
 }
 
+.senha-container{
+    z-index: 0;
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 25px;
+}
+
+.senha-container input{
+    margin: 0;
+    width: 100%;
+}
+.senha-container img{
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) saturate(100%) invert(8%) sepia(55%) saturate(31%) hue-rotate(34deg) brightness(97%) contrast(96%);
+    cursor: pointer;
+}
+
 .label-align{
     display: flex;
     font-weight: 500;
@@ -50,6 +82,7 @@ body{
     padding: 60px;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 .action-button{
     display: flex;
@@ -57,7 +90,7 @@ body{
 }
 
 .entrar-button, .registrar-button{
-    width: 120px;
+    width: 100%;
     height: 30px;
     border-radius: 5px;
     border: none;
@@ -281,5 +314,9 @@ body{
     }
 }
 
-
+@keyframes invalido {
+    from {opacity: 1;}
+    80%{opacity: 1;}
+    to {opacity: 0;}
+}
 

@@ -10,7 +10,7 @@ class Login extends Select
         
         if($result["success"] == false){
 
-            header("location: ../index.html");
+            header("location: ../index.php");
 
         }
         
