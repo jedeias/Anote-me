@@ -1,4 +1,7 @@
 <?php
+
+require_once ($_SERVER['DOCUMENT_ROOT']."/tcc/app/config/host.php");
+
 class Connect extends Host {
     private $conn;
 

@@ -1,6 +1,6 @@
 /*BANCO DE DADOS COM DADOS JA INSERIDOS.*/
 
-drop database `clinica_psicologica`;
+-- drop database `clinica_psicologica`;
 
 CREATE DATABASE IF NOT EXISTS `clinica_psicologica`;
 

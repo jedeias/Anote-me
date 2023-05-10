@@ -1,87 +1,99 @@
 <?php
 
-class Endereco{
+class Endereco implements Endereco{
 
     private $cep; 
     private $numero;
     private $complemento;
     private $endereco;
 
-    function __construct(string $cep)
-    {
-        $cep = preg_replace("/[^0-9]/", "", $cep);
-        $url = "https://viacep.com.br/ws/$cep/xml/";
+    #API de endereco
 
-        $xml = simplexml_load_file($url);
+    // function __construct(string $cep)
+    // {
+    //     $cep = preg_replace("/[^0-9]/", "", $cep);
+    //     $url = "https://viacep.com.br/ws/$cep/xml/";
 
-        $this->setEndereco($xml);
+    //     $xml = simplexml_load_file($url);
+
+    //     $this->setRua($xml);
+    // }
+
+    function __construct($cep, $numero, $complemento, $endereco){
+
+        $this->setCep($cep);
+        $this->setNumero($numero);
+        $this->setComplemento($complemento);
+        $this->setRua($endereco);
+        
     }
 
-    public function getCep() {
+    private function getCep() {
         return $this->cep;
     }
 
-	public function setCep($cep): self {
+	private function setCep($cep): self {
 		$this->cep = $cep;
 		return $this;
 	}
 
-    public function getEndereco() {
+    private function getEndereco() {
         return $this->endereco;
     }
 
-    public function setEndereco($endereco) {
+    private function setRua($endereco) {
         $this->endereco = $endereco;
     }
 
-    public function getNumero() {
+    private function getNumero() {
         return $this->numero;
     }
 
-    public function setNumero($numero) {
+    private function setNumero($numero) {
         $this->numero = $numero;
     }
 
-    public function getComplemento() {
+    private function getComplemento() {
         return $this->complemento;
     }
-    public function setComplemento($complemento) {
+    private function setComplemento($complemento) {
         $this->complemento = $complemento;
     }
 
+    #interfac
+
+    public function getEnderecoCep(){
+        $this->getCep();
+    }
+
+	public function setEnderecoCep($cep){
+        $this->setCep($cep);
+    }
+
+    public function getEnderecoRua(){
+        $this->getRua();
+    }
+
+    public function setEnderecoRua($endereco){
+        $this->setRua($endereco);
+    }
+
+    public function getEnderecoNumero(){
+        $this->getNumero();
+    }
+
+    public function setEnderecoNumero($numero){
+        $this->setNumero($numero);
+    }
+
+    public function getEnderecoComplemento(){
+        $this->getComplemento();
+    }
+
+    public function setEnderecoComplemento($complemento){
+        $this->setComplemento($complemento);
+    }
 }
 
-// $endereco = new Endereco('04905002');
-
-// echo "<pre>";
-// var_dump ($endereco->getEndereco());
-
-
-/*
-
-object(SimpleXMLElement)#2 (10) {
-  ["cep"]=>
-  string(9) "04905-002"
-  ["logradouro"]=>
-  string(22) "Estrada do M'Boi Mirim"
-  ["complemento"]=>
-  string(25) "de 2002 a 2528 - lado par"
-  ["bairro"]=>
-  string(13) "Jardim Regina"
-  ["localidade"]=>
-  string(10) "São Paulo"
-  ["uf"]=>
-  string(2) "SP"
-  ["ibge"]=>
-  string(7) "3550308"
-  ["gia"]=>
-  string(4) "1004"
-  ["ddd"]=>
-  string(2) "11"
-  ["siafi"]=>
-  string(4) "7107"
-}
-
-*/
 
 ?>
