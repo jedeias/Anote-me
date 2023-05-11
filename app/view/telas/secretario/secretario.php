@@ -26,7 +26,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
 
 <?php
 
-//valores pre setados com o intuito de teste.
+/*valores pre setados com o intuito de teste.
 
 
     $_POST = array(
@@ -72,6 +72,8 @@ if($nome == NULL and $email == NULL and $type == NULL){
         
         $insert->insertPaciente($_POST);
     }
+
+    */
 
 ?>
 

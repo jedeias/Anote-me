@@ -90,7 +90,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
             </nav>        
         </aside>
         
-        <section class="notepad-content">
+        <section class="notepad-content hidden">
             <article class="psi-table">
                 <header class="psi-paci-header-text">
                     <h1>Psicologos</h1>
@@ -120,6 +120,46 @@ if($nome == NULL and $email == NULL and $type == NULL){
                 </article>
             </article>
             
+        </section>
+        <section class="notepad-content ">
+            <article class="psi-table">
+                <button class="backButton backListar" id="backButtonPaciente">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                        <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                    </svg>
+                </button>
+                <div class="listar-psi-paci">
+                    <img class="psi-paci-img" src="../../IMG/imagem_perfil/fiodor.jpg" alt="foto de perfil">
+                    <h1>Jedeias Filho</h1>
+                    <p>Psicologo</p>
+                    <div class="listar-psi-paci-info">
+                        <div class="info-container">
+                            <p class="info-title">Email:</p>
+                            <p>Jedeias@jedeias.com</p>
+                        </div>
+                        <div class="info-container">
+                            <p class="info-title">RG:</p>
+                            <p>111.222.333.444</p>
+                        </div>
+                        <div class="info-container">
+                            <p class="info-title">CPF:</p>
+                            <p>123.345.678.944</p>
+                        </div>
+                        <div class="info-container">
+                            <p class="info-title">Sexo:</p>
+                            <p>Masculino</p>
+                        </div>
+                        <div class="info-container">
+                            <p class="info-title">Data de Nascimento:</p>
+                            <p>22/03/2003</p>
+                        </div>
+                    </div>
+                </div>
+                <h1>Pacientes de Jedeias Filho</h1>
+                <div class="paciente-add">
+                    <button class='paciente-add-button'><img src='../../IMG/ico/plus-svgrepo-com.svg'></button>
+                </div>
+            </article>
         </section>
     </main>
     <script src = "../../JS/script.js"></script>
