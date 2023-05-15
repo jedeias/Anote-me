@@ -127,3 +127,157 @@ window.onload = function(){
 		mascara( this, mtel );
 	}
 }
+
+// Mostrar Senha ao clicar no olho
+
+function mostrarSenha(lugar){
+
+    switch(lugar){
+        case 'paciForm' :
+            var inputPass = document.getElementById("paciSenha");
+            var showPassBtn = document.getElementById("paciShowSenha");
+            if (inputPass.type === 'password'){
+                inputPass.setAttribute('type','text');
+                showPassBtn.setAttribute('src','../../IMG/ico/eye-slash-fill.svg');
+                showPassBtn.setAttribute('title','Ocultar Senha')
+            } else {
+                inputPass.setAttribute('type','password');
+                showPassBtn.setAttribute('src','../../IMG/ico/eye-fill.svg');
+                showPassBtn.setAttribute('title','Mostrar Senha')
+            }
+            break;
+        case 'paciConfirmForm' :
+            var inputPass = document.getElementById("paciConfirmSenha");
+            var showPassBtn = document.getElementById("paciConfirmShowSenha");
+            if (inputPass.type === 'password'){
+                inputPass.setAttribute('type','text');
+                showPassBtn.setAttribute('src','../../IMG/ico/eye-slash-fill.svg');
+                showPassBtn.setAttribute('title','Ocultar Senha')
+            } else {
+                inputPass.setAttribute('type','password');
+                showPassBtn.setAttribute('src','../../IMG/ico/eye-fill.svg');
+                showPassBtn.setAttribute('title','Mostrar Senha')
+            }
+            break;
+        case 'loginForm':
+            var inputPass = document.getElementById("loginSenha");
+            var showPassBtn = document.getElementById("loginShowSenha");
+            if (inputPass.type === 'password'){
+                inputPass.setAttribute('type','text');
+                showPassBtn.setAttribute('src','app/view/IMG/ico/eye-slash-fill.svg');
+                showPassBtn.setAttribute('title','Ocultar Senha')
+            } else {
+                inputPass.setAttribute('type','password');
+                showPassBtn.setAttribute('src','app/view/IMG/ico/eye-fill.svg');
+                showPassBtn.setAttribute('title','Mostrar Senha')
+            }
+            break;
+
+    }
+    
+
+}
+
+function conferirSenha(lugar){
+    switch(lugar){
+        case 'paciForm': 
+            const senha = document.getElementById('paciSenha');
+            const confirmSenha = document.getElementById('paciConfirmSenha');
+            
+            if(senha.value === confirmSenha.value){
+                confirmSenha.setCustomValidity('')
+            } else {
+                confirmSenha.setCustomValidity('Senhas não conferem');
+                preventDefault();
+            }
+            break;
+    }
+}
+
+let responsavelInput = document.querySelectorAll("div.responsavel-form input");
+let menorQue18 = false;
+
+function showResponsavelForm(){
+    let responsavelForm = document.getElementById('responsavelForm');
+    if(document.getElementById('responsavelBox').checked){
+        console.log("testeform")
+        if(!responsavelForm.classList.contains('showBlock')){
+            responsavelForm.classList.add('showBlock')
+        }
+        for (var i=0; i < responsavelInput.length; i++) {
+            responsavelInput[i].removeAttribute('disabled');
+        }
+    } else {
+        if(responsavelForm.classList.contains('showBlock')){
+            responsavelForm.classList.remove('showBlock')
+        } 
+        for (var i=0; i < responsavelInput.length; i++) {
+            responsavelInput[i].setAttribute('disabled', '');
+        }
+    }
+}
+
+let responsavelBox = document.getElementById('responsavelBox');
+responsavelBox.addEventListener("click", showResponsavelForm);
+
+
+let dataNasc = document.getElementById('dataNascPaci');
+dataNasc.addEventListener('blur', compararDataNasc);
+
+function compararDataNasc(){
+    let dataAtual = new Date();
+
+    let dataNascValue = dataNasc.value;
+    let dataNascSplit = dataNascValue.split("-");
+
+    let dataNascJs = new Date(dataNascSplit[0], dataNascSplit[1] -1, dataNascSplit[2]);
+    let diferenca = dataAtual.getTime() - dataNascJs.getTime();
+
+    let idade = Math.floor(diferenca / (1000 * 60 * 60 * 24 * 365.25));
+
+    let responsavelBox = document.getElementById('responsavelBox');
+    let checkText = document.getElementById('checkText');
+    let checkDisabled = document.getElementById('checkDisabled');
+
+    if(idade < 18){
+        console.log("menos de 18");
+        responsavelBox.checked = 'checked';
+        checkText.style.display = 'block';
+        checkDisabled.style.display = 'block';
+        showResponsavelForm();
+    } else {
+        responsavelBox.checked = false;
+        checkText.style.display = 'none';
+        checkDisabled.style.display = 'none';
+        showResponsavelForm();
+    }
+
+
+}
+
+function searchPsico(){
+    let input = document.getElementById('psiSearchBar').value;
+    input = input.toLowerCase();
+    let psiNome = document.getElementsByClassName('psi-paci-list');
+
+    for (i = 0; i < psiNome.length; i++){
+        console.log(psiNome[i].dataset.nome);
+        if (!psiNome[i].dataset.nome.toLowerCase().includes(input)){
+            psiNome[i].classList.add('hidden');
+        } else {
+            psiNome[i].classList.remove('hidden');
+        }
+    }
+}
+
+function clickPsicoCard(id){
+    let psicoId = id;
+    psicoTable = document.getElementById('psicoCards');
+    psicoDetails = document.getElementById('psicoDetails');
+    window.location = "../secretario/secreListarPsico.php?psicoId=" + psicoId; 
+    
+}
+
+function voltarPsicoTable(){
+    window.location = "../secretario/secreListarPsico.php"; 
+}

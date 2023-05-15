@@ -46,13 +46,25 @@ class Select extends Connect implements selectController{
     public function selectPsicologos(){
         return $this->selectPsicologosPriv();
     }
+    public function selectPsicologo($id){
+        return $this->selectPsicologoPriv($id);
+    }
 
     #interface end
 
     private function selectPsicologosPriv(){
-        $sql = $this->getConn()->query("SELECT pk_psicologo, nome FROM psicologo");
+        $sql = $this->getConn()->query("SELECT pk_psicologo, nome, email, RG, CPF, Sexo, data_nasc, imagem FROM psicologo");
         $data = $sql->fetch_all(MYSQLI_ASSOC);
 
+        return $data;
+    }
+
+    private function selectPsicologoPriv($id){
+        $stmt = $this->getConn()->prepare("SELECT pk_psicologo, nome, email, RG, CPF, Sexo, DATE_FORMAT(data_nasc, '%d/%m/%Y') as data_nasc, imagem FROM psicologo WHERE pk_psicologo = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC);
         return $data;
     }
 
@@ -94,15 +106,13 @@ class Select extends Connect implements selectController{
     private function select_users_patient($psico_id)
     {
         
-        $stmt = $this->getConn()->prepare("SELECT paciente.nome, paciente.email, paciente.pk_paciente
+        $stmt = $this->getConn()->prepare("SELECT paciente.nome, paciente.email, paciente.pk_paciente, paciente.sexo, DATE_FORMAT(paciente.data_nasc, '%d/%m/%Y') as data_nasc
         FROM paciente WHERE paciente.fk_psicologo = ?"); 
 
         $stmt->bind_param("i", $psico_id);
         $stmt->execute();
         $result = $stmt->get_result();
-        $data = $result->fetch_all(MYSQLI_ASSOC);
-    
-        echo "<pre>";
+        $data = $result->fetch_all(MYSQLI_ASSOC); 
         return $data;
 
     }
