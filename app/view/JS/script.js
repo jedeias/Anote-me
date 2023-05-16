@@ -270,14 +270,38 @@ function searchPsico(){
     }
 }
 
+function searchPaci(){
+    let input = document.getElementById('paciSearchBar').value;
+    input = input.toLowerCase();
+    let paciNome = document.getElementsByClassName('psi-paci-list');
+
+    for (i = 0; i < paciNome.length; i++){
+        console.log(paciNome[i].dataset.nome);
+        if (!paciNome[i].dataset.nome.toLowerCase().includes(input)){
+            paciNome[i].classList.add('hidden');
+        } else {
+            paciNome[i].classList.remove('hidden');
+        }
+    }
+}
+
 function clickPsicoCard(id){
     let psicoId = id;
-    psicoTable = document.getElementById('psicoCards');
-    psicoDetails = document.getElementById('psicoDetails');
     window.location = "../secretario/secreListarPsico.php?psicoId=" + psicoId; 
+    
+}
+
+function clickPaciCard(id){
+    let paciId = id;
+    window.location = "../secretario/secreListarPaci.php?paciId=" + paciId; 
     
 }
 
 function voltarPsicoTable(){
     window.location = "../secretario/secreListarPsico.php"; 
+}
+
+
+function voltarPaciTable(){
+    window.location = "../secretario/secreListarPaci.php"; 
 }

@@ -49,6 +49,12 @@ class Select extends Connect implements selectController{
     public function selectPsicologo($id){
         return $this->selectPsicologoPriv($id);
     }
+    public function selectPacientes(){
+        return $this->selectPacientesPriv();
+    }
+    public function selectPaciente($id){
+        return $this->selectPacientePriv($id);
+    }
 
     #interface end
 
@@ -67,6 +73,23 @@ class Select extends Connect implements selectController{
         $data = $result->fetch_all(MYSQLI_ASSOC);
         return $data;
     }
+
+    private function selectPacientesPriv(){
+        $sql = $this->getconn()->query("SELECT pk_paciente, nome, email, RG, CPF, Sexo, DATE_FORMAT(data_nasc, '%d/%m/%Y') as data_nasc, imagem FROM paciente");
+        $data = $sql->fetch_all(MYSQLI_ASSOC);
+
+        return $data;
+    }
+
+    private function selectPacientePriv($id){
+        $stmt = $this->getConn()->prepare("SELECT pk_paciente, fk_psicologo, nome, email, RG, CPF, Sexo, DATE_FORMAT(data_nasc, '%d/%m/%Y') as data_nasc, imagem FROM paciente WHERE pk_paciente = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        return $data;
+    }
+
 
     private function validateUser($email, $password) 
     {
