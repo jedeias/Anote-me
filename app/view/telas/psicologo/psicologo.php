@@ -32,6 +32,11 @@ if (empty($_SESSION)) {
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Anote-me</title>
+
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
+    <link rel='stylesheet' href='../../CSS/bootstrap.min.css'>
+    <link rel='stylesheet' href='../../CSS/main.min.css'>  
     <link rel='stylesheet' href='../../CSS/psicologo.css'>
 </head>
 <body id='body'>
@@ -248,51 +253,104 @@ if (empty($_SESSION)) {
                             </svg>
                         </button>
                     </article>
-                    <div class="psicologo-agenda">
+
+                    <div class="container">
                         <div id='calendar'></div>
                     </div>
-                    <div class="modal" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
+
+                    <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdrop" aria-hidden="true">
+                        <div class="modal-dialog">
                             <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Adicionar Evento</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="paciente">Paciente:</label>
-                                            <input type="text" class="form-control" id="paciente">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="psicologo">Psicólogo:</label>
-                                            <input type="text" class="form-control" id="psicologo">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="data">Data:</label>
-                                            <input type="date" class="form-control" id="data">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="hora">Hora:</label>
-                                            <input type="time" class="form-control" id="hora">
-                                        </div>
-                                    </form>
+                    
+                                <div class="modal-header bg-info">
+                                    <h5 class="modal-title" id="titulo"></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                    </button>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" id="saveButton">Salvar</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                </div>
+                                <form action="" method="POST" id="formulario" autocomplete="off">
+                                    <div class="modal-body">
+                    
+                                        <div class="form-floating mb-3">
+                                            <input type="text" list="listaPsicologos" class="form-control" id="psicologo" name="psicologo" readonly>
+                                            <label for="psicologo" class="form-label">Psicólogo</label>
+                                            <datalist id="listaPsicologos">
+                                                
+                                            </datalist>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input type="text" list="listaPacientes" class="form-control" id="paciente" name="paciente" readonly>
+                                            <label for="paciente" class="form-label">Paciente</label>
+                                            <datalist id="listaPacientes">
+                                                
+                                            </datalist>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input type="hidden" id="id" name="id">
+                                            <input type="text" class="form-control" id="title" name="title" readonly>
+                                            <label for="title" class="form-label">Evento</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input type="date" class="form-control" id="start" name="start" readonly>
+                                            <label for="start" class="form-label">Data</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input type="time" class="form-control" id="horario" name="horario" readonly>
+                                            <label for="horario" class="form-label">Horario</label>
+                                        </div>
+
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
+                    <?php  
+                        $eventos = new Select();
+                        $eventos->getEventosPsicologo($id);
+                        
+                    ?>
                 </div>
             </section>
         </section>
     </main>
-
     <script src='../../JS/script.js'></script>
+    <script src='../../JS/bootstrap.bundle.min.js'></script> 
+    <script src='../../JS/main.min.js'></script>
+    <script src='../../JS/pt-br.js'></script>
+    <script src='../../JS/sweetalert2.all.min.js'></script>
+    <script>
+        var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+        document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+            right: 'today prev next',
+            left: 'dayGridMonth timeGridWeek listWeek'
+        },
+        locale: 'pt-br',
+        themeSystem: 'bootstrap5',
+        dayMaxEventRows: true,
+        events: <?php echo $eventos->getEventosPsicologo($id);?>,
+        height: 700,
+        eventClick: (info) => {
+        console.log(info);
+        document.getElementById('titulo').textContent = 'Dados da Sessão';
+        document.getElementById('id').value = info.event.id;
+        document.getElementById('title').value = info.event.title;
+        document.getElementById('start').value = info.event.startStr;
+        document.getElementById('psicologo').value = info.event.extendedProps.psicologo;
+        document.getElementById('paciente').value = info.event.extendedProps.paciente;
+        armazenarHorario = info.event.extendedProps.horario;
+        document.getElementById('horario').value = armazenarHorario;
+        myModal.show();
+        }
+        });
+        calendar.render();       
+    });
+        
+    </script>
+    
+    
 
 </body>
 </html>

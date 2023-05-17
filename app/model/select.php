@@ -55,6 +55,12 @@ class Select extends Connect implements selectController{
     public function selectPaciente($id){
         return $this->selectPacientePriv($id);
     }
+    public function getEventosPsicologo($id){
+        return $this->eventosPsicologo($id);
+    }
+    public function getEventosPaciente($id){
+        return $this->eventosPaciente($id);
+    }
 
     #interface end
 
@@ -259,6 +265,33 @@ class Select extends Connect implements selectController{
         mysqli_stmt_close($stmt);
 
         return $imagem;  
+    }
+
+    private function eventosPsicologo($id){
+        $conn = $this->getConn();
+        $stmt = mysqli_prepare($conn, "SELECT * FROM consulta WHERE fk_psicologo = ?");
+        if (!$stmt) {
+            die("Erro na preparação da consulta: " . mysqli_error($conn));
+        }
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $dados = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $retorna = json_encode($dados, JSON_UNESCAPED_UNICODE);
+        return $retorna;   
+    }
+    private function eventosPaciente($id){
+        $conn = $this->getConn();
+        $stmt = mysqli_prepare($conn, "SELECT * FROM consulta WHERE fk_paciente = ?");
+        if (!$stmt) {
+            die("Erro na preparação da consulta: " . mysqli_error($conn));
+        }
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $dados = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $retorna = json_encode($dados, JSON_UNESCAPED_UNICODE);
+        return $retorna;   
     }
     
     public function __destruct()

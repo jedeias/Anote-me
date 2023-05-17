@@ -138,9 +138,15 @@ if($nome == NULL and $email == NULL and $type == NULL){
                         </li>
                     </a> 
 
-                <a href="secreListarPaci.php">
+                    <a href="secreListarPaci.php">
                         <li>
                             <p>Pacientes</p>
+                        </li>
+                    </a> 
+                    
+                    <a href="../../eventos">
+                        <li>
+                            <p>Agendar Sessão</p>
                         </li>
                     </a> 
                     
