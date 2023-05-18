@@ -1,6 +1,5 @@
 var idPsicologo;
 var idPaciente;
-var armazenarHorario;
 var myModal = new bootstrap.Modal(document.getElementById('myModal'));
 let frm = document.getElementById('formulario');
 let apagar = document.getElementById('btnApagar');
@@ -12,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         right: 'today prev next',
         left: 'dayGridMonth timeGridWeek listWeek'
       },
-      themeSystem: 'bootstrap5',
+      //themeSystem: 'bootstrap',
       dayMaxEventRows: true,
       height: 700,
       locale: 'pt-br',
@@ -28,20 +27,19 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('titulo').textContent = 'Registrar evento';
             myModal.show();
       },
-      eventClick: (info) => {
-        console.log(info);
-        apagar.classList.remove('d-none');
-        document.getElementById('titulo').textContent = 'Editar evento';
-        document.getElementById('btnAcao').textContent = 'Editar';
-        document.getElementById('id').value = info.event.id;
-        document.getElementById('title').value = info.event.title;
-        document.getElementById('start').value = info.event.startStr;
-        document.getElementById('color').value = info.event.backgroundColor;
-        document.getElementById('psicologo').value = info.event.extendedProps.psicologo;
-        document.getElementById('paciente').value = info.event.extendedProps.paciente;
-        armazenarHorario = info.event.extendedProps.horario;
-        document.getElementById('horario').value = armazenarHorario;
-        myModal.show();
+      eventClick: function(info){
+          console.log(info);
+          apagar.classList.remove('d-none');
+          document.getElementById('titulo').textContent = 'Editar evento';
+          document.getElementById('btnAcao').textContent = 'Editar';
+          document.getElementById('id').value = info.event.id;
+          document.getElementById('title').value = info.event.title;
+          document.getElementById('start').value = info.event.startStr;
+          document.getElementById('color').value = info.event.backgroundColor;
+          document.getElementById('psicologo').value = info.event.extendedProps.psicologo;
+          document.getElementById('paciente').value = info.event.extendedProps.paciente;
+          document.getElementById('horario').value = info.event.extendedProps.horario;
+          myModal.show();
       },
       eventDrop: function (info){
             const id = info.event.id;
@@ -115,14 +113,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const idPaciente = obterIdPaciente();
         const psicologo = document.getElementById('psicologo').value;
         const paciente = document.getElementById('paciente').value;
-        const horario = document.getElementById('horario').value;
         const title = document.getElementById('title').value;
         const data = document.getElementById('start').value;
+        const horario = document.getElementById('horario').value;
         const color = document.getElementById('color').value;
-       
-        armazenarHorario = horario;
-        
-
         if(paciente == '' || psicologo == '' || title == '' || data == '' || horario == '' || color == ''){
             Swal.fire(
                 'Aviso',
@@ -136,19 +130,19 @@ document.addEventListener('DOMContentLoaded', function() {
             formData.append('idPaciente', idPaciente); // Adicione o ID do paciente ao formulário
             http.open('POST', url, true);
             http.send(formData);
-            http.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
-                const result = JSON.parse(this.responseText);
-                console.log(result);
-                if (result.estado) {
-                    calendar.refetchEvents();
-                }
-                myModal.hide();
-                Swal.fire(
-                    'Aviso',
-                    result.msg,
-                    result.tipo
+            http.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    console.log(this.responseText);
+                    const result = JSON.parse(this.responseText);
+                    console.log(result);
+                    if(result.estado){
+                        calendar.refetchEvents();
+                    }
+                    myModal.hide();
+                    Swal.fire(
+                        'Aviso',
+                        result.msg,
+                        result.tipo
                     )
                 }
             }

@@ -284,7 +284,7 @@ REPLACE INTO `red_flag` (`pk_red_flag`, `descricao`, `cor`, `grau`) VALUES
 	
 	
 CREATE TABLE IF NOT EXISTS `consulta` (
-  `pk_consulta` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `fk_psicologo` int(11)  NULL,
   `fk_paciente` int(11)  NULL,
   `psicologo` varchar(100)  NULL,
@@ -303,7 +303,7 @@ CREATE TABLE IF NOT EXISTS `consulta` (
   CONSTRAINT `consulta_ibfk_3` FOREIGN KEY (`fk_redflag`) REFERENCES `red_flag` (`pk_red_flag`)
 );
 
-REPLACE INTO `consulta` (`pk_consulta`, `fk_psicologo`, `fk_paciente`, `psicologo`, `paciente`, `title`, `fk_redflag`, `data`, `horario`, `color`) VALUES
+REPLACE INTO `consulta` (`id`, `fk_psicologo`, `fk_paciente`, `psicologo`, `paciente`, `title`, `fk_redflag`, `data`, `horario`, `color`) VALUES
 	(16, 12, 2, 'João Souza', 'Joãozinho da Silva', 'sessão da tarde', 2, '2022-05-12', '11:00:00','#0d6efd'),
 	(17, 13, 3, 'Ana Santos', 'Mariazinha Pereira', 'sessao do malucu', 3, '2022-05-14', '12:00:00','#0d6efd');
 	
@@ -319,7 +319,7 @@ CREATE TABLE IF NOT EXISTS `anotacoes_psicologo` (
   KEY `fk_psicologo` (`fk_psicologo`),
   KEY `fk_consulta` (`fk_consulta`),
   CONSTRAINT `anotacoes_psicologo_ibfk_1` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`),
-  CONSTRAINT `anotacoes_psicologo_ibfk_2` FOREIGN KEY (`fk_consulta`) REFERENCES `consulta` (`pk_consulta`)
+  CONSTRAINT `anotacoes_psicologo_ibfk_2` FOREIGN KEY (`fk_consulta`) REFERENCES `consulta` (`id`)
 );
 REPLACE INTO `anotacoes_psicologo` (`pk_anotacoes_psicologo`, `fk_psicologo`, `fk_consulta`, `data`,`hora`, `anotacoes`) VALUES
 	(11, 11, 16, '2022-05-10', '11:00:00', 'O paciente está com problemas de ansiedade'),

@@ -146,7 +146,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
         </div>
                 <?php
                 $eventos = new Select();
-                $eventos->getEventosPaciente($id);?>
+                $eventos->getEventosPaciente($paciente_id);?>
         </section>
       </section>  
   </section>  
@@ -169,7 +169,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
     locale: 'pt-br',
     themeSystem: 'bootstrap5',
     dayMaxEventRows: true,
-    events: <?php echo $eventos->getEventosPaciente($id);?>,
+    events: <?php echo $eventos->getEventosPaciente($paciente_id);?>,
     height: 700,
     eventClick: (info) => {
     console.log(info);

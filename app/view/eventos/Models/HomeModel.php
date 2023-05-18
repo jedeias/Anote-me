@@ -4,7 +4,6 @@ class HomeModel extends Query{
     {
         parent::__construct();
     }
-
     public function registrar($idPsicologo, $idPaciente, $psicologo, $paciente, $evento, $data, $horario, $color)
     {
         $sql = "INSERT INTO consulta (fk_psicologo, fk_paciente, psicologo, paciente, title, start, horario, color) VALUES (?,?,?,?,?,?,?,?)";
@@ -29,6 +28,7 @@ class HomeModel extends Query{
         }else{
             $msg = 0;
         }
+
         return $msg;
     }
     public function apagarEvento($id)
@@ -59,7 +59,7 @@ class HomeModel extends Query{
 
     public function listarEventos()
     {
-        $sql = "SELECT consulta.psicologo, consulta.paciente, consulta.title, consulta.start, consulta.horario, consulta.color  FROM consulta";
+        $sql = "SELECT * FROM consulta";
         return  $this->selectAll($sql);
 
     }

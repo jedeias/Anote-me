@@ -9,13 +9,11 @@ class Home extends Controller
     {
         $this->views->getView($this, 'index');
     }
-
     public function registrar()
     {
        if(empty($_POST['psicologo']) ||empty($_POST['paciente']) || empty($_POST['title']) || empty($_POST['start']) || empty($_POST['horario']) || empty($_POST['color'])){
         $mensagem = array('msg' => 'Todos os campos precisam ser preenchidos', 'estado' => false, 'tipo' => 'warning');
        }else{
-
         $idPsicologo = $_POST['idPsicologo'];
         $idPaciente = $_POST['idPaciente'];
         $psicologo = $_POST['psicologo'];
@@ -43,8 +41,7 @@ class Home extends Controller
 
             }
         }
-        
-        echo json_encode($mensagem, JSON_UNESCAPED_UNICODE);
+        echo json_encode($mensagem);
         die();
        }
     }
