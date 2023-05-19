@@ -4,6 +4,10 @@
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+body{
+    height: 100%; 
+    overflow: hidden;
+}
 .header-container{
     display: flex;
     justify-content: space-between;
@@ -285,13 +289,13 @@ a{
 }
 
 #calendar {
-    width: 80%; /* ajuste o valor conforme necessário */
-    height: 700px; /* ajuste o valor conforme necessário */
+    width: 80%; 
     margin: auto;
   }
 
 .paciente-anotacoes{
     width: 100%;
+    max-height: 100%;
 }
 .paciente-anotacoes h1{
     text-align: center;

@@ -36,24 +36,24 @@ if (empty($_SESSION)) {
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
     <link rel='stylesheet' href='../../CSS/bootstrap.min.css'>
-    <link rel='stylesheet' href='../../CSS/main.min.css'>  
+    <link rel='stylesheet' href='../../CSS/main.min.css'>
     <link rel='stylesheet' href='../../CSS/psicologo.css'>
 </head>
 <body id='body'>
 <header class="header-container">
         <h1>ANOTE-ME</h1>
-        <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
+        <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()">
             <?php if(isset($imagem) && $imagem != NULL): ?>
                 <img src="<?php echo "../../IMG/imagem_perfil/$imagem"; ?>" alt="" class='perfil' id='first-perfil'>
             <?php else: ?>
                 <img src="../../IMG/default.jpg" alt="" class='perfil'>
             <?php endif; ?>
-        </figure> 
+        </figure>
         <div class="click-wrapper">
             <nav class="dados-wrapper hidden" id="wrapper-content">
                 <ul class="lista-dados">
 
-                    <li class="center"> 
+                    <li class="center">
                         <?php if(isset($imagem) && $imagem != NULL): ?>
                             <img src="<?php echo "../../IMG/imagem_perfil/$imagem"; ?>" alt="FOTO-DE-PERFIL" class='perfil' id='second-perfil'>
                         <?php else: ?>
@@ -72,7 +72,7 @@ if (empty($_SESSION)) {
                         <a class="config-button" href="../atualizar_registro.php"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>
                         <a class="config-button" href="../../sair.php"><img class="wrapper-icon" src="../../IMG/ico/arrow-from-shape-right-svgrepo-com.svg" title="Sair"></a>
                     </li>
-                
+
                 </ul>
             </nav>
         </div>
@@ -81,7 +81,7 @@ if (empty($_SESSION)) {
             <h1>Pacientes</h1>
             <nav class='menu'>
                 <?php
-                    
+
                     if (empty($_GET)){
 
                         $index = null;
@@ -89,13 +89,13 @@ if (empty($_SESSION)) {
                     } else {
 
                         $index = $_GET['paciente'];
-        
+
                     }
 
                     $select = new Select();
                     $patients = $select->select_user_patient($id);
                     $i = 0; // Alguem explica esse $i = 0 ??? sendo que tem um foreach ? // what hell is going on
-                    
+
                     foreach ($patients as $dado)
                     {
                         if($email == $dado['email']){
@@ -107,7 +107,7 @@ if (empty($_SESSION)) {
                         $email = $dado['email'];
                         echo "</article>";
                         $i ++;
-                        
+
                     }
                 ?>
             </nav>
@@ -119,7 +119,7 @@ if (empty($_SESSION)) {
                         <button id='pacientePrevButton' onclick='pacientePrevButton()' class='paciente-prev-button'>
                             <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-caret-left-fill' viewBox='0 0 16 16'>
                                 <path d='m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z'/>
-                            </svg>                            
+                            </svg>
                         </button>
                         <h1>Anotações</h1>
                         <button id='pacienteNextButton' onclick='pacienteNextButton()' class='paciente-next-button'>
@@ -129,12 +129,12 @@ if (empty($_SESSION)) {
                         </button>
                     </article>
                     <div class="activity-container">
-                    <?php   
+                    <?php
                         if(!empty($_GET))//SÓ LISTA AS ANOTAÇÕES DO PACIENTE CLICADO
                         {
                             $email_paciente = $patients[$index]['email'];
                             $pk_paciente = $patients[$index]['pk_paciente'];
-                
+
                             $anotacoes = $select->select_notes($id, $email_paciente);
 
                             foreach ($anotacoes as $dado)
@@ -144,7 +144,7 @@ if (empty($_SESSION)) {
 
                                     echo "<div class='activity-header'>";
 
-                                        echo "<p>" . $dado['hora'] . "</p>"; 
+                                        echo "<p>" . $dado['hora'] . "</p>";
                                         echo "<p>". $dado['data']. "</p>";
 
                                     echo "</div>";
@@ -158,8 +158,8 @@ if (empty($_SESSION)) {
                                     echo "<div class='activity-info'>";
 
                                         echo "<p>Sentindo-se: ". $dado['emocao'] ."</p>";
-                                        
-                                        echo "<p>Intensidade: " . $dado['intensidade']. "%". "</p> ";   
+
+                                        echo "<p>Intensidade: " . $dado['intensidade']. "%". "</p> ";
 
                                     echo "</div>";
 
@@ -175,14 +175,14 @@ if (empty($_SESSION)) {
                     </div>
                 </div>
             </section>
-            
+
             <section id='pacienteRecomendadasTable' class='paciente-table'>
                 <div class='paciente-anotacoes'>
                     <article class='paciente-anotacoes-header'>
                         <button id='pacientePrevButton' onclick='pacientePrevButton()' class='paciente-prev-button'>
                             <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-caret-left-fill' viewBox='0 0 16 16'>
                                 <path d='m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z'/>
-                            </svg>                            
+                            </svg>
                         </button>
                         <h1>Atividades Recomendadas</h1>
                         <button id='pacienteNextButton' onclick='pacienteNextButton()' class='paciente-next-button'>
@@ -206,11 +206,11 @@ if (empty($_SESSION)) {
                         <input type="hidden" value="<?php echo "$pk_paciente"; ?>" name="fk_paciente">
                         <input type="hidden" value="<?php echo "$index" ?>" name="curPaciente">
                         <input class='activity-save' type='submit' value='Salvar' onclick='activityClose()'>
-                        
+
                     </form>
                     <?php
-                    
-                    
+
+
 
                     if(!empty($_GET)){
                         echo"<article class='activity-add'>";
@@ -228,11 +228,11 @@ if (empty($_SESSION)) {
                             echo "<p class='activity-text'>". $atividade['atividade']  ."</p>";
                             echo "</div>";
                         echo"</article>";
-                    } 
+                    }
 
                     }else{
                         echo"<p class='sem-paciente'>Selecione um paciente para ver suas atividades.</p>";
-                    }    
+                    }
                     ?>
 
                 </div>
@@ -244,7 +244,7 @@ if (empty($_SESSION)) {
                         <button id='pacientePrevButton' onclick='pacientePrevButton()' class='paciente-prev-button'>
                             <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-caret-left-fill' viewBox='0 0 16 16'>
                                 <path d='m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z'/>
-                            </svg>                            
+                            </svg>
                         </button>
                         <h1>Agenda</h1>
                         <button id='pacienteNextButton' onclick='pacienteNextButton()' class='paciente-next-button'>
@@ -254,14 +254,14 @@ if (empty($_SESSION)) {
                         </button>
                     </article>
 
-                    <div class="container">
+                    <div class="container-calendar">
                         <div id='calendar'></div>
                     </div>
 
                     <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdrop" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                    
+
                                 <div class="modal-header bg-info">
                                     <h5 class="modal-title" id="titulo"></h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
@@ -269,19 +269,19 @@ if (empty($_SESSION)) {
                                 </div>
                                 <form action="" method="POST" id="formulario" autocomplete="off">
                                     <div class="modal-body">
-                    
+
                                         <div class="form-floating mb-3">
                                             <input type="text" list="listaPsicologos" class="form-control" id="psicologo" name="psicologo" readonly>
                                             <label for="psicologo" class="form-label">Psicólogo</label>
                                             <datalist id="listaPsicologos">
-                                                
+
                                             </datalist>
                                         </div>
                                         <div class="form-floating mb-3">
                                             <input type="text" list="listaPacientes" class="form-control" id="paciente" name="paciente" readonly>
                                             <label for="paciente" class="form-label">Paciente</label>
                                             <datalist id="listaPacientes">
-                                                
+
                                             </datalist>
                                         </div>
                                         <div class="form-floating mb-3">
@@ -303,17 +303,18 @@ if (empty($_SESSION)) {
                             </div>
                         </div>
                     </div>
-                    <?php  
+                    <?php
                         $eventos = new Select();
                         $eventos->getEventosPsicologo($id);
-                        
+                        //var_dump($eventos->getEventosPsicologo($id)); usado para debugar
+
                     ?>
                 </div>
             </section>
         </section>
     </main>
     <script src='../../JS/script.js'></script>
-    <script src='../../JS/bootstrap.bundle.min.js'></script> 
+    <script src='../../JS/bootstrap.bundle.min.js'></script>
     <script src='../../JS/main.min.js'></script>
     <script src='../../JS/pt-br.js'></script>
     <script src='../../JS/sweetalert2.all.min.js'></script>
@@ -321,6 +322,7 @@ if (empty($_SESSION)) {
         var myModal = new bootstrap.Modal(document.getElementById('myModal'));
         document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
+        var section = document.getElementsByClassName('paciente-table').offSetHeight;
         var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         headerToolbar: {
@@ -330,8 +332,8 @@ if (empty($_SESSION)) {
         locale: 'pt-br',
         themeSystem: 'bootstrap5',
         dayMaxEventRows: true,
+        height: "65vh",
         events: <?php echo $eventos->getEventosPsicologo($id);?>,
-        height: 700,
         eventClick: (info) => {
         console.log(info);
         document.getElementById('titulo').textContent = 'Dados da Sessão';
@@ -345,12 +347,12 @@ if (empty($_SESSION)) {
         myModal.show();
         }
         });
-        calendar.render();       
+        calendar.render();
     });
-        
+
     </script>
-    
-    
+
+
 
 </body>
 </html>

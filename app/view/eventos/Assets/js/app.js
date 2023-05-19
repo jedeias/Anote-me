@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         right: 'today prev next',
         left: 'dayGridMonth timeGridWeek listWeek'
       },
-      //themeSystem: 'bootstrap',
+      themeSystem: 'bootstrap5',
       dayMaxEventRows: true,
       height: 700,
       locale: 'pt-br',

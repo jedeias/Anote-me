@@ -74,7 +74,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                 </ul>
             </nav>
         </div>
-    </header>
+</header>
   <section class="activity-container">
       <section class="menu-container">
             <nav class="menu">
@@ -170,7 +170,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
     themeSystem: 'bootstrap5',
     dayMaxEventRows: true,
     events: <?php echo $eventos->getEventosPaciente($paciente_id);?>,
-    height: 700,
+    height: "75vh",
     eventClick: (info) => {
     console.log(info);
     document.getElementById('titulo').textContent = 'Dados da Sessão';
