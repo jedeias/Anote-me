@@ -26,6 +26,12 @@ class Crud extends Connect implements CrudController{
             $this->query($this->queryIsertAtiviadesPaciente($fk_paciente, $fk_psicologo, $assunto, $atividade));
     }
 
+    public function update_psicologo_paciente($pk_paciente, $fk_psicologo){
+        $sql = "UPDATE paciente SET fk_psicologo = $fk_psicologo WHERE pk_paciente = $pk_paciente";
+
+        $this->query($sql);
+    }
+
     public function insert_notas_paciente($id, $idPsicologo, $emocao, $emocaoGrau, $descricao) {
 
         $sql = "INSERT INTO anotacoes_paciente (

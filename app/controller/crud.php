@@ -30,6 +30,7 @@
     interface IncerteSecretario{
 
         public function FunctionName();
+        public function update_psicologo_paciente($pk_paciente, $fk_psicologo);
 
     }
 

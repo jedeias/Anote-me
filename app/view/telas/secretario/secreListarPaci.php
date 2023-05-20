@@ -142,8 +142,8 @@ if($nome == NULL and $email == NULL and $type == NULL){
                         $paciente = $select->selectPaciente($paciDetailsId);
                         foreach($paciente as $dado){
                             $psicologoInfo = $select->selectPsicologo($dado['fk_psicologo']);
-                            foreach($psicologoInfo as $dado){
-                                $psicologoNome = $dado['nome'];
+                            foreach($psicologoInfo as $psicologo){
+                                $psicologoNome = $psicologo['nome'];
                             }
                             $nome = $dado['nome'];
                             $email = $dado['email'];
@@ -172,7 +172,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                               <div class='listar-psi-paci big-div'>
                                 <img class='psi-paci-img' src=".$imagem." alt='foto de perfil'>
                                 <h1>".$nome."</h1>
-                                <p>Psicologo</p>
+                                <p>Paciente</p>
                                 <div class='listar-psi-paci-info big-div'>
                                     <div class='info-container'>
                                         <p class='info-title'>Email:</p>
@@ -193,6 +193,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                     <div class='info-container'>
                                         <p class='info-title'>Psicologo Responsável:</p>
                                         <p>".$psicologoNome."</p>
+                                        <button class='editPsicoButton' id='editPsicoButton' onclick='editPsico()' title='Editar Psicologo'><img src='../../IMG/ico/pencil-svgrepo-com.svg'></button>
                                     </div>
                                     <div class='info-container'>
                                         <p class='info-title'>Data de Nascimento:</p>
@@ -200,7 +201,21 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                     </div>
                                 </div>
                               </div>";
+                        $psicologos = $select->selectPsicologos();
+                        echo "<form onsubmit='confirmEditarPsico()' class='editPsicoTable hidden' id='editPsicoTable' method='POST' action='../../../controller/crud/secretario/trocarPsicologo.php'>
+                                <div>
+                                <h1>Mudar Psicologo</h1>
+                                <select id='mudarPsicoSelect' name='psicoId' required>
+                                <option value='' selected disabled hidden>Escolha o psicologo desejado</option>";
 
+                        foreach($psicologos as $psicologo){
+                            echo "<option value='".$psicologo['pk_psicologo']."'>".$psicologo['nome']."</option>";
+                        }
+                        echo  "</select>
+                               </div>
+                                <input type='hidden' name='paciId' value='".$paciDetailsId."'>
+                                <button class='editPsicoTableButton'>Trocar Psicologo</button>
+                              </form>";
                             
                             }
 

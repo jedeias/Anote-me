@@ -195,7 +195,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                     } else {
                                         $sexo = 'Indefinido';
                                     }
-                                    echo "<div class='psi-details-paci'>
+                                    echo "<div class='psi-details-paci' onclick='redirectPaci(".$paciente['pk_paciente'].")'>
                                             <h1>".$paciente['nome']."<h1>
                                             <div>
                                                 <p>".$paciente['email']."</p>

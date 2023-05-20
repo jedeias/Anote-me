@@ -8,6 +8,8 @@ function activityClose(){
     activityTable.classList.toggle('hidden');
 }
 
+//fechar abas ao clicar fora
+
 document.addEventListener('click' ,function(e){
     let wrapper = document.getElementById("wrapper-content");
     let wrapperButton = document.getElementById("wrapperButton");
@@ -18,6 +20,15 @@ document.addEventListener('click' ,function(e){
         }
     }
 
+    console.log('teste');
+    let editPsicoTable = document.getElementById('editPsicoTable');
+    let editPsicoButton = document.getElementById('editPsicoButton');
+
+    if(!editPsicoTable.contains(e.target) && !editPsicoButton.contains(e.target)){
+        if(!editPsicoTable.classList.contains('hidden')){
+            editPsicoTable.classList.toggle('hidden');
+        }
+    }
     let activityButton = document.getElementById('activityButton');
     let activityTable = document.getElementById('activityTable');
 
@@ -304,4 +315,22 @@ function voltarPsicoTable(){
 
 function voltarPaciTable(){
     window.location = "../secretario/secreListarPaci.php"; 
+}
+
+function redirectPaci(paciId){
+    window.location = "../secretario/secreListarPaci.php?paciId=" + paciId;
+}
+
+function editPsico(){
+    let psicoTable = document.getElementById('editPsicoTable');
+
+    psicoTable.classList.toggle('hidden');
+}
+
+function confirmEditarPsico(){
+    if(confirm("Deseja mesmo alterar o psicologo?") === true){
+        console.log('teste')
+    } else {
+        preventDefault();
+    }
 }
