@@ -20,6 +20,34 @@ if($nome == NULL and $email == NULL and $type == NULL){
    header("location: ../../../index.php");
 }
 
+if($_POST == true){
+    
+    $session = new Session();
+
+    echo"<pre>";
+    var_dump($_SESSION);
+
+    echo"<hr>";
+
+    $nome = $session->session_get('nome');
+    $email = $session->session_get('email');
+    $type = $session->session_get('type');
+    $id = $session->session_get('id');
+
+    if($nome == NULL or $email == NULL or $type == NULL){
+    header("location: /../../../tcc/index.html");
+    }
+
+    $psicologo = $_POST['psicoId'];
+    $paciente = $_POST['paciId'];
+
+    $update = new Crud();
+
+    $update->update_psicologo_paciente($paciente, $psicologo);
+
+    header("location: ../../../view/telas/secretario/secreListarPaci.php?paciId=".$paciente);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -202,7 +230,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                 </div>
                               </div>";
                         $psicologos = $select->selectPsicologos();
-                        echo "<form onsubmit='confirmEditarPsico()' class='editPsicoTable hidden' id='editPsicoTable' method='POST' action='../../../controller/crud/secretario/trocarPsicologo.php'>
+                        echo "<form onsubmit='confirmEditarPsico()' class='editPsicoTable hidden' id='editPsicoTable' method='POST' action=''>
                                 <div>
                                 <h1>Mudar Psicologo</h1>
                                 <select id='mudarPsicoSelect' name='psicoId' required>
