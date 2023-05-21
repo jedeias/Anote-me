@@ -1,5 +1,5 @@
 <?php
-class Host{
+abstract class Host{
 
     private $server = "localhost";
     private $database = "clinica_psicologica";

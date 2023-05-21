@@ -20,6 +20,34 @@ if($nome == NULL and $email == NULL and $type == NULL){
    header("location: ../../../index.php");
 }
 
+if($_POST == true){
+    
+    $session = new Session();
+
+    echo"<pre>";
+    var_dump($_SESSION);
+
+    echo"<hr>";
+
+    $nome = $session->session_get('nome');
+    $email = $session->session_get('email');
+    $type = $session->session_get('type');
+    $id = $session->session_get('id');
+
+    if($nome == NULL or $email == NULL or $type == NULL){
+    header("location: /../../../tcc/index.html");
+    }
+
+    $psicologo = $_POST['psicoId'];
+    $paciente = $_POST['paciId'];
+
+    $update = new Crud();
+
+    $update->update_psicologo_paciente($paciente, $psicologo);
+
+    header("location: ../../../view/telas/secretario/secreListarPaci.php?paciId=".$paciente);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -142,8 +170,8 @@ if($nome == NULL and $email == NULL and $type == NULL){
                         $paciente = $select->selectPaciente($paciDetailsId);
                         foreach($paciente as $dado){
                             $psicologoInfo = $select->selectPsicologo($dado['fk_psicologo']);
-                            foreach($psicologoInfo as $dado){
-                                $psicologoNome = $dado['nome'];
+                            foreach($psicologoInfo as $psicologo){
+                                $psicologoNome = $psicologo['nome'];
                             }
                             $nome = $dado['nome'];
                             $email = $dado['email'];
@@ -172,7 +200,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                               <div class='listar-psi-paci big-div'>
                                 <img class='psi-paci-img' src=".$imagem." alt='foto de perfil'>
                                 <h1>".$nome."</h1>
-                                <p>Psicologo</p>
+                                <p>Paciente</p>
                                 <div class='listar-psi-paci-info big-div'>
                                     <div class='info-container'>
                                         <p class='info-title'>Email:</p>
@@ -193,6 +221,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                     <div class='info-container'>
                                         <p class='info-title'>Psicologo Responsável:</p>
                                         <p>".$psicologoNome."</p>
+                                        <button class='editPsicoButton' id='editPsicoButton' onclick='editPsico()' title='Editar Psicologo'><img src='../../IMG/ico/pencil-svgrepo-com.svg'></button>
                                     </div>
                                     <div class='info-container'>
                                         <p class='info-title'>Data de Nascimento:</p>
@@ -200,7 +229,21 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                     </div>
                                 </div>
                               </div>";
+                        $psicologos = $select->selectPsicologos();
+                        echo "<form onsubmit='confirmEditarPsico()' class='editPsicoTable hidden' id='editPsicoTable' method='POST' action=''>
+                                <div>
+                                <h1>Mudar Psicologo</h1>
+                                <select id='mudarPsicoSelect' name='psicoId' required>
+                                <option value='' selected disabled hidden>Escolha o psicologo desejado</option>";
 
+                        foreach($psicologos as $psicologo){
+                            echo "<option value='".$psicologo['pk_psicologo']."'>".$psicologo['nome']."</option>";
+                        }
+                        echo  "</select>
+                               </div>
+                                <input type='hidden' name='paciId' value='".$paciDetailsId."'>
+                                <button class='editPsicoTableButton'>Trocar Psicologo</button>
+                              </form>";
                             
                             }
 

@@ -2,7 +2,7 @@
 
 class Crud extends Connect implements CrudController{
 
-    private function queryIsertAtiviadesPaciente($fk_paciente, $fk_psicologo, $assunto, $atividade){
+    public function insert_atividades_paciente($fk_paciente, $fk_psicologo, $assunto, $atividade){
         $sql = "INSERT INTO atividades_paciente(
             pk_atividades_paciente,
             fk_paciente,
@@ -19,12 +19,8 @@ class Crud extends Connect implements CrudController{
             CURDATE()
             )";
 
-        return $sql;
-    }
-
-    public function insert_atividades_paciente($fk_paciente, $fk_psicologo, $assunto, $atividade){
-            $this->query($this->queryIsertAtiviadesPaciente($fk_paciente, $fk_psicologo, $assunto, $atividade));
-    }
+        $this->query($sql);
+}
 
     public function insert_notas_paciente($id, $idPsicologo, $emocao, $emocaoGrau, $descricao) {
 
@@ -83,8 +79,6 @@ class Crud extends Connect implements CrudController{
             return false;
         }
     
-
-        // executar a consulta UPDATE na tabela especificada
         $stmt = $this->getConn()->prepare("UPDATE $tabela SET imagem = ? WHERE $tabela.pk_$tabela = ?");
         if (!$stmt) {
             // Se a preparação da consulta falhar, mostre o erro do MySQLi
@@ -114,20 +108,6 @@ class Crud extends Connect implements CrudController{
             return false;
         }
     }
-
-    public function insertEndereco(object $object)
-    {
-
-        $enderecoQuery = "INSERT INTO endereco (rua, numero, bairro, cep, cidade, estado, complemento) 
-        VALUES ('{$object->getRua()}', '{$object->getnumero()}', '{$object->getBairro()}', '{$object->getCep()}', 
-                '{$object->getCidade()}', '{$object->getBairro()}', '{$object->getComplemento()}')";
-
-        if (!$this->query($enderecoQuery)) {
-        die("Erro na query: " . mysqli_error($this->getConn()));
-        }
-
-    }
-
 
     function insertPaciente($dados) {
 
@@ -190,6 +170,13 @@ class Crud extends Connect implements CrudController{
         
         return $fk_paciente;
     }
+
+    public function update_psicologo_paciente($pk_paciente, $fk_psicologo){
+        $sql = "UPDATE paciente SET fk_psicologo = $fk_psicologo WHERE pk_paciente = $pk_paciente";
+
+        $this->query($sql);
+    }
+
 }
 
 ?>
