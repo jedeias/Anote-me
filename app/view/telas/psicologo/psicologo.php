@@ -28,13 +28,12 @@ if (empty($_SESSION)) {
 <!DOCTYPE html>
 <html lang='pt-br'>
 <head>
-    <meta charset='UTF-8'>
+    <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Anote-me</title>
 
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
+
     <link rel='stylesheet' href='../../CSS/bootstrap.min.css'>
     <link rel='stylesheet' href='../../CSS/main.min.css'>
     <link rel='stylesheet' href='../../CSS/psicologo.css'>
@@ -313,6 +312,8 @@ if (empty($_SESSION)) {
             </section>
         </section>
     </main>
+
+
     <script src='../../JS/script.js'></script>
     <script src='../../JS/bootstrap.bundle.min.js'></script>
     <script src='../../JS/main.min.js'></script>
@@ -321,10 +322,9 @@ if (empty($_SESSION)) {
     <script>
         var myModal = new bootstrap.Modal(document.getElementById('myModal'));
         document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var section = document.getElementsByClassName('paciente-table').offSetHeight;
+        var calendarEl = document.getElementById('calendar'); 
         var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
+        initialView: 'listWeek',
         headerToolbar: {
             right: 'today prev next',
             left: 'dayGridMonth timeGridWeek listWeek'
@@ -332,7 +332,7 @@ if (empty($_SESSION)) {
         locale: 'pt-br',
         themeSystem: 'bootstrap5',
         dayMaxEventRows: true,
-        height: "65vh",
+        height: "40em",
         events: <?php echo $eventos->getEventosPsicologo($id);?>,
         eventClick: (info) => {
         console.log(info);
@@ -345,14 +345,12 @@ if (empty($_SESSION)) {
         armazenarHorario = info.event.extendedProps.horario;
         document.getElementById('horario').value = armazenarHorario;
         myModal.show();
-        }
-        });
-        calendar.render();
+    }
+    });
+    calendar.render();
     });
 
     </script>
-
-
-
 </body>
+    
 </html>
