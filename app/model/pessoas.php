@@ -1,15 +1,15 @@
 <?php
 
-class Pessoas implements interfacePessoas{
-    private $nome;
-    private $RG;
-    private $cpf;
-    private $sexo;
-    private $email;
-    private $senha;
-	private $dataNasc;
-	private object $endereco;
-    private object $telefone;
+abstract class Pessoas{
+    protected $nome;
+    protected $RG;
+    protected $cpf;
+    protected $sexo;
+    protected $email;
+    protected $senha;
+	protected $dataNasc;
+	protected object $endereco;
+    protected object $telefone;
 
 	public function getSenha() {
 		return $this->senha;

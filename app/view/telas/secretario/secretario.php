@@ -26,7 +26,8 @@ if($nome == NULL and $email == NULL and $type == NULL){
 
 <?php
 
-/*valores pre setados com o intuito de teste.
+/*
+valores pre setados com o intuito de teste.
 
 
     $_POST = array(
@@ -64,7 +65,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
         "resTelefone" => "(11) 98888-8888"
             
         );
-
+*/
     
     if($_POST == true){
         
@@ -72,8 +73,6 @@ if($nome == NULL and $email == NULL and $type == NULL){
         
         $insert->insertPaciente($_POST);
     }
-
-    */
 
 ?>
 
