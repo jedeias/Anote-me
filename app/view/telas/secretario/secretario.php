@@ -171,7 +171,7 @@ valores pre setados com o intuito de teste.
                 </button>
                 <div class="paciente-cadastro-container">
                         <h1>Cadastrar Paciente</h1>
-                        <form method="POST" action="teste.php">
+                        <form method="POST" action="">
                             <div class="cross-input">
                             <div>
                                 <label for="nome">Nome</label>
