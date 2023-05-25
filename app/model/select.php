@@ -236,15 +236,7 @@ class Select extends Connect implements selectController{
 
     public function notificacaoPaciente($id){
         $conn = $this->getConn();
-        $stmt = mysqli_prepare($conn, "SELECT count(*) as dado FROM consulta WHERE fk_paciente = ?");
-        if(!$stmt){
-            die("Erro na preparação da consulta:" . mysqli_error($conn));
-        }
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $dados = mysqli_fetch_all($result, MYSQLI_ASSOC);
-       
+
         $stmt = mysqli_prepare($conn , "SELECT DATE_FORMAT(start, '%d/%m/%Y') AS data_formatada, horario FROM consulta WHERE fk_paciente = ? ORDER BY id DESC LIMIT 1");
         if(!$stmt){
             die("Erro na preparação da consulta: " . mysqli_error($conn));

@@ -20,7 +20,7 @@ $imagem = $selecionar->getImagem($paci_id);
 $imagem = $imagem['imagem'];
 
 if($nome == NULL and $email == NULL and $type == NULL){
-   header("location: ../../../index.php");
+   header("location: ../../sair.php");
 }
 
 ?>
@@ -57,11 +57,19 @@ if($nome == NULL and $email == NULL and $type == NULL){
 
             <div class="vazio" id="notificacoes">
                 <?php $notificacao = new Select();
-                      $sessao = $notificacao->notificacaoPaciente($paci_id);
-                      echo '<p> voce tem uma sessão marcada para: </p>';
-                      echo '<li> dia: ' . $sessao['data_formatada'] . '</li>';
-                      echo '<li> horario: ' .$sessao['horario'] . '</li>';
-                      echo '<a href="./calendario.php">Consultar agenda</a>';
+                    $sessao = $notificacao->notificacaoPaciente($paci_id);
+                    if($sessao != null){
+                        echo '<p> voce tem uma sessão marcada para: </p>';
+                        echo '<li> dia: ' . $sessao['data_formatada'] . '</li>';
+                        echo '<li> horario: ' .$sessao['horario'] . '</li>';
+                        echo '<a href="./calendario.php">Consultar agenda</a>';
+                    }else{
+
+                        echo '<p> voce não tem consultas marcadas: </p>';
+                        echo '<li> dia: </li>';
+                        echo '<li> horario: </li>';
+                        
+                    }      
                 ?>
             </div>
 
