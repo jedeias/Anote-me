@@ -12,10 +12,12 @@ $id = $session->session_get('id');
 
 
 
-if (empty($_SESSION)) {
+if($nome == NULL and $email == NULL and $type == NULL){
+    header("location: ../../../index.php");
+}
 
-    header('location: ../../../../index.php');
-
+if($type != "psicologo"){
+     header("location: ../{$type}/{$type}.php");
 }
 
 ?>

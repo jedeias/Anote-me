@@ -20,7 +20,11 @@ $imagem = $selecionar->getImagem($paci_id);
 $imagem = $imagem['imagem'];
 
 if($nome == NULL and $email == NULL and $type == NULL){
-   header("location: ../../sair.php");
+    header("location: ../../../index.php");
+}
+ 
+if($type != "paciente"){
+     header("location: ../{$type}/{$type}.php");
 }
 
 ?>

@@ -1,3 +1,25 @@
+<?php
+    
+    include("../../autoload.php");
+
+    $session = new Session();
+
+    $nome = $session->session_get('nome');
+    $email = $session->session_get('email');
+    $type = $session->session_get('type');
+    $paci_id = $session->session_get('id');
+    $psico_id = $session->session_get('fk_psicologo');
+
+    if($nome == NULL and $email == NULL and $type == NULL){
+        header("location: ../../../index.php");
+    }
+
+    if($type != "secretario"){
+        header("location: ../{$type}/{$type}.php");
+    }
+
+
+?>
 <!doctype html>
 <html lang="en">
   <head>

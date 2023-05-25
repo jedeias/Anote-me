@@ -11,15 +11,19 @@ $type = $session->session_get('type');
 $paci_id = $session->session_get('id');
 $psico_id = $session->session_get('fk_psicologo');
 
+if($nome == NULL and $email == NULL and $type == NULL){
+    header("location: ../../../index.php");
+}
+
+if($type != "paciente"){
+     header("location: ../{$type}/{$type}.php");
+}
+
 $selecionar = new Select();
 $dados = $selecionar->getDados($paci_id);
 $responsavel = $selecionar->getDadosResponsavel($paci_id);
 $psicologo = $selecionar->getDadosPsicologoPaciente($paci_id);
 $imagem = $selecionar->getImagem($paci_id);
-
-if($nome == NULL and $email == NULL and $type == NULL){
-   header("location: ../../../index.html");
-}
 
 ?>
 
