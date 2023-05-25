@@ -332,7 +332,7 @@ if (empty($_SESSION)) {
         locale: 'pt-br',
         themeSystem: 'bootstrap5',
         dayMaxEventRows: true,
-        height: "40em",
+        height: "45em",
         events: <?php echo $eventos->getEventosPsicologo($id);?>,
         eventClick: (info) => {
         console.log(info);
