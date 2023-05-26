@@ -83,7 +83,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anotações</title>
+    <title>ANOTE-ME</title>
     <link rel="stylesheet" href="../../CSS/secretaria.css">
 </head>
 <body id="body">

@@ -10,12 +10,16 @@
     <link href="<?php echo base_url;?>Assets/css/main.min.css" rel="stylesheet">
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
-
-    <title>Hello, world!</title>
+    <link rel="stylesheet" href="../CSS/calendario.css">
+    <title>ANOTE-ME</title>
     <style>
 
+        html{
+            height: 100%;
+        }
         body{
-            background-color: #22b573;
+            background-image: linear-gradient(120deg, #00002F 0%, #062156 100%);
+            height: 100%;
         }
         #style-calendar{
             
@@ -36,12 +40,16 @@
    
   </head>
   <body>
-    <div class="agendar">
-
-        <a href="../../view/telas/secretario/secretario.php" >Voltar</a>
-        <div>
-        <h1>Agendar Sessão</h1>
-        </div>
+    <div class="agendar" title="voltar">
+        <a href="../telas/secretario/secretario.php">
+        <button class="backButton">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+            </svg>
+        </button>
+        <h1>ANOTE-ME</h1>
+        </a>
+        <h1>Agendar Consulta</h1>
 
     </div>
     <section id="style-calendar">
