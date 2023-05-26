@@ -30,7 +30,44 @@
 .click-perfil:hover{
     background-color: #28df8c;
 }
+/*notificação*/
+.container-notif{
+    display: flex;
 
+}
+#noti{
+    margin-right: 20px;
+}
+#noti:hover{
+    cursor: pointer;
+    background-color: #28df8c;
+}
+.vazio{
+    display: none;
+}
+.notification{
+    position: absolute;
+    display: block;
+    right: 5%;
+    background-color: white;
+    border-radius: 5px;
+    color: black;
+    padding: 10px;
+    margin-top: 100px;
+    width: 300px;
+    height: 100px;
+}
+
+.notification li{
+    list-style: none;
+    
+}
+.notification a{
+    background-color: green;
+    border-radius: 5px;
+    text-decoration: none;
+    color:  white;
+}
 .click-wrapper {
     display: flex;
     position: absolute;

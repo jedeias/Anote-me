@@ -170,6 +170,7 @@ body{
     display: flex;
     padding: 25px;
     width: 100%;
+    height: calc(100vh - 70px);
 }
 .emoji-button{
     font-size: 25px;
@@ -287,15 +288,29 @@ a{
     padding: 5px;
     overflow-y: auto;
 }
-
+.container-calendar{
+    height:700px;
+}
 #calendar {
     width: 80%; 
-    margin: auto;
-  }
+    margin: 0 auto;
+}
+
+/* @keyframes scaleUp {
+    from{
+        transform: scale(0)
+    }to{
+        transform: scale(1)
+    }
+}
+
+#calendar *:not(:focus) {
+    animation: .5s scaleUp ease-in-out;
+} */
 
 .paciente-anotacoes{
     width: 100%;
-    max-height: 100%;
+    height:800px;
 }
 .paciente-anotacoes h1{
     text-align: center;

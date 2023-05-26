@@ -22,11 +22,16 @@ if($nome == NULL and $email == NULL and $type == NULL){
    header("location: ../../../index.php");
 }
 
+if($type != "secretario"){
+    header("location: ../{$type}/{$type}.php");
+}
+
 ?>
 
 <?php
 
-/*valores pre setados com o intuito de teste.
+/*
+valores pre setados com o intuito de teste.
 
 
     $_POST = array(
@@ -64,7 +69,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
         "resTelefone" => "(11) 98888-8888"
             
         );
-
+*/
     
     if($_POST == true){
         
@@ -72,8 +77,6 @@ if($nome == NULL and $email == NULL and $type == NULL){
         
         $insert->insertPaciente($_POST);
     }
-
-    */
 
 ?>
 
@@ -172,7 +175,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                 </button>
                 <div class="paciente-cadastro-container">
                         <h1>Cadastrar Paciente</h1>
-                        <form method="POST" action="teste.php">
+                        <form method="POST" action="">
                             <div class="cross-input">
                             <div>
                                 <label for="nome">Nome</label>

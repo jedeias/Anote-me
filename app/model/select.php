@@ -8,70 +8,14 @@ include ($_SERVER['DOCUMENT_ROOT'].'/tcc/app/controller/select_controller.php');
 
 class Select extends Connect implements selectController{
 
-    #interface start
-
-    public function select_user_patient($psico_id)
-    {
-        return $this->select_users_patient($psico_id);
-    }
-    public function select_notes($psico_id, $patient_email)
-    {
-        return $this->patient_notes($psico_id, $patient_email);
-    }
-
-    public function select_atividades($psico_id, $patient_id){
-        return $this->select_activities($psico_id, $patient_id);
-    }
-
-    public function getDadosPsicologoPaciente($id){
-        return $result = $this->dadosPsicologoPaciente($id);
-    }
-    public function getDadosResponsavel($id){
-        return $result = $this->dadosResponsavel($id);
-    }
-    public function getDados($id){
-        return $this->todosDados($id);
-    }
-    public function getImagem($id){
-        return $this->imagemPerfil($id);
-    }
-
-    public function getAllUser(){
-        return $this->select_all_users();
-    }
-
-    public function loginCheck($email, $password){
-        return $this->validateUser($email, $password);
-    }
     public function selectPsicologos(){
-        return $this->selectPsicologosPriv();
-    }
-    public function selectPsicologo($id){
-        return $this->selectPsicologoPriv($id);
-    }
-    public function selectPacientes(){
-        return $this->selectPacientesPriv();
-    }
-    public function selectPaciente($idPaci){
-        return $this->selectPacientePriv($idPaci);
-    }
-    public function getEventosPsicologo($id){
-        return $this->eventosPsicologo($id);
-    }
-    public function getEventosPaciente($id){
-        return $this->eventosPaciente($id);
-    }
-
-    #interface end
-
-    private function selectPsicologosPriv(){
         $sql = $this->getConn()->query("SELECT pk_psicologo, nome, email, RG, CPF, Sexo, data_nasc, imagem FROM psicologo");
         $data = $sql->fetch_all(MYSQLI_ASSOC);
 
         return $data;
     }
 
-    private function selectPsicologoPriv($id){
+    public function selectPsicologo($id){
         $stmt = $this->getConn()->prepare("SELECT pk_psicologo, nome, email, RG, CPF, Sexo, DATE_FORMAT(data_nasc, '%d/%m/%Y') as data_nasc, imagem FROM psicologo WHERE pk_psicologo = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -80,24 +24,23 @@ class Select extends Connect implements selectController{
         return $data;
     }
 
-    private function selectPacientesPriv(){
+    public function selectPacientes(){
         $sql = $this->getconn()->query("SELECT pk_paciente, nome, email, RG, CPF, Sexo, DATE_FORMAT(data_nasc, '%d/%m/%Y') as data_nasc, imagem FROM paciente");
         $data = $sql->fetch_all(MYSQLI_ASSOC);
 
         return $data;
     }
 
-    private function selectPacientePriv($idPaci){
+    public function selectPaciente($id){
         $stmt = $this->getConn()->prepare("SELECT pk_paciente, fk_psicologo, nome, email, RG, CPF, Sexo, DATE_FORMAT(data_nasc, '%d/%m/%Y') as data_nasc, imagem FROM paciente WHERE pk_paciente = ?");
-        $stmt->bind_param("i", $idPaci);
+        $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
         $data = $result->fetch_all(MYSQLI_ASSOC);
         return $data;
     }
 
-
-    private function validateUser($email, $password) 
+    public function loginCheck($email, $password) 
     {
 
         $sql = $this->getConn()->query("SELECT nome, email, senha, tipo_usuario, pk, fk
@@ -119,7 +62,7 @@ class Select extends Connect implements selectController{
 
     }
     
-    private function select_all_users()
+    public function select_all_users()
     {
 
         $stmt = $this->getConn()->query("   SELECT nome, email, 'paciente' AS tipo_usuario, pk_paciente AS 'pk' FROM paciente
@@ -132,7 +75,7 @@ class Select extends Connect implements selectController{
 
     }
 
-    private function select_users_patient($psico_id)
+    public function select_user_patient($psico_id)
     {
         
         $stmt = $this->getConn()->prepare("SELECT paciente.nome, paciente.email, paciente.pk_paciente, paciente.sexo, DATE_FORMAT(paciente.data_nasc, '%d/%m/%Y') as data_nasc
@@ -145,7 +88,7 @@ class Select extends Connect implements selectController{
         return $data;
 
     }
-    private function patient_notes($psico_id, $patient_email)
+    public function select_notes($psico_id, $patient_email)
     {
         
         $stmt = $this->getConn()->prepare("SELECT paciente.nome, paciente.email, paciente.pk_paciente, anotacoes_paciente.pk_anotacoes_paciente, anotacoes_paciente.anotacao, anotacoes_paciente.emocao, anotacoes_paciente.intensidade, DATE_FORMAT(anotacoes_paciente.data, '%d/%m/%Y') as data, DATE_FORMAT(anotacoes_paciente.hora, '%H : %i') as hora
@@ -161,23 +104,21 @@ class Select extends Connect implements selectController{
 
 
     
-    private function select_activities($psico_id, $patient_id)
+    public function select_atividades($psico_id, $patient_id)
     {
         $stmt = $this->getconn()->prepare(" SELECT atividades_paciente.assunto_atividade, atividades_paciente.atividade, DATE_FORMAT(atividades_paciente.data, '%d/%m/%y') as data, atividades_paciente.pk_atividades_paciente
                                             FROM atividades_paciente
                                             WHERE fk_psicologo = ? AND fk_paciente = ?");
-                            
                             
         $stmt->bind_param("ii", $psico_id, $patient_id);
         $stmt->execute();
         $result = $stmt->get_result();
         $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-
         return $data;
     }
 
-    private function dadosPsicologoPaciente($id){
+    public function getDadosPsicologoPaciente($id){
         $conn = $this->getConn();
         $stmt = mysqli_prepare($conn, "SELECT pk_paciente AS id, psicologo.nome as nome_psicologo FROM paciente                                        
                                         JOIN psicologo ON paciente.fk_psicologo = psicologo.pk_psicologo                
@@ -194,7 +135,7 @@ class Select extends Connect implements selectController{
         return $data;
         
     }
-    private function dadosResponsavel($id){
+    public function getDadosResponsavel($id){
         $conn = $this->getConn();
         $stmt = mysqli_prepare($conn, "SELECT pk_paciente AS id, responsavel.nome, telefone.numero as numero_responsavel FROM paciente                                        
                                         JOIN responsavel ON paciente.fk_responsavel = responsavel.pk_responsavel
@@ -211,9 +152,8 @@ class Select extends Connect implements selectController{
 
         return $data;
     }
-
     
-    private function todosDados($id){
+    public function getDados($id){
         $conn = $this->getConn();
         $stmt = mysqli_prepare($conn, "SELECT pk_psicologo AS id, nome, email, senha, telefone.numero FROM psicologo 
                                             JOIN telefone ON psicologo.fk_telefone = telefone.pk_telefone
@@ -241,8 +181,7 @@ class Select extends Connect implements selectController{
         return $data;
     }
 
-
-    private function imagemPerfil($id){
+    public function getImagem($id){
         $conn = $this->getConn();
         $stmt = mysqli_prepare($conn, "SELECT pk_psicologo AS id, imagem FROM psicologo WHERE pk_psicologo = ? 
                                     UNION ALL
@@ -267,7 +206,7 @@ class Select extends Connect implements selectController{
         return $imagem;  
     }
 
-    private function eventosPsicologo($id){
+    public function getEventosPsicologo($id){
         $conn = $this->getConn();
         $stmt = mysqli_prepare($conn, "SELECT * FROM consulta WHERE fk_psicologo = ?");
         if (!$stmt) {
@@ -280,7 +219,8 @@ class Select extends Connect implements selectController{
         $retorna = json_encode($dados, JSON_UNESCAPED_UNICODE);
         return $retorna;   
     }
-    private function eventosPaciente($id){
+
+    public function getEventosPaciente($id){
         $conn = $this->getConn();
         $stmt = mysqli_prepare($conn, "SELECT * FROM consulta WHERE fk_paciente = ?");
         if (!$stmt) {
@@ -292,6 +232,22 @@ class Select extends Connect implements selectController{
         $dados = mysqli_fetch_all($result, MYSQLI_ASSOC);
         $retorna = json_encode($dados, JSON_UNESCAPED_UNICODE);
         return $retorna;   
+    }
+
+    public function notificacaoPaciente($id){
+        $conn = $this->getConn();
+
+        $stmt = mysqli_prepare($conn , "SELECT DATE_FORMAT(start, '%d/%m/%Y') AS data_formatada, horario FROM consulta WHERE fk_paciente = ? ORDER BY id DESC LIMIT 1");
+        if(!$stmt){
+            die("Erro na preparação da consulta: " . mysqli_error($conn));
+        }
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $ultimaConsulta = mysqli_fetch_assoc($result);
+
+        return $ultimaConsulta;
+
     }
     
     public function __destruct()

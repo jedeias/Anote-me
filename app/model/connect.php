@@ -2,7 +2,7 @@
 
 require_once ($_SERVER['DOCUMENT_ROOT']."/tcc/app/config/host.php");
 
-class Connect extends Host {
+abstract class Connect extends Host {
     private $conn;
 
     public function __construct(){
@@ -22,29 +22,30 @@ class Connect extends Host {
         $this->conn->close();
     }
 
-    public function query($sql) {
+    protected function query($sql) {
         return $this->conn->query($sql);
     }
 
-    public function fetchArray($result) {
+    protected function fetchArray($result) {
         return $result->fetch();
     }
 
-    public function prepare($sql) {
+    protected function prepare($sql) {
         return $this->conn->prepare($sql);
     }
     
-    public function execute($stmt) {
+    protected function execute($stmt) {
         return $stmt->execute();
+    }
+
+    protected function getConn() {
+        return $this->conn;
     }
     
     public function __destruct() {
         $this->conn->close();
     }
 
-    public function getConn() {
-        return $this->conn;
-    }
 }
 
 ?>

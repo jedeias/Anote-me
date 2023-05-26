@@ -17,8 +17,12 @@ $imagem = $pegar_imagem->getImagem($id);
 $imagem = $imagem['imagem'];
 
 if($nome == NULL and $email == NULL and $type == NULL){
-   header("location: ../../../index.php");
-}
+    header("location: ../../../index.php");
+ }
+ 
+ if($type != "secretario"){
+     header("location: ../{$type}/{$type}.php");
+ }
 
 ?>
 
