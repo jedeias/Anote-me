@@ -334,7 +334,7 @@ if($type != "psicologo"){
         locale: 'pt-br',
         themeSystem: 'bootstrap5',
         dayMaxEventRows: true,
-        height: "45em",
+        height: "60vh",
         events: <?php echo $eventos->getEventosPsicologo($id);?>,
         eventClick: (info) => {
         console.log(info);

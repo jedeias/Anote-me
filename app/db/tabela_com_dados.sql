@@ -294,6 +294,7 @@ CREATE TABLE IF NOT EXISTS `consulta` (
   `start` date  NULL,
   `horario` time  NULL,
   `color` varchar(50)  NULL,
+  `lida` BIT  NULL,
   PRIMARY KEY (`id`),
   KEY `fk_paciente` (`fk_paciente`),
   KEY `fk_psicologo` (`fk_psicologo`),
@@ -318,8 +319,8 @@ CREATE TABLE IF NOT EXISTS `anotacoes_psicologo` (
   CONSTRAINT `anotacoes_psicologo_ibfk_2` FOREIGN KEY (`fk_consulta`) REFERENCES `consulta` (`id`)
 );
 REPLACE INTO `anotacoes_psicologo` (`pk_anotacoes_psicologo`, `fk_psicologo`, `fk_consulta`, `data`,`hora`, `anotacoes`) VALUES
-	(11, 11, 16, '2022-05-10', '11:00:00', 'O paciente está com problemas de ansiedade'),
-	(12, 12, 17, '2022-05-12', '12:00:00', 'O paciente está com problemas de autoestima');
+	(11, 11, 0, '2022-05-10', '11:00:00', 'O paciente está com problemas de ansiedade'),
+	(12, 12, 0, '2022-05-12', '12:00:00', 'O paciente está com problemas de autoestima');
 	
 	
 CREATE TABLE IF NOT EXISTS `anotacoes_paciente` (

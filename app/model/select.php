@@ -237,7 +237,7 @@ class Select extends Connect implements selectController{
     public function notificacaoPaciente($id){
         $conn = $this->getConn();
 
-        $stmt = mysqli_prepare($conn , "SELECT DATE_FORMAT(start, '%d/%m/%Y') AS data_formatada, horario FROM consulta WHERE fk_paciente = ? ORDER BY id DESC LIMIT 1");
+        $stmt = mysqli_prepare($conn , "SELECT DATE_FORMAT(start, '%d/%m/%Y') AS data_formatada, horario, lida FROM consulta WHERE fk_paciente = ? ORDER BY id DESC LIMIT 1");
         if(!$stmt){
             die("Erro na preparação da consulta: " . mysqli_error($conn));
         }

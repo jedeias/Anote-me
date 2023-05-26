@@ -171,6 +171,12 @@ class Crud extends Connect implements CrudController{
         return $fk_paciente;
     }
 
+    public function notificacaoLida($pk_paciente){
+        $sql = "UPDATE consulta SET lida = 1 WHERE fk_paciente = $pk_paciente ORDER BY id DESC LIMIT 1";
+
+        $this->query($sql);
+    }
+
     public function update_psicologo_paciente($pk_paciente, $fk_psicologo){
         $sql = "UPDATE paciente SET fk_psicologo = $fk_psicologo WHERE pk_paciente = $pk_paciente";
 

@@ -68,6 +68,22 @@
     text-decoration: none;
     color:  white;
 }
+
+/* aviso notificação */
+.aviso-block{
+    text-align: center;
+    position: absolute;
+    display: block;
+    background-color: red;
+    object-fit: cover;
+    border-radius: 50%;
+    color: white;
+    width: 15px;
+    text-decoration: bold;
+}
+.aviso-none{
+    display: none;
+}
 .click-wrapper {
     display: flex;
     position: absolute;
