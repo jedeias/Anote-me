@@ -290,7 +290,6 @@ CREATE TABLE IF NOT EXISTS `consulta` (
   `psicologo` varchar(100)  NULL,
   `paciente` varchar(100)  NULL,
   `title` varchar(100)  NULL,
-  `fk_redflag` int(11)  NULL,
   `start` date  NULL,
   `horario` time  NULL,
   `color` varchar(50)  NULL,
@@ -300,8 +299,7 @@ CREATE TABLE IF NOT EXISTS `consulta` (
   KEY `fk_psicologo` (`fk_psicologo`),
   KEY `fk_redflag` (`fk_redflag`),
   CONSTRAINT `consulta_ibfk_1` FOREIGN KEY (`fk_paciente`) REFERENCES `paciente` (`pk_paciente`),
-  CONSTRAINT `consulta_ibfk_2` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`),
-  CONSTRAINT `consulta_ibfk_3` FOREIGN KEY (`fk_redflag`) REFERENCES `red_flag` (`pk_red_flag`)
+  CONSTRAINT `consulta_ibfk_2` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`)
 );
 
 	
