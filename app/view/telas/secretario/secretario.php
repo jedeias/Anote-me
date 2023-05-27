@@ -175,23 +175,23 @@ valores pre setados com o intuito de teste.
                             <div class="cross-input">
                             <div>
                                 <label for="nome">Nome</label>
-                                <input type="text" name="nome" required>
+                                <input type="text" name="nome" >
                             </div>
                             <div>
                                 <label for="nome">Sobrenome</label>
-                                <input type="text" name="sobrenome" required>
+                                <input type="text" name="sobrenome" >
                             </div>
                             </div>
                             <label for="email">Email</label>
-                            <input type="email" name="email" required>
+                            <input type="email" name="email" >
                             <div class="cross-input">
                             <div>
                                 <label for="RG">RG</label>
-                                <input type="text" name="RG" required>
+                                <input type="text" name="RG" >
                             </div>
                             <div>
                                 <label for="CPF">CPF</label>
-                                <input type="text" name="CPF" required>
+                                <input type="text" name="CPF" >
                             </div>
                             </div>
                             <label for="data-nasc">Data de Nascimento</label>
@@ -218,13 +218,13 @@ valores pre setados com o intuito de teste.
                             ?>
                             <p class="form-subtitle">Endereço</p>
                             <label for="CEP">CEP</label>
-                            <input id="paciCEP" type="text" name="cep" required>
+                            <input id="paciCEP" type="text" name="cep" >
                             <label for="rua">Rua</label>
-                            <input id="paciRua" type="text" name="rua" required>
+                            <input id="paciRua" type="text" name="rua" >
                             <label for="bairro">Bairro</label>
-                            <input id="paciBairro" type="text" name="bairro" required>
+                            <input id="paciBairro" type="text" name="bairro" >
                             <label for="casaNum">Número</label>
-                            <input type="text" name="casaNum" required>
+                            <input type="text" name="casaNum" >
                             <label for="complemento">Complemento</label>
                             <input type="text" name="complemento">
                             <div class="cross-input">
@@ -262,17 +262,17 @@ valores pre setados com o intuito de teste.
                                 </div>
                                 <div class="big-input">
                                     <label for="cidade">Cidade</label>
-                                    <input class="form-space" id="paciCidade" type="text" name="cidade" required>
+                                    <input class="form-space" id="paciCidade" type="text" name="cidade" >
                                 </div>
                             </div>
                             <label for="senha">Senha</label>
                             <div class="senha-container">
-                                <input type="password" name="senha" onchange="conferirSenha('paciForm')" required id="paciSenha">
+                                <input type="password" name="senha" onchange="conferirSenha('paciForm')"  id="paciSenha">
                                 <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciShowSenha" onclick="mostrarSenha('paciForm')" alt="">
                             </div>
                             <label for="confirmarSenha">Confirmar Senha</label>
                             <div class="senha-container">
-                                <input type="password" name="confirmarSenha" onchange="conferirSenha('paciForm')" required id="paciConfirmSenha">
+                                <input type="password" name="confirmarSenha" onchange="conferirSenha('paciForm')"  id="paciConfirmSenha">
                                 <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciConfirmShowSenha" onclick="mostrarSenha('paciConfirmForm')" alt="">
                             </div>
                             <div class="check-container">
@@ -289,27 +289,27 @@ valores pre setados com o intuito de teste.
                                 <div class="cross-input">
                                 <div>
                                     <label for="resNome">Nome</label>
-                                    <input type="text" name="resNome" required disabled>
+                                    <input type="text" name="resNome"  disabled>
                                 </div>
                                 <div>
                                     <label for="resSobrenome">Sobrenome</label>
-                                    <input type="text" name="resSobrenome" required disabled>
+                                    <input type="text" name="resSobrenome"  disabled>
                                 </div>
                                 </div>
                                 <label for="resEmail">Email</label>
-                                <input type="email" name="resEmail" required disabled>
+                                <input type="email" name="resEmail"  disabled>
                                 <div class="cross-input">
                                 <div>
                                     <label for="resRG">RG</label>
-                                    <input type="text" name="resRG" required disabled>
+                                    <input type="text" name="resRG"  disabled>
                                 </div>
                                 <div>
                                     <label for="resCPF">CPF</label>
-                                    <input type="text" name="resCPF" required disabled>
+                                    <input type="text" name="resCPF"  disabled>
                                 </div>
                                 </div>
                                 <label for="resTelefone">Telefone</label>
-                                <input placeholder="(11) 96123-4567" name="resTelefone" id="telefone" type="tel" minlength="8" maxlength="15" required disabled>
+                                <input placeholder="(11) 96123-4567" name="resTelefone" id="telefone" type="tel" minlength="8" maxlength="15"  disabled>
                             </div>
                             <input type="submit">
                             </form>
@@ -325,27 +325,27 @@ valores pre setados com o intuito de teste.
                 </button>
                 <div class="psicologo-cadastro-container">
                         <h1>Cadastrar Psicologo</h1>
-                        <form method="POST" action="teste.php">
+                        <form method="POST" action="../../../controller/crud/secretario/register.php">
                             <div class="cross-input">
                             <div>
                                 <label for="nome">Nome</label>
-                                <input type="text" name="nome" required>
+                                <input type="text" name="nome" >
                             </div>
                             <div>
                                 <label for="nome">Sobrenome</label>
-                                <input type="text" name="sobrenome" required>
+                                <input type="text" name="sobrenome" >
                             </div>
                             </div>
                             <label for="email">Email</label>
-                            <input type="email" name="email" required>
+                            <input type="email" name="email" >
                             <div class="cross-input">
                             <div>
                                 <label for="RG">RG</label>
-                                <input type="text" name="RG" required>
+                                <input type="text" name="RG" >
                             </div>
                             <div>
                                 <label for="CPF">CPF</label>
-                                <input type="text" name="CPF" required>
+                                <input type="text" name="CPF" >
                             </div>
                             </div>
                             <label for="data-nasc">Data de Nascimento</label>
@@ -359,13 +359,13 @@ valores pre setados com o intuito de teste.
                             <input placeholder="(11) 96123-4567" name="telefone" id="telefone" type="tel" minlength="8" maxlength="15">
                             <p class="form-subtitle">Endereço</p>
                             <label for="CEP">CEP</label>
-                            <input id="psiCEP" type="text" name="cep" required>
+                            <input id="psiCEP" type="text" name="cep" >
                             <label for="rua">Rua</label>
-                            <input id="psiRua" type="text" name="rua" required>
+                            <input id="psiRua" type="text" name="rua" >
                             <label for="bairro">Bairro</label>
-                            <input id="psiBairro" type="text" name="bairro" required>
+                            <input id="psiBairro" type="text" name="bairro" >
                             <label for="casaNum">Número</label>
-                            <input type="text" name="casaNum" required>
+                            <input type="text" name="casaNum" >
                             <label for="complemento">Complemento</label>
                             <input type="text" name="complemento">
                             <div class="cross-input">
@@ -403,17 +403,17 @@ valores pre setados com o intuito de teste.
                                 </div>
                                 <div class="big-input">
                                     <label for="cidade">Cidade</label>
-                                    <input class="form-space" id="psiCidade" type="text" name="cidade" required>
+                                    <input class="form-space" id="psiCidade" type="text" name="cidade" >
                                 </div>
                             </div>
                             <label for="senha">Senha</label>
                             <div class="senha-container">
-                                <input type="password" name="senha" onchange="conferirSenha('paciForm')" required id="paciSenha">
+                                <input type="password" name="senha" onchange="conferirSenha('paciForm')"  id="paciSenha">
                                 <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciShowSenha" onclick="mostrarSenha('paciForm')" alt="">
                             </div>
                             <label for="confirmarSenha">Confirmar Senha</label>
                             <div class="senha-container">
-                                <input type="password" name="confirmarSenha" onchange="conferirSenha('paciForm')" required id="paciConfirmSenha">
+                                <input type="password" name="confirmarSenha" onchange="conferirSenha('paciForm')"  id="paciConfirmSenha">
                                 <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciConfirmShowSenha" onclick="mostrarSenha('paciConfirmForm')" alt="">
                             </div>
                             <input type="submit">

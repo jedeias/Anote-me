@@ -11,6 +11,15 @@ $type = $session->session_get('type');
 $id = $session->session_get('id');
 
 
+$psicologo = new Pessoas($id, $nome, null, null, null, $email, null, null, null, null);
+
+$notas = new AnotacaoPsicologo($psicologo, "Pessimos habitos alimentares");
+
+$repository = new RepositoryAnotacaoPsicologo();
+
+//$repository->save($notas, $idPaciente);
+
+
 $pegar_imagem = new Select();
 $dados = $pegar_imagem->getDados($id);
 $imagem = $pegar_imagem->getImagem($id);
@@ -100,6 +109,7 @@ if (empty($_SESSION)) {
                         if($email == $dado['email']){
                             continue;
                         }
+                        $id_paciente = $dado['pk_paciente'];
                         echo "<article class='paciente-select' onclick=selecionarPaciente($i)>";
                         echo "<p>". $dado['nome'] . "</p>";
                         echo "<p>". $dado['email'] . "</p>";
