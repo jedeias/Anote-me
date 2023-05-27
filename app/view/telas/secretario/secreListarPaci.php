@@ -17,7 +17,11 @@ $imagem = $pegar_imagem->getImagem($id);
 $imagem = $imagem['imagem'];
 
 if($nome == NULL and $email == NULL and $type == NULL){
-   header("location: ../../../index.php");
+    header("location: ../../../index.php");
+}
+ 
+if($type != "secretario"){
+     header("location: ../{$type}/{$type}.php");
 }
 
 if($_POST == true){
@@ -56,7 +60,7 @@ if($_POST == true){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anotações</title>
+    <title>ANOTE-ME</title>
     <link rel="stylesheet" href="../../CSS/secretaria.css">
 </head>
 <body id="body">
@@ -117,6 +121,12 @@ if($_POST == true){
                             <p>Pacientes</p>
                         </li>
                     </a>
+
+                    <a href="../../eventos">
+                        <li>
+                            <p>Agendar Sessão</p>
+                        </li>
+                    </a> 
                 </ul>
             </nav>        
         </aside>

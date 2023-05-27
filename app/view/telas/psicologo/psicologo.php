@@ -26,10 +26,12 @@ $imagem = $pegar_imagem->getImagem($id);
 
 $imagem = $imagem['imagem'];
 
-if (empty($_SESSION)) {
-
-    header('location: ../../../../index.php');
-
+if($nome == NULL and $email == NULL and $type == NULL){
+    header("location: ../../../index.php");
+}
+ 
+if($type != "psicologo"){
+     header("location: ../{$type}/{$type}.php");
 }
 
 ?>
@@ -342,7 +344,7 @@ if (empty($_SESSION)) {
         locale: 'pt-br',
         themeSystem: 'bootstrap5',
         dayMaxEventRows: true,
-        height: "40em",
+        height: "60vh",
         events: <?php echo $eventos->getEventosPsicologo($id);?>,
         eventClick: (info) => {
         console.log(info);

@@ -233,6 +233,22 @@ class Select extends Connect implements selectController{
         $retorna = json_encode($dados, JSON_UNESCAPED_UNICODE);
         return $retorna;   
     }
+
+    public function notificacaoPaciente($id){
+        $conn = $this->getConn();
+
+        $stmt = mysqli_prepare($conn , "SELECT DATE_FORMAT(start, '%d/%m/%Y') AS data_formatada, horario, lida FROM consulta WHERE fk_paciente = ? ORDER BY id DESC LIMIT 1");
+        if(!$stmt){
+            die("Erro na preparação da consulta: " . mysqli_error($conn));
+        }
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $ultimaConsulta = mysqli_fetch_assoc($result);
+
+        return $ultimaConsulta;
+
+    }
     
     public function __destruct()
     {

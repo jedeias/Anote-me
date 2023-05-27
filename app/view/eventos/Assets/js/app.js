@@ -124,29 +124,30 @@ document.addEventListener('DOMContentLoaded', function() {
             )
         }else{
             const url = base_url + 'Home/registrar';
-            const http = new XMLHttpRequest();
             const formData = new FormData(frm);
             formData.append('idPsicologo', idPsicologo); // Adicione o ID do psicólogo ao formulário
             formData.append('idPaciente', idPaciente); // Adicione o ID do paciente ao formulário
-            http.open('POST', url, true);
-            http.send(formData);
-            http.onreadystatechange = function(){
-                if(this.readyState == 4 && this.status == 200){
-                    console.log(this.responseText);
-                    const result = JSON.parse(this.responseText);
-                    console.log(result);
-                    if(result.estado){
-                        calendar.refetchEvents();
-                    }
-                    myModal.hide();
-                    Swal.fire(
-                        'Aviso',
-                        result.msg,
-                        result.tipo
-                    )
+            fetch(url, {
+                method: 'POST',
+                body: formData
+              })
+              .then(response => response.json())
+              .then(result => {
+                console.log(result);
+                if (result.estado) {
+                  calendar.refetchEvents();
                 }
-            }
-        }
+                myModal.hide();
+                Swal.fire(
+                  'Aviso',
+                  result.msg,
+                  result.tipo
+                );
+              })
+              .catch(error => {
+                console.error('Erro:', error);
+              });
+          }
     })
     apagar.addEventListener('click', function(){
         //console.log('1apagar');

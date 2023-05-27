@@ -11,15 +11,19 @@ $type = $session->session_get('type');
 $paci_id = $session->session_get('id');
 $psico_id = $session->session_get('fk_psicologo');
 
+if($nome == NULL and $email == NULL and $type == NULL){
+    header("location: ../../../index.php");
+}
+
+if($type != "paciente"){
+     header("location: ../{$type}/{$type}.php");
+}
+
 $selecionar = new Select();
 $dados = $selecionar->getDados($paci_id);
 $responsavel = $selecionar->getDadosResponsavel($paci_id);
 $psicologo = $selecionar->getDadosPsicologoPaciente($paci_id);
 $imagem = $selecionar->getImagem($paci_id);
-
-if($nome == NULL and $email == NULL and $type == NULL){
-   header("location: ../../../index.html");
-}
 
 ?>
 
@@ -36,41 +40,45 @@ if($nome == NULL and $email == NULL and $type == NULL){
 <body id="body">
     <header class="header-container">
         <h1>ANOTE-ME</h1>
-        <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
-            <?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
-                <img src="<?php echo $imagem['imagem'] ?>" alt="" class='perfil' id='first-perfil'>
-            <?php else: ?>
-                <img src="../../IMG/default.jpg" alt="" class='perfil'>
-            <?php endif; ?>
-        </figure> 
-        <div class="click-wrapper">
-            <nav class="dados-wrapper hidden" id="wrapper-content">
-                <ul class="lista-dados">
 
-                    <li class="center"> 
-                        <?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
-                            <img src="<?php echo $imagem['imagem'] ?>" alt="FOTO-DE-PERFIL" class='perfil' id='second-perfil'>
-                        <?php else: ?>
-                            <img src="../../IMG/default.jpg" alt="" class='perfil'>
-                        <?php endif; ?>
-                    </li>
-                    <li class="center"><?php echo "$nome"; ?></li>
-                    <div class='lista-dados-content'>
-                        <li>Email : <?php echo $email; ?></li>
-                        <li>Telefone : <?php echo $dados[0]['numero']; ?></li>
-                        <li>Responsável : <?php echo $responsavel[0]['nome']; ?></li>
-                        <li>Telefone do Responsável : <?php echo $responsavel[0]['numero_responsavel']; ?></li>
-                        <li>Psicologo : <?php echo $psicologo[0]['nome_psicologo'];?></li>
-                        <li>Clinica : </li>
-                    </div>
-                    <li class="config-container">
-                        <a class="config-button" href="./atualizar_registro.php"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>
-                        <a class="config-button" href="../../sair.php"><img class="wrapper-icon" src="../../IMG/ico/arrow-from-shape-right-svgrepo-com.svg" title="Sair"></a>
-                    </li>
-                
-                </ul>
-            </nav>
-        </div>
+
+
+            <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
+                <?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
+                    <img src="<?php echo $imagem['imagem'] ?>" alt="" class='perfil' id='first-perfil'>
+                <?php else: ?>
+                    <img src="../../IMG/default.jpg" alt="" class='perfil'>
+                <?php endif; ?>
+            </figure> 
+            <div class="click-wrapper">
+                <nav class="dados-wrapper hidden" id="wrapper-content">
+                    <ul class="lista-dados">
+
+                        <li class="center"> 
+                            <?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
+                                <img src="<?php echo $imagem['imagem'] ?>" alt="FOTO-DE-PERFIL" class='perfil' id='second-perfil'>
+                            <?php else: ?>
+                                <img src="../../IMG/default.jpg" alt="" class='perfil'>
+                            <?php endif; ?>
+                        </li>
+                        <li class="center"><?php echo "$nome"; ?></li>
+                        <div class='lista-dados-content'>
+                            <li>Email : <?php echo $email; ?></li>
+                            <li>Telefone : <?php echo $dados[0]['numero']; ?></li>
+                            <li>Responsável : <?php echo $responsavel[0]['nome']; ?></li>
+                            <li>Telefone do Responsável : <?php echo $responsavel[0]['numero_responsavel']; ?></li>
+                            <li>Psicologo : <?php echo $psicologo[0]['nome_psicologo'];?></li>
+                            <li>Clinica : </li>
+                        </div>
+                        <li class="config-container">
+                            <a class="config-button" href="./atualizar_registro.php"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>
+                            <a class="config-button" href="../../sair.php"><img class="wrapper-icon" src="../../IMG/ico/arrow-from-shape-right-svgrepo-com.svg" title="Sair"></a>
+                        </li>
+                    
+                    </ul>
+                </nav>
+            </div>
+
     </header>
     <section class="notepad-container">
         <section class="menu-container">
