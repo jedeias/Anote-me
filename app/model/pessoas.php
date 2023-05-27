@@ -1,15 +1,27 @@
 <?php
 
-abstract class Pessoas{
-    protected $nome;
-    protected $RG;
-    protected $cpf;
-    protected $sexo;
-    protected $email;
-    protected $senha;
-	protected $dataNasc;
-	protected object $endereco;
-    protected object $telefone;
+class Pessoas implements pessoasInterface{
+	private $id;
+    private $nome;
+    private $RG;
+    private $cpf;
+    private $sexo;
+    private $email;
+    private $senha;
+	private $dataNasc;
+	private $endereco;
+    private $telefone;
+
+	public function __construct($id, $nome, $RG, $cpf, $sexo, $email, $senha, $dataNasc, $endereco, $telefone) {
+		$this->setId($id);
+		$this->setNome($nome);
+		$this->setRG($RG);
+		$this->setCpf($cpf);
+		$this->setSexo($sexo);
+		$this->setDataNasc($dataNasc);
+		$this->setEndereco($endereco);
+		$this->setTelefone($telefone);
+	}
 
 	public function getSenha() {
 		return $this->senha;
@@ -93,6 +105,15 @@ abstract class Pessoas{
         $this->telefone = $telefone;
         return $this;
     }
+
+	public function getId() {
+		return (int) $this->id;
+	}
+
+	public function setId($id): self {
+		$this->id = $id;
+		return $this;
+	}
 }
 
 ?>
