@@ -30,52 +30,47 @@ if($type != "secretario"){
 
 <?php
 
-/*
-valores pre setados com o intuito de teste.
 
-
-    $_POST = array(
+    if($_POST == true){
         //paciente
-        "nome" => "João",
-        "sobrenome" => "Silva",
-        "email" => "joao.silva@example.com",
-        "RG" => "123456",
-        "CPF" => "111.222.333-4",
-        "data-nasc" => "01/01/2000",
-        "sexo" => "M",
-        "senha" => "123456",
-        "confirmarSenha" => "123456",
+        $pacNome = $_POST['nome'];
+        $pacSobrenome = $_POST['sobrenome'];
+        $pacEmail = $_POST['email'];
+        $pacRG = $_POST['RG'];
+        $pacCPF = $_POST['CPF'];
+        $paciDataNasc = $_POST['data-nasc'];
+        $pacSexo = $_POST['sexo'];
+        $pacSenha = $_POST['senha'];
+        $pacConfirmarSenha = $_POST['confirmarSenha'];
         
         //telefone
-        "telefone" => "(11) 99999-999",
+        $pacTelefone = $_POST['telefone'];
         
         //endereço
-        "cep" => "01234-567",
-        "rua" => "Rua Teste",
-        "bairro" => "Bairro Teste",
-        "casaNum" => "123",
-        "complemento" => "Apartamento 123",
-        "estado" => "SP",
-        "cidade" => "São Paulo",
-        
-        "responsavelBox" => "on",
-        
-        //responsavel
-        "resNome" => "Maria",
-        "resSobrenome" => "Silva",
-        "resEmail" => "maria.silva@example.com",
-        "resRG" => "654321",
-        "resCPF" => "111.222.333-0",
-        "resTelefone" => "(11) 98888-8888"
-            
-        );
-*/
-    
-    if($_POST == true){
+        $cep = $_POST['cep'];
+        $rua = $_POST['rua'];
+        $bairro = $_POST['bairro'];
+        $casaNum = $_POST['casaNum'];
+        $complemento = $_POST['complemento'];
+        $estado = $_POST['estado'];
+        $cidade = $_POST['cidade'];
+
+        if($_POST['responsavelBox'] == true){
+            $responsavelBox = $_POST['responsavelBox'];         
+            //responsavels
+            $resNome = $_POST['resNome'];
+            $resSobrenome = $_POST['resSobrenome'];
+            $resEmail = $_POST['resEmail'];
+            $resRG = $_POST['resRG'];
+            $resCPF = $_POST['resCPF'];
+            $resTelefone = $_POST['resTelefone'];        
+                
+        }
         
         $insert = new Crud();
         
         $insert->insertPaciente($_POST);
+        
     }
 
 ?>
@@ -179,23 +174,23 @@ valores pre setados com o intuito de teste.
                             <div class="cross-input">
                             <div>
                                 <label for="nome">Nome</label>
-                                <input type="text" name="nome" >
+                                <input type="text" name="nome" required>
                             </div>
                             <div>
                                 <label for="nome">Sobrenome</label>
-                                <input type="text" name="sobrenome" >
+                                <input type="text" name="sobrenome" required>
                             </div>
                             </div>
                             <label for="email">Email</label>
-                            <input type="email" name="email" >
+                            <input type="email" name="email" required>
                             <div class="cross-input">
                             <div>
                                 <label for="RG">RG</label>
-                                <input type="text" name="RG" >
+                                <input type="text" name="RG" required>
                             </div>
                             <div>
                                 <label for="CPF">CPF</label>
-                                <input type="text" name="CPF" >
+                                <input type="text" name="CPF" required>
                             </div>
                             </div>
                             <label for="data-nasc">Data de Nascimento</label>
@@ -206,7 +201,7 @@ valores pre setados com o intuito de teste.
                                 <option value="F">Feminino</option>
                             </select>
                             <label for="telefone">Telefone</label>
-                            <input placeholder="(11) 96123-4567" name="telefone" id="telefone" type="tel" minlength="8" maxlength="15">
+                            <input placeholder="example (11) 96123-4567" name="telefone" id="telefone" type="tel" minlength="8" maxlength="15">
                             <?php
                                 $select = new Select();
                                 $pisicologos = $select->selectPsicologos();
@@ -222,13 +217,13 @@ valores pre setados com o intuito de teste.
                             ?>
                             <p class="form-subtitle">Endereço</p>
                             <label for="CEP">CEP</label>
-                            <input id="paciCEP" type="text" name="cep" >
+                            <input id="paciCEP" type="text" name="cep" required>
                             <label for="rua">Rua</label>
-                            <input id="paciRua" type="text" name="rua" >
+                            <input id="paciRua" type="text" name="rua" required>
                             <label for="bairro">Bairro</label>
-                            <input id="paciBairro" type="text" name="bairro" >
+                            <input id="paciBairro" type="text" name="bairro" required>
                             <label for="casaNum">Número</label>
-                            <input type="text" name="casaNum" >
+                            <input type="text" name="casaNum" required>
                             <label for="complemento">Complemento</label>
                             <input type="text" name="complemento">
                             <div class="cross-input">
@@ -266,17 +261,17 @@ valores pre setados com o intuito de teste.
                                 </div>
                                 <div class="big-input">
                                     <label for="cidade">Cidade</label>
-                                    <input class="form-space" id="paciCidade" type="text" name="cidade" >
+                                    <input class="form-space" id="paciCidade" type="text" name="cidade" required>
                                 </div>
                             </div>
                             <label for="senha">Senha</label>
                             <div class="senha-container">
-                                <input type="password" name="senha" onchange="conferirSenha('paciForm')"  id="paciSenha">
+                                <input type="password" name="senha" onchange="conferirSenha('paciForm')" required id="paciSenha">
                                 <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciShowSenha" onclick="mostrarSenha('paciForm')" alt="">
                             </div>
                             <label for="confirmarSenha">Confirmar Senha</label>
                             <div class="senha-container">
-                                <input type="password" name="confirmarSenha" onchange="conferirSenha('paciForm')"  id="paciConfirmSenha">
+                                <input type="password" name="confirmarSenha" onchange="conferirSenha('paciForm')" required id="paciConfirmSenha">
                                 <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciConfirmShowSenha" onclick="mostrarSenha('paciConfirmForm')" alt="">
                             </div>
                             <div class="check-container">
@@ -293,27 +288,27 @@ valores pre setados com o intuito de teste.
                                 <div class="cross-input">
                                 <div>
                                     <label for="resNome">Nome</label>
-                                    <input type="text" name="resNome"  disabled>
+                                    <input type="text" name="resNome" required disabled>
                                 </div>
                                 <div>
                                     <label for="resSobrenome">Sobrenome</label>
-                                    <input type="text" name="resSobrenome"  disabled>
+                                    <input type="text" name="resSobrenome" required disabled>
                                 </div>
                                 </div>
                                 <label for="resEmail">Email</label>
-                                <input type="email" name="resEmail"  disabled>
+                                <input type="email" name="resEmail" required disabled>
                                 <div class="cross-input">
                                 <div>
                                     <label for="resRG">RG</label>
-                                    <input type="text" name="resRG"  disabled>
+                                    <input type="text" name="resRG" required disabled>
                                 </div>
                                 <div>
                                     <label for="resCPF">CPF</label>
-                                    <input type="text" name="resCPF"  disabled>
+                                    <input type="text" name="resCPF" required disabled>
                                 </div>
                                 </div>
                                 <label for="resTelefone">Telefone</label>
-                                <input placeholder="(11) 96123-4567" name="resTelefone" id="telefone" type="tel" minlength="8" maxlength="15"  disabled>
+                                <input placeholder="(11) 96123-4567" name="resTelefone" id="telefone" type="tel" minlength="8" maxlength="15" required disabled>
                             </div>
                             <input type="submit">
                             </form>
@@ -329,27 +324,27 @@ valores pre setados com o intuito de teste.
                 </button>
                 <div class="psicologo-cadastro-container">
                         <h1>Cadastrar Psicologo</h1>
-                        <form method="POST" action="../../../controller/crud/secretario/register.php">
+                        <form method="POST" action="../../../controller/crud/secretario/insertPsicologo.php">
                             <div class="cross-input">
                             <div>
                                 <label for="nome">Nome</label>
-                                <input type="text" name="nome" >
+                                <input type="text" name="nome" required>
                             </div>
                             <div>
                                 <label for="nome">Sobrenome</label>
-                                <input type="text" name="sobrenome" >
+                                <input type="text" name="sobrenome" required>
                             </div>
                             </div>
                             <label for="email">Email</label>
-                            <input type="email" name="email" >
+                            <input type="email" name="email" required>
                             <div class="cross-input">
                             <div>
                                 <label for="RG">RG</label>
-                                <input type="text" name="RG" >
+                                <input type="text" name="RG" required>
                             </div>
                             <div>
                                 <label for="CPF">CPF</label>
-                                <input type="text" name="CPF" >
+                                <input type="text" name="CPF" required>
                             </div>
                             </div>
                             <label for="data-nasc">Data de Nascimento</label>
@@ -363,13 +358,13 @@ valores pre setados com o intuito de teste.
                             <input placeholder="(11) 96123-4567" name="telefone" id="telefone" type="tel" minlength="8" maxlength="15">
                             <p class="form-subtitle">Endereço</p>
                             <label for="CEP">CEP</label>
-                            <input id="psiCEP" type="text" name="cep" >
+                            <input id="psiCEP" type="text" name="cep" required>
                             <label for="rua">Rua</label>
-                            <input id="psiRua" type="text" name="rua" >
+                            <input id="psiRua" type="text" name="rua" required>
                             <label for="bairro">Bairro</label>
-                            <input id="psiBairro" type="text" name="bairro" >
+                            <input id="psiBairro" type="text" name="bairro" required>
                             <label for="casaNum">Número</label>
-                            <input type="text" name="casaNum" >
+                            <input type="text" name="casaNum" required>
                             <label for="complemento">Complemento</label>
                             <input type="text" name="complemento">
                             <div class="cross-input">
@@ -407,20 +402,20 @@ valores pre setados com o intuito de teste.
                                 </div>
                                 <div class="big-input">
                                     <label for="cidade">Cidade</label>
-                                    <input class="form-space" id="psiCidade" type="text" name="cidade" >
+                                    <input class="form-space" id="psiCidade" type="text" name="cidade" required>
                                 </div>
                             </div>
                             <label for="senha">Senha</label>
                             <div class="senha-container">
-                                <input type="password" name="senha" onchange="conferirSenha('paciForm')"  id="paciSenha">
+                                <input type="password" name="senha" onchange="conferirSenha('paciForm')" required id="paciSenha">
                                 <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciShowSenha" onclick="mostrarSenha('paciForm')" alt="">
                             </div>
                             <label for="confirmarSenha">Confirmar Senha</label>
                             <div class="senha-container">
-                                <input type="password" name="confirmarSenha" onchange="conferirSenha('paciForm')"  id="paciConfirmSenha">
+                                <input type="password" name="confirmarSenha" onchange="conferirSenha('paciForm')" required id="paciConfirmSenha">
                                 <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciConfirmShowSenha" onclick="mostrarSenha('paciConfirmForm')" alt="">
                             </div>
-                            <input type="submit">
+                            <button type="submit">Cadastrar</button>
                             </form>
                         
                 </div>

@@ -17,25 +17,25 @@ REPLACE INTO `tipo_usuario` (`pk_tipo_usuario`, `tipo_user`) VALUES
 	(3, 'Paciente'),
 	(4, 'Psicólogo');
 	
-	
+  
 CREATE TABLE IF NOT EXISTS `endereco` (
   `pk_endereco` int(11) NOT NULL AUTO_INCREMENT,
   `rua` varchar(120) NOT NULL,
   `numero` varchar(8) NOT NULL,
   `bairro` varchar(100) NOT NULL,
-  `cep` int(8) NOT NULL,
+  `cep` varchar(10) NOT NULL,
   `cidade` varchar(50) NOT NULL,
   `estado` char(2) NOT NULL,
   `complemento` varchar(100) NOT NULL,
   PRIMARY KEY (`pk_endereco`)
 );
 REPLACE INTO `endereco` (`pk_endereco`, `rua`, `numero`, `bairro`, `cep`, `cidade`, `estado`, `complemento`) VALUES
-	(1, 'Rua das Flores', '123', 'Jardim das Palmeiras', 12345678, 'São Paulo', 'SP', 'Apto 101'),
-	(2, 'Avenida das Árvores', '567', 'Centro', 87654321, 'Rio de Janeiro', 'RJ', 'Casa 02'),
-	(3, 'Rua das Pedras', '890', 'Vila dos Pássaros', 9876543, 'Belo Horizonte', 'MG', 'Bloco C'),
-	(4, 'Rua dos Andradas', '123', 'Centro', 90019, 'Porto Alegre', 'RS', 'Sala 101'),
-	(5, 'Avenida Paulista', '1000', 'Bela Vista', 1210, 'São Paulo', 'SP', 'Apt 502'),
-	(6, 'Rua Santa Catarina', '200', 'Lourdes', 30089, 'Belo Horizonte', 'MG', 'Loja 10');
+	(1, 'Rua das Flores', '123', 'Jardim das Palmeiras', '12345678', 'São Paulo', 'SP', 'Apto 101'),
+	(2, 'Avenida das Árvores', '567', 'Centro', '87654321', 'Rio de Janeiro', 'RJ', 'Casa 02'),
+	(3, 'Rua das Pedras', '890', 'Vila dos Pássaros', '9876543', 'Belo Horizonte', 'MG', 'Bloco C'),
+	(4, 'Rua dos Andradas', '123', 'Centro', '90019', 'Porto Alegre', 'RS', 'Sala 101'),
+	(5, 'Avenida Paulista', '1000', 'Bela Vista', '1210', 'São Paulo', 'SP', 'Apt 502'),
+	(6, 'Rua Santa Catarina', '200', 'Lourdes', '30089', 'Belo Horizonte', 'MG', 'Loja 10');
 	
 	
 CREATE TABLE IF NOT EXISTS `tipo_telefone` (
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `telefone` (
   `pk_telefone` int(11) NOT NULL AUTO_INCREMENT,
   `fk_tipo_telefone` int(11) NOT NULL,
   `ddd` int(2) NOT NULL,
-  `numero` int(11) NOT NULL,
+  `numero` varchar(25) NOT NULL,
   `ddi` int(2) NOT NULL,
   PRIMARY KEY (`pk_telefone`),
   KEY `fk_tipo_telefone` (`fk_tipo_telefone`),
@@ -81,8 +81,8 @@ CREATE TABLE IF NOT EXISTS `secretario` (
 	`nome` varchar(100) NOT NULL,
 	`email` varchar(100) NOT NULL,
 	`senha` varchar(8) NOT NULL,
-	`RG` varchar(9) NOT NULL,
-	`CPF` INT(12) NOT NULL,
+	`RG` varchar(10) NOT NULL,
+	`CPF` varchar(14) NOT NULL,
 	`sexo` enum('M','F') NOT NULL,
 	`data_nasc` date NOT NULL,
   `imagem` varchar(100) NULL,
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `secretario` (
 	CONSTRAINT `secretario_ibfk_3` FOREIGN KEY (`fk_tipo_usuario`) REFERENCES `tipo_usuario` (`pk_tipo_usuario`)
 );
 REPLACE INTO `secretario` (`pk_secretario`, `fk_endereco`, `fk_telefone`, `fk_tipo_usuario`, `nome`, `email`, `senha`, `RG`, `CPF`, `sexo`, `data_nasc`) VALUES
-	(1, 3, 1, 2, 'Beltrano de Tal', 'beltrano@example.com', 'senha123', '345678901', 987654321, 'M', '1990-01-01');
+	(1, 3, 1, 2, 'Beltrano de Tal', 'beltrano@example.com', 'senha123', '345678901', '987654321', 'M', '1990-01-01');
 
 
 
@@ -108,8 +108,8 @@ CREATE TABLE IF NOT EXISTS `psicologo` (
   `nome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `senha` varchar(8) NOT NULL,
-  `RG` varchar(9) NOT NULL,
-  `CPF` INT(12) NOT NULL,
+  `RG` varchar(10) NOT NULL,
+  `CPF` varchar(14) NOT NULL,
   `sexo` enum('M','F') NOT NULL,
   `data_nasc` date NOT NULL,
   `imagem` varchar(100) NULL,
@@ -123,11 +123,11 @@ CREATE TABLE IF NOT EXISTS `psicologo` (
   CONSTRAINT `psicologo_ibfk_3` FOREIGN KEY (`fk_tipo_usuario`) REFERENCES `tipo_usuario` (`pk_tipo_usuario`)
 );
 REPLACE INTO `psicologo` (`pk_psicologo`, `fk_endereco`, `fk_telefone`, `fk_tipo_usuario`, `nome`, `email`, `senha`, `RG`, `CPF`, `sexo`, `data_nasc`) VALUES
-	(11, 1, 1, 1, 'Maria Silva', 'mariasilva@gmail.com', '12345678', '123456789', 1245678901, 'F', '1985-03-01'),
-	(12, 2, 2, 1, 'João Souza', 'joaosouza@hotmail.com', '87654321', '987654321', 965432109, 'M', '1990-05-15'),
-	(13, 3, 3, 1, 'Ana Santos', 'anasantos@yahoo.com', 'qwertyui', '24681012', 246112141, 'F', '1988-11-22'),
-	(14, 4, 4, 1, 'Pedro Alves', 'pedroalves@gmail.com', 'asdfghjk', '369121518', 312151822, 'M', '1995-07-04'),
-	(15, 5, 5, 1, 'Juliana Lima', 'julianalima@gmail.com', 'zxcvbnm', '151617181', 161718123, 'F', '1992-01-10');
+	(11, 1, 1, 1, 'Maria Silva', 'mariasilva@gmail.com', '12345678', '123456789', '1245678901', 'F', '1985-03-01'),
+	(12, 2, 2, 1, 'João Souza', 'joaosouza@hotmail.com', '87654321', '987654321', '965432109', 'M', '1990-05-15'),
+	(13, 3, 3, 1, 'Ana Santos', 'anasantos@yahoo.com', 'qwertyui', '24681012', '246112141', 'F', '1988-11-22'),
+	(14, 4, 4, 1, 'Pedro Alves', 'pedroalves@gmail.com', 'asdfghjk', '369121518', '312151822', 'M', '1995-07-04'),
+	(15, 5, 5, 1, 'Juliana Lima', 'julianalima@gmail.com', 'zxcvbnm', '151617181', '161718123', 'F', '1992-01-10');
 
 
 CREATE TABLE IF NOT EXISTS `secretario_clinica` (
@@ -189,8 +189,8 @@ CREATE TABLE IF NOT EXISTS `responsavel` (
   `fk_tipo_usuario` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `RG` varchar(9) NOT NULL,
-  `CPF` int(12) NOT NULL,
+  `RG` varchar(10) NOT NULL,
+  `CPF` varchar(14) NOT NULL,
   PRIMARY KEY (`pk_responsavel`),
   UNIQUE KEY `email` (`email`),
   KEY `fk_endereco` (`fk_endereco`),
@@ -201,8 +201,8 @@ CREATE TABLE IF NOT EXISTS `responsavel` (
   CONSTRAINT `responsavel_ibfk_3` FOREIGN KEY (`fk_tipo_usuario`) REFERENCES `tipo_usuario` (`pk_tipo_usuario`)
 );
 REPLACE INTO `responsavel` (`pk_responsavel`, `fk_endereco`, `fk_telefone`, `fk_tipo_usuario`, `nome`, `email`, `RG`, `CPF`) VALUES
-	(1, 1, 1, 1, 'Fulano de Tal', 'fulano@example.com', '123456789', 1234567890),
-	(2, 2, 2, 1, 'Ciclano de Tal', 'ciclano@example.com', '987654321', 1098765432);
+	(1, 1, 1, 1, 'Fulano de Tal', 'fulano@example.com', '123456789', '1234567890'),
+	(2, 2, 2, 1, 'Ciclano de Tal', 'ciclano@example.com', '987654321', '1098765432');
 	
 
 	
@@ -216,8 +216,8 @@ CREATE TABLE IF NOT EXISTS `paciente` (
   `nome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `senha` varchar(8) NOT NULL,
-  `RG` varchar(9) NOT NULL,
-  `CPF` int(12) NOT NULL,
+  `RG` varchar(10) NOT NULL,
+  `CPF` varchar(14) NOT NULL,
   `sexo` enum('M','F') NOT NULL,
   `data_nasc` date NOT NULL,
   `imagem` varchar(100) NULL,
@@ -235,11 +235,11 @@ CREATE TABLE IF NOT EXISTS `paciente` (
   CONSTRAINT `paciente_ibfk_5` FOREIGN KEY (`fk_tipo_usuario`) REFERENCES `tipo_usuario` (`pk_tipo_usuario`)
 );
 REPLACE INTO `paciente` (`pk_paciente`, `fk_endereco`, `fk_telefone`, `fk_tipo_usuario`, `fk_responsavel`,`fk_psicologo`, `nome`, `email`, `senha`, `RG`, `CPF`, `sexo`, `data_nasc`) VALUES
-	(2, 1, 2, 3, 1, 11, 'Joãozinho da Silva', 'joaozinho@example.com', 'senha123', '111111111', 123456789, 'M', '2010-01-01'),
-	(3, 2, 1, 3, 2, 11, 'Mariazinha Pereira', 'mariazinha@example.com', 'senha123', '222222222', 109876543, 'F', '2012-01-01'),
-	(4, 3, 4, 3, 1, 12, 'Pedrinho Souza', 'pedrinho@example.com', 'senha123', '333333333', 246801357, 'M', '2014-01-01'),
-	(5, 4, 3, 3, 2, 13, 'Lucinha Carvalho', 'lucinha@example.com', 'senha123', '444444444', 135790246, 'F', '2016-01-01'),
-	(6, 5, 5, 3, 2, 12, 'Carlos Eduardo', 'carlos@example.com', 'senha123', '555555555', 864209753, 'M', '2018-01-01');
+	(2, 1, 2, 3, 1, 11, 'Joãozinho da Silva', 'joaozinho@example.com', 'senha123', '111111111', '123456789', 'M', '2010-01-01'),
+	(3, 2, 1, 3, 2, 11, 'Mariazinha Pereira', 'mariazinha@example.com', 'senha123', '222222222', '109876543', 'F', '2012-01-01'),
+	(4, 3, 4, 3, 1, 12, 'Pedrinho Souza', 'pedrinho@example.com', 'senha123', '333333333', '246801357', 'M', '2014-01-01'),
+	(5, 4, 3, 3, 2, 13, 'Lucinha Carvalho', 'lucinha@example.com', 'senha123', '444444444', '135790246', 'F', '2016-01-01'),
+	(6, 5, 5, 3, 2, 12, 'Carlos Eduardo', 'carlos@example.com', 'senha123', '555555555', '864209753', 'M', '2018-01-01');
 	
 	
 
@@ -297,7 +297,6 @@ CREATE TABLE IF NOT EXISTS `consulta` (
   PRIMARY KEY (`id`),
   KEY `fk_paciente` (`fk_paciente`),
   KEY `fk_psicologo` (`fk_psicologo`),
-  KEY `fk_redflag` (`fk_redflag`),
   CONSTRAINT `consulta_ibfk_1` FOREIGN KEY (`fk_paciente`) REFERENCES `paciente` (`pk_paciente`),
   CONSTRAINT `consulta_ibfk_2` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`)
 );
@@ -316,11 +315,8 @@ CREATE TABLE IF NOT EXISTS `anotacoes_psicologo` (
   CONSTRAINT `anotacoes_psicologo_ibfk_1` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`),
   CONSTRAINT `anotacoes_psicologo_ibfk_2` FOREIGN KEY (`fk_consulta`) REFERENCES `consulta` (`id`)
 );
-REPLACE INTO `anotacoes_psicologo` (`pk_anotacoes_psicologo`, `fk_psicologo`, `fk_consulta`, `data`,`hora`, `anotacoes`) VALUES
-	(11, 11, 0, '2022-05-10', '11:00:00', 'O paciente está com problemas de ansiedade'),
-	(12, 12, 0, '2022-05-12', '12:00:00', 'O paciente está com problemas de autoestima');
-	
-	
+
+
 CREATE TABLE IF NOT EXISTS `anotacoes_paciente` (
   `pk_anotacoes_paciente` int(11) NOT NULL AUTO_INCREMENT,
   `fk_redflag` int(11) NOT NULL,
