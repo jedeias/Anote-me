@@ -42,6 +42,8 @@ if($type != "secretario"){
         $pacSexo = $_POST['sexo'];
         $pacSenha = $_POST['senha'];
         $pacConfirmarSenha = $_POST['confirmarSenha'];
+        $psicologoResponsavel = $_POST['psicologoResponsavel'];
+        
         
         //telefone
         $pacTelefone = $_POST['telefone'];
@@ -55,7 +57,7 @@ if($type != "secretario"){
         $estado = $_POST['estado'];
         $cidade = $_POST['cidade'];
 
-        if($_POST['responsavelBox'] == true){
+        if(isset($_POST['responsavelBox'])){
             $responsavelBox = $_POST['responsavelBox'];         
             //responsavels
             $resNome = $_POST['resNome'];

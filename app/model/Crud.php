@@ -140,15 +140,12 @@ class Crud extends Connect implements CrudController{
             die("Erro na query: " . mysqli_error($this->getConn()));
         }
 
-       
-
+        $fk_telefone = $this->getConn()->insert_id; // Pega o ID do telefone inserido
 
         if(isset($dados['responsavelBox'])) {
 
             $resCPF = $filter->filterString($dados["resCPF"]);
 
-            $fk_telefone = $this->getConn()->insert_id; // Pega o ID do telefone inserido
-            
             $responsavelQuery = "INSERT INTO responsavel (fk_endereco, fk_telefone, fk_tipo_usuario, nome, email, RG, CPF) 
                                  VALUES ('$fk_endereco', '$fk_telefone', 3, '{$dados['resNome']} {$dados['resSobrenome']}', '{$dados['resEmail']}', '{$dados['resRG']}', '{$resCPF->elemente}')";
             if (!$this->query($responsavelQuery)) {
@@ -158,20 +155,21 @@ class Crud extends Connect implements CrudController{
 
             $fk_responsavel = $this->getConn()->insert_id; 
         } else {
+
             $fk_responsavel = null;
+
         }
+            $CPF = $filter->filterString($dados["CPF"]);
         
-        $CPF = $filter->filterString($dados["CPF"]);
-        
-        $pacienteQuery = "INSERT INTO paciente (fk_endereco, fk_telefone, fk_tipo_usuario, fk_responsavel, fk_psicologo, nome, email, senha, RG, CPF, sexo, data_nasc) 
-                          VALUES ('$fk_endereco', '$fk_telefone', 3, '$fk_responsavel', 11 ,'{$dados['nome']} {$dados['sobrenome']}', '{$dados['email']}', '{$dados['senha']}', '{$dados['RG']}', '{$CPF->elemente}', '{$dados['sexo']}', '{$dados['data-nasc']}' )";
-        if (!$this->query($pacienteQuery)) {
-            die("Erro na query: " . mysqli_error($this->getConn()));
-        }
-        
-        $fk_paciente = $this->getConn()->insert_id; // Pega o ID do paciente inserido
-        
+            $pacienteQuery = "INSERT INTO paciente (fk_endereco, fk_telefone, fk_tipo_usuario, fk_responsavel, fk_psicologo, nome, email, senha, RG, CPF, sexo, data_nasc) 
+                            VALUES ('$fk_endereco', '$fk_telefone', 3, null, '{$dados['psicologoResponsavel']}','{$dados['nome']} {$dados['sobrenome']}', '{$dados['email']}', '{$dados['senha']}', '{$dados['RG']}', '{$CPF->elemente}', '{$dados['sexo']}', '{$dados['data-nasc']}' )";
+            if (!$this->query($pacienteQuery)) {
+                die("Erro na query: " . mysqli_error($this->getConn()));
+            }
+            
+            $fk_paciente = $this->getConn()->insert_id; // Pega o ID do paciente inserido
         return $fk_paciente;
+        
     }
 
     public function insertPsicologo($dados){

@@ -211,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `paciente` (
   `fk_endereco` int(11) NOT NULL,
   `fk_telefone` int(11) NOT NULL,
   `fk_tipo_usuario` int(11) NOT NULL,
-  `fk_responsavel` int(11) NOT NULL,
+  `fk_responsavel` int(11) NULL,
   `fk_psicologo` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
