@@ -179,7 +179,7 @@ if($_POST == true){
                     } else {
                         $paciDetailsId = $_GET['paciId'];
                         $paciente = $select->selectPaciente($paciDetailsId);
-                        $ultimaconsulta = $select->notificacaoPaciente($paciDetailsId);
+           
                         foreach($paciente as $dado){
                             $psicologoInfo = $select->selectPsicologo($dado['fk_psicologo']);
                             
@@ -241,16 +241,7 @@ if($_POST == true){
                                         <p>".$data_nasc."</p>
                                     </div>
 
-                                    <div class='info-container'>
-                                        <p class='info-title'>ultima sessão:</p>
-                                        <?php if($ultimaconsulta['data_formatada'] == null){
-                                            echo "<p></p>";
-                                        }else{
-                                            echo "<p>".$ultimaconsulta['data_formatada']."</p>";
-                                           
-                                        }
-                                        ?>
-                                    </div>
+                                 
 
 
 

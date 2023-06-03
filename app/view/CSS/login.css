@@ -332,6 +332,7 @@ body{
         height: 400px;
         margin-left: 5%;
         margin-top: 9%;
+        border-radius: 7px;
     }
 
     .logo-container{
