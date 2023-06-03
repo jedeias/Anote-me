@@ -44,47 +44,59 @@ if($type != "paciente"){
 
         <!--notificação-->
         <?php 
-            $notificacao = new Select();
-            $sessao = $notificacao->notificacaoPaciente($paci_id);                
-        ?>            
-        <div class="com-notifiacao" id="noti" onclick="click_noti()">                
-            <div class="<?php echo $sessao['lida'] == null  ? 'aviso-block' : 'aviso-none';?>" id="aviso">
-                <span>!</span>
-            </div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="60" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
-            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
-            </svg>
-        </div>
-
-        <div class="vazio" id="notificacoes">
-            <?php 
-                if($sessao != null){
-                    echo '<p> voce tem uma sessão marcada para: </p>';
-                    echo '<li> dia: ' . $sessao['data_formatada'] . '</li>';
-                    echo '<li> horario: ' .$sessao['horario'] . '</li>';
-                    if($sessao['lida'] == null){
-                        $crud = new Crud();
-                        $updateNotificacao = $crud->notificacaoLida($paci_id);
-                    }
-                    echo '<a href="./calendario.php">Consultar agenda</a>';
-                }else{
-
-                    echo '<p> voce não tem consultas marcadas: </p>';
-                    echo '<li> dia: </li>';
-                    echo '<li> horario: </li>';
-                    
-                }      
+                $notificacao = new Select();
+                $sessao = $notificacao->notificacaoPaciente($paci_id);
             ?>
-        </div>
-        <script>                          
-            let btn_noti = document.getElementsById('noti'); 
-            function click_noti(){                    
-                let mensagemLida = <?php echo $sessao['lida'] ? 'true' : 'false';?>;                                  
+            <div class="com-notifiacao" id="noti" onclick="click_noti()">
+                <div class="<?php echo ($sessao && $sessao['lida'] == null) ? 'aviso-block' : 'aviso-none';?>" id="aviso">
+                    <span>!</span>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="60" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+                </svg>
+            </div>
+            <div class="vazio" id="notificacoes">
+                <?php 
+                    if($sessao && $sessao['lida'] == null){
+                        echo '<p> voce tem uma sessão marcada para: </p>';
+                        echo '<li> dia: ' . $sessao['data_formatada'] . '</li>';
+                        echo '<li> horario: ' .$sessao['horario'] . '</li>';
+                        if($sessao['lida'] == null){
+                            $crud = new Crud();
+                            $updateNotificacao = $crud->notificacaoLida($paci_id);
+                        }
+                        echo '<a href="./calendario.php">Consultar agenda</a>';
+                    }else{
+                        echo '<p> Ainda não foi marcada novas sessões!</p>';
+
+                        if($sessao && $sessao['lida'] != null){
+                        echo '<p>ultima consulta marcada para:</p>';
+                        echo '<ul>';
+
+                        echo '<li>Dia: ' . $sessao['data_formatada'] . '</li>';
+                        echo '<li>Horário: ' . $sessao['horario'] . '</li>';
+
+                        echo '</ul>';
+                        }
+                    }
+                ?>
+            </div>
+            <script>
                 let notificacao = document.getElementById('notificacoes');
-                notificacao.classList.toggle('notification');
-                
-            }
-        </script>
+                let btn_noti = document.getElementById('noti'); 
+                function click_noti(){
+                    let notificacao = document.getElementById('notificacoes');
+                    notificacao.classList.toggle('notification');
+
+                }
+                document.addEventListener('click',detectNoti);
+
+                function detectNoti(e){
+                    if(!notificacao.contains(e.target) && !btn_noti.contains(e.target)){
+                        notificacao.classList.remove('notification');
+                    }
+                }
+            </script>
 
         <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()">
             <?php if(isset($imagem) && $imagem != NULL): ?>
