@@ -87,8 +87,8 @@
 .click-wrapper {
     display: flex;
     position: absolute;
-    left: 79vw;
-    top: 70px;
+    left: 80vw;
+    top: 67px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -419,4 +419,63 @@ a{
     0% { opacity: 1}
     50% { opacity: 1}
     100% {opacity: 0%; visibility: hidden;}
+}
+
+
+@media only screen and (max-width: 768px) {
+    .notepad textarea {
+        max-width: 100%;
+        width: 95%;
+        height: 459px;
+    }
+
+    .notepad-container{
+        height: 100%;
+    }
+
+    .notepad-container{
+        display: block;
+        
+    }
+    .menu-container{
+        width: 100%;
+    
+    }
+
+    .notepad-content{
+        margin-left: 0;
+    }
+
+    .notepad-count{
+        left: 75%;
+        top: 88%;
+    }
+   
+    .emoji-content{
+        width: 320px;
+    }
+
+    .click-wrapper{
+        left: 59vw;
+        z-index: 1;
+    }
+
+    .dados-wrapper{
+        width: 35vw;
+    }
+
+   
+
+}
+
+@media only screen and (max-width: 600px){
+    .click-wrapper{
+        left: 41vw;
+        z-index: 1;
+    }
+
+    .dados-wrapper{
+        width: 54vw;
+    }
+
 }

@@ -51,7 +51,7 @@ if($type != "paciente"){
           $sessao = $notificacao->notificacaoPaciente($paciente_id);                
       ?>            
       <div class="com-notifiacao" id="noti" onclick="click_noti()">                
-          <div class="<?php echo $sessao['lida'] == null  ? 'aviso-block' : 'aviso-none';?>" id="aviso">
+          <div class="aviso-none" id="aviso">
               <span>!</span>
           </div>
           <svg xmlns="http://www.w3.org/2000/svg" width="50" height="60" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
@@ -71,11 +71,11 @@ if($type != "paciente"){
                   }
                   echo '<a href="./calendario.php">Consultar agenda</a>';
               }else{
-
+                if($sessao == null){
                   echo '<p> voce não tem consultas marcadas: </p>';
                   echo '<li> dia: </li>';
                   echo '<li> horario: </li>';
-                  
+                }
               }      
           ?>
       </div>

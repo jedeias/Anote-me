@@ -47,8 +47,10 @@ function ClickEmoji(){
     emojiTab.classList.toggle('hidden');
 }
 
+
 //* Detectar quando clicar fora das abas
 document.addEventListener('click', function(e) {
+
     let wrapper = document.getElementById("wrapper-content");
     
     let wrapperButton = document.getElementById("wrapperButton");

@@ -259,3 +259,22 @@ a{
 .hidden{
     display: none;
 }
+
+@media only screen and (max-width: 768px){
+    .activity-container{
+        display: block;
+    }
+
+    .activity-content{
+        font-size: 15px;
+    }
+
+    .click-wrapper{
+        left: 52vw;
+        z-index: 1;
+    }
+
+    .dados-wrapper{
+        width: 48vw;
+    }
+}

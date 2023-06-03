@@ -25,6 +25,7 @@ body{
     cursor: pointer;
 }
 .click-perfil{
+    z-index: 1;
     display: flex;
     align-items: center;
     padding: 5px;
@@ -481,3 +482,44 @@ a{
 .show{
     display: block;
 }
+
+
+
+@media screen and (max-width: 745px){
+    .notepad-container{
+        display: block;
+        flex-direction: column;
+
+    }
+    .menu-container {
+   
+        width: 100%;
+     
+    }
+
+    .click-wrapper{
+        left: 45vw;
+        z-index: 1;
+    }
+
+    .dados-wrapper{
+        width: 50vw;
+    }
+
+    .activity-add-table{
+        z-index: 1;
+        width: 89%;
+        margin-left: -10px;
+        
+    }
+
+    
+    .paciente-table{
+        height: 70%;
+        overflow-y: scroll;
+        
+    }
+
+   
+    
+} 

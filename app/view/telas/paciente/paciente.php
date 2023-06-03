@@ -47,9 +47,9 @@ if($type != "paciente"){
             <!--notificação-->
             <?php 
                 $notificacao = new Select();
-                $sessao = $notificacao->notificacaoPaciente($paci_id);
-            ?>
-            <div class="com-notifiacao" id="noti" onclick="click_noti()">
+                $sessao = $notificacao->notificacaoPaciente($paci_id);                
+            ?>            
+            <div class="com-notifiacao" id="noti" onclick="click_noti()">                
                 <div class="<?php echo ($sessao && $sessao['lida'] == null) ? 'aviso-block' : 'aviso-none';?>" id="aviso">
                     <span>!</span>
                 </div>
@@ -57,6 +57,7 @@ if($type != "paciente"){
                 <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
                 </svg>
             </div>
+
             <div class="vazio" id="notificacoes">
                 <?php 
                     if($sessao && $sessao['lida'] == null){
@@ -65,11 +66,11 @@ if($type != "paciente"){
                         echo '<li> horario: ' .$sessao['horario'] . '</li>';
                         if($sessao['lida'] == null){
                             $crud = new Crud();
-                            $updateNotificacao = $crud->notificacaoLida($paci_id);
+                            $updateNotificacao = $crud->notificacaoLida($paci_id);        
                         }
                         echo '<a href="./calendario.php">Consultar agenda</a>';
                     }else{
-                        echo '<p> Ainda não foi marcada novas sessões!</p>';
+                        echo '<p> Ainda não foi marcada novas sessões!</p>';     
 
                         if($sessao && $sessao['lida'] != null){
                         echo '<p>ultima consulta marcada para:</p>';
@@ -79,17 +80,17 @@ if($type != "paciente"){
                         echo '<li>Horário: ' . $sessao['horario'] . '</li>';
 
                         echo '</ul>';
-                        }
-                    }
+                        }                           
+                    }      
                 ?>
             </div>
-            <script>
-                let notificacao = document.getElementById('notificacoes');
+            <script>  
+                let notificacao = document.getElementById('notificacoes');                 
                 let btn_noti = document.getElementById('noti'); 
-                function click_noti(){
+                function click_noti(){                                                    
                     let notificacao = document.getElementById('notificacoes');
                     notificacao.classList.toggle('notification');
-
+                   
                 }
                 document.addEventListener('click',detectNoti);
 

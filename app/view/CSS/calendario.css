@@ -59,8 +59,6 @@ body{
     margin-top: 100px;
     width: 300px;
     height: 100px;
-    left: 79vw;
-    top: 70px;
 }
 
 .notification li{
@@ -296,3 +294,32 @@ a{
     display: none;
 }
 
+
+@media only screen and (max-width: 768px) {
+    .notepad textarea {
+        max-width: 100%;
+        width: 95%;
+    }
+
+  
+  .activity-container{
+    display: block;
+    height: 100%;
+  }
+
+  .notepad-content{
+    width: 100%;
+    margin-left: 5px;
+  }
+
+  .click-wrapper{
+    left: 52vw;
+    z-index: 1;
+}
+
+.dados-wrapper{
+    width: 48vw;
+}
+
+
+}

@@ -136,6 +136,7 @@ if($_POST == true){
             <?php
                     $select = new Select();
                     $pacientes = $select->selectPacientes();
+                    
 
                     if(empty($_GET)){
                         echo "<header class='psi-paci-header-text'>";
@@ -178,8 +179,10 @@ if($_POST == true){
                     } else {
                         $paciDetailsId = $_GET['paciId'];
                         $paciente = $select->selectPaciente($paciDetailsId);
+                        $ultimaconsulta = $select->notificacaoPaciente($paciDetailsId);
                         foreach($paciente as $dado){
                             $psicologoInfo = $select->selectPsicologo($dado['fk_psicologo']);
+                            
                             foreach($psicologoInfo as $psicologo){
                                 $psicologoNome = $psicologo['nome'];
                             }
@@ -237,6 +240,21 @@ if($_POST == true){
                                         <p class='info-title'>Data de Nascimento:</p>
                                         <p>".$data_nasc."</p>
                                     </div>
+
+                                    <div class='info-container'>
+                                        <p class='info-title'>ultima sessão:</p>
+                                        <?php if($ultimaconsulta['data_formatada'] == null){
+                                            echo "<p></p>";
+                                        }else{
+                                            echo "<p>".$ultimaconsulta['data_formatada']."</p>";
+                                           
+                                        }
+                                        ?>
+                                    </div>
+
+
+
+
                                 </div>
                               </div>";
                         $psicologos = $select->selectPsicologos();

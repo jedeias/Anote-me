@@ -30,49 +30,52 @@ if($type != "secretario"){
 
 <?php
 
+/*
+valores pre setados com o intuito de teste.
 
-    if($_POST == true){
+
+    $_POST = array(
         //paciente
-        $pacNome = $_POST['nome'];
-        $pacSobrenome = $_POST['sobrenome'];
-        $pacEmail = $_POST['email'];
-        $pacRG = $_POST['RG'];
-        $pacCPF = $_POST['CPF'];
-        $paciDataNasc = $_POST['data-nasc'];
-        $pacSexo = $_POST['sexo'];
-        $pacSenha = $_POST['senha'];
-        $pacConfirmarSenha = $_POST['confirmarSenha'];
-        $psicologoResponsavel = $_POST['psicologoResponsavel'];
-        
+        "nome" => "João",
+        "sobrenome" => "Silva",
+        "email" => "joao.silva@example.com",
+        "RG" => "123456",
+        "CPF" => "111.222.333-4",
+        "data-nasc" => "01/01/2000",
+        "sexo" => "M",
+        "senha" => "123456",
+        "confirmarSenha" => "123456",
         
         //telefone
-        $pacTelefone = $_POST['telefone'];
+        "telefone" => "(11) 99999-999",
         
         //endereço
-        $cep = $_POST['cep'];
-        $rua = $_POST['rua'];
-        $bairro = $_POST['bairro'];
-        $casaNum = $_POST['casaNum'];
-        $complemento = $_POST['complemento'];
-        $estado = $_POST['estado'];
-        $cidade = $_POST['cidade'];
-
-        if(isset($_POST['responsavelBox'])){
-            $responsavelBox = $_POST['responsavelBox'];         
-            //responsavels
-            $resNome = $_POST['resNome'];
-            $resSobrenome = $_POST['resSobrenome'];
-            $resEmail = $_POST['resEmail'];
-            $resRG = $_POST['resRG'];
-            $resCPF = $_POST['resCPF'];
-            $resTelefone = $_POST['resTelefone'];        
-                
-        }
+        "cep" => "01234-567",
+        "rua" => "Rua Teste",
+        "bairro" => "Bairro Teste",
+        "casaNum" => "123",
+        "complemento" => "Apartamento 123",
+        "estado" => "SP",
+        "cidade" => "São Paulo",
+        
+        "responsavelBox" => "on",
+        
+        //responsavel
+        "resNome" => "Maria",
+        "resSobrenome" => "Silva",
+        "resEmail" => "maria.silva@example.com",
+        "resRG" => "654321",
+        "resCPF" => "111.222.333-0",
+        "resTelefone" => "(11) 98888-8888"
+            
+        );
+*/
+    
+    if($_POST == true){
         
         $insert = new Crud();
         
         $insert->insertPaciente($_POST);
-        
     }
 
 ?>
@@ -203,7 +206,7 @@ if($type != "secretario"){
                                 <option value="F">Feminino</option>
                             </select>
                             <label for="telefone">Telefone</label>
-                            <input placeholder="example (11) 96123-4567" name="telefone" id="telefone" type="tel" minlength="8" maxlength="15">
+                            <input placeholder="(11) 96123-4567" name="telefone" id="telefone" type="tel" minlength="8" maxlength="15">
                             <?php
                                 $select = new Select();
                                 $pisicologos = $select->selectPsicologos();
@@ -326,7 +329,7 @@ if($type != "secretario"){
                 </button>
                 <div class="psicologo-cadastro-container">
                         <h1>Cadastrar Psicologo</h1>
-                        <form method="POST" action="../../../controller/crud/secretario/insertPsicologo.php">
+                        <form method="POST" action="teste.php">
                             <div class="cross-input">
                             <div>
                                 <label for="nome">Nome</label>
@@ -417,7 +420,7 @@ if($type != "secretario"){
                                 <input type="password" name="confirmarSenha" onchange="conferirSenha('paciForm')" required id="paciConfirmSenha">
                                 <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciConfirmShowSenha" onclick="mostrarSenha('paciConfirmForm')" alt="">
                             </div>
-                            <button type="submit">Cadastrar</button>
+                            <input type="submit">
                             </form>
                         
                 </div>

@@ -135,5 +135,29 @@ form .form-btn{
     .atualizar-perfil form .flex{
         flex-wrap: wrap;
         gap: 0;
+        height: 450px;
     }
+
+    .atualizar-perfil{
+        display: block;
+        height: 100%;
+        
+    }
+
+    .image img{
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        bottom: 60%;
+        right: 0;
+        left: 10%;
+    }
+    form{
+        margin-top: 300px;
+    }
+
+
+    
 }

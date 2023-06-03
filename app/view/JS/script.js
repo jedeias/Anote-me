@@ -8,6 +8,7 @@ function activityClose(){
     activityTable.classList.toggle('hidden');
 }
 
+
 //fechar abas ao clicar fora
 
 document.addEventListener('click' ,function(e){
