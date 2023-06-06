@@ -1,0 +1,24 @@
+
+.psi-table {
+    margin-top: 20px;
+}
+
+.psi-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.psi-table th,
+.psi-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+.psi-table th {
+    background-color: #f2f2f2;
+}
+
+.psi-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}

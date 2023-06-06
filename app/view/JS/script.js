@@ -312,6 +312,10 @@ function clickPaciCard(id){
 function voltarPsicoTable(){
     window.location = "../secretario/secreListarPsico.php"; 
 }
+function agendaPsicologo(psicoId){
+
+    window.location = "../secretario/agendaPsicologo.php?psicoId=" + psicoId;
+}
 
 
 function voltarPaciTable(){

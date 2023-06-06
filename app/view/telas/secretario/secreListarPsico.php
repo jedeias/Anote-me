@@ -159,11 +159,19 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                 $imagem = "../../IMG/default.jpg";
                             }
                         }
-                        echo "<button class='backButton backListar' id='backButtonListarPsico' onclick='voltarPsicoTable()'>
-                                <svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='currentColor' class='bi bi-caret-left-fill' viewBox='0 0 16 16'>
-                                    <path d='m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z'/>
-                                </svg>
-                              </button>
+                        echo "<div class='teste-flex'>
+                                <button class='backButton backListar' id='backButtonListarPsico' onclick='voltarPsicoTable()'>
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='currentColor' class='bi bi-caret-left-fill' viewBox='0 0 16 16'>
+                                        <path d='m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z'/>
+                                    </svg>
+                                </button>
+
+                                <button class='backButton backListar' onclick='agendaPsicologo($psicoDetailsId)'>
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='currentColor' class=='bi bi-calendar' viewBox='0 0 16 16'>
+                                        <path d='M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z'/>
+                                    </svg>
+                                </button>
+                              </div>
     
                               <div class='listar-psi-paci'>
                                 <img class='psi-paci-img' src=".$imagem." alt='foto de perfil'>
@@ -215,8 +223,6 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                           </div>";
                                 }
                             }
-
-                            
                             }
 
                 ?>
@@ -224,7 +230,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
             </article>
             
         </section>
-        <section class="notepad-content hidden" id="psicoDetails">
+        <!-- <section class="notepad-content hidden" id="psicoDetails">
             <article class="psi-table">
                 <button class="backButton backListar" id="backButtonListarPsico" onclick="voltarPsicoTable()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
@@ -286,7 +292,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     </div>
                 </div>
             </article>
-        </section>
+        </section> -->
     </main>
     <script src = "../../JS/script.js"></script>
     <script src="../../JS/vanilla-tilt.js"></script>
