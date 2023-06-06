@@ -58,6 +58,29 @@
             border-radius: 10px;
             height: 100%;
         }
+
+        @media screen and (max-width: 600px){
+            .agendar{
+                font-size:10px;
+            }
+
+            .container{
+                width:100%;
+            }
+
+            #calendar{
+                padding:5%;
+            }
+
+            .fc .fc-toolbar button{
+                width:40px;
+                font-size:11px;
+            }
+
+         
+
+        }
+      
     </style>
    
   </head>

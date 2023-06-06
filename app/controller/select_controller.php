@@ -35,6 +35,7 @@ interface selectController {
     public function getEventosPaciente($id);
 
     public function notificacaoPaciente($id);
+    public function listarAgenda($id);
 
 }
 

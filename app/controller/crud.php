@@ -10,6 +10,7 @@
         public function atualizar_imagem($tabela, $imagem, $id);
         public function atualizar_perfil($tabela, $nome, $email, $senha, $id);
         public function update_psicologo_paciente($pk_paciente, $fk_psicologo);
+        public function notificacaoLida($pk_paciente);
 
     }
 

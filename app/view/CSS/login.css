@@ -320,3 +320,22 @@ body{
     to {opacity: 0;}
 }
 
+
+@media only screen and (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        
+    }
+    
+    .login-container {
+        width: 90%;
+        height: 400px;
+        margin-left: 5%;
+        margin-top: 9%;
+        border-radius: 7px;
+    }
+
+    .logo-container{
+        height: 50%;
+    }
+}

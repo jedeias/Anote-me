@@ -136,6 +136,7 @@ if($_POST == true){
             <?php
                     $select = new Select();
                     $pacientes = $select->selectPacientes();
+                    
 
                     if(empty($_GET)){
                         echo "<header class='psi-paci-header-text'>";
@@ -178,8 +179,18 @@ if($_POST == true){
                     } else {
                         $paciDetailsId = $_GET['paciId'];
                         $paciente = $select->selectPaciente($paciDetailsId);
+                        $ultimaConsulta = $select->notificacaoPaciente($paciDetailsId);
+                        if($ultimaConsulta == null){
+                            $consulta = 'Ainda não possui consulta marcada.';
+                            $horaConsulta = '';
+                        }else{
+                            $consulta = $ultimaConsulta['data_formatada'];
+                            $horaConsulta = $ultimaConsulta['horario'];
+                        }
+           
                         foreach($paciente as $dado){
                             $psicologoInfo = $select->selectPsicologo($dado['fk_psicologo']);
+                            
                             foreach($psicologoInfo as $psicologo){
                                 $psicologoNome = $psicologo['nome'];
                             }
@@ -237,6 +248,15 @@ if($_POST == true){
                                         <p class='info-title'>Data de Nascimento:</p>
                                         <p>".$data_nasc."</p>
                                     </div>
+                                    <div class='info-container'>
+                                        <p class='info-title'>Ultima consulta:</p>
+                                        <p>".$consulta."</p>                                        
+                                    </div>
+                                    <div class='info-container'>
+                                        <p class='info-title'>Horario da consulta:</p>
+                                        <p>".$horaConsulta."</p>                                        
+                                    </div>
+                                    
                                 </div>
                               </div>";
                         $psicologos = $select->selectPsicologos();

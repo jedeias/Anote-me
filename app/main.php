@@ -34,4 +34,5 @@ $redirectUrl = isset($redirectUrls[$loginStatus["user_type"]]) ? $redirectUrls[$
 
 header("Location: $redirectUrl");
 
+
 ?>

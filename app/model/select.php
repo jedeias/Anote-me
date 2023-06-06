@@ -260,7 +260,7 @@ class Select extends Connect implements selectController{
     public function notificacaoPaciente($id){
         $conn = $this->getConn();
 
-        $stmt = mysqli_prepare($conn , "SELECT DATE_FORMAT(start, '%d/%m/%Y') AS data_formatada, horario FROM consulta WHERE fk_paciente = ? ORDER BY id DESC LIMIT 1");
+        $stmt = mysqli_prepare($conn , "SELECT DATE_FORMAT(start, '%d/%m/%Y') AS data_formatada, horario, lida FROM consulta WHERE fk_paciente = ? ORDER BY id DESC LIMIT 1");
         if(!$stmt){
             die("Erro na preparação da consulta: " . mysqli_error($conn));
         }
@@ -270,7 +270,23 @@ class Select extends Connect implements selectController{
         $ultimaConsulta = mysqli_fetch_assoc($result);
 
         return $ultimaConsulta;
+    }
+    public function listarAgenda($id){
+        $conn = $this->getConn();
 
+        $stmt = mysqli_prepare($conn , "SELECT DATE_FORMAT(start, '%d/%m/%Y') AS data_formatada, horario, paciente FROM consulta WHERE fk_psicologo = ? ORDER BY id DESC LIMIT 5");
+        if(!$stmt){
+            die("Erro na preparação da consulta: " . mysqli_error($conn));
+        }
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $consultas = array();
+        while ($consulta = mysqli_fetch_assoc($result)) {
+            $consultas[] = $consulta;
+        }
+
+        return $consultas;
     }
     
     public function __destruct()
