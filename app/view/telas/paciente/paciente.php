@@ -61,7 +61,7 @@ if($type != "paciente"){
 
             <div class="vazio" id="notificacoes">
                 <?php $notificacao = new Select();
-                    $sessao = $notificacao->notificacaoPaciente($paci_id);
+                    
                     if($sessao != null){
                         echo '<p> voce tem uma sessão marcada para: </p>';
                         echo '<li> dia: ' . $sessao['data_formatada'] . '</li>';

@@ -138,15 +138,40 @@ if($type != "psicologo"){
 
                             $anotacoes = $select->select_notes($id, $email_paciente);
 
+                            $data = '';
+                            $mesArmazenado = '';
                             foreach ($anotacoes as $dado)
                             {
+                                $dadosData = explode("/", $dado['data']);
+                                list($dia, $mes, $ano) = $dadosData;
+                                $mesano = $mes . "/" . $ano;
+                                if($mesArmazenado != $mesano){
+                                    $data = 0;
+                                }
+                                $mesArmazenado = $mesano;
+                                if($data != 1){
+                                    echo "<h1>".$mesano."</h1>";
+                                }
+                                $data = 1;
+                                
+                                $redFlagCor = $dado['redflag'];
+                                if($redFlagCor == 'verde'){
+                                    $anotacaoCor = "#22b573";
+                                } elseif($redFlagCor == 'amarelo'){
+                                    $anotacaoCor = "#ffd129";
+                                } elseif($redFlagCor == 'vermelho'){
+                                    $anotacaoCor = "#ff2949";
+                                } else {
+                                    $anotacaoCor = "#22b573";
+                                }
 
                                 echo"<article class='activity'>";
 
-                                    echo "<div class='activity-header'>";
+                                    echo "<div class='activity-header' style='background-color: ".$anotacaoCor."' id='activityHeader".$dado['pk_anotacoes_paciente']."'>";
 
                                         echo "<p>" . $dado['hora'] . "</p>";
-                                        echo "<p>". $dado['data']. "</p>";
+                                        echo "<p class='note-hour'>". $dado['data']. "</p>";
+                                        echo "<button id='redFlagButton' onclick='redFlagClick(".$dado['pk_anotacoes_paciente'].")' class='red-flag-button' title='Red Flag'><img class='red-flag-img' src='../../IMG/ico/flag-svgrepo-com.svg'></button>";
 
                                     echo "</div>";
 
@@ -163,15 +188,58 @@ if($type != "psicologo"){
                                         echo "<p>Intensidade: " . $dado['intensidade']. "%". "</p> ";
 
                                     echo "</div>";
-
                                 echo "</article>";
+                                $red_flag = $dado['redflag'];
+                                $verde = null;
+                                $amarelo = null;
+                                $vermelho = null;
+                                if($red_flag == null OR $red_flag == 'verde'){
+                                    $red_flag = 'verde';
+                                    $verde = 'checked';
+                                } elseif ($red_flag == 'amarelo'){
+                                    $amarelo = 'checked';
+                                } elseif ($red_flag == 'vermelho'){
+                                    $vermelho = 'checked';
+                                } else {
+                                    $verde = 'checked';
+                                }
+
+                                $anotacaoPsicologo = $select-> select_psi_note($dado['pk_anotacoes_paciente']);
+                                $comentario = '';
+                                foreach($anotacaoPsicologo as $anotacao){
+                                    $comentario = $anotacao['comentario'];
+                                }
+                                echo "<form id='redFlagContainer".$dado['pk_anotacoes_paciente']."' class='red-flag-container hidden' method='POST' action='../../../controller/crud/psicologo/inserteRedFlag.php'>
+                                <h1>Comentario sobre a anotação</h1>
+                                <textarea name='comentario' class='red-flag-anotacao' id='redFlagAnotacao".$dado['pk_anotacoes_paciente']."'>".$comentario."</textarea>
+                                <h1>Red Flag</h1>
+                                <div class='red-flag-options'>
+                                    <div>
+                                        <input class='red-flag-select' type='radio' id='redFlagVerde".$dado['pk_anotacoes_paciente']."' name='red-flag-select' value='verde' ".$verde.">
+                                        <label for='redFlagVerde".$dado['pk_anotacoes_paciente']."'>Verde (Sem perigo)</label>
+                                    </div>
+                                    <div>
+                                        <input class='red-flag-select' type='radio' id='redFlagAmarelo".$dado['pk_anotacoes_paciente']."' name='red-flag-select' value='amarelo' ".$amarelo.">
+                                        <label for='redFlagAmarelo".$dado['pk_anotacoes_paciente']."'>Amarelo (Necessita atenção)</label> 
+                                    </div>
+                                    <div>
+                                        <input class='red-flag-select' type='radio' id='redFlagVermelho".$dado['pk_anotacoes_paciente']."' name='red-flag-select' value='vermelho' ".$vermelho.">
+                                        <label for='redFlagVermelho".$dado['pk_anotacoes_paciente']."'>Vermelho (Anotação perigosa)</label>
+                                    </div>
+        
+                                </div>
+                                <input type='hidden' name='noteId' value='".$dado['pk_anotacoes_paciente']."'>
+                                <input type='hidden' name='paciId' value='".$dado['pk_paciente']."'>
+                                <input type='hidden' name='curPaci' value='".$_GET['paciente']."'>
+                                <input class='red-flag-confirm' type='submit' value='confirmar'>
+                                </form>"; 
+
                         }
                     }//ELE ENTRA NESSE ELSE SEMPRE QUE PASSA DO LOGIN PARA ESSA TELA, AQUI ELE LISTA TODAS AS ANOTAÇÕES DE TODOS OS PACIENTES REFERENTES AO PSICOLOGO LOGADO
                     else {
                         echo"<p class='sem-paciente'>Selecione um paciente para ver suas anotações.</p>";
 
                     }
-
                     ?>
                     </div>
                 </div>
@@ -317,10 +385,12 @@ if($type != "psicologo"){
 
 
     <script src='../../JS/script.js'></script>
+    <script src='../../JS/redFlag.js'></script>
     <script src='../../JS/bootstrap.bundle.min.js'></script>
     <script src='../../JS/main.min.js'></script>
     <script src='../../JS/pt-br.js'></script>
     <script src='../../JS/sweetalert2.all.min.js'></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script>
         var myModal = new bootstrap.Modal(document.getElementById('myModal'));
         document.addEventListener('DOMContentLoaded', function() {
@@ -334,7 +404,7 @@ if($type != "psicologo"){
         locale: 'pt-br',
         themeSystem: 'bootstrap5',
         dayMaxEventRows: true,
-        height: "45em",
+        height: "100%",
         events: <?php echo $eventos->getEventosPsicologo($id);?>,
         eventClick: (info) => {
         console.log(info);
@@ -349,6 +419,7 @@ if($type != "psicologo"){
         myModal.show();
     }
     });
+    let agendaTable = document.getElementById('pacienteAgendaTable');
     calendar.render();
     });
 

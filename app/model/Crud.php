@@ -26,7 +26,7 @@ class Crud extends Connect implements CrudController{
 
         $sql = "INSERT INTO anotacoes_paciente (
             pk_anotacoes_paciente,
-            fk_redflag,
+            redflag,
             fk_paciente,
             fk_psicologo,
             anotacao,
@@ -107,6 +107,21 @@ class Crud extends Connect implements CrudController{
         } else {
             return false;
         }
+    }
+
+    public function insertNotaPsicologo($noteId, $psiId, $comentario, $redFlagCor){
+        $inserteNota = "INSERT INTO anotacoes_psicologo (fk_anotacoes_paciente, fk_psicologo, comentario) VALUES ('$noteId', '$psiId', '$comentario')";
+        $updateRedFlag = "UPDATE anotacoes_paciente SET redflag='$redFlagCor' WHERE pk_anotacoes_paciente = '$noteId'";
+        $this->query($inserteNota);
+        $this->query($updateRedFlag);
+
+    }
+
+    public function atualizarNotaPsicologo($noteId, $comentario, $redFlagCor){
+        $atualizarNota = "UPDATE anotacoes_psicologo SET comentario = '$comentario' WHERE fk_anotacoes_paciente = '$noteId'";
+        $updateRedFlag = "UPDATE anotacoes_paciente SET redflag='$redFlagCor' WHERE pk_anotacoes_paciente = '$noteId'";
+        $this->query($atualizarNota);
+        $this->query($updateRedFlag);
     }
 
     function insertPaciente($dados) {

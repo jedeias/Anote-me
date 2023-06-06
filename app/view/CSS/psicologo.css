@@ -289,7 +289,8 @@ a{
     overflow-y: auto;
 }
 .container-calendar{
-    height:700px;
+    height:100%;
+    margin: 20px;
 }
 #calendar {
     width: 80%; 
@@ -309,8 +310,10 @@ a{
 } */
 
 .paciente-anotacoes{
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    height:800px;
+    height:100%;
 }
 .paciente-anotacoes h1{
     text-align: center;
@@ -352,6 +355,9 @@ a{
 }
 
 .paciente-prev-button, .paciente-next-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 50px;
     height: 50px;
     border-radius: 7px;
@@ -360,6 +366,10 @@ a{
     border: none;
     cursor: pointer;
 
+}
+
+.paciente-prev-button:hover, .paciente-next-button:hover{
+    background-color: #28df8c;
 }
 
 .modal{
@@ -397,6 +407,7 @@ a{
     padding: 10px;
     display: flex;
     flex-direction: column;
+    top: 28%;
     right: 4%;
     width: 600px;
     height: 300px;
@@ -404,6 +415,7 @@ a{
     position: absolute;
     border-radius: 7px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    z-index: 1000;
 }
 
 .activity-add-table input, .activity-add-table textarea{
@@ -427,6 +439,7 @@ a{
 }
 
 .activity{
+    position: relative;
     height: fit-content;
     width: 99%;
     margin-left: auto;
@@ -434,9 +447,7 @@ a{
     border-radius: 7px;
     overflow: auto;
     margin-bottom: 15px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-   
-    
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);   
 }
 .activity-header{
     display: flex;
@@ -446,6 +457,7 @@ a{
     padding-right: 50px;
     background-color:  #22b573;
     color: white;
+    position: relative;
 }
 .activity-text{
     padding: 10px;
@@ -473,6 +485,79 @@ a{
     background: none;
     border: none;
     cursor: pointer;
+}
+
+.note-hour{
+    margin-right: 45px;
+}
+
+.red-flag-img{
+    filter: brightness(0) saturate(100%) invert(98%) sepia(0%) saturate(6272%) hue-rotate(262deg) brightness(103%) contrast(104%);
+    width: 20px;
+}
+
+.red-flag-container{
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-radius: 7px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute; 
+    width: 30%;
+    left: 67%;
+    top: 30%;
+    z-index: 1000;
+}
+
+.red-flag-container h1{
+    text-align: left;
+    padding: 0;
+}
+
+.red-flag-container textarea{
+    width: 100%;
+    height: 100px;
+    resize: none;
+    border-radius: 7px;
+    padding: 10px;
+    font-weight: 500;
+    cursor: default;
+}
+
+.red-flag-confirm{
+    width: 100%;
+    height: 40px;
+    border-radius: 7px;
+    padding: 7px;
+    background-color: #22b573;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.red-flag-options{
+    display: flex;
+    flex-direction: column;
+}
+
+.red-flag-options input{
+    margin-bottom: 10px;
+}
+
+
+.red-flag-button{
+    background-color: rgba(0, 0, 0, 0.1); 
+    width: 50px;
+    position: absolute;
+    right: 1.5%;
+    top: 12.5%;
+    border-radius: 5px;
+    border: none;
+}
+.red-flag-button:hover{
+    background-color: rgba(87, 87, 87, 0.1); 
 }
 
 .hidden{
