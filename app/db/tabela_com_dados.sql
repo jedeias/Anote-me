@@ -305,15 +305,12 @@ CREATE TABLE IF NOT EXISTS `consulta` (
 CREATE TABLE IF NOT EXISTS `anotacoes_psicologo` (
   `pk_anotacoes_psicologo` int(11) NOT NULL AUTO_INCREMENT,
   `fk_psicologo` int(11) NOT NULL,
-  `fk_consulta` int(11) NOT NULL,
-  `data` DATE NOT NULL,
-  `hora` TIME NOT NULL,
-  `anotacoes` text,
+  `fk_anotacoes_paciente` int(11) NOT NULL,
+  `comentario` text,
   PRIMARY KEY (`pk_anotacoes_psicologo`),
   KEY `fk_psicologo` (`fk_psicologo`),
-  KEY `fk_consulta` (`fk_consulta`),
   CONSTRAINT `anotacoes_psicologo_ibfk_1` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`),
-  CONSTRAINT `anotacoes_psicologo_ibfk_2` FOREIGN KEY (`fk_consulta`) REFERENCES `consulta` (`id`)
+  CONSTRAINT `anotacoes_psicologo_ibfk_2` FOREIGN KEY (`fk_anotacoes_paciente`) REFERENCES `anotacoes_paciente` (`pk_anotacoes_paciente`)
 );
 
 
@@ -327,6 +324,7 @@ CREATE TABLE IF NOT EXISTS `anotacoes_paciente` (
   `intensidade` INT,
   `data` date NOT NULL,
   `hora` time NOT NULL,
+  `redflag` varchar(50) NULL,
   PRIMARY KEY (`pk_anotacoes_paciente`),
   KEY `fk_paciente` (`fk_paciente`),
   CONSTRAINT `anotacoes_paciente_ibfk_2` FOREIGN KEY (`fk_redflag`) REFERENCES `red_flag` (`pk_red_flag`),
