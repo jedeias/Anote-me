@@ -159,7 +159,7 @@ if($_POST == true){
                                 $imagem = $imagemSrc;
                             }
                             echo "<section class='psi-paci-list' data-tilt data-tilt-scale='1.05' data-tilt-reverse data-nome='".$paciente['nome']."' onclick='clickPaciCard(".$paciente['pk_paciente'].")' id='paciCard".$paciente['pk_paciente']."')'>";
-                            echo "<img class='psi-paci-img' src='".$imagem."' alt='foto de perfil'>";
+                            echo "<img class='psi-paci-img' src='../../IMG/imagem_perfil/".$imagem."' alt='foto de perfil'>";
                             echo "<h1>".$paciente['nome']."</h1>";
                             echo "<div class='psi-paci-text-div paci-info-list'>";
                             echo "<h1>Email</h1>";
@@ -219,7 +219,7 @@ if($_POST == true){
                               </button>
     
                               <div class='listar-psi-paci big-div'>
-                                <img class='psi-paci-img' src=".$imagem." alt='foto de perfil'>
+                                <img class='psi-paci-img' src='../../IMG/imagem_perfil/".$imagem."' alt='foto de perfil'>
                                 <h1>".$nome."</h1>
                                 <p>Paciente</p>
                                 <div class='listar-psi-paci-info big-div'>

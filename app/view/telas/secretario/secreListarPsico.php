@@ -120,7 +120,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                 $imagem = $imagemSrc;
                             }
                             echo "<section class='psi-paci-list' data-tilt data-tilt-scale='1.05' data-tilt-reverse data-nome='".$psicologo['nome']."' onclick='clickPsicoCard(".$psicologo['pk_psicologo'].")' id='psicoCard".$psicologo['pk_psicologo']."')'>";
-                            echo "<img class='psi-paci-img' src='".$imagem."' alt='foto de perfil'>";
+                            echo "<img class='psi-paci-img' src='../../IMG/imagem_perfil/".$imagem."' alt='foto de perfil'>";
                             echo "<h1>".$psicologo['nome']."</h1>";
                             echo "<div class='psi-paci-text-div'>";
                             echo "<h1>Pacientes</h1>";
@@ -158,7 +158,9 @@ if($nome == NULL and $email == NULL and $type == NULL){
                             if($imagem == null){
                                 $imagem = "../../IMG/default.jpg";
                             }
+                        
                         }
+
                         echo "<div class='teste-flex'>
                                 <button class='backButton backListar' id='backButtonListarPsico' onclick='voltarPsicoTable()'>
                                     <svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='currentColor' class='bi bi-caret-left-fill' viewBox='0 0 16 16'>
@@ -174,7 +176,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                               </div>
     
                               <div class='listar-psi-paci'>
-                                <img class='psi-paci-img' src=".$imagem." alt='foto de perfil'>
+                                <img class='psi-paci-img' src='../../IMG/imagem_perfil/" . $imagem. "' alt='foto de perfil'>
                                 <h1>".$nome."</h1>
                                 <p>Psicologo</p>
                                 <div class='listar-psi-paci-info'>
