@@ -156,6 +156,19 @@ function mostrarSenha(lugar){
                 showPassBtn.setAttribute('title','Mostrar Senha')
             }
             break;
+        case 'psiForm' :
+            var inputPass = document.getElementById("psiSenha");
+            var showPassBtn = document.getElementById("psiShowSenha");
+            if (inputPass.type === 'password'){
+                inputPass.setAttribute('type','text');
+                showPassBtn.setAttribute('src','../../IMG/ico/eye-slash-fill.svg');
+                showPassBtn.setAttribute('title','Ocultar Senha')
+            } else {
+                inputPass.setAttribute('type','password');
+                showPassBtn.setAttribute('src','../../IMG/ico/eye-fill.svg');
+                showPassBtn.setAttribute('title','Mostrar Senha')
+            }
+            break;    
         case 'paciConfirmForm' :
             var inputPass = document.getElementById("paciConfirmSenha");
             var showPassBtn = document.getElementById("paciConfirmShowSenha");
@@ -167,6 +180,19 @@ function mostrarSenha(lugar){
                 inputPass.setAttribute('type','password');
                 showPassBtn.setAttribute('src','../../IMG/ico/eye-fill.svg');
                 showPassBtn.setAttribute('title','Mostrar Senha')
+            }
+            break;
+        case 'psiConfirmForm' :
+            var inputPass = document.getElementById("psiConfirmSenha");
+            var showPassBtn = document.getElementById("psiConfirmShowSenha");
+            if (inputPass.type === 'password'){
+                inputPass.setAttribute('type','text');
+                showPassBtn.setAttribute('src','../../IMG/ico/eye-slash-fill.svg');
+                showPassBtn.setAttribute('title','Ocultar Senha')
+            } else {
+                inputPass.setAttribute('type','password');
+                showPassBtn.setAttribute('src','../../IMG/ico/eye-fill.svg');
+                    showPassBtn.setAttribute('title','Mostrar Senha')
             }
             break;
         case 'loginForm':
@@ -191,8 +217,19 @@ function mostrarSenha(lugar){
 function conferirSenha(lugar){
     switch(lugar){
         case 'paciForm': 
-            const senha = document.getElementById('paciSenha');
-            const confirmSenha = document.getElementById('paciConfirmSenha');
+            var senha = document.getElementById('paciSenha');
+            var confirmSenha = document.getElementById('paciConfirmSenha');
+            
+            if(senha.value === confirmSenha.value){
+                confirmSenha.setCustomValidity('')
+            } else {
+                confirmSenha.setCustomValidity('Senhas não conferem');
+                preventDefault();
+            }
+            break;
+        case 'paciForm': 
+            var senha = document.getElementById('paciSenha');
+            var confirmSenha = document.getElementById('paciConfirmSenha');
             
             if(senha.value === confirmSenha.value){
                 confirmSenha.setCustomValidity('')
@@ -307,8 +344,18 @@ function clickPaciCard(id){
     
 }
 
-function voltarPsicoTable(){
-    window.location = "../secretario/secreListarPsico.php"; 
+function voltarPsicoTable(id){
+    console.log(id);
+    if(id !== undefined){
+        console.log(id);
+        window.location = "../secretario/secreListarPsico.php?psicoId=" + id;
+    } else {
+        window.location = "../secretario/secreListarPsico.php";
+    }
+ 
+}
+function voltarPaciTable(){
+        window.location = "../secretario/secreListarPaci.php";
 }
 function agendaPsicologo(psicoId){
 

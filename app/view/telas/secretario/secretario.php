@@ -412,13 +412,13 @@ valores pre setados com o intuito de teste.
                             </div>
                             <label for="senha">Senha</label>
                             <div class="senha-container">
-                                <input type="password" name="senha" onchange="conferirSenha('paciForm')" required id="paciSenha">
-                                <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciShowSenha" onclick="mostrarSenha('paciForm')" alt="">
+                                <input type="password" name="senha" onchange="conferirSenha('psiForm')" required id="psiSenha">
+                                <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="psiShowSenha" onclick="mostrarSenha('psiForm')" alt="">
                             </div>
                             <label for="confirmarSenha">Confirmar Senha</label>
                             <div class="senha-container">
-                                <input type="password" name="confirmarSenha" onchange="conferirSenha('paciForm')" required id="paciConfirmSenha">
-                                <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciConfirmShowSenha" onclick="mostrarSenha('paciConfirmForm')" alt="">
+                                <input type="password" name="confirmarSenha" onchange="conferirSenha('psiForm')" required id="psiConfirmSenha">
+                                <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="psiConfirmShowSenha" onclick="mostrarSenha('psiConfirmForm')" alt="">
                             </div>
                             <input type="submit">
                             </form>
