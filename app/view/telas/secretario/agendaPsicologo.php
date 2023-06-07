@@ -103,6 +103,14 @@ if($nome == NULL and $email == NULL and $type == NULL){
         
         <section class="notepad-content " id="psicoCards">
             <article class="psi-table">
+            <?php
+                $psicoId = $_GET['psicoId'];
+            ?>
+            <button class='backButton' id='backButtonListarPsico' onclick='voltarPsicoTable(<?php echo $psicoId; ?>)'>
+                <svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='currentColor' class='bi bi-caret-left-fill' viewBox='0 0 16 16'>
+                    <path d='m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z'/>
+                </svg>
+            </button>
                 <?php
                 $select = new Select();
                 $psicologos = $select->selectPsicologos();
@@ -138,7 +146,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                         echo '</tbody>';
                         echo '</table>';
                     } else {
-                        echo '<p>Nenhuma consulta encontrada.</p>';
+                        echo "<p class='sem-consulta'>Nenhuma consulta encontrada.</p>";
                     }
                 } else {
                     echo '<p>Nenhuma consulta encontrada.</p>';
