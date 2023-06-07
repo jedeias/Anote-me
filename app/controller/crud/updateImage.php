@@ -11,7 +11,7 @@ $id = $session->session_get('id');
 
 
 if (empty($_SESSION)) {
-    header('location: ../../../index.html');
+    header('location: ../../../index.php');
 }
 
 if(isset($_POST['atualizar_imagem'])){
@@ -25,8 +25,8 @@ if(isset($_POST['atualizar_imagem'])){
         
         // Move o arquivo para o diretório desejado
         $novo_caminho = $nome_arquivo;
-        var_dump($caminho_temporario);
-        var_dump($nome_arquivo);
+        // var_dump($caminho_temporario);
+        // var_dump($nome_arquivo);
         move_uploaded_file($caminho_temporario, "../../../app/view/IMG/imagem_perfil/$nome_arquivo");
 
         $crud = new Crud();

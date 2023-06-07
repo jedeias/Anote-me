@@ -12,7 +12,7 @@ $id = $session->session_get('id');
 // se nao existir session ele volta para a raiz do app
 if (empty($_SESSION)) {
 
-    header('location: ../../../../index.html');
+    header('location: ../../../../index.php');
 
 }
 

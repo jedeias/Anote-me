@@ -59,7 +59,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     <li class="center"><?php echo "$nome"; ?></li>
                     <div class='lista-dados-content'>
                         <li>Email : <?php echo $email; ?></li>
-                        <li>Telefone<?php echo $telefone;?></li>
+                        <li>Telefone<?php echo $dados[0]['numero'];?></li>
                         <li>Clinica : </li>
                     </div>
                     <li class="config-container">
