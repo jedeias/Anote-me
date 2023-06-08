@@ -93,6 +93,7 @@ valores pre setados com o intuito de teste.
 <body id="body">
 <header class="header-container">
         <h1 class="titulo">ANOTE-ME</h1>
+        <i id="burger" class="material-icons" onclick="clickMenu()">menu</i>
         <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
             <?php if(isset($imagem) && $imagem != NULL): ?>
                 <img src="<?php echo "../../IMG/imagem_perfil/$imagem"; ?>" alt="" class='perfil' id='first-perfil'>
@@ -100,8 +101,6 @@ valores pre setados com o intuito de teste.
                 <img src="../../IMG/default.jpg" alt="" class='perfil'>
             <?php endif; ?>
         </figure> 
-
-        <i id="burger" class="material-icons" onclick="clickMenu()">menu</i>
         <div class="click-wrapper">
             <nav class="dados-wrapper hidden" id="wrapper-content">
                 <ul class="lista-dados">
@@ -129,9 +128,9 @@ valores pre setados com o intuito de teste.
         </div>
     </header>
     <main class="notepad-container">
-        <aside class="menu-container">
+        <aside class="menu-container hidden-responsivo" id="Itens">
             
-            <nav class="menu" id="Itens">
+            <nav class="menu">
                 <ul >
                     <a href="secretario.php">
                         <li>

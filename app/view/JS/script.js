@@ -337,9 +337,6 @@ function confirmEditarPsico(){
 }
 
 function clickMenu(){
-   if (Itens.style.display=='block'){
-        Itens.style.display = 'none'
-   }else{
-        Itens.style.display = 'block'
-   }
+   let menu = document.getElementById('Itens');
+   menu.classList.toggle('hidden-responsivo');
 }
