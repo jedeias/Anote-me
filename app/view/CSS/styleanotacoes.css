@@ -4,6 +4,11 @@
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+body{
+    height: 100vh;
+}
+
 .header-container{
     display: flex;
     justify-content: space-between;
@@ -415,6 +420,16 @@ a{
     display: flex;
 }
 
+i#burger{
+    display: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+
 @keyframes fadeOut{
     0% { opacity: 1}
     50% { opacity: 1}
@@ -464,7 +479,29 @@ a{
         width: 35vw;
     }
 
+    i#burger{
+        display: block;
+        border-radius: 7px;
+        background: transparent;
+        font-size: 3rem;
+    }
+
+    .menu{
+        display: none;
+        
+    }
+
+
+
+    .titulo{
+        display: none;
+    }
    
+    .header-container{
+        justify-content: space-between;
+        
+
+    }
 
 }
 

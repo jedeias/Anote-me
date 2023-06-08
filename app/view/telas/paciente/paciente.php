@@ -38,10 +38,11 @@ if($type != "paciente"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anotações</title>
     <link rel="stylesheet" href="../../CSS/styleanotacoes.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 <body id="body">
     <header class="header-container">
-        <h1>ANOTE-ME</h1>
+        <h1 class="titulo">ANOTE-ME</h1>
 
         <div class="container-notif">
             <!--notificação-->
@@ -84,6 +85,9 @@ if($type != "paciente"){
                     }      
                 ?>
             </div>
+
+            <i id="burger" class="material-icons" onclick="clickMenu()">menu</i>
+            
             <script>  
                 let notificacao = document.getElementById('notificacoes');                 
                 let btn_noti = document.getElementById('noti'); 
@@ -98,7 +102,9 @@ if($type != "paciente"){
                     if(!notificacao.contains(e.target) && !btn_noti.contains(e.target)){
                         notificacao.classList.remove('notification');
                     }
-                }
+                
+        
+            }
             </script>
 
             <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
@@ -108,7 +114,7 @@ if($type != "paciente"){
                     <img src="../../IMG/default.jpg" alt="" class='perfil'>
                 <?php endif; ?>
             </figure> 
-            
+     
             <div class="click-wrapper">
                 <nav class="dados-wrapper hidden" id="wrapper-content">
                     <ul class="lista-dados">
@@ -150,7 +156,7 @@ if($type != "paciente"){
     </header>
     <section class="notepad-container">
         <section class="menu-container">
-            <nav class="menu">
+            <nav class="menu" id="Itens">
                 <ul>
                     <li class="active-menu">
                         <p>Anotações</p>

@@ -260,6 +260,8 @@ a{
     display: none;
 }
 
+
+
 @media only screen and (max-width: 768px){
     .activity-container{
         display: block;
