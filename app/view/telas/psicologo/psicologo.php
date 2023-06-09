@@ -374,15 +374,12 @@ if($type != "psicologo"){
                     </div>
                     <?php
                         $eventos = new Select();
-                        $eventos->getEventosPsicologo($id);
-                        //var_dump($eventos->getEventosPsicologo($id)); usado para debugar
-
+                        $eventos->getEventosPsicologo($id);            
                     ?>
                 </div>
             </section>
         </section>
     </main>
-
 
     <script src='../../JS/script.js'></script>
     <script src='../../JS/redFlag.js'></script>

@@ -305,12 +305,11 @@ CREATE TABLE IF NOT EXISTS `consulta` (
 CREATE TABLE IF NOT EXISTS `anotacoes_psicologo` (
   `pk_anotacoes_psicologo` int(11) NOT NULL AUTO_INCREMENT,
   `fk_psicologo` int(11) NOT NULL,
-  `fk_anotacoes_paciente` int(11) NOT NULL,
+  `fk_anotacoes_paciente` int(11) NULL,
   `comentario` text,
   PRIMARY KEY (`pk_anotacoes_psicologo`),
   KEY `fk_psicologo` (`fk_psicologo`),
-  CONSTRAINT `anotacoes_psicologo_ibfk_1` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`),
-  CONSTRAINT `anotacoes_psicologo_ibfk_2` FOREIGN KEY (`fk_anotacoes_paciente`) REFERENCES `anotacoes_paciente` (`pk_anotacoes_paciente`)
+  CONSTRAINT `anotacoes_psicologo_ibfk_1` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`)
 );
 
 
@@ -335,6 +334,7 @@ REPLACE INTO `anotacoes_paciente` (`pk_anotacoes_paciente`, `fk_redflag`, `fk_pa
 	(29, 1, 2,11, 'Estou me sentindo muito ansioso', '2022-05-10', '11:30:00'),
 	(30, 2, 3,11, 'Estou me sentindo triste e sem autoestima', '2022-05-12', '12:30:00');
 
+ALTER TABLE anotacoes_psicologo ADD CONSTRAINT fk_anotacoes_paciente FOREIGN KEY(fk_anotacoes_paciente) REFERENCES anotacoes_paciente (pk_anotacoes_paciente);
 
 
 
