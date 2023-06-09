@@ -37,11 +37,12 @@ if($type != "paciente"){
   <link rel='stylesheet' href='../../CSS/bootstrap.min.css'>
   <link rel='stylesheet' href='../../CSS/main.min.css'>
   <link rel="stylesheet" href="../../CSS/calendario.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 <body>
 <header class="header-container">
-  <h1>ANOTE-ME</h1>
-
+  <h1 class="titulo">ANOTE-ME</h1>
+  <i id="burger" class="material-icons" onclick="clickMenu()">menu</i>
       
   <div class="container-notif">
 
@@ -128,7 +129,7 @@ if($type != "paciente"){
 
 </header>
   <section class="activity-container">
-      <section class="menu-container">
+      <section class="menu-container hidden-responsivo" id="Itens">
             <nav class="menu">
               <ul>
                 <a href="paciente.php">
@@ -238,6 +239,12 @@ if($type != "paciente"){
     });
     calendar.render();       
 });
+
+
+function clickMenu(){
+   let menu = document.getElementById('Itens');
+   menu.classList.toggle('hidden-responsivo');
+}
     
 </script>
 </body>

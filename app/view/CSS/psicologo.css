@@ -290,8 +290,7 @@ a{
     overflow-y: auto;
 }
 .container-calendar{
-    height:100%;
-    margin: 20px;
+    height:700px;
 }
 #calendar {
     width: 80%; 
@@ -311,10 +310,8 @@ a{
 } */
 
 .paciente-anotacoes{
-    display: flex;
-    flex-direction: column;
     width: 100%;
-    height:100%;
+    height:800px;
 }
 .paciente-anotacoes h1{
     text-align: center;
@@ -356,9 +353,6 @@ a{
 }
 
 .paciente-prev-button, .paciente-next-button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 50px;
     height: 50px;
     border-radius: 7px;
@@ -367,10 +361,6 @@ a{
     border: none;
     cursor: pointer;
 
-}
-
-.paciente-prev-button:hover, .paciente-next-button:hover{
-    background-color: #28df8c;
 }
 
 .modal{
@@ -408,7 +398,6 @@ a{
     padding: 10px;
     display: flex;
     flex-direction: column;
-    top: 28%;
     right: 4%;
     width: 600px;
     height: 300px;
@@ -416,7 +405,6 @@ a{
     position: absolute;
     border-radius: 7px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    z-index: 1000;
 }
 
 .activity-add-table input, .activity-add-table textarea{
@@ -440,7 +428,6 @@ a{
 }
 
 .activity{
-    position: relative;
     height: fit-content;
     width: 99%;
     margin-left: auto;
@@ -448,7 +435,9 @@ a{
     border-radius: 7px;
     overflow: auto;
     margin-bottom: 15px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);   
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+   
+    
 }
 .activity-header{
     display: flex;
@@ -458,7 +447,6 @@ a{
     padding-right: 50px;
     background-color:  #22b573;
     color: white;
-    position: relative;
 }
 .activity-text{
     padding: 10px;
@@ -488,79 +476,6 @@ a{
     cursor: pointer;
 }
 
-.note-hour{
-    margin-right: 45px;
-}
-
-.red-flag-img{
-    filter: brightness(0) saturate(100%) invert(98%) sepia(0%) saturate(6272%) hue-rotate(262deg) brightness(103%) contrast(104%);
-    width: 20px;
-}
-
-.red-flag-container{
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    border-radius: 7px;
-    padding: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    position: absolute; 
-    width: 30%;
-    left: 67%;
-    top: 30%;
-    z-index: 1000;
-}
-
-.red-flag-container h1{
-    text-align: left;
-    padding: 0;
-}
-
-.red-flag-container textarea{
-    width: 100%;
-    height: 100px;
-    resize: none;
-    border-radius: 7px;
-    padding: 10px;
-    font-weight: 500;
-    cursor: default;
-}
-
-.red-flag-confirm{
-    width: 100%;
-    height: 40px;
-    border-radius: 7px;
-    padding: 7px;
-    background-color: #22b573;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.red-flag-options{
-    display: flex;
-    flex-direction: column;
-}
-
-.red-flag-options input{
-    margin-bottom: 10px;
-}
-
-
-.red-flag-button{
-    background-color: rgba(0, 0, 0, 0.1); 
-    width: 50px;
-    position: absolute;
-    right: 1.5%;
-    top: 12.5%;
-    border-radius: 5px;
-    border: none;
-}
-.red-flag-button:hover{
-    background-color: rgba(87, 87, 87, 0.1); 
-}
-
 .hidden{
     display: none;
 }
@@ -568,43 +483,128 @@ a{
     display: block;
 }
 
+i#burger{
+    display: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+}
 
 
-@media screen and (max-width: 745px){
+
+
+@media(max-width: 745px){
     .notepad-container{
         display: block;
         flex-direction: column;
-
-    }
-    .menu-container {
-   
-        width: 100%;
-     
-    }
-
-    .click-wrapper{
-        left: 45vw;
-        z-index: 1;
-    }
-
-    .dados-wrapper{
-        width: 50vw;
-    }
-
-    .activity-add-table{
-        z-index: 1;
-        width: 89%;
-        margin-left: -10px;
-      
-    }
-
-    
-    .paciente-table{
-        height: 70%;
-        overflow-y: scroll;
         
     }
+    .click-wrapper{
+        width: 100%;
+        left: 0;
+        z-index: 2;
+      
+      }
+  
+      
+      .dados-wrapper{
+          width: 100%;
+      }
+  
+      i#burger{
+          display: block;
+          border-radius: 7px;
+          background: transparent;
+          font-size: 3rem;
+  
+      }
+  
+      .menu-container{
+          position: absolute;
+          width: 100%;
+          border-radius: 5px;
+          animation: abrirMenu 1s ease;
+          z-index: 2;
+          border-bottom: 1px solid #333333;
+          padding: 0;
+      }   
+      
+      .header-container{
+          padding-left: 10px;
+          padding-right: 10px;
+      }
+  
+     
+  
+      .menu li{
+          background: none;
+          border-bottom: 1px solid #333333;
+          border-radius: none;
+          
+      }
+      .show{         
+          flex-direction: column;         
+          gap: 5px;         
+          height: 50vh;     
+      }     
+  
+      .menu{   
+          background-color: #1a1a1a;
+          
+          border-radius: 7px;
+    
+      }
+  
+      .hidden-responsivo{
+        display: none;
+      }
+  
+  
+  
+      .titulo{
+          display: none;
+      }
+
+      .notepad-container{
+        background-image: none;
+        }
+
+        .activity-container{
+           padding: 0;
+           margin: -20px;
+        }
+
+        .atividades-recomendadas{
+            font-size: 1em;
+        }
+
+        .activity-add-table{
+            width:350px ;
+        }
+
+    
+
+       
+
+
 
    
     
 } 
+
+@keyframes abrirMenu {
+    0% {
+   opacity: 0;
+   transform: translateX(-100%);
+ }
+ 50% {
+   opacity: 1;
+   transform: translateX(50%);
+ }
+ 100% {
+   transform: translateX(0%);
+ }
+
+
+}
