@@ -209,15 +209,9 @@ function deleteAlertAnotacao(e){
 }
 
 
-function clickMenu() {
-    var itens = document.getElementById('Itens');
-    
-    if (itens.style.display === 'block') {
-        itens.style.display = 'none';
-    } else {
-        itens.style.display = 'block';
-    }
-}
-
+function clickMenu(){
+    let menu = document.getElementById('Itens');
+    menu.classList.toggle('hidden-responsivo');
+ }
 
 console.log(selAnotacao);

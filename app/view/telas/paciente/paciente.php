@@ -155,8 +155,8 @@ if($type != "paciente"){
         </div>
     </header>
     <section class="notepad-container">
-        <section class="menu-container">
-            <nav class="menu" id="Itens">
+        <section class="menu-container hidden-responsivo" id="Itens">
+            <nav class="menu" >
                 <ul>
                     <li class="active-menu">
                         <p>Anotações</p>

@@ -39,10 +39,12 @@ if($type != "psicologo"){
     <link rel='stylesheet' href='../../CSS/bootstrap.min.css'>
     <link rel='stylesheet' href='../../CSS/main.min.css'>
     <link rel='stylesheet' href='../../CSS/psicologo.css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 <body id='body'>
 <header class="header-container">
-        <h1>ANOTE-ME</h1>
+        <h1 class="titulo">ANOTE-ME</h1>
+        <i id="burger" class="material-icons" onclick="clickMenu()">menu</i>
         <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()">
             <?php if(isset($imagem) && $imagem != NULL): ?>
                 <img src="<?php echo "../../IMG/imagem_perfil/$imagem"; ?>" alt="" class='perfil' id='first-perfil'>
@@ -78,7 +80,7 @@ if($type != "psicologo"){
             </nav>
         </div>
     </header>    <main class='notepad-container'>
-        <aside class='menu-container'>
+        <aside class="menu-container hidden-responsivo" id="Itens">
             <h1>Pacientes</h1>
             <nav class='menu'>
                 <?php
@@ -185,7 +187,7 @@ if($type != "psicologo"){
                                 <path d='m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z'/>
                             </svg>
                         </button>
-                        <h1>Atividades Recomendadas</h1>
+                        <h1 class='atividades-recomendadas'>Atividades Recomendadas</h1>
                         <button id='pacienteNextButton' onclick='pacienteNextButton()' class='paciente-next-button'>
                             <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-caret-right-fill' viewBox='0 0 16 16'>
                                 <path d='m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z'/>
