@@ -43,7 +43,7 @@ if($type != "paciente"){
 <body id="body">
     <header class="header-container">
         <h1 class="titulo">ANOTE-ME</h1>
-
+        <i id="burger" class="material-icons" onclick="clickMenu()">menu</i>
         <div class="container-notif">
             <!--notificação-->
             <?php 
@@ -86,7 +86,7 @@ if($type != "paciente"){
                 ?>
             </div>
 
-            <i id="burger" class="material-icons" onclick="clickMenu()">menu</i>
+          
             
             <script>  
                 let notificacao = document.getElementById('notificacoes');                 
