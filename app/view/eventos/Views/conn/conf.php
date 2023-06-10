@@ -5,6 +5,7 @@ define ('USER', 'root');
 define ('PASS', '');
 define ('DBNAME', 'clinica_psicologica');
 
-$pdo = new PDO('mysql:host='. HOST . ';dbname='. DBNAME . ';', USER, PASS);
+$pdo = new PDO('mysql:host='. HOST . ';dbname='. DBNAME . ';charset=utf8', USER, PASS);
+
 
 ?>
