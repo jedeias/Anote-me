@@ -132,31 +132,32 @@ form .form-btn{
 
 
 @media (max-width:650px){
-
-    html{
-        height: calc(100vh - 70px);
-    }
-    body{ 
-        height: 100%;  
-    }  
     .atualizar-perfil form .flex{
         flex-wrap: wrap;
         gap: 0;
-        height: 350px;
+        height: 450px;
     }
 
-    .atualizar-perfil form{
-        width: 90%;
-        padding: 15px;
+    .atualizar-perfil{
+        display: block;
+        height: 100%;
+        
+    }
+
+    .image img{
+        width: 80%;
+        display: flex;
+        align-items: center;
         justify-content: center;
+        position: absolute;
+        bottom: 60%;
+        right: 0;
+        left: 10%;
+    }
+    form{
+        margin-top: 300px;
     }
 
-    .atualizar-perfil form .name-title{
-        font-size: medium;
-    }
 
-    img{
-        display: none;
-    }
     
 }

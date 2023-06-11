@@ -16,8 +16,6 @@ abstract class Connect extends Host {
         if ($this->conn->connect_error) {
             die("Conexão falhou: " . $this->conn->connect_error);
         }
-        // Definir o conjunto de caracteres para utf8
-        $this->conn->set_charset("utf8");
     }
 
     private function close() {

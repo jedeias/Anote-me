@@ -159,7 +159,7 @@ if($_POST == true){
                                 $imagem = $imagemSrc;
                             }
                             echo "<section class='psi-paci-list' data-tilt data-tilt-scale='1.05' data-tilt-reverse data-nome='".$paciente['nome']."' onclick='clickPaciCard(".$paciente['pk_paciente'].")' id='paciCard".$paciente['pk_paciente']."')'>";
-                            echo "<img class='psi-paci-img' src='".$imagem."' alt='foto de perfil'>";
+                            echo "<img class='psi-paci-img' src='../../IMG/imagem_perfil/".$imagem."' alt='foto de perfil'>";
                             echo "<h1>".$paciente['nome']."</h1>";
                             echo "<div class='psi-paci-text-div paci-info-list'>";
                             echo "<h1>Email</h1>";
@@ -179,7 +179,15 @@ if($_POST == true){
                     } else {
                         $paciDetailsId = $_GET['paciId'];
                         $paciente = $select->selectPaciente($paciDetailsId);
-                        $ultimaconsulta = $select->notificacaoPaciente($paciDetailsId);
+                        $ultimaConsulta = $select->notificacaoPaciente($paciDetailsId);
+                        if($ultimaConsulta == null){
+                            $consulta = 'Ainda não possui consulta marcada.';
+                            $horaConsulta = '';
+                        }else{
+                            $consulta = $ultimaConsulta['data_formatada'];
+                            $horaConsulta = $ultimaConsulta['horario'];
+                        }
+           
                         foreach($paciente as $dado){
                             $psicologoInfo = $select->selectPsicologo($dado['fk_psicologo']);
                             
@@ -204,14 +212,18 @@ if($_POST == true){
                                 $imagem = "../../IMG/default.jpg";
                             }
                         }
-                        echo "<button class='backButton backListar' id='backButtonListarPsico' onclick='voltarPaciTable()'>
-                                <svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='currentColor' class='bi bi-caret-left-fill' viewBox='0 0 16 16'>
-                                    <path d='m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z'/>
-                                </svg>
+                        echo "
+    
+                              <div class='listar-psi-paci big-div'>
+                              <div class='teste-flex'>
+                              <button class='backButton backListar' id='backButtonListarPsico' onclick='voltarPaciTable()'>
+                                  <svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='currentColor' class='bi bi-caret-left-fill' viewBox='0 0 16 16'>
+                                      <path d='m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z'/>
+                                  </svg>
                               </button>
     
                               <div class='listar-psi-paci big-div'>
-                                <img class='psi-paci-img' src=".$imagem." alt='foto de perfil'>
+                                <img class='psi-paci-img' src='../../IMG/imagem_perfil/".$imagem."' alt='foto de perfil'>
                                 <h1>".$nome."</h1>
                                 <p>Paciente</p>
                                 <div class='listar-psi-paci-info big-div'>
@@ -240,12 +252,15 @@ if($_POST == true){
                                         <p class='info-title'>Data de Nascimento:</p>
                                         <p>".$data_nasc."</p>
                                     </div>
-
-                                  
-
-
-
-
+                                    <div class='info-container'>
+                                        <p class='info-title'>Ultima consulta:</p>
+                                        <p>".$consulta."</p>                                        
+                                    </div>
+                                    <div class='info-container'>
+                                        <p class='info-title'>Horario da consulta:</p>
+                                        <p>".$horaConsulta."</p>                                        
+                                    </div>
+                                    
                                 </div>
                               </div>";
                         $psicologos = $select->selectPsicologos();

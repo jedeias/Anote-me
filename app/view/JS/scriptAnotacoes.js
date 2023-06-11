@@ -208,10 +208,6 @@ function deleteAlertAnotacao(e){
     }
 }
 
-
-function clickMenu(){
-    let menu = document.getElementById('Itens');
-    menu.classList.toggle('hidden-responsivo');
- }
-
 console.log(selAnotacao);
+
+

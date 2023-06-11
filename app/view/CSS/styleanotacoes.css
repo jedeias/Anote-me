@@ -4,11 +4,6 @@
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
-body{
-    height: 100vh;
-}
-
 .header-container{
     display: flex;
     justify-content: space-between;
@@ -173,19 +168,27 @@ body{
 .menu-container{
     background-color: #1a1a1a;
     overflow: hidden;
-    min-width: 18vw;
+    width: 18vw;
 }
 .menu li{
     list-style-type: none;
     padding: 15px;
     text-align: center;
-    background-color: #333333;
     color: #dadada;
     margin: 10px;
     border-radius: 10px;
     font-weight: 500;
-    transition: .2s ease-in-out;
 }
+
+.menu .menu-select{
+    background-color: #333333;
+}
+
+.menu .active-menu{
+    background-color: #22b573;
+}
+
+
 .menu li:hover{
     background-color: gray;
     color: white;
@@ -412,16 +415,6 @@ a{
     display: flex;
 }
 
-i#burger{
-    display: none;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    cursor: pointer;
-}
-
-
-
 @keyframes fadeOut{
     0% { opacity: 1}
     50% { opacity: 1}
@@ -429,129 +422,60 @@ i#burger{
 }
 
 
-@media(max-width: 768px) {
-
-    html{
-        height: calc(100vh - 70px);
-    }
-    body{ 
-        height: 100vh;  
-    }  
+@media only screen and (max-width: 768px) {
     .notepad textarea {
         max-width: 100%;
-        width: 94%;
+        width: 95%;
         height: 459px;
     }
 
     .notepad-container{
         height: 100%;
-        
     }
 
     .notepad-container{
         display: block;
         
     }
-   
+    .menu-container{
+        width: 100%;
+    
+    }
+
     .notepad-content{
         margin-left: 0;
-        top: 15%;
     }
 
     .notepad-count{
-        left: 50%;
+        left: 75%;
         top: 88%;
     }
    
     .emoji-content{
-        width: 100%;
+        width: 320px;
     }
 
     .click-wrapper{
-      width: 100%;
-      left: 0;
-      z-index: 2;
-    
-    }
-
-    .notification{
-        z-index: 2;
+        left: 59vw;
+        z-index: 1;
     }
 
     .dados-wrapper{
-        width: 100%;
-    }
-
-    i#burger{
-        display: block;
-        border-radius: 7px;
-        background: transparent;
-        font-size: 3rem;
-
-    }
-
-    .menu-container{
-        background: none;
-        position: absolute;
-        width: 100%;
-        border-radius: 5px;
-        animation: abrirMenu 1s ease;
-        z-index: 2;
-    }   
-    .header-container{
-        padding-left: 10px;
-        padding-right: 10px;
+        width: 35vw;
     }
 
    
 
-    .menu li{
-        background: none;
-        padding: 30px;
-        border-bottom: 1px solid #333333;
-        border-radius: 7px;
-        margin: 0;
-    }
-    .show{         
-        flex-direction: column;         
-        gap: 5px;         
-        height: 50vh;     
-    }     
-
-    .menu{
-        margin: 10px;
-        background-color: #1a1a1a;
-        box-shadow: 0 0 10px rgba(0,0,0,0.3);
-        border-radius: 7px;
-    }
-
-    .hidden-responsivo{
-            
-        display: none;
-    }
-
-
-
-    .titulo{
-        display: none;
-    }
-
-
 }
 
+@media only screen and (max-width: 600px){
+    .click-wrapper{
+        left: 41vw;
+        z-index: 1;
+    }
 
-@keyframes abrirMenu {
-    0% {
-   opacity: 0;
-   transform: translateX(-100%);
- }
- 50% {
-   opacity: 1;
-   transform: translateX(50%);
- }
- 100% {
-   transform: translateX(0%);
- }
-
+    .dados-wrapper{
+        width: 54vw;
+    }
 
 }

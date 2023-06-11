@@ -59,7 +59,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     <li class="center"><?php echo "$nome"; ?></li>
                     <div class='lista-dados-content'>
                         <li>Email : <?php echo $email; ?></li>
-                        <li>Telefone<?php echo $telefone;?></li>
+                        <li>Telefone<?php echo $dados[0]['numero'];?></li>
                         <li>Clinica : </li>
                     </div>
                     <li class="config-container">
@@ -120,7 +120,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                 $imagem = $imagemSrc;
                             }
                             echo "<section class='psi-paci-list' data-tilt data-tilt-scale='1.05' data-tilt-reverse data-nome='".$psicologo['nome']."' onclick='clickPsicoCard(".$psicologo['pk_psicologo'].")' id='psicoCard".$psicologo['pk_psicologo']."')'>";
-                            echo "<img class='psi-paci-img' src='".$imagem."' alt='foto de perfil'>";
+                            echo "<img class='psi-paci-img' src='../../IMG/imagem_perfil/".$imagem."' alt='foto de perfil'>";
                             echo "<h1>".$psicologo['nome']."</h1>";
                             echo "<div class='psi-paci-text-div'>";
                             echo "<h1>Pacientes</h1>";
@@ -158,15 +158,25 @@ if($nome == NULL and $email == NULL and $type == NULL){
                             if($imagem == null){
                                 $imagem = "../../IMG/default.jpg";
                             }
+                        
                         }
-                        echo "<button class='backButton backListar' id='backButtonListarPsico' onclick='voltarPsicoTable()'>
-                                <svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='currentColor' class='bi bi-caret-left-fill' viewBox='0 0 16 16'>
-                                    <path d='m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z'/>
-                                </svg>
-                              </button>
+
+                        echo "<div class='teste-flex'>
+                                <button class='backButton backListar' id='backButtonListarPsico' onclick='voltarPsicoTable()'>
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='currentColor' class='bi bi-caret-left-fill' viewBox='0 0 16 16'>
+                                        <path d='m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z'/>
+                                    </svg>
+                                </button>
+
+                                <button class='backButton agendaListar' onclick='agendaPsicologo($psicoDetailsId)'>
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='currentColor' class=='bi bi-calendar' viewBox='0 0 16 16'>
+                                        <path d='M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z'/>
+                                    </svg>
+                                </button>
+                              </div>
     
                               <div class='listar-psi-paci'>
-                                <img class='psi-paci-img' src=".$imagem." alt='foto de perfil'>
+                                <img class='psi-paci-img' src='../../IMG/imagem_perfil/" . $imagem. "' alt='foto de perfil'>
                                 <h1>".$nome."</h1>
                                 <p>Psicologo</p>
                                 <div class='listar-psi-paci-info'>
@@ -215,8 +225,6 @@ if($nome == NULL and $email == NULL and $type == NULL){
                                           </div>";
                                 }
                             }
-
-                            
                             }
 
                 ?>
@@ -224,7 +232,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
             </article>
             
         </section>
-        <section class="notepad-content hidden" id="psicoDetails">
+        <!-- <section class="notepad-content hidden" id="psicoDetails">
             <article class="psi-table">
                 <button class="backButton backListar" id="backButtonListarPsico" onclick="voltarPsicoTable()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
@@ -286,7 +294,7 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     </div>
                 </div>
             </article>
-        </section>
+        </section> -->
     </main>
     <script src = "../../JS/script.js"></script>
     <script src="../../JS/vanilla-tilt.js"></script>

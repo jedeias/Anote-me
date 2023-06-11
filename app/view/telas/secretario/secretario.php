@@ -88,12 +88,10 @@ valores pre setados com o intuito de teste.
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANOTE-ME</title>
     <link rel="stylesheet" href="../../CSS/secretaria.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 <body id="body">
 <header class="header-container">
-        <h1 class="titulo">ANOTE-ME</h1>
-        <i id="burger" class="material-icons" onclick="clickMenu()">menu</i>
+        <h1>ANOTE-ME</h1>
         <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
             <?php if(isset($imagem) && $imagem != NULL): ?>
                 <img src="<?php echo "../../IMG/imagem_perfil/$imagem"; ?>" alt="" class='perfil' id='first-perfil'>
@@ -128,10 +126,9 @@ valores pre setados com o intuito de teste.
         </div>
     </header>
     <main class="notepad-container">
-        <aside class="menu-container hidden-responsivo" id="Itens">
-            
+        <aside class="menu-container">
             <nav class="menu">
-                <ul >
+                <ul>
                     <a href="secretario.php">
                         <li>
                             <p>Cadastro</p>
@@ -415,13 +412,13 @@ valores pre setados com o intuito de teste.
                             </div>
                             <label for="senha">Senha</label>
                             <div class="senha-container">
-                                <input type="password" name="senha" onchange="conferirSenha('paciForm')" required id="paciSenha">
-                                <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciShowSenha" onclick="mostrarSenha('paciForm')" alt="">
+                                <input type="password" name="senha" onchange="conferirSenha('psiForm')" required id="psiSenha">
+                                <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="psiShowSenha" onclick="mostrarSenha('psiForm')" alt="">
                             </div>
                             <label for="confirmarSenha">Confirmar Senha</label>
                             <div class="senha-container">
-                                <input type="password" name="confirmarSenha" onchange="conferirSenha('paciForm')" required id="paciConfirmSenha">
-                                <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="paciConfirmShowSenha" onclick="mostrarSenha('paciConfirmForm')" alt="">
+                                <input type="password" name="confirmarSenha" onchange="conferirSenha('psiForm')" required id="psiConfirmSenha">
+                                <img title="Mostrar Senha" src="../../IMG/ico/eye-fill.svg" id="psiConfirmShowSenha" onclick="mostrarSenha('psiConfirmForm')" alt="">
                             </div>
                             <input type="submit">
                             </form>

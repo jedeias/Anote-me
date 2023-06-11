@@ -39,12 +39,10 @@ if($type != "psicologo"){
     <link rel='stylesheet' href='../../CSS/bootstrap.min.css'>
     <link rel='stylesheet' href='../../CSS/main.min.css'>
     <link rel='stylesheet' href='../../CSS/psicologo.css'>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 <body id='body'>
 <header class="header-container">
-        <h1 class="titulo">ANOTE-ME</h1>
-        <i id="burger" class="material-icons" onclick="clickMenu()">menu</i>
+        <h1>ANOTE-ME</h1>
         <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()">
             <?php if(isset($imagem) && $imagem != NULL): ?>
                 <img src="<?php echo "../../IMG/imagem_perfil/$imagem"; ?>" alt="" class='perfil' id='first-perfil'>
@@ -80,7 +78,7 @@ if($type != "psicologo"){
             </nav>
         </div>
     </header>    <main class='notepad-container'>
-        <aside class="menu-container hidden-responsivo" id="Itens">
+        <aside class='menu-container'>
             <h1>Pacientes</h1>
             <nav class='menu'>
                 <?php
@@ -140,15 +138,40 @@ if($type != "psicologo"){
 
                             $anotacoes = $select->select_notes($id, $email_paciente);
 
+                            $data = '';
+                            $mesArmazenado = '';
                             foreach ($anotacoes as $dado)
                             {
+                                $dadosData = explode("/", $dado['data']);
+                                list($dia, $mes, $ano) = $dadosData;
+                                $mesano = $mes . "/" . $ano;
+                                if($mesArmazenado != $mesano){
+                                    $data = 0;
+                                }
+                                $mesArmazenado = $mesano;
+                                if($data != 1){
+                                    echo "<h1>".$mesano."</h1>";
+                                }
+                                $data = 1;
+                                
+                                $redFlagCor = $dado['redflag'];
+                                if($redFlagCor == 'verde'){
+                                    $anotacaoCor = "#22b573";
+                                } elseif($redFlagCor == 'amarelo'){
+                                    $anotacaoCor = "#ffd129";
+                                } elseif($redFlagCor == 'vermelho'){
+                                    $anotacaoCor = "#ff2949";
+                                } else {
+                                    $anotacaoCor = "#22b573";
+                                }
 
                                 echo"<article class='activity'>";
 
-                                    echo "<div class='activity-header'>";
+                                    echo "<div class='activity-header' style='background-color: ".$anotacaoCor."' id='activityHeader".$dado['pk_anotacoes_paciente']."'>";
 
                                         echo "<p>" . $dado['hora'] . "</p>";
-                                        echo "<p>". $dado['data']. "</p>";
+                                        echo "<p class='note-hour'>". $dado['data']. "</p>";
+                                        echo "<button id='redFlagButton' onclick='redFlagClick(".$dado['pk_anotacoes_paciente'].")' class='red-flag-button' title='Red Flag'><img class='red-flag-img' src='../../IMG/ico/flag-svgrepo-com.svg'></button>";
 
                                     echo "</div>";
 
@@ -165,15 +188,58 @@ if($type != "psicologo"){
                                         echo "<p>Intensidade: " . $dado['intensidade']. "%". "</p> ";
 
                                     echo "</div>";
-
                                 echo "</article>";
+                                $red_flag = $dado['redflag'];
+                                $verde = null;
+                                $amarelo = null;
+                                $vermelho = null;
+                                if($red_flag == null OR $red_flag == 'verde'){
+                                    $red_flag = 'verde';
+                                    $verde = 'checked';
+                                } elseif ($red_flag == 'amarelo'){
+                                    $amarelo = 'checked';
+                                } elseif ($red_flag == 'vermelho'){
+                                    $vermelho = 'checked';
+                                } else {
+                                    $verde = 'checked';
+                                }
+
+                                $anotacaoPsicologo = $select-> select_psi_note($dado['pk_anotacoes_paciente']);
+                                $comentario = '';
+                                foreach($anotacaoPsicologo as $anotacao){
+                                    $comentario = $anotacao['comentario'];
+                                }
+                                echo "<form id='redFlagContainer".$dado['pk_anotacoes_paciente']."' class='red-flag-container hidden' method='POST' action='../../../controller/crud/psicologo/inserteRedFlag.php'>
+                                <h1>Comentario sobre a anotação</h1>
+                                <textarea name='comentario' class='red-flag-anotacao' id='redFlagAnotacao".$dado['pk_anotacoes_paciente']."'>".$comentario."</textarea>
+                                <h1>Red Flag</h1>
+                                <div class='red-flag-options'>
+                                    <div>
+                                        <input class='red-flag-select' type='radio' id='redFlagVerde".$dado['pk_anotacoes_paciente']."' name='red-flag-select' value='verde' ".$verde.">
+                                        <label for='redFlagVerde".$dado['pk_anotacoes_paciente']."'>Verde (Sem perigo)</label>
+                                    </div>
+                                    <div>
+                                        <input class='red-flag-select' type='radio' id='redFlagAmarelo".$dado['pk_anotacoes_paciente']."' name='red-flag-select' value='amarelo' ".$amarelo.">
+                                        <label for='redFlagAmarelo".$dado['pk_anotacoes_paciente']."'>Amarelo (Necessita atenção)</label> 
+                                    </div>
+                                    <div>
+                                        <input class='red-flag-select' type='radio' id='redFlagVermelho".$dado['pk_anotacoes_paciente']."' name='red-flag-select' value='vermelho' ".$vermelho.">
+                                        <label for='redFlagVermelho".$dado['pk_anotacoes_paciente']."'>Vermelho (Anotação perigosa)</label>
+                                    </div>
+        
+                                </div>
+                                <input type='hidden' name='noteId' value='".$dado['pk_anotacoes_paciente']."'>
+                                <input type='hidden' name='paciId' value='".$dado['pk_paciente']."'>
+                                <input type='hidden' name='curPaci' value='".$_GET['paciente']."'>
+                                <input class='red-flag-confirm' type='submit' value='confirmar'>
+                                </form>"; 
+
                         }
                     }//ELE ENTRA NESSE ELSE SEMPRE QUE PASSA DO LOGIN PARA ESSA TELA, AQUI ELE LISTA TODAS AS ANOTAÇÕES DE TODOS OS PACIENTES REFERENTES AO PSICOLOGO LOGADO
                     else {
                         echo"<p class='sem-paciente'>Selecione um paciente para ver suas anotações.</p>";
 
                     }
-
                     ?>
                     </div>
                 </div>
@@ -187,7 +253,7 @@ if($type != "psicologo"){
                                 <path d='m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z'/>
                             </svg>
                         </button>
-                        <h1 class='atividades-recomendadas'>Atividades Recomendadas</h1>
+                        <h1>Atividades Recomendadas</h1>
                         <button id='pacienteNextButton' onclick='pacienteNextButton()' class='paciente-next-button'>
                             <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-caret-right-fill' viewBox='0 0 16 16'>
                                 <path d='m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z'/>
@@ -308,18 +374,23 @@ if($type != "psicologo"){
                     </div>
                     <?php
                         $eventos = new Select();
-                        $eventos->getEventosPsicologo($id);            
+                        $eventos->getEventosPsicologo($id);
+                        //var_dump($eventos->getEventosPsicologo($id)); usado para debugar
+
                     ?>
                 </div>
             </section>
         </section>
     </main>
 
+
     <script src='../../JS/script.js'></script>
+    <script src='../../JS/redFlag.js'></script>
     <script src='../../JS/bootstrap.bundle.min.js'></script>
     <script src='../../JS/main.min.js'></script>
     <script src='../../JS/pt-br.js'></script>
     <script src='../../JS/sweetalert2.all.min.js'></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script>
         var myModal = new bootstrap.Modal(document.getElementById('myModal'));
         document.addEventListener('DOMContentLoaded', function() {
@@ -333,7 +404,7 @@ if($type != "psicologo"){
         locale: 'pt-br',
         themeSystem: 'bootstrap5',
         dayMaxEventRows: true,
-        height: "60vh",
+        height: "100%",
         events: <?php echo $eventos->getEventosPsicologo($id);?>,
         eventClick: (info) => {
         console.log(info);
@@ -348,6 +419,7 @@ if($type != "psicologo"){
         myModal.show();
     }
     });
+    let agendaTable = document.getElementById('pacienteAgendaTable');
     calendar.render();
     });
 

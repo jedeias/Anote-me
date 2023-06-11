@@ -36,12 +36,10 @@ if($type != "paciente"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anotações</title>
     <link rel="stylesheet" href="../../CSS/styleatividades.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 <body>
 <header class="header-container">
-    <h1 class="titulo">ANOTE-ME</h1>
-    <i id="burger" class="material-icons" onclick="clickMenu()">menu</i>
+    <h1>ANOTE-ME</h1>
     <div class="container-notif">
 
         <!--notificação-->
@@ -136,7 +134,7 @@ if($type != "paciente"){
     </div>
 </header>    
     <section class="activity-container">
-        <section class="menu-container hidden-responsivo" id="Itens">
+        <section class="menu-container">
             <nav class="menu">
                 <ul>
                     <a href="paciente.php">
