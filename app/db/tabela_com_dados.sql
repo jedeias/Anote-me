@@ -2,7 +2,7 @@
 
 -- drop database `clinica_psicologica`;
 
-CREATE DATABASE IF NOT EXISTS `clinica_psicologica`;
+CREATE DATABASE IF NOT EXISTS `clinica_psicologica` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 USE `clinica_psicologica`;
 
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS `tipo_usuario` (
   `pk_tipo_usuario` int(11) NOT NULL AUTO_INCREMENT,
   `tipo_user` varchar(100) NOT NULL,
   PRIMARY KEY (`pk_tipo_usuario`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 REPLACE INTO `tipo_usuario` (`pk_tipo_usuario`, `tipo_user`) VALUES
 	(1, 'Responsável'),
 	(2, 'Secretário'),
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `endereco` (
   `estado` char(2) NOT NULL,
   `complemento` varchar(100) NOT NULL,
   PRIMARY KEY (`pk_endereco`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 REPLACE INTO `endereco` (`pk_endereco`, `rua`, `numero`, `bairro`, `cep`, `cidade`, `estado`, `complemento`) VALUES
 	(1, 'Rua das Flores', '123', 'Jardim das Palmeiras', '12345678', 'São Paulo', 'SP', 'Apto 101'),
 	(2, 'Avenida das Árvores', '567', 'Centro', '87654321', 'Rio de Janeiro', 'RJ', 'Casa 02'),
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `tipo_telefone` (
   `descricao` text,
   `tipo_telefone` varchar(50) NOT NULL,
   PRIMARY KEY (`pk_tipo_telefone`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 REPLACE INTO `tipo_telefone` (`pk_tipo_telefone`, `descricao`, `tipo_telefone`) VALUES
 	(1, 'Telefone Residencial', 'Fixo'),
 	(2, 'Telefone Celular', 'Móvel'),
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `telefone` (
   PRIMARY KEY (`pk_telefone`),
   KEY `fk_tipo_telefone` (`fk_tipo_telefone`),
   CONSTRAINT `telefone_ibfk_1` FOREIGN KEY (`fk_tipo_telefone`) REFERENCES `tipo_telefone` (`pk_tipo_telefone`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 REPLACE INTO `telefone` (`pk_telefone`, `fk_tipo_telefone`, `ddd`, `numero`, `ddi`) VALUES
 	(1, 1, 51, 33221100, 55),
 	(2, 2, 11, 998877665, 55),
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `secretario` (
 	CONSTRAINT `secretario_ibfk_1` FOREIGN KEY (`fk_endereco`) REFERENCES `endereco` (`pk_endereco`),
 	CONSTRAINT `secretario_ibfk_2` FOREIGN KEY (`fk_telefone`) REFERENCES `telefone` (`pk_telefone`),
 	CONSTRAINT `secretario_ibfk_3` FOREIGN KEY (`fk_tipo_usuario`) REFERENCES `tipo_usuario` (`pk_tipo_usuario`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 REPLACE INTO `secretario` (`pk_secretario`, `fk_endereco`, `fk_telefone`, `fk_tipo_usuario`, `nome`, `email`, `senha`, `RG`, `CPF`, `sexo`, `data_nasc`) VALUES
 	(1, 3, 1, 2, 'Beltrano de Tal', 'beltrano@example.com', 'senha123', '345678901', '987654321', 'M', '1990-01-01');
 
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `psicologo` (
   CONSTRAINT `psicologo_ibfk_1` FOREIGN KEY (`fk_endereco`) REFERENCES `endereco` (`pk_endereco`),
   CONSTRAINT `psicologo_ibfk_2` FOREIGN KEY (`fk_telefone`) REFERENCES `telefone` (`pk_telefone`),
   CONSTRAINT `psicologo_ibfk_3` FOREIGN KEY (`fk_tipo_usuario`) REFERENCES `tipo_usuario` (`pk_tipo_usuario`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 REPLACE INTO `psicologo` (`pk_psicologo`, `fk_endereco`, `fk_telefone`, `fk_tipo_usuario`, `nome`, `email`, `senha`, `RG`, `CPF`, `sexo`, `data_nasc`) VALUES
 	(11, 1, 1, 1, 'Maria Silva', 'mariasilva@gmail.com', '12345678', '123456789', '1245678901', 'F', '1985-03-01'),
 	(12, 2, 2, 1, 'João Souza', 'joaosouza@hotmail.com', '87654321', '987654321', '965432109', 'M', '1990-05-15'),
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `secretario_clinica` (
   KEY `fk_clinica` (`fk_clinica`),
   KEY `fk_secretario` (`fk_secretario`),
   CONSTRAINT `fk_secretario` FOREIGN KEY (`fk_secretario`) REFERENCES `secretario`(`pk_secretario`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 REPLACE INTO `secretario_clinica` (`pk_secretario_clinica`, `fk_secretario`, `fk_clinica`) VALUES
 	(6, 1, 2);
 	
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `psicologo_clinica` (
   KEY `fk_clinica` (`fk_clinica`),
   KEY `fk_psicologo` (`fk_psicologo`),
   CONSTRAINT `fk_psicologo` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo`(`pk_psicologo`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 REPLACE INTO `psicologo_clinica` (`pk_psicologo_clinica`, `fk_psicologo`, `fk_clinica`) VALUES
 	(24, 11, 2),
 	(25, 11, 2),
@@ -171,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `clinica` (
   CONSTRAINT `fk_telefone` FOREIGN KEY (`fk_telefone`) REFERENCES `telefone`(`pk_telefone`),
   CONSTRAINT `fk_psicologo_clinica` FOREIGN KEY (`fk_psicologo_clinica`) REFERENCES `psicologo_clinica`(`pk_psicologo_clinica`),
   CONSTRAINT `fk_secretario_clinica` FOREIGN KEY (`fk_secretario_clinica`) REFERENCES `secretario_clinica`(`pk_secretario_clinica`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 REPLACE INTO `clinica` (`pk_clinica`, `fk_endereco`, `fk_telefone`, `fk_psicologo_clinica`, `fk_secretario_clinica`, `cnpj`) VALUES
 	(2, 1, 1, 24, 6, 1234567);	
@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `responsavel` (
   CONSTRAINT `responsavel_ibfk_1` FOREIGN KEY (`fk_endereco`) REFERENCES `endereco` (`pk_endereco`),
   CONSTRAINT `responsavel_ibfk_2` FOREIGN KEY (`fk_telefone`) REFERENCES `telefone` (`pk_telefone`),
   CONSTRAINT `responsavel_ibfk_3` FOREIGN KEY (`fk_tipo_usuario`) REFERENCES `tipo_usuario` (`pk_tipo_usuario`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 REPLACE INTO `responsavel` (`pk_responsavel`, `fk_endereco`, `fk_telefone`, `fk_tipo_usuario`, `nome`, `email`, `RG`, `CPF`) VALUES
 	(1, 1, 1, 1, 'Fulano de Tal', 'fulano@example.com', '123456789', '1234567890'),
 	(2, 2, 2, 1, 'Ciclano de Tal', 'ciclano@example.com', '987654321', '1098765432');
@@ -233,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `paciente` (
   CONSTRAINT `paciente_ibfk_3` FOREIGN KEY (`fk_responsavel`) REFERENCES `responsavel` (`pk_responsavel`),
   CONSTRAINT `paciente_ibfk_4` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`),
   CONSTRAINT `paciente_ibfk_5` FOREIGN KEY (`fk_tipo_usuario`) REFERENCES `tipo_usuario` (`pk_tipo_usuario`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 REPLACE INTO `paciente` (`pk_paciente`, `fk_endereco`, `fk_telefone`, `fk_tipo_usuario`, `fk_responsavel`,`fk_psicologo`, `nome`, `email`, `senha`, `RG`, `CPF`, `sexo`, `data_nasc`) VALUES
 	(2, 1, 2, 3, 1, 11, 'Joãozinho da Silva', 'joaozinho@example.com', 'senha123', '111111111', '123456789', 'M', '2010-01-01'),
 	(3, 2, 1, 3, 2, 11, 'Mariazinha Pereira', 'mariazinha@example.com', 'senha123', '222222222', '109876543', 'F', '2012-01-01'),
@@ -255,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `atividades_paciente` (
   KEY `fk_psicologo` (`fk_psicologo`),
   CONSTRAINT `FK__paciente` FOREIGN KEY (`fk_paciente`) REFERENCES `paciente` (`pk_paciente`),
   CONSTRAINT `FK__psicologo` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Copiando dados para a tabela clinica_psicologica.atividades_paciente: ~0 rows (aproximadamente)
 
@@ -269,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `red_flag` (
   `cor` varchar(50) NOT NULL,
   `grau` varchar(50) NOT NULL,
   PRIMARY KEY (`pk_red_flag`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 REPLACE INTO `red_flag` (`pk_red_flag`, `descricao`, `cor`, `grau`) VALUES
 	(1, 'Pensamentos suicidas', 'Vermelho', 'Grave'),
 	(2, 'Isolamento social', 'Amarelo', 'Moderado'),
@@ -299,19 +299,18 @@ CREATE TABLE IF NOT EXISTS `consulta` (
   KEY `fk_psicologo` (`fk_psicologo`),
   CONSTRAINT `consulta_ibfk_1` FOREIGN KEY (`fk_paciente`) REFERENCES `paciente` (`pk_paciente`),
   CONSTRAINT `consulta_ibfk_2` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 	
 CREATE TABLE IF NOT EXISTS `anotacoes_psicologo` (
   `pk_anotacoes_psicologo` int(11) NOT NULL AUTO_INCREMENT,
   `fk_psicologo` int(11) NOT NULL,
-  `fk_anotacoes_paciente` int(11) NOT NULL,
+  `fk_anotacoes_paciente` int(11) NULL,
   `comentario` text,
   PRIMARY KEY (`pk_anotacoes_psicologo`),
   KEY `fk_psicologo` (`fk_psicologo`),
-  CONSTRAINT `anotacoes_psicologo_ibfk_1` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`),
-  CONSTRAINT `anotacoes_psicologo_ibfk_2` FOREIGN KEY (`fk_anotacoes_paciente`) REFERENCES `anotacoes_paciente` (`pk_anotacoes_paciente`)
-);
+  CONSTRAINT `anotacoes_psicologo_ibfk_1` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 CREATE TABLE IF NOT EXISTS `anotacoes_paciente` (
@@ -330,13 +329,13 @@ CREATE TABLE IF NOT EXISTS `anotacoes_paciente` (
   CONSTRAINT `anotacoes_paciente_ibfk_2` FOREIGN KEY (`fk_redflag`) REFERENCES `red_flag` (`pk_red_flag`),
   CONSTRAINT `anotacoes_paciente_ibfk_3` FOREIGN KEY (`fk_paciente`) REFERENCES `paciente` (`pk_paciente`),
   CONSTRAINT `anotacoes_paciente_ibfk_5` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 REPLACE INTO `anotacoes_paciente` (`pk_anotacoes_paciente`, `fk_redflag`, `fk_paciente`,`fk_psicologo`, `anotacao`, `data`,`hora`) VALUES
 	(29, 1, 2,11, 'Estou me sentindo muito ansioso', '2022-05-10', '11:30:00'),
 	(30, 2, 3,11, 'Estou me sentindo triste e sem autoestima', '2022-05-12', '12:30:00');
 
 
-
+ALTER TABLE anotacoes_psicologo ADD CONSTRAINT fk_anotacoes_paciente FOREIGN KEY(fk_anotacoes_paciente) REFERENCES anotacoes_paciente (pk_anotacoes_paciente);
 
 
 
