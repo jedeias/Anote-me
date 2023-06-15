@@ -17,17 +17,7 @@
         <div class="logo-container">
 
             <div class="logo-text">
-                <div class="logo-main">
-                    <h1>ANOTE-</h1>
-                    <div class="logo-side">
-                        <h1 class="me">ME</h1>
-                        <h1 class="feliz">😀!</p>
-                        <h1 class="raiva">😡?</h1>
-                        <h1 class="triste">😢..</h1>
-                    </div>
-                </div>
-                <p>Pensamentos organizados, vida em ordem.</p>
-
+                <h1>Recuperar Senha</h1>
             </div>
 
             <div class="logo-image">
@@ -42,7 +32,7 @@
             
             <form class="login" action="app/main.php" method="POST" enctype="multipart/form-data">
                 
-                <h1 class="login-label">LOGIN</h1>
+                <h1 class="login-label">Recuperar Senha</h1>
                 <?php
                     include("app/autoload.php");
                     $session = new Session();
@@ -55,18 +45,11 @@
                 ?>            
                 <input type="text" name="email" placeholder="E-mail" class="usuario-input" required>
                
-            
-                <div class="senha-container">
-                        <input type="password" name="password" required id="loginSenha" placeholder="Senha" class="senha-input">
-                        <img title="Mostrar Senha" src="app/view/IMG/ico/eye-fill.svg" id="loginShowSenha" onclick="mostrarSenha('loginForm')" alt="">
-                </div>
-                
                 <div class="action-button">
                 
-                    <input type="submit" name="entrar" class="entrar-button" value="Entrar">
+                    <input type="submit" name="recuperarSenha" class="entrar-button" value="Recuperar">
                 </div>
-            
-                <a href="recuperarSenha.php">Recuperar Senha</a>
+                           
             </form>
 
             

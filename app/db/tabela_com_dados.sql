@@ -262,26 +262,6 @@ CREATE TABLE IF NOT EXISTS `atividades_paciente` (
 INSERT INTO `atividades_paciente` (`pk_atividades_paciente`, `fk_paciente`, `fk_psicologo`, `assunto_atividade`, `atividade`, `data`) VALUES
 	(1, 2, 11, 'Esporte', 'fazer mais esporte', '2023-04-13');
 
-
-CREATE TABLE IF NOT EXISTS `red_flag` (
-  `pk_red_flag` int(11) NOT NULL AUTO_INCREMENT,
-  `descricao` text,
-  `cor` varchar(50) NOT NULL,
-  `grau` varchar(50) NOT NULL,
-  PRIMARY KEY (`pk_red_flag`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-REPLACE INTO `red_flag` (`pk_red_flag`, `descricao`, `cor`, `grau`) VALUES
-	(1, 'Pensamentos suicidas', 'Vermelho', 'Grave'),
-	(2, 'Isolamento social', 'Amarelo', 'Moderado'),
-	(3, 'Comportamento agressivo', 'Laranja', 'Moderado'),
-	(4, 'Abuso de substâncias', 'Vermelho', 'Grave'),
-	(5, 'Sono excessivo ou insônia', 'Amarelo', 'Leve'),
-	(6, 'Pensamentos suicidas', 'Vermelho', 'Grave'),
-	(7, 'Isolamento social', 'Amarelo', 'Moderado'),
-	(8, 'Comportamento agressivo', 'Laranja', 'Moderado'),
-	(9, 'Abuso de substâncias', 'Vermelho', 'Grave'),
-	(10, 'Sono excessivo ou insônia', 'Amarelo', 'Leve');
-	
 	
 CREATE TABLE IF NOT EXISTS `consulta` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -315,7 +295,6 @@ CREATE TABLE IF NOT EXISTS `anotacoes_psicologo` (
 
 CREATE TABLE IF NOT EXISTS `anotacoes_paciente` (
   `pk_anotacoes_paciente` int(11) NOT NULL AUTO_INCREMENT,
-  `fk_redflag` int(11) NOT NULL,
   `fk_paciente` int(11) NOT NULL,
   `fk_psicologo` int(11) NOT NULL,
   `anotacao` VARCHAR(500),
@@ -326,13 +305,12 @@ CREATE TABLE IF NOT EXISTS `anotacoes_paciente` (
   `redflag` varchar(50) NULL,
   PRIMARY KEY (`pk_anotacoes_paciente`),
   KEY `fk_paciente` (`fk_paciente`),
-  CONSTRAINT `anotacoes_paciente_ibfk_2` FOREIGN KEY (`fk_redflag`) REFERENCES `red_flag` (`pk_red_flag`),
   CONSTRAINT `anotacoes_paciente_ibfk_3` FOREIGN KEY (`fk_paciente`) REFERENCES `paciente` (`pk_paciente`),
   CONSTRAINT `anotacoes_paciente_ibfk_5` FOREIGN KEY (`fk_psicologo`) REFERENCES `psicologo` (`pk_psicologo`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-REPLACE INTO `anotacoes_paciente` (`pk_anotacoes_paciente`, `fk_redflag`, `fk_paciente`,`fk_psicologo`, `anotacao`, `data`,`hora`) VALUES
-	(29, 1, 2,11, 'Estou me sentindo muito ansioso', '2022-05-10', '11:30:00'),
-	(30, 2, 3,11, 'Estou me sentindo triste e sem autoestima', '2022-05-12', '12:30:00');
+REPLACE INTO `anotacoes_paciente` (`pk_anotacoes_paciente`, `fk_paciente`,`fk_psicologo`, `anotacao`, `data`,`hora`) VALUES
+	(29, 2,11, 'Estou me sentindo muito ansioso', '2022-05-10', '11:30:00'),
+	(30, 3,11, 'Estou me sentindo triste e sem autoestima', '2022-05-12', '12:30:00');
 
 
 ALTER TABLE anotacoes_psicologo ADD CONSTRAINT fk_anotacoes_paciente FOREIGN KEY(fk_anotacoes_paciente) REFERENCES anotacoes_paciente (pk_anotacoes_paciente);
