@@ -50,7 +50,7 @@ $imagem = $imagem['imagem'];
 			<a href="atualizar_registro.php"><button class="form-btn" type="button">Voltar</button></a>
 			</div>
 		</form>
-
+		
 		<div class="image">
 			<img src="../IMG/Psicologo-Pagina-06.jpg" alt="">
 			<img src=<?php echo $back; ?> alt="">
