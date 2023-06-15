@@ -1,6 +1,6 @@
 /*BANCO DE DADOS COM DADOS JA INSERIDOS.*/
 
--- drop database `clinica_psicologica`;
+drop database `clinica_psicologica`;
 
 CREATE DATABASE IF NOT EXISTS `clinica_psicologica` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

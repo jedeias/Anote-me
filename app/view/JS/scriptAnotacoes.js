@@ -210,4 +210,7 @@ function deleteAlertAnotacao(e){
 
 console.log(selAnotacao);
 
-
+function clickMenu(){
+    let menu = document.getElementById('Itens');
+    menu.classList.toggle('hidden-responsivo');
+ }

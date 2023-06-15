@@ -39,10 +39,12 @@ if($type != "psicologo"){
     <link rel='stylesheet' href='../../CSS/bootstrap.min.css'>
     <link rel='stylesheet' href='../../CSS/main.min.css'>
     <link rel='stylesheet' href='../../CSS/psicologo.css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 <body id='body'>
 <header class="header-container">
-        <h1>ANOTE-ME</h1>
+        <h1 class="titulo">ANOTE-ME</h1>
+        <i id="burger" class="material-icons" onclick="clickMenu()">menu</i>
         <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()">
             <?php if(isset($imagem) && $imagem != NULL): ?>
                 <img src="<?php echo "../../IMG/imagem_perfil/$imagem"; ?>" alt="" class='perfil' id='first-perfil'>
@@ -78,7 +80,7 @@ if($type != "psicologo"){
             </nav>
         </div>
     </header>    <main class='notepad-container'>
-        <aside class='menu-container'>
+        <aside class="menu-container hidden-responsivo" id="Itens">
             <h1>Pacientes</h1>
             <nav class='menu'>
                 <?php

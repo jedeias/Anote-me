@@ -62,10 +62,12 @@ if($_POST == true){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANOTE-ME</title>
     <link rel="stylesheet" href="../../CSS/secretaria.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 <body id="body">
 <header class="header-container">
-        <h1>ANOTE-ME</h1>
+        <h1 class="titulo">ANOTE-ME</h1>
+        <i id="burger" class="material-icons" onclick="clickMenu()">menu</i>
         <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
             <?php if(isset($imagem) && $imagem != NULL): ?>
                 <img src="<?php echo "../../IMG/imagem_perfil/$imagem"; ?>" alt="" class='perfil' id='first-perfil'>
@@ -103,7 +105,7 @@ if($_POST == true){
             </nav>
         </div>
     </header>    <main class="notepad-container">
-        <aside class="menu-container">
+        <aside class="menu-container hidden-responsivo" id="Itens">
             <nav class="menu">
                 <ul>
                     <a href="secretario.php">

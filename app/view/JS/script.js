@@ -26,7 +26,7 @@ document.addEventListener('click' ,function(e){
 
     if(!activityTable.contains(e.target) && !activityButton.contains(e.target)){
         if(!activityTable.classList.contains('hidden')){
-            activityTable.classList.toggle('hidden')
+            activityTable.classList.toggle('hidden');
         }
     }
 
@@ -376,3 +376,8 @@ function editPsico(){
 
     psicoTable.classList.toggle('hidden');
 }
+
+function clickMenu(){
+    let menu = document.getElementById('Itens');
+    menu.classList.toggle('hidden-responsivo');
+ }
