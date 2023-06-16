@@ -4,6 +4,7 @@ function autoload($className){
     $dirs = array(  "controller/",
                     "model/",
                     "view/", 
+                    "model/validations/", 
                     "../controller/", 
                     "../model/", 
                     "../view", 
