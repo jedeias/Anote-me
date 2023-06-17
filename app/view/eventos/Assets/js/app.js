@@ -6,14 +6,13 @@ let apagar = document.getElementById('btnApagar');
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
       headerToolbar: {
         right: 'today prev next',
         left: 'dayGridMonth timeGridWeek listWeek'
       },
       themeSystem: 'bootstrap5',
       dayMaxEventRows: true,
-      height: 700,
+      height: '100%',
       locale: 'pt-br',
       events: base_url + 'Home/listar',
       editable: true,

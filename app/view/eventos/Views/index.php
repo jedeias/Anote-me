@@ -48,6 +48,7 @@
         }
         .container{
             max-height: 1000px;
+            height: 80vh;
             width: 1000px;
             margin: 0 auto;
             
@@ -94,8 +95,6 @@
         </button>
         <h1>ANOTE-ME</h1>
         </a>
-        <h1>Agendar Consulta</h1>
-
     </div>
     <section id="style-calendar">
         <div class="container">
@@ -177,6 +176,7 @@
         const base_url = '<?php echo base_url;?>';
     </script>
     <script src="<?php echo base_url;?>Assets/js/app.js"></script>
+
 
     
   </body>
