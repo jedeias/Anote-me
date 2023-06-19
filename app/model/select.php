@@ -16,7 +16,7 @@ class Select extends Connect implements selectController{
     }
 
     public function selectPsicologo($id){
-        $stmt = $this->getConn()->prepare("SELECT pk_psicologo, nome, email, RG, CPF, Sexo, DATE_FORMAT(data_nasc, '%d/%m/%Y') as data_nasc, imagem FROM psicologo WHERE pk_psicologo = ?");
+        $stmt = $this->getConn()->prepare("SELECT pk_psicologo, nome, email, RG, CPF, Sexo, quantidade_anotacoes, DATE_FORMAT(data_nasc, '%d/%m/%Y') as data_nasc, imagem FROM psicologo WHERE pk_psicologo = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -33,6 +33,24 @@ class Select extends Connect implements selectController{
 
     public function selectPaciente($id){
         $stmt = $this->getConn()->prepare("SELECT pk_paciente, fk_psicologo, nome, email, RG, CPF, Sexo, DATE_FORMAT(data_nasc, '%d/%m/%Y') as data_nasc, imagem FROM paciente WHERE pk_paciente = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        return $data;
+    }
+
+    public function selectNumAnotacoes($id){
+        $stmt = $this->getConn()->prepare("SELECT COUNT(*) AS num_anotacoes FROM anotacoes_paciente WHERE fk_paciente = ? AND DATE(data) = CURDATE()");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        return $data;
+    }
+
+    public function selectQuantidadeAnotacoesPsicologo($id){
+        $stmt = $this->getConn()->prepare("SELECT quantidade_anotacoes FROM psicologo WHERE pk_psicologo = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();

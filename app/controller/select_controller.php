@@ -14,6 +14,10 @@ interface selectController {
 
     public function selectPaciente($id);
 
+    public function selectNumAnotacoes($id);
+
+    public function selectQuantidadeAnotacoesPsicologo($id);
+
     public function loginCheck($email, $password); 
 
     public function select_all_users();

@@ -266,7 +266,12 @@ if($type != "paciente"){
                 echo "<div class='saved-note'>";
                 echo "<p>Anotação Deletada</p>";
                 echo "</div>";   
-              }           
+              }   
+              if(isset($_GET["limite"])){
+                  echo "<div class='saved-note'>";
+                  echo "<p>Numero maximo de anotações diárias alcançado!</p>";
+                  echo "</div>";
+              }        
             $_SESSION['get_executed'] = true;
         }
 

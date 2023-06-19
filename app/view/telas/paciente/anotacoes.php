@@ -41,8 +41,6 @@ $imagem = $selecionar->getImagem($paci_id);
     <header class="header-container">
         <h1>ANOTE-ME</h1>
 
-
-
             <figure id="wrapperButton" class="click-perfil" onclick="ClickPerfil()"> 
                 <?php if(isset($imagem['imagem']) && $imagem['imagem'] != NULL): ?>
                     <img src="<?php echo $imagem['imagem'] ?>" alt="" class='perfil' id='first-perfil'>
@@ -138,44 +136,43 @@ $imagem = $selecionar->getImagem($paci_id);
             ?>
             <div id="anotacao<?php echo $numAnotacoes + 1;?>" class="notepad active">           
                 <form action="../../../controller/crud/paciente/inserteNota.php" method="POST">
-                <article class="notepad-header">
-                    <p id="emojiButton" class="emoji-button" onclick="ClickEmoji()">😶</p>
-                    <p id="digital-date" class="notepad-date"></p> 
-                    <p id = "digital-clock" class="notepad-clock"></p>
-                    <div class="emoji-content hidden" id="emojiTab">
-                        <h1>Que emoção você sentiu?</h1>
-                        <select id="emojiSelect" name="emocao">
-                            <option value="indiferente">Indiferente</option>
-                            <option value="feliz">😃 Feliz</option>
-                            <option value="triste">😥 Triste</option>
-                            <option value="ansioso">😰 Ansioso(a)</option>
-                            <option value="raiva">😠 Com raiva</option>
-                            <option value="medo">😱 Com medo</option>
-                        </select>
-                        <hr></hr>
-                        <h1>Qual foi a intensidade?</h1>
-                        <select id="emojiSelectPercentage" name="emocaoGrau">
-                            <option value="10">10%</option>
-                            <option value="20">20%</option>
-                            <option value="30">30%</option>
-                            <option value="40">40%</option>
-                            <option value="50">50%</option>
-                            <option value="60">60%</option>
-                            <option value="70">70%</option>
-                            <option value="80">80%</option>
-                            <option value="90">90%</option>
-                            <option value="100">100%</option>
-                        </select>
-                        <input class="emoji-close" type="button" value="Fechar" onclick="ClickEmoji()">
+                    <article class="notepad-header">
+                        <p id="emojiButton" class="emoji-button" onclick="ClickEmoji()">😶</p>
+                        <p id="digital-date" class="notepad-date"></p> 
+                        <p id = "digital-clock" class="notepad-clock"></p>
+                        <div class="emoji-content hidden" id="emojiTab">
+                            <h1>Que emoção você sentiu?</h1>
+                            <select id="emojiSelect" name="emocao">
+                                <option value="indiferente">Indiferente</option>
+                                <option value="feliz">😃 Feliz</option>
+                                <option value="triste">😥 Triste</option>
+                                <option value="ansioso">😰 Ansioso(a)</option>
+                                <option value="raiva">😠 Com raiva</option>
+                                <option value="medo">😱 Com medo</option>
+                            </select>
+                            <hr></hr>
+                            <h1>Qual foi a intensidade?</h1>
+                            <select id="emojiSelectPercentage" name="emocaoGrau">
+                                <option value="10">10%</option>
+                                <option value="20">20%</option>
+                                <option value="30">30%</option>
+                                <option value="40">40%</option>
+                                <option value="50">50%</option>
+                                <option value="60">60%</option>
+                                <option value="70">70%</option>
+                                <option value="80">80%</option>
+                                <option value="90">90%</option>
+                                <option value="100">100%</option>
+                            </select>
+                            <input class="emoji-close" type="button" value="Fechar" onclick="ClickEmoji()">
+                        </div>
+                    </article>
+                    <textarea required id="textarea" placeholder="Como você está?" name="descricao"></textarea>
+                    <div class="action-button-container">
+                        <button type=button class="action-button" onclick="DescartarAnotacao()">Descartar</button>
+                        <button class="action-button" type="submit" onclick="modalclick()">Salvar</button>
                     </div>
-                </article>
-                <textarea required id="textarea" placeholder="Como você está?" name="descricao"></textarea>
-                <div class="action-button-container">
-                    <button type=button class="action-button" onclick="DescartarAnotacao()">Descartar</button>
-                    <button class="action-button" type="submit" onclick="modalclick()">Salvar</button>
-                </div>
-
-            </form>
+                </form>
             </div>
             <button class="next-button" onclick="nextNote()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
@@ -187,11 +184,18 @@ $imagem = $selecionar->getImagem($paci_id);
         <?php
 
         if (!isset($_SESSION['get_executed']) || !$_SESSION['get_executed']) {
+
             if(isset($_GET["savednote"])){
                 echo "<div class='saved-note'>";
                 echo "<p>Anotação Salva!</p>";
                 echo "</div>";
-              }
+            }
+
+             if(isset($_GET["limite"])){
+                echo "<div class='saved-note'>";
+                echo "<p>Você não pode mais!</p>";
+                echo "</div>";
+            }
       
               if(isset($_GET["deletednote"])){
                 echo "<div class='saved-note'>";

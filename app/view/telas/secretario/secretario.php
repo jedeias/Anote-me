@@ -208,7 +208,7 @@ valores pre setados com o intuito de teste.
                                 <option value="F">Feminino</option>
                             </select>
                             <label for="telefone">Telefone</label>
-                            <input placeholder="(11) 96123-4567" name="telefone" id="telefone" type="tel" minlength="8" maxlength="15">
+                            <input placeholder="(11) 96123-4567" name="telefone" id="paci_telefone" type="tel" minlength="8" maxlength="15">
                             <?php
                                 $select = new Select();
                                 $pisicologos = $select->selectPsicologos();
@@ -315,7 +315,7 @@ valores pre setados com o intuito de teste.
                                 </div>
                                 </div>
                                 <label for="resTelefone">Telefone</label>
-                                <input placeholder="(11) 96123-4567" name="resTelefone" id="telefone" type="tel" minlength="8" maxlength="15" required disabled>
+                                <input placeholder="(11) 96123-4567" name="resTelefone" id="res_telefone" type="tel" minlength="8" maxlength="15" required disabled>
                             </div>
                             <input type="submit">
                             </form>
@@ -362,7 +362,7 @@ valores pre setados com o intuito de teste.
                                 <option value="F">Feminino</option>
                             </select>
                             <label for="telefone">Telefone</label>
-                            <input placeholder="(11) 96123-4567" name="telefone" id="telefone" type="tel" minlength="8" maxlength="15">
+                            <input placeholder="(11) 96123-4567" name="telefone" id="psico_telefone" type="tel" minlength="8" maxlength="15">
                             <p class="form-subtitle">Endereço</p>
                             <label for="CEP">CEP</label>
                             <input id="psiCEP" type="text" name="cep" required>

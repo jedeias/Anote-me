@@ -392,6 +392,7 @@ a{
     align-items: center;
     width: 250px;
     height: 100px;
+    padding: 20px;
     position: absolute;
     left: 0;
     right: 0;
