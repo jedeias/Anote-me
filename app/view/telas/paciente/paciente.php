@@ -130,10 +130,10 @@ if($type != "paciente"){
                             <li><?php echo $dados[0]['numero']; ?></li>
                             <hr>
                             <li class="dados-title">Responsável</li>
-                            <li><?php echo $responsavel[0]['nome']; ?></li>
+                            <li><?php echo (!empty($responsavel) && !empty($responsavel[0]['nome'])) ? $responsavel[0]['nome'] : 'sem responsavel'; ?></li>
                             <hr>
                             <li class="dados-title">Tel. Responsável</li>
-                            <li><?php echo $responsavel[0]['numero_responsavel']; ?></li>
+                            <li><?php echo (!empty($responsavel) && !empty($responsavel[0]['numero_responsavel'])) ? $responsavel[0]['numero_responsavel'] : 'sem responsavel'; ?></li>
                             <hr>
                             <li class="dados-title">Psicologo</li>
                             <li><?php echo $psicologo[0]['nome_psicologo'];?></li>

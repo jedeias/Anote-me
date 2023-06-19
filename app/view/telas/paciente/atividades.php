@@ -41,7 +41,6 @@ if($type != "paciente"){
 <body>
 <header class="header-container">
     <h1 class="titulo">ANOTE-ME</h1>
-    <h1 class="titulo">ANOTE-ME</h1>
     <i id="burger" class="material-icons"onclick="clickMenu()">menu</i>
     <div class="container-notif">
 
