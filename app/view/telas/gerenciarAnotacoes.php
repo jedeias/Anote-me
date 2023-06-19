@@ -43,7 +43,9 @@ $imagem = $imagem['imagem'];
 			<div class="flex">
 				<div class="inputBox">
 
-					<span>Quantidades de Anotações</span>
+					<span>Defina a quantidade maxima de anotações que deseja 	  receber, por dia, de seus pacientes.
+						Por padrão é definido três anotações diarias para seus pacientes, se caso estiver recebendo muitas anotações você pode definir uma quantidade menor por dia como por exemplo uma anotação diaria.
+					</span>
 					<input class="box" type="number" id="sizeAnotacoes" name="sizeAnotacoes" value="<?php echo $anotacoes?>">
 
 				</div>
