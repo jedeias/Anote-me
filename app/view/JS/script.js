@@ -381,3 +381,109 @@ function clickMenu(){
     let menu = document.getElementById('Itens');
     menu.classList.toggle('hidden-responsivo');
  }
+
+ var rg = document.getElementById('rg');
+ var psirg = document.getElementById('psirg');
+ var rerg = document.getElementById('rerg');
+ 
+ var cpf = document.getElementById('cpf');
+ var psicpf = document.getElementById('psicpf');
+ var recpf = document.getElementById('recpf');
+
+ var telefone = document.getElementById('paci_telefone');
+ var psitelefone = document.getElementById('psico_telefone');
+ var restelefone = document.getElementById('res_telefone');
+
+function formatarRG() {
+    var rgInput = rg.value
+    rgInput=rgInput.replace(/\D/g,"");
+    rgInput=rgInput.replace(/(\d{2})(\d{3})(\d{3})(\d{1})$/,"$1.$2.$3-$4");
+    rg.value = rgInput
+    
+}
+
+function formatarpRG() {
+    var psirgInput = psirg.value
+    psirgInput=psirgInput.replace(/\D/g,"");
+    psirgInput=psirgInput.replace(/(\d{2})(\d{3})(\d{3})(\d{1})$/,"$1.$2.$3-$4");
+    psirg.value = psirgInput
+    
+}
+
+function formatarreRG() {
+    var rergInput = rerg.value
+    rergInput=rergInput.replace(/\D/g,"");
+    rergInput=rergInput.replace(/(\d{2})(\d{3})(\d{3})(\d{1})$/,"$1.$2.$3-$4");
+    rerg.value = rergInput
+    
+}
+
+function formatarCPF() {
+    var cpfInput = cpf.value;
+    cpfInput = cpfInput.replace(/\D/g, '');
+    cpfInput = cpfInput.replace(/(\d{3})(\d)/, '$1.$2');
+    cpfInput = cpfInput.replace(/(\d{3})(\d)/, '$1.$2');
+    cpfInput = cpfInput.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    cpf.value = cpfInput
+}
+
+function formatarpCPF() {
+    var psicpfInput = psicpf.value;
+    psicpfInput = psicpfInput.replace(/\D/g, '');
+    psicpfInput = psicpfInput.replace(/(\d{3})(\d)/, '$1.$2');
+    psicpfInput = psicpfInput.replace(/(\d{3})(\d)/, '$1.$2');
+    psicpfInput = psicpfInput.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    psicpf.value = psicpfInput
+}
+
+function formatarreCPF() {
+    var recpfInput = recpf.value;
+    recpfInput = recpfInput.replace(/\D/g, '');
+    recpfInput = recpfInput.replace(/(\d{3})(\d)/, '$1.$2');
+    recpfInput = recpfInput.replace(/(\d{3})(\d)/, '$1.$2');
+    recpfInput = recpfInput.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    recpf.value = recpfInput
+}
+
+function formatarCEP(lugar){
+    console.log("CEP");
+    switch (lugar) {
+        case 'psicologo':
+            var cep = document.getElementById('psiCEP');
+            break;
+        case 'paciente':
+            var cep = document.getElementById('paciCEP');
+            break;
+    
+        default:
+            break;
+    }
+    var cepInput = cep.value;
+    cepInput = cepInput.replace(/\D/g,"");
+    cepInput = cepInput.replace(/(\d{5})(\d{3})$/,'$1-$2');
+    cep.value = cepInput
+}
+
+function formatarTelefone(){
+    var telInput = telefone.value;
+    console.log(telefone.value);
+    telInput = telInput.replace(/\D/g,"");
+    telInput = telInput.replace(/(\d{2})(\d{5})(\d{4})$/,"($1) $2-$3");
+    telefone.value = telInput
+}
+
+function formatarpTelefone(){
+    var telInput = psitelefone.value;
+    console.log(psitelefone.value);
+    telInput = telInput.replace(/\D/g,"");
+    telInput = telInput.replace(/(\d{2})(\d{5})(\d{4})$/,"($1) $2-$3");
+    psitelefone.value = telInput
+}
+
+function formatarresTelefone(){
+    var restelInput = restelefone.value;
+    console.log(restelefone.value);
+    restelInput = restelInput.replace(/\D/g,"");
+    restelInput = restelInput.replace(/(\d{2})(\d{5})(\d{4})$/,"($1) $2-$3");
+    restelefone.value = restelInput
+}
