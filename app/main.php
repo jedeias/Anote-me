@@ -8,6 +8,13 @@ echo "Dados não inseridos";
 $email = $_POST['email'];
 $password = $_POST['password'];
 
+
+$security = new Security();
+
+var_dump($email);
+
+$security->inputCheck($email);
+
 $loginSys = new Login();
 
 $loginStatus = $loginSys->login_check($email, $password);

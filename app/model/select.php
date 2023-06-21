@@ -41,7 +41,9 @@ class Select extends Connect implements selectController{
     }
 
     public function selectNumAnotacoes($id){
+        $stmt = $this->getConn()->prepare("SELECT COUNT(*) AS num_anotacoes FROM anotacoes_paciente WHERE fk_paciente = ? AND data >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)");
         $stmt = $this->getConn()->prepare("SELECT COUNT(*) AS num_anotacoes FROM anotacoes_paciente WHERE fk_paciente = ? AND DATE(data) = CURDATE()");
+
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -305,6 +307,25 @@ class Select extends Connect implements selectController{
         }
 
         return $consultas;
+    }
+
+    public function getEmail($email){
+        $stmt = $this->getConn()->prepare(" SELECT paciente.email, 'paciente' AS tipo FROM paciente WHERE paciente.email = ?
+                                            UNION ALL
+                                            SELECT secretario.email, 'secretario' AS tipo  FROM secretario WHERE secretario.email = ?
+                                            UNION ALL 
+                                            SELECT psicologo.email, 'psicologo' AS tipo  FROM psicologo WHERE psicologo.email = ?
+                                        ");
+
+        mysqli_stmt_bind_param($stmt, "sss", $email, $email, $email);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        mysqli_stmt_close($stmt);
+
+        return $data;
+
     }
     
     public function __destruct()

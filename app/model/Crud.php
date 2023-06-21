@@ -81,7 +81,6 @@ class Crud extends Connect implements CrudController{
     
         $stmt = $this->getConn()->prepare("UPDATE $tabela SET imagem = ? WHERE $tabela.pk_$tabela = ?");
         if (!$stmt) {
-            // Se a preparação da consulta falhar, mostre o erro do MySQLi
             die("Erro na consulta: " . $this->getConn()->error);
         }
         $stmt->bind_param("si",$imagem, $id);
@@ -256,6 +255,12 @@ class Crud extends Connect implements CrudController{
 
     public function update_psicologo_paciente($pk_paciente, $fk_psicologo){
         $sql = "UPDATE paciente SET fk_psicologo = $fk_psicologo WHERE pk_paciente = $pk_paciente";
+
+        $this->query($sql);
+    }
+
+    public function update_senha($table, $novasenha, $email){
+        $sql = "UPDATE $table SET senha = $novasenha WHERE email = $email";
 
         $this->query($sql);
     }

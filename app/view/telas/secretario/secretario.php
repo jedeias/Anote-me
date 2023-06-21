@@ -191,11 +191,11 @@ valores pre setados com o intuito de teste.
                             <div class="cross-input">
                             <div>
                                 <label for="RG">RG</label>
-                                <input type="text" name="RG" required>
+                                <input type="text" name="RG" id="rg" oninput="formatarRG()" maxlength="9" required>
                             </div>
                             <div>
                                 <label for="CPF">CPF</label>
-                                <input type="text" name="CPF" required>
+                                <input type="text" name="CPF" id="cpf" oninput="formatarCPF()" maxlength="14" required>
                             </div>
                             </div>
                             <label for="data-nasc">Data de Nascimento</label>
@@ -206,7 +206,7 @@ valores pre setados com o intuito de teste.
                                 <option value="F">Feminino</option>
                             </select>
                             <label for="telefone">Telefone</label>
-                            <input placeholder="(11) 96123-4567" name="telefone" id="paci_telefone" type="tel" minlength="8" maxlength="15">
+                            <input placeholder="(11) 96123-4567" name="telefone" id="paci_telefone" type="tel" oninput="formatarTelefone()" minlength="8" maxlength="15">
                             <?php
                                 $select = new Select();
                                 $pisicologos = $select->selectPsicologos();
@@ -222,7 +222,7 @@ valores pre setados com o intuito de teste.
                             ?>
                             <p class="form-subtitle">Endereço</p>
                             <label for="CEP">CEP</label>
-                            <input id="paciCEP" type="text" name="cep" required>
+                            <input id="paciCEP" type="text" name="cep" oninput="formatarCEP('paciente')" maxlength="9" required>
                             <label for="rua">Rua</label>
                             <input id="paciRua" type="text" name="rua" required>
                             <label for="bairro">Bairro</label>
@@ -305,15 +305,15 @@ valores pre setados com o intuito de teste.
                                 <div class="cross-input">
                                 <div>
                                     <label for="resRG">RG</label>
-                                    <input type="text" name="resRG" required disabled>
+                                    <input type="text" name="resRG" id="rerg" oninput="formatarreRG()" maxlength="9" required disabled>
                                 </div>
                                 <div>
                                     <label for="resCPF">CPF</label>
-                                    <input type="text" name="resCPF" required disabled>
+                                    <input type="text" name="resCPF" id="recpf" oninput="formatarreCPF()" maxlength="14" required disabled>
                                 </div>
                                 </div>
                                 <label for="resTelefone">Telefone</label>
-                                <input placeholder="(11) 96123-4567" name="resTelefone" id="res_telefone" type="tel" minlength="8" maxlength="15" required disabled>
+                                <input placeholder="(11) 96123-4567" name="resTelefone" id="res_telefone" type="tel" oninput="formatarresTelefone()" minlength="8" maxlength="15" required disabled>
                             </div>
                             <input type="submit">
                             </form>
@@ -345,11 +345,11 @@ valores pre setados com o intuito de teste.
                             <div class="cross-input">
                             <div>
                                 <label for="RG">RG</label>
-                                <input type="text" name="RG" required>
+                                <input type="text" name="RG" id="psirg" oninput="formatarpRG('psicologo')" maxlength="9" required>
                             </div>
                             <div>
                                 <label for="CPF">CPF</label>
-                                <input type="text" name="CPF" required>
+                                <input type="text" name="CPF" id="psicpf" oninput="formatarpCPF('psicologo')" maxlength="14" required>
                             </div>
                             </div>
                             <label for="data-nasc">Data de Nascimento</label>
@@ -360,10 +360,10 @@ valores pre setados com o intuito de teste.
                                 <option value="F">Feminino</option>
                             </select>
                             <label for="telefone">Telefone</label>
-                            <input placeholder="(11) 96123-4567" name="telefone" id="psico_telefone" type="tel" minlength="8" maxlength="15">
+                            <input placeholder="(11) 96123-4567" name="telefone" id="psico_telefone" type="tel" oninput="formatarpTelefone('psicologo')" minlength="8" maxlength="15">
                             <p class="form-subtitle">Endereço</p>
                             <label for="CEP">CEP</label>
-                            <input id="psiCEP" type="text" name="cep" required>
+                            <input id="psiCEP" type="text" name="cep" oninput="formatarCEP('psicologo')" maxlength="9" required>
                             <label for="rua">Rua</label>
                             <input id="psiRua" type="text" name="rua" required>
                             <label for="bairro">Bairro</label>

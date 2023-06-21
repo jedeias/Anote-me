@@ -12,6 +12,7 @@
         public function quantidadeAnotacoes($tabela, $quantidadeAnotacoes, $id);
         public function update_psicologo_paciente($pk_paciente, $fk_psicologo);
         public function notificacaoLida($pk_paciente);
+        public function update_senha($table, $novasenha, $email);
 
     }
 

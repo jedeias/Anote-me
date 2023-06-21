@@ -30,7 +30,7 @@
         
         <div class="login-container">
             
-            <form class="login" action="app/main.php" method="POST" enctype="multipart/form-data">
+            <form class="login" action="app/controller/crud/updatesenha.php" method="POST" enctype="multipart/form-data">
                 
                 <h1 class="login-label">Email para recuperação de senha</h1>
                 <?php
@@ -43,12 +43,21 @@
                         $session->session_set("get_executed", true);
                     }
                 ?>            
-                <input type="text" name="email" placeholder="E-mail" class="usuario-input" required>
+                <input type="email" name="email" placeholder="E-mail" class="usuario-input" required>
                
+
                 <div class="action-button">                
                     <input type="submit" name="recuperarSenha" class="entrar-button" value="Recuperar">
+
+                <div class="action-button">
+                
+                    <input type="submit" name="esqueci_senha" class="entrar-button">
+
                 </div>
-                           
+                           <div>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed provident amet praesentium laboriosam optio alias. Quo accusamus, quam repellat alias ea dignissimos omnis ducimus non beatae, voluptates est atque quaerat!</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil aperiam quas dolorem maiores enim, natus asperiores? Non odit, ducimus ipsum at perferendis blanditiis assumenda velit voluptatem voluptas ullam nemo ipsa.</p>
+                           </div>
             </form>
 
             
