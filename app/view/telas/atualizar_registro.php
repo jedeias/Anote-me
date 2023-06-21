@@ -59,6 +59,11 @@ $imagem = $imagem['imagem'];
 				</div>
 			</div>
 			<div class="btn-footer">
+				<?php
+				 if($type == 'psicologo'){
+					echo '<a href="gerenciarAnotacoes.php" class="form-btn"><button type="button" class="form-btn">Gerenciar Anotações</button></a>';
+					}
+			    ?>
 				<input class="form-btn" type="submit" value="Atualizar Dados" name="atualizar_perfil">
 				<a href=<?php echo $back; ?>><button type="button" class="form-btn">Voltar</button></a>
 			</div>

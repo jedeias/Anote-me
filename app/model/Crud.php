@@ -109,6 +109,21 @@ class Crud extends Connect implements CrudController{
         }
     }
 
+    public function quantidadeAnotacoes($tabela, $numero, $id){
+        $stmt = $this->getConn()->prepare("UPDATE $tabela SET quantidade_anotacoes = ? WHERE pk_$tabela = ?");
+        if (!$stmt) {
+            die("Erro na consulta: " . $this->getConn()->error);
+        }
+        $stmt->bind_param("ii", $numero, $id);
+        $stmt->execute();
+        
+        if ($stmt->affected_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function insertNotaPsicologo($noteId, $psiId, $comentario, $redFlagCor){
         $inserteNota = "INSERT INTO anotacoes_psicologo (fk_anotacoes_paciente, fk_psicologo, comentario) VALUES ('$noteId', '$psiId', '$comentario')";
         $updateRedFlag = "UPDATE anotacoes_paciente SET redflag='$redFlagCor' WHERE pk_anotacoes_paciente = '$noteId'";
@@ -241,6 +256,12 @@ class Crud extends Connect implements CrudController{
 
     public function update_psicologo_paciente($pk_paciente, $fk_psicologo){
         $sql = "UPDATE paciente SET fk_psicologo = $fk_psicologo WHERE pk_paciente = $pk_paciente";
+
+        $this->query($sql);
+    }
+
+    public function update_senha($table, $novasenha, $email){
+        $sql = "UPDATE $table SET senha = $novasenha WHERE email = $email";
 
         $this->query($sql);
     }

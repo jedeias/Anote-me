@@ -1,6 +1,6 @@
 /*BANCO DE DADOS COM DADOS JA INSERIDOS.*/
 
-drop database `clinica_psicologica`;
+-- drop database `clinica_psicologica`;
 
 CREATE DATABASE IF NOT EXISTS `clinica_psicologica` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -113,6 +113,7 @@ CREATE TABLE IF NOT EXISTS `psicologo` (
   `sexo` enum('M','F') NOT NULL,
   `data_nasc` date NOT NULL,
   `imagem` varchar(100) NULL,
+  `quantidade_anotacoes` int(11) NULL,
   PRIMARY KEY (`pk_psicologo`),
   UNIQUE KEY `email` (`email`),
   KEY `fk_endereco` (`fk_endereco`),
