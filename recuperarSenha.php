@@ -32,7 +32,7 @@
             
             <form class="login" action="app/main.php" method="POST" enctype="multipart/form-data">
                 
-                <h1 class="login-label">Recuperar Senha</h1>
+                <h1 class="login-label">Email para recuperação de senha</h1>
                 <?php
                     include("app/autoload.php");
                     $session = new Session();
@@ -45,8 +45,7 @@
                 ?>            
                 <input type="text" name="email" placeholder="E-mail" class="usuario-input" required>
                
-                <div class="action-button">
-                
+                <div class="action-button">                
                     <input type="submit" name="recuperarSenha" class="entrar-button" value="Recuperar">
                 </div>
                            

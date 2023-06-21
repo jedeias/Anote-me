@@ -331,7 +331,7 @@ valores pre setados com o intuito de teste.
                 </button>
                 <div class="psicologo-cadastro-container">
                         <h1>Cadastrar Psicologo</h1>
-                        <form method="POST" action="teste.php">
+                        <form method="POST" action="../../../controller/crud/secretario/insertPsicologo.php">
                             <div class="cross-input">
                             <div>
                                 <label for="nome">Nome</label>

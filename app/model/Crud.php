@@ -237,8 +237,8 @@ class Crud extends Connect implements CrudController{
 
         $CPF = $filter->filterString($dados["CPF"]);
         
-        $psicologoQuery = "INSERT INTO psicologo (fk_endereco, fk_telefone, fk_tipo_usuario, nome, email, senha, RG, CPF, sexo, data_nasc) 
-                          VALUES ('$fk_endereco', '$fk_telefone', 1,'{$dados['nome']} {$dados['sobrenome']}', '{$dados['email']}', '{$dados['senha']}', '{$dados['RG']}', '{$CPF->elemente}', '{$dados['sexo']}', '{$dados['data-nasc']}' )";
+        $psicologoQuery = "INSERT INTO psicologo (fk_endereco, fk_telefone, fk_tipo_usuario, nome, email, senha, RG, CPF, sexo, data_nasc, quantidade_anotacoes) 
+                          VALUES ('$fk_endereco', '$fk_telefone', 1,'{$dados['nome']} {$dados['sobrenome']}', '{$dados['email']}', '{$dados['senha']}', '{$dados['RG']}', '{$CPF->elemente}', '{$dados['sexo']}', '{$dados['data-nasc']}', 3 )";
         if (!$this->query($psicologoQuery)) {
             die("Erro na query: " . mysqli_error($this->getConn()));
         }

@@ -24,6 +24,8 @@ if(isset($_POST)){
     $insert = new Crud();
     $insert->insertPsicologo($_POST);
 
+    header("location: ../../../view/telas/secretario/secretario.php");
+
 }
 
 
