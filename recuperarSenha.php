@@ -50,7 +50,8 @@
                     <input type="submit" name="esqueci_senha" class="entrar-button">
                 </div>
                            <div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed provident amet praesentium laboriosam optio alias. Quo accusamus, quam repellat alias ea dignissimos omnis ducimus non beatae, voluptates est atque quaerat!</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed provident amet praesentium laboriosam optio alias. Quo accusamus, quam repellat alias ea dignissimos omnis ducimus non beatae, voluptates est atque quaerat!</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil aperiam quas dolorem maiores enim, natus asperiores? Non odit, ducimus ipsum at perferendis blanditiis assumenda velit voluptatem voluptas ullam nemo ipsa.</p>
                            </div>
             </form>
 
