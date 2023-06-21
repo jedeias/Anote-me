@@ -42,6 +42,8 @@ class Select extends Connect implements selectController{
 
     public function selectNumAnotacoes($id){
         $stmt = $this->getConn()->prepare("SELECT COUNT(*) AS num_anotacoes FROM anotacoes_paciente WHERE fk_paciente = ? AND data >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)");
+        $stmt = $this->getConn()->prepare("SELECT COUNT(*) AS num_anotacoes FROM anotacoes_paciente WHERE fk_paciente = ? AND DATE(data) = CURDATE()");
+
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();

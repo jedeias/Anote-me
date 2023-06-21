@@ -81,7 +81,6 @@ class Crud extends Connect implements CrudController{
     
         $stmt = $this->getConn()->prepare("UPDATE $tabela SET imagem = ? WHERE $tabela.pk_$tabela = ?");
         if (!$stmt) {
-            // Se a preparação da consulta falhar, mostre o erro do MySQLi
             die("Erro na consulta: " . $this->getConn()->error);
         }
         $stmt->bind_param("si",$imagem, $id);
