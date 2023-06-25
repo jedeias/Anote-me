@@ -40,7 +40,7 @@
             
             <form class="login" action="../../controller/crud/updatesenha.php" method="POST" enctype="multipart/form-data">
                 
-                <h1 class="login-label">Recuperar Senha</h1>
+                <h1 class="login-label">Email para recuperação de senha</h1>
                 <?php
                     include("../../autoload.php");
                     $session = new Session();
@@ -56,9 +56,14 @@
                 </div>       
                 <input type="email" name="email" placeholder="E-mail" class="usuario-input" required>
                
+
+                <div class="action-button">                
+                    <input type="submit" name="recuperarSenha" class="entrar-button" value="Recuperar">
+
                 <div class="action-button">
                 
                     <input type="submit" name="esqueci_senha" class="entrar-button">
+
                 </div>
                                         
             </form>
