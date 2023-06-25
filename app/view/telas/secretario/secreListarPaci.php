@@ -87,14 +87,9 @@ if($_POST == true){
                         <?php endif; ?>
                     </li>
                     <li class="center"><?php echo "$nome"; ?></li>
-                    <div class='lista-dados-content'>
-                        <li class="dados-title">Email</li>
-                        <li><?php echo $email; ?></li>
-                        <hr>
-                        <li class="dados-title">Telefone</li>
-                        <li><?php echo $dados[0]['numero']; ?></li>
-                        <hr>
-                       
+                    <div class='lista-dados-content'>                        
+                        <li>Email: <?php echo $email; ?></li>
+                        <li>Telefone: <?php echo $dados[0]['numero'];?></li>
                     </div>
                     <li class="config-container">
                         <a class="config-button" href="../atualizar_registro.php"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>

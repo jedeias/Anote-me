@@ -61,7 +61,6 @@ if($nome == NULL and $email == NULL and $type == NULL){
                     <div class='lista-dados-content'>
                         <li>Email : <?php echo $email; ?></li>
                         <li>Telefone<?php echo $telefone;?></li>
-                        <li>Clinica : </li>
                     </div>
                     <li class="config-container">
                         <a class="config-button" href="../atualizar_registro.php"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>

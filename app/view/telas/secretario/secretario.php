@@ -30,47 +30,6 @@ if($type != "secretario"){
 
 <?php
 
-/*
-valores pre setados com o intuito de teste.
-
-
-    $_POST = array(
-        //paciente
-        "nome" => "João",
-        "sobrenome" => "Silva",
-        "email" => "joao.silva@example.com",
-        "RG" => "123456",
-        "CPF" => "111.222.333-4",
-        "data-nasc" => "01/01/2000",
-        "sexo" => "M",
-        "senha" => "123456",
-        "confirmarSenha" => "123456",
-        
-        //telefone
-        "telefone" => "(11) 99999-999",
-        
-        //endereço
-        "cep" => "01234-567",
-        "rua" => "Rua Teste",
-        "bairro" => "Bairro Teste",
-        "casaNum" => "123",
-        "complemento" => "Apartamento 123",
-        "estado" => "SP",
-        "cidade" => "São Paulo",
-        
-        "responsavelBox" => "on",
-        
-        //responsavel
-        "resNome" => "Maria",
-        "resSobrenome" => "Silva",
-        "resEmail" => "maria.silva@example.com",
-        "resRG" => "654321",
-        "resCPF" => "111.222.333-0",
-        "resTelefone" => "(11) 98888-8888"
-            
-        );
-*/
-    
     if($_POST == true){
         
         $insert = new Crud();
@@ -114,7 +73,8 @@ valores pre setados com o intuito de teste.
                     </li>
                     <li class="center"><?php echo "$nome"; ?></li>
                     <div class='lista-dados-content'>
-                        <li>Email : <?php echo $email; ?></li>                    
+                        <li>Email : <?php echo $email; ?></li>
+                        <li>Telefone : <?php echo $dados[0]['numero']; ?></li>
                     </div>
                     <li class="config-container">
                         <a class="config-button" href="../atualizar_registro.php"><img class="wrapper-icon" src="../../IMG/ico/gear-svgrepo-com.svg" title="Configurações"></a>
