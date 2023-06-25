@@ -339,3 +339,12 @@ body{
         height: 50%;
     }
 }
+.senha{
+    text-decoration: none;
+    color: black;
+    font-size: medium;
+    margin-top: 10px;
+}
+.senha:hover{
+    color: red;
+}

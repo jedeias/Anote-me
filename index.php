@@ -66,7 +66,7 @@
                     <input type="submit" name="entrar" class="entrar-button" value="Entrar">
                 </div>
             
-                <a href="recuperarSenha.php">Recuperar Senha</a>
+                <a href="app/view/telas/recuperarSenha.php" class="senha">Recuperar Senha</a>
             </form>
 
             

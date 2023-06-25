@@ -259,10 +259,16 @@ class Crud extends Connect implements CrudController{
         $this->query($sql);
     }
 
-    public function update_senha($table, $novasenha, $email){
-        $sql = "UPDATE $table SET senha = $novasenha WHERE email = $email";
+    public function senha_nova($table, $novasenha, $email){
+        $stmt = $this->getConn()->prepare("UPDATE $table SET senha = ? WHERE email = ?");
+        if (!$stmt) {
+            die("Erro na consulta: " . $this->getConn()->error);
+        }
+        $stmt->bind_param("ss", $novasenha, $email);
+        $stmt->execute();
+        
+        return true;
 
-        $this->query($sql);
     }
 
 }

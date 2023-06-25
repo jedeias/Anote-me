@@ -6,8 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="app/view/CSS/login.css">
-    <script src="app/view/JS/script.js"></script>
+    <link rel="stylesheet" href="../CSS/login.css">
+    <script src="../JS/script.js"></script>
+    <style>
+        h1{
+            margin: auto;
+        }
+        .usuario-input{
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,11 +38,11 @@
         
         <div class="login-container">
             
-            <form class="login" action="app/controller/crud/updatesenha.php" method="POST" enctype="multipart/form-data">
+            <form class="login" action="../../controller/crud/updatesenha.php" method="POST" enctype="multipart/form-data">
                 
                 <h1 class="login-label">Recuperar Senha</h1>
                 <?php
-                    include("app/autoload.php");
+                    include("../../autoload.php");
                     $session = new Session();
                     if ($session->session_get("get_executed") == false) {
                         if(isset($_GET["invalido"])){
@@ -42,17 +50,17 @@
                         }       
                         $session->session_set("get_executed", true);
                     }
-                ?>            
+                ?>     
+                <div>
+                    <p>Um código de segurança será enviado para seu e-mail cadastrado para a redefinição de senha</p>
+                </div>       
                 <input type="email" name="email" placeholder="E-mail" class="usuario-input" required>
                
                 <div class="action-button">
                 
                     <input type="submit" name="esqueci_senha" class="entrar-button">
                 </div>
-                           <div>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed provident amet praesentium laboriosam optio alias. Quo accusamus, quam repellat alias ea dignissimos omnis ducimus non beatae, voluptates est atque quaerat!</p>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil aperiam quas dolorem maiores enim, natus asperiores? Non odit, ducimus ipsum at perferendis blanditiis assumenda velit voluptatem voluptas ullam nemo ipsa.</p>
-                           </div>
+                                        
             </form>
 
             
