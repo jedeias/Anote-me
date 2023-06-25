@@ -57,9 +57,6 @@
                 <input type="email" name="email" placeholder="E-mail" class="usuario-input" required>
                
 
-                <div class="action-button">                
-                    <input type="submit" name="recuperarSenha" class="entrar-button" value="Recuperar">
-
                 <div class="action-button">
                 
                     <input type="submit" name="esqueci_senha" class="entrar-button">
